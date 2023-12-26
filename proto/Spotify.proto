@@ -12,7 +12,7 @@ message Lyrics {
     repeated Lines lines = 2;
     // string providerLyricsId = 4;
     repeated Alternatives alternatives = 9;
-    string language = 10;
+    optional string language = 10;
 }
 
 message Lines {

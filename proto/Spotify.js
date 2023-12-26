@@ -23,7 +23,7 @@ class Lyrics$Type extends MessageType {
         super("Lyrics", [
             { no: 2, name: "lines", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Lines },
             { no: 9, name: "alternatives", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Alternatives },
-            { no: 10, name: "language", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 10, name: "language", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
         ]);
     }
 }

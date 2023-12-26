@@ -30,9 +30,9 @@ export interface Lyrics {
      */
     alternatives: Alternatives[];
     /**
-     * @generated from protobuf field: string language = 10;
+     * @generated from protobuf field: optional string language = 10;
      */
-    language: string;
+    language?: string;
 }
 /**
  * @generated from protobuf message Lines
