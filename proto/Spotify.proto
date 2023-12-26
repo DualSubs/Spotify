@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option optimize_for = CODE_SIZE;
+
+// https://spclient.wg.spotify.com/color-lyrics/v2/track/
+message TrackReply {
+    Lyrics lyrics = 1;
+}
+
+message Lyrics {
+    //SyncType syncType = 1;
+    repeated Lines lines = 2;
+    // string providerLyricsId = 4;
+    repeated Alternatives alternatives = 9;
+    string language = 10;
+}
+
+message Lines {
+    int32 startTimeMs = 1;
+    optional string words = 2;
+}
+
+message Alternatives {
+    string language = 1;
+    repeated string lines = 2 [packed = false];
+}
+
+/*
+enum SyncType {
+  UNKNOWN = 0;
+  LINE_SYNCED = 1;
+};
+*/

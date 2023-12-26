@@ -1,2 +1,2 @@
 # Spotify
-Spotify字幕增强及双语模块
+Spotify歌词增强及双语模块

@@ -1,0 +1,26 @@
+name: "🍿️ DualSubs: 🎵 Spotify"
+desc: "Spotify歌词增强及双语模块"
+openUrl: "http://boxjs.com/#/app/DualSubs.Translate"
+author: "VirgilClyne"
+homepage: "https://github.com/DualSubs"
+manual: "https://github.com/DualSubs/Spotify/wiki/🍿-DualSubs:-🎵-Spotify"
+icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png"
+
+http:
+  mitm:
+    - "spclient.wg.spotify.com"
+  script:
+    - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json
+      name: DualSubs.Subtitles.Translate.response
+      type: response
+      require-body: true
+    - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)
+      name: DualSubs.Subtitles.Translate.response
+      type: response
+      require-body: true
+      binary-mode: true
+
+script-providers:
+  DualSubs.Subtitles.Translate.response:
+    url: https://raw.githubusercontent.com/DualSubs/Universal/main/js/DualSubs.Subtitles.Translate.response.js
+    interval: 86400
