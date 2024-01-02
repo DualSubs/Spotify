@@ -1,0 +1,4237 @@
+1: "1.0" version
+2: "spotify:episode:04VDDi8oklXOJSQozGxGgd" uri
+3: "2023-12-16T21:17:48.446889102Z" timeStamp
+4 { sections repeated
+  1: 1
+  2: 80 startMs
+  3 { content | texts repeated
+    1: "Better being better."
+    1: "Welcome to this week\'s Bacon."
+    1: "A mystery."
+    1: "Bacon a murder episode."
+    1: "OK, listen, I actually had a completely different thing planned for this episode."
+    1: "But this movie was everywhere."
+    1: "Everywhere I turned around, we were out in public in New York City."
+    1: "I see posters for this movie, I see an ad for this movie."
+  }
+}
+4 { transcriptContent
+  1: 1 hasDescription
+  2: 16360 onTimeStampClick
+  3 { transcriptSections
+    1: "I see Tik Tokers talking about this movie."
+    1: "There was like a a thing where Teslas were recalled recently, right?"
+    1: "And all the comments are like, leave the world behind, leave the world behind, leave the world behind."
+    1: "This movie has been every single place that I\'ve turned, and I just needed to know what it was about."
+  }
+}
+4 {
+  1: 1
+  2: 34040
+  3 {
+    1: "This movie is actually based on a novel by Rumen Alam."
+    1: "I hope I\'m pronouncing that right."
+    1: "And here\'s the interesting thing."
+    1: "It\'s executive produced by Barack and Michelle Obama."
+    1: "Yeah."
+    1: "And it\'s kind of political."
+    1: "It\'s kind of intense."
+    1: "And people are saying, are they trying to be little executive producers or are they trying to tell us something?"
+  }
+}
+4 {
+  1: 1
+  2: 52840
+  3 {
+    1: "I don\'t know."
+    1: "Honestly, even after watching the movie, No thoughts in here."
+    1: "That\'s the problem."
+    1: "I mean, I got a lot of thoughts."
+    1: "This is one of the first movies that I\'ve watched in a really long time where I could not make up my mind about it."
+    1: "And at first, when I was done watching it, I just took it as surface value and I was like, oh, I guess it\'s a good thriller."
+  }
+}
+4 {
+  1: 1
+  2: 70440
+  3 {
+    1: "But then I saw these tik toks dissecting every part of this movie."
+    1: "People were scanning hidden QR codes that were in this movie."
+    1: "People were zooming in, finding all these Easter eggs in this movie."
+    1: "It was absolutely unhinged."
+    1: "I think I need like a whole book club to have someone decipher this movie for me because I can\'t make I\'m married."
+  }
+}
+4 {
+  1: 1
+  2: 90560
+  3 {
+    1: "It\'s crazy."
+    1: "It\'s crazy."
+    1: "So with that being said, let\'s get started."
+    1: "So the story starts with the Stanford family who quite literally embody their last name."
+    1: "Like when I say the Stanford family, I feel like you\'ve got a picture of an American family in your mind."
+  }
+}
+4 {
+  1: 1
+  2: 106720
+  3 {
+    1: "That\'s exactly this family."
+    1: "Do you know what I\'m saying?"
+    1: "All American family that does pretty well, but they still talk about how they\'re stressed out about work and budget cuts."
+    1: "But like, you feel like they\'re not actually stressed out about it because they live in a brownstone in New York City."
+  }
+}
+4 {
+  1: 1
+  2: 122600
+  3 {
+    1: "They also have this really blue ass room."
+    1: "It was like the first scene of this movie."
+    1: "Apparently the color blue is somewhat symbolic later in this movie."
+    1: "So, like, keep it in mind, but every surface of their master bedroom is freaking blue."
+    1: "Blue walls, blue ceiling, blue."
+    1: "Everything."
+  }
+}
+4 {
+  1: 1
+  2: 138200
+  3 {
+    1: "The family consists of parents Amanda and Clay Stanford."
+    1: "I\'m going to give you my first impressions on them and like, don\'t hold me to this, OK?"
+    1: "Because first impressions can change range, but from what I gather, Clay seems a lot more chill."
+    1: "He seems very laid back, but almost kind of to the point of being useless Is like how laid back he seems."
+  }
+}
+4 {
+  1: 1
+  2: 158480
+  3 {
+    1: "Like he seems very He seems like the cool parent at surface value, but it just seems like he genuinely doesn\'t care about his kids that much."
+    1: "Like, maybe he does, but like, not really."
+    1: "Amanda gives me move to New York City from a small town and needs to prove herself is like crazy career woman type vibe."
+  }
+}
+4 {
+  1: 1
+  2: 176640
+  3 {
+    1: "I don\'t know, she just like has this whole monologue at the start of the movie."
+    1: "She\'s bizarre."
+    1: "She\'s giving Manic Pixie Girl but in her 50s."
+    1: "She\'s played by Julia Roberts by the way."
+    1: "Love her."
+    1: "But the opening scene is Clay waking up in the morning in this blue ass room and Amanda is already like making a ruckus in the closet."
+  }
+}
+4 {
+  1: 1
+  2: 193720
+  3 {
+    1: "She\'s packing."
+    1: "Amanda."
+    1: "What?"
+    1: "What are you doing?"
+    1: "Honey?"
+    1: "She\'s like, I\'m leaving you."
+    1: "No, I\'m kidding."
+    1: "She\'s like, well, I couldn\'t sleep."
+    1: "And it\'s been a hell of a year for us."
+    1: "And I feel like all I do is work every day."
+    1: "And I don\'t even realize that that\'s what I\'m doing."
+    1: "And at this point, she\'s like, aggressively stuffing clothes into a suitcase."
+  }
+}
+4 {
+  1: 1
+  2: 211520
+  3 {
+    1: "And then you\'re constantly anxious from work and all these budget cuts."
+    1: "So I booked us a beautiful house by the beach to go stay at today."
+    1: "It\'s on the water, and it was cheap."
+    1: "This man is barely awake and he\'s finding out they\'re going on vacation today."
+    1: "It\'s not our vlogs."
+    1: "Yeah, we\'re going to Korea today."
+  }
+}
+4 {
+  1: 1
+  2: 227800
+  3 {
+    1: "Hey, but you are Amanda."
+    1: "OK."
+    1: "Yeah."
+    1: "And then Clay is like, wait, wait, are you packing right now?"
+    1: "Yeah, I thought I\'d get a jump on it."
+    1: "Wait, Amanda."
+    1: "Honey, I don\'t understand."
+    1: "When did you rent a house?"
+    1: "And what for today?"
+  }
+}
+4 {
+  1: 1
+  2: 244000
+  3 {
+    1: "I figured if I made the reservation and packed our bags, it would eliminate most of the reasons to say no."
+    1: "She zips up the suitcase."
+    1: "She\'s ready."
+    1: "Clay\'s still in bed."
+    1: "The details for the house you printed on your night stand next to your coffee."
+    1: "The kids are still asleep, and I haven\'t started packing for them yet, but I think that they\'re going to be really excited about this."
+  }
+}
+4 {
+  1: 1
+  2: 259680
+  3 {
+    1: "Amanda\'s giving control, freak."
+    1: "She will want you to do something, but then she will do it instead before you get around to it."
+    1: "It\'s 6:00 in the morning and she\'s already made weekend plans for every single person in the family, and she\'s packing."
+    1: "But Clay, he just kind of takes it like a champ."
+    1: "He\'s giggling."
+  }
+}
+4 {
+  1: 1
+  2: 275040
+  3 {
+    1: "He\'s shaking his head."
+    1: "It feels like he\'s used to Amanda doing this."
+    1: "OK, but Amanda, honey, help me out here."
+    1: "I mean, why today?"
+    1: "Well, Amanda suddenly gets serious."
+    1: "She walks over to the window."
+    1: "Well, when I couldn\'t fall back asleep this morning, I came over here to the window to watch the sunrise."
+  }
+}
+4 {
+  1: 1
+  2: 297320
+  3 {
+    1: "And I saw all these people starting their day with such tenacity, such verve, all in an effort to make something of themselves, make something of our world."
+    1: "I felt so lucky to be a part of that."
+    1: "But then I remembered what the world is actually like, and I came to a more accurate realization."
+  }
+}
+4 {
+  1: 1
+  2: 318000
+  3 {
+    1: "She\'s like, literally doing this."
+    1: "It\'s a monologue."
+    1: "It\'s not a narration."
+    1: "She\'s doing this."
+    1: "She turns her head to her husband."
+    1: "I came to the realization I hate people."
+    1: "OK, so you are Amanda."
+  }
+}
+4 {
+  1: 1
+  2: 335120
+  3 {
+    1: "So they move fast."
+    1: "The whole family is packed in the car."
+    1: "Clay, the dad is driving."
+    1: "Amanda, the mom who is again, You know, be young, right?"
+    1: "You don\'t have to act your age or anything, but she\'s constantly giving, like Vampire Diaries Twilight vibes."
+  }
+}
+4 {
+  1: 1
+  2: 350200
+  3 {
+    1: "She\'s staring out the window with her wired headphones in, talking on the phone, sunglasses, and she says leave the world behind."
+    1: "That\'s what it said on the rental listing, at least."
+    1: "She\'s on the phone with her friend."
+    1: "Oh, East Hampton, right?"
+    1: "No, no, it\'s a cute little town."
+  }
+}
+4 {
+  1: 1
+  2: 366360
+  3 {
+    1: "Actually, I think they call it a hamlet."
+    1: "That\'s how cute it is."
+    1: "It\'s a lot closer to the city and still very far from, well, everyone."
+    1: "The woman on the phone does not care."
+    1: "She just wants Amanda to answer some more work questions."
+    1: "It seems like all Amanda does is work, but it\'s not like her husband and her kids even really want her attention to begin with."
+  }
+}
+4 {
+  1: 1
+  2: 384640
+  3 {
+    1: "So Clay is listening to music, windows down, driving."
+    1: "He gives me stereotypical dad."
+    1: "He\'s wearing a Hawaiian shirt type of dad."
+    1: "There are two kids, Archie, teenage boy and Rose, who just turned 13."
+    1: "They\'re in the back and Archie looks at Rose."
+    1: "Did you just fart?"
+  }
+}
+4 {
+  1: 1
+  2: 401040
+  3 {
+    1: "Archie, come on, let your sister be well."
+    1: "No, Dad, I don\'t care if she farted."
+    1: "I care if she lies about it."
+    1: "Meanwhile, Rose just ignores her teenage brother does not even listen."
+    1: "OK, she looks."
+    1: "How?"
+    1: "How many boys and girls?"
+    1: "One boy, Archie, and one girl Rose and rose."
+  }
+}
+4 {
+  1: 1
+  2: 416480
+  3 {
+    1: "Is 13."
+    1: "Archie is older."
+    1: "You\'re like 16."
+    1: "Who\'s older?"
+    1: "Archie, Archie\'s like 16."
+    1: "Rose is like 13."
+    1: "OK yeah."
+    1: "And Archie is giving typical kind of like brainless teen boy type vibes."
+    1: "Rose seems a little bit more sophisticated, but she\'s 13."
+  }
+}
+4 {
+  1: 1
+  2: 432240
+  3 {
+    1: "She\'s the youngest."
+    1: "She is an iPad kid though."
+    1: "She has this giant iPad that\'s in like one of those padded silicone."
+    1: "They\'re like the ones that they put on the kids, and she\'s watching friends on her iPad, and when it starts buffering mid ride, she\'s slamming her finger down trying to get it to play again."
+  }
+}
+4 {
+  1: 1
+  2: 449800
+  3 {
+    1: "And when it doesn\'t, she rips out her earbuds, crosses her arms and stares out the window."
+    1: "Dad, when we get back to the city, can you take me to the coffee shop and friends?"
+    1: "Honey, I don\'t think that\'s real."
+    1: "It\'s just a set."
+    1: "Our girl Rose is now staring at the window, super depressed."
+  }
+}
+4 {
+  1: 1
+  2: 465760
+  3 {
+    1: "But keep this in mind because this Friends TV show is going to stick around for the entire movie, but you want to know something odd?"
+    1: "Side note, Julia Roberts woman playing her mom was in an episode of Friends."
+    1: "So did she just not see her mom in that episode of Friends?"
+  }
+}
+4 {
+  1: 1
+  2: 482240
+  3 {
+    1: "Anyway, our girl Rose is staring at the window Teenage angst at its finest and she reads the freeway exit sign."
+    1: "Exit 76, Point Comfort exit lane only and we are welcomed into part one of the movie."
+  }
+}
+4 {
+  1: 1
+  2: 498000
+  3 {
+    1: "There\'s five parts."
+    1: "Part one, the house, the family pull up to this honestly California style house."
+    1: "I don\'t know what I was expecting, maybe some sort of cottage, but this house is giving LA."
+    1: "It\'s a modern farmhouse."
+    1: "I mean love the look honestly."
+  }
+}
+4 {
+  1: 1
+  2: 514159
+  3 {
+    1: "Soft oak, wood flooring, wood details on the walls, lots of sunlight, windows."
+    1: "It\'s bright, clean, open concepts, writing glass doors, indoor, outdoor, living, perfectly manicured lawn."
+    1: "I sound like a realtor, but it is beautiful and it\'s very, very clean, you know?"
+  }
+}
+4 {
+  1: 1
+  2: 531240
+  3 {
+    1: "And I don\'t know if it\'s because it\'s a rental home or a vacation home, but there\'s like no character in the house."
+    1: "All the art, random sculptures of who knows what abstract ink, blot art is pretty, though."
+    1: "And the kids being kids, they\'re ready to jump in the pool."
+    1: "They\'re busy and Amanda\'s already heading into town to grab some groceries."
+  }
+}
+4 {
+  1: 1
+  2: 549440
+  3 {
+    1: "So, like, they\'re they\'re planning to stay here the whole weekend."
+    1: "And just to give you an idea, the market that she\'s going to like, just to give you an idea of how small this town is, it\'s like Trader Joe\'s, but even more cottagey."
+    1: "And we see something, and I don\'t know why Amanda thinks something weird about it, but me watching a thriller movie, I\'m like, what does this mean?"
+  }
+}
+4 {
+  1: 1
+  2: 569160
+  3 {
+    1: "Amanda\'s loading the groceries into the back of her SUV, and there\'s this man, Kevin Bacon."
+    1: "But he plays a man named Danny."
+    1: "He is dressed in a Plaid shirt."
+    1: "He\'s got this crazy beard he\'s hauling just like cases of water bottles and canned goods into his truck."
+    1: "He doesn\'t even smile when he makes eye contact with Amanda."
+  }
+}
+4 {
+  1: 1
+  2: 587960
+  3 {
+    1: "He just keeps loading water bottles and he\'s literally looking at her like, what are you looking at?"
+    1: "When Amanda gets back, she makes no mention of the water bottle hoarding man because maybe he just likes to hoard water bottles or like he doesn\'t come to the store often."
+    1: "Maybe he\'s thinking too deep into it."
+    1: "Maybe she\'s thinking too deep into it."
+  }
+}
+4 {
+  1: 1
+  2: 603280
+  3 {
+    1: "Maybe I\'m thinking too deep into it."
+    1: "So she did feel like, oh, is he prepping for something type of vibe?"
+    1: "Yeah, she was like staring at him and he looks back at her like, what?"
+    1: "It was weird."
+    1: "So she tells Clay Honey, the Wi-Fi password is Novella."
+    1: "The owner must be one of those, like cyber security guys."
+  }
+}
+4 {
+  1: 1
+  2: 621720
+  3 {
+    1: "Oh, I get it now."
+    1: "I just got it."
+    1: "Wait, I don\'t get it."
+    1: "Oh, she said."
+    1: "It\'s a novella."
+    1: "I thought she meant the password is novella, but she\'s saying the password is that long, so he must."
+    1: "Be I didn\'t get it either."
+    1: "He must be a cyber security guy."
+  }
+}
+4 {
+  1: 1
+  2: 637280
+  3 {
+    1: "I just got it too so."
+    1: "She puts a pack of cigarettes on the kitchen table where Clay is and her husband is like, They\'re not mine, they\'re not mine."
+    1 {
+      9: 0x7420726165777320
+      13: 101
+      15: 0x20746f6e20657227
+      13: 0x2e656e69
+    }
+    1: "Relax."
+    1: "I bought them."
+    1: "I know you like to sneak here and there, and I figured, we\'re on vacation."
+  }
+}
+4 {
+  1: 1
+  2: 652760
+  3 {
+    1: "Why not?"
+    1: "I want you to have a good time."
+    1: "You know, just don\'t let the kids see you."
+    1: "Both Amanda and Clay are smiling."
+    1: "So it seems like they have a good relationship."
+    1: "And Amanda leans in to give him a kiss."
+    1: "But it\'s like the quickest Peck on the lips you\'ll ever see."
+    1: "And she keeps her eyes open the whole time, and she turns to walk away from him, But he tries to grab her arm and he pulls her in and he\'s like, oh, hey, you know, I got another idea for a good time."
+  }
+}
+4 {
+  1: 1
+  2: 676920
+  3 {
+    1: "And Amandae whole smile completely drops."
+    1: "She looks serious."
+    1: "She rips back her arm and just like, walks off."
+    1: "So immediately."
+    1: "Weird."
+    1: "Weird."
+    1: "They\'re weird."
+    1: "They\'re not a loving parent couple."
+    1: "We don\'t know what they are."
+    1: "They\'re cordial."
+    1: "They seem okay, but there\'s something to brew in."
+    1: "Clay still calls after her."
+  }
+}
+4 {
+  1: 1
+  2: 693840
+  3 {
+    1: "Maybe the whole family lather themselves up in sunscreen and they make their way to the beach and it\'s pretty quiet, but there\'s still like a few people lounging here and there in the sand."
+    1: "It\'s not dead, but it\'s definitely not like busy season and the parents are setting up the spot, the blankets, the towels, chairs, umbrella, the whole 9 yards."
+  }
+}
+4 {
+  1: 1
+  2: 710680
+  3 {
+    1: "Archie\'s texting his girlfriend, Taylor, but the minute, the minute a hot girl walks by, drooling, doing one 80s, breaking his neck just to watch her leave, OK, And Rose?"
+    1: "She\'s the only one that seems to be more in the moment."
+    1: "Archie\'s texting his girlfriend, looking at any other girls in bikinis."
+  }
+}
+4 {
+  1: 1
+  2: 728720
+  3 {
+    1: "I believe the dad is like."
+    1: "Also on his phone, the mom, Amanda, is reading and Rose is just staring out into the ocean and there\'s a giant boat in the water."
+    1: "It looks like the size of a cruise ship."
+    1: "It\'s getting closer and the mom says what?"
+    1: "What is it, honey?"
+  }
+}
+4 {
+  1: 1
+  2: 744720
+  3 {
+    1: "The ship."
+    1: "And the dad says, Oh yeah, she\'s a beauty."
+    1: "Looks like an oil tanker."
+    1: "Must be, must be a port around here."
+    1: "I read this piece in the Atlantic that says New York has one of the largest natural harbors on the planet."
+    1: "Conversation over, like the family doesn\'t really like to talk to each other."
+    1: "Clay and Archie end up napping on their towels."
+  }
+}
+4 {
+  1: 1
+  2: 761200
+  3 {
+    1: "Amanda, the mom is reading on her stomach and you see Rose, who seems like she\'s in a trance, just staring out into the water."
+    1: "You OK, Rosie?"
+    1: "Mom, I think the ship is heading towards us."
+    1: "What is that, sweetie?"
+    1: "She doesn\'t respond."
+    1: "Amanda looks up and the boat is practically on their lap."
+  }
+}
+4 {
+  1: 1
+  2: 779520
+  3 {
+    1: "And it\'s not stopping."
+    1: "It\'s not even honking."
+    1: "It\'s just quietly coming closer and closer to the shore."
+    1: "And for some natural selection reason, nobody is moving."
+    1: "They\'re all just like, yeah, I mean, it\'s going to stop, right?"
+    1: "They\'re all standing there with their hands on their hips like some Home Depot dads."
+  }
+}
+4 {
+  1: 1
+  2: 795360
+  3 {
+    1: "And Amanda, she immediately starts shaking her husband\'s like, like, wake up, wake up, Clay."
+    1: "Clay."
+    1: "He looks up."
+    1: "Wow, It\'s getting close, huh?"
+    1: "You think that\'s a problem?"
+    1: "Nah."
+    1: "Come on."
+    1: "It\'s got to stop."
+  }
+}
+4 {
+  1: 1
+  2: 811480
+  3 {
+    1: "It\'s got to."
+    1: "Bro, what would you do?"
+    1: "Bro, I immediately move."
+    1: "When you saw it in the on the screen."
+    1: "Oh, I immediately move."
+    1: "You would have ran."
+    1: "Yeah, I don\'t."
+    1: "Like, did it look that alarming?"
+    1: "He did."
+    1: "I don\'t think I would have ran."
+    1: "I don\'t think I would have sprinted."
+    1: "I think I would have gradually, slowly grabbed all my things and walked away in time because I just even the anxiety."
+  }
+}
+4 {
+  1: 1
+  2: 831880
+  3 {
+    1: "Why would I?"
+    1: "I can\'t."
+    1: "It looks like it\'s gonna hit you."
+    1: "It\'s head on to the shore."
+    1: "OK, and the ball is huge."
+    1: "Have you seen a cruise ship in person?"
+    1: "Have you ever stood next to a cruise ship?"
+    1: "Yeah."
+    1: "But it\'s like oil tanker."
+    1: "So it\'s probably even bigger like one of those shipping container type level of ships."
+  }
+}
+4 {
+  1: 1
+  2: 848680
+  3 {
+    1: "So it\'s like coming to them and there\'s nobody."
+    1: "Is there other people?"
+    1: "Yeah."
+    1: "And they\'re all like, hands on their hips, Home Depots adding."
+    1: "Yeah, there\'s a lot of apparently symbolism."
+    1: "I don\'t know."
+    1: "You can go down multiple rabbit holes."
+    1: "Some people say it\'s just a movie scene."
+    1: "Some people say, like, the ship\'s name is, like, white Lion."
+  }
+}
+4 {
+  1: 1
+  2: 864480
+  3 {
+    1: "And like, white Lion means ABC and D I\'m not too intelligent to follow all these rabbit holes, right?"
+    1: "But anyway, Clay is like, Nah, come on, it\'s got to stop."
+    1: "It\'s got to, right?"
+    1: "They look at each other and they\'re like, oh, hell no."
+    1: "They wake up Archie, they grab a few of their things and they just start booking it."
+  }
+}
+4 {
+  1: 1
+  2: 881120
+  3 {
+    1: "They have to leave most of their stuff, but otherwise they were pretty safe."
+    1: "They run to the other side of the shore and the ship ends up beaching."
+    1: "It ends up literally coming into the sand, throwing sand around."
+    1: "People are getting buried in sand."
+    1: "Nobody dies."
+  }
+}
+4 {
+  1: 1
+  2: 897320
+  3 {
+    1: "It doesn\'t appear that anybody dies, but it was a shit show and it was it was weird it."
+    1: "Was a ship show."
+    1: "The boat didn\'t even make a single noise, though it didn\'t alert anyone, it just beached."
+    1: "It was weird."
+    1: "All the beach goers, they start heading out and the family see a police officer directing the truck traffic."
+  }
+}
+4 {
+  1: 1
+  2: 915480
+  3 {
+    1: "Like, come on, there\'s wait, there\'s wait."
+    1: "And the dad is like, excuse me, officer, do you know what\'s happened?"
+    1: "There\'s been a number of these groundings up on the coast, something to do with the navigation system."
+    1: "Sorry, guys."
+    1: "I need you guys to keep it moving."
+    1: "Come on, come on, come on."
+    1: "And he just ushers them along."
+    1: "So in the car, everyone is reacting to the situation differently."
+  }
+}
+4 {
+  1: 1
+  2: 934120
+  3 {
+    1: "The two kids, they\'re watching YouTube videos of the ship beaching."
+    1: "They\'re like, Oh, my God, we just experienced that, right?"
+    1: "Amanda, she\'s sitting there and she goes, wow, that was so strange."
+    1: "Oh, my God."
+    1: "Oh, Starbucks."
+    1: "We should stop for some coffee."
+    1: "She literally name drops that company name."
+  }
+}
+4 {
+  1: 1
+  2: 949760
+  3 {
+    1: "OK, Some people thought that was symbolic, too."
+    1: "I don\'t know."
+    1: "I don\'t know."
+    1: "OK, Don\'t come at me."
+    1: "I\'m just retelling you a story."
+    1: "I don\'t know anything."
+    1: "Talk to the Obamas."
+    1: "You got questions, You got to e-mail them."
+    1: "OK."
+    1: "Some people said it was very interesting, like, the way that people are reacting to news now, \'cause, like, that is something that might have been a topic of conversation for hours, if not days, if not weeks, like your party story for the rest of your life."
+  }
+}
+4 {
+  1: 1
+  2: 972960
+  3 {
+    1: "But now we just all move on so quickly and we\'re like coffee, right?"
+    1: "So they get home."
+    1: "Clay\'s already prepping burgers for dinner."
+    1: "Amanda\'s trying to get on her laptop to read about what the hell just happened on the beach."
+    1: "But the Wi-Fi is down, the TV is down."
+    1: "No devices are working."
+  }
+}
+4 {
+  1: 1
+  2: 988520
+  3 {
+    1: "Oh my God."
+    1: "Yesterday, none of our devices were we."
+    1: "Stop it."
+    1: "OK?"
+    1: "Now the kids are back in the pool, and Amanda\'s just amazed that they\'re not fazed by almost being crushed by a boat on the beach."
+    1: "And before Amanda looks away from the kids, she sees near the bushes a few deer."
+  }
+}
+4 {
+  1: 1
+  2: 1006560
+  3 {
+    1: "Clay."
+    1: "Clay, Come here."
+    1: "Look."
+    1: "Oh, wow."
+    1: "Deer."
+    1: "That\'s a good omen."
+    1: "You know, seeing deer, at least according to some mythology somewhere, right?"
+    1: "That night, the kids fall asleep early and the couple are playing Jenga on the dining table while they\'re getting drunk."
+    1: "And here\'s what I\'m picking up."
+  }
+}
+4 {
+  1: 1
+  2: 1023400
+  3 {
+    1: "Clay has a job that he\'s passionate about."
+    1: "He\'s a professor."
+    1: "But Amanda probably doesn\'t care about it."
+    1: "She\'s the breadwinner."
+    1: "She doesn\'t even seem to think that Clay\'s job is really that serious."
+    1: "Like, she it\'s the the dynamic is weird."
+    1: "She\'s refilling their wine glasses."
+    1: "And Clay says, hey, you remember that student of mine who was published last year, Maria Miller?"
+  }
+}
+4 {
+  1: 1
+  2: 1042400
+  3 {
+    1: "No."
+    1: "Well, she wants me to write the foreword to her second book."
+    1: "I mean, you know, she says I\'m some kind of huge inspiration."
+    1: "I never know if I\'m getting through to these kids and then something like this happens."
+    1: "Did you hear that?"
+    1: "There\'s like a soft noise."
+  }
+}
+4 {
+  1: 1
+  2: 1059000
+  3 {
+    1: "But Clay\'s like, what?"
+    1: "No."
+    1: "Her second book is an exploration of how media serves as both an escape and a reflection, which is a contradiction that she manages to reconcile."
+    1: "You know, let me tell you, Amanda is not listening to a single thing coming out of her husband\'s mouth."
+  }
+}
+4 {
+  1: 1
+  2: 1076640
+  3 {
+    1: "She is thinking about that Bonk."
+    1: "And there it is again."
+    1: "Someone\'s here."
+    1: "What does that sound like?"
+    1: "Like like a thud."
+    1: "Yeah, Amanda\'s calm though, and she just looks at her husband and says get a bat, Get a bat."
+    1: "A bat."
+    1: "Yes, get a bat."
+  }
+}
+4 {
+  1: 1
+  2: 1093560
+  3 {
+    1: "Why do you think I would have a bat?"
+    1: "And then knocking, knocking Clay gets up and grabs a thick cement piece of artwork."
+    1: "Some, I don\'t know, it was like a prong structure."
+    1: "This is his bat, I guess."
+    1: "I\'m."
+    1: "I\'m sure it\'s nothing."
+    1: "He goes to the front door."
+  }
+}
+4 {
+  1: 1
+  2: 1108800
+  3 {
+    1: "Amanda goes to grab his phone."
+    1: "There is a man in a white and black suit standing on their porch."
+    1: "Like not even a suit, a tuxedo."
+    1: "He looks like he just walked off AGQ cover or came back from some sort of gala."
+    1: "And next to him is a younger woman, probably his daughter."
+    1: "They look like father and daughter age."
+  }
+}
+4 {
+  1: 1
+  2: 1125960
+  3 {
+    1: "And the man turns around."
+    1: "I\'m so sorry to bother you, Clay."
+    1: "Standing there alone."
+    1: "Hello."
+    1: "How can I help you?"
+    1: "I know it\'s late."
+    1: "A knock at the door way out here."
+    1: "We couldn\'t decide if we should knock at the front door or the side door."
+    1: "And this went on for some time."
+  }
+}
+4 {
+  1: 1
+  2: 1142720
+  3 {
+    1: "I thought we should try the side door because it has glass and you\'d have seen us and known we\'re just."
+    1: "Amanda shows up and she\'s got her cardigan wrapped around her like a freshly divorced suburban housewife."
+    1: "Oh, you must be Amanda."
+    1: "Amanda."
+    1: "Stan."
+    1: "Amanda Sanford, Right, Clay\'s now like, why is this hot man in a tuxedo know my wife by name?"
+  }
+}
+4 {
+  1: 1
+  2: 1163080
+  3 {
+    1: "He\'s looking at them insecure, looking at his pajamas."
+    1: "And he\'s like, you two know each other and he starts straightening out his posture a little."
+    1: "You two know each other?"
+    1: "No, we have not had the pleasure of meeting face to face."
+    1: "I\'m GHGH Scott."
+  }
+}
+4 {
+  1: 1
+  2: 1179120
+  3 {
+    1: "Amanda looks confused and the man\'s daughter speaks up."
+    1: "George."
+    1: "He\'s George."
+    1: "That\'s how it reads in his emails."
+    1: "Oh, right, right."
+    1: "Forgive me."
+    1 {
+      9: 0x2e746f67726f6620
+    }
+    1: "See, This is why I much preferred the life before the Internet, because we would have spoken on the phone and you would have recognized my voice and known that this is our house."
+  }
+}
+4 {
+  1: 1
+  2: 1198200
+  3 {
+    1: "I\'m sorry."
+    1: "This is our house."
+    1: "I\'m the George you emailed back and forth with."
+    1: "No, I I remember the name."
+    1: "I just."
+    1: "This is your house."
+    1: "The two stare at Amanda and Clay as if they did not just say that."
+    1: "OK, so to give you context, George and his daughter Ruth are black, and Amanda said it in a very racist way."
+  }
+}
+4 {
+  1: 1
+  2: 1219760
+  3 {
+    1: "It wasn\'t like, oh, why are you here?"
+    1: "I rented your house from you."
+    1: "But she was like, this is your house, you."
+    1: "Think that."
+    1: "You\'ll see it continues."
+    1: "It continues."
+    1: "It\'s not just one comment."
+    1: "It continues."
+    1: "OK, Amanda was giving racist like she was giving."
+  }
+}
+4 {
+  1: 1
+  2: 1236360
+  3 {
+    1: "I don\'t even know if this could be categorized as a microaggression."
+    1: "It was just aggressive."
+    1: "They gracefully ignore it."
+    1: "And George says, I\'m sorry."
+    1: "You think we could come inside?"
+    1: "Oh, yeah, yeah, yeah, yeah."
+    1: "Sure."
+    1 {
+      11: 0x3f6572757320756f
+    }
+    1: "Come on in."
+    1: "Get out of the cold, you know."
+    1: "Come on, Come on."
+    1: "So Clay\'s nice."
+    1: "Amanda\'s very skeptical."
+  }
+}
+4 {
+  1: 1
+  2: 1253360
+  3 {
+    1: "They enter and they pause in the foyer, and George says, I understand how strange this must be for you, US turning up like this unannounced."
+    1: "We\'d have called you, you see?"
+    1: "But the phones are out."
+    1: "Amanda pauses and looks at her phone."
+    1: "Yeah, my phone doesn\'t seem to have service either."
+  }
+}
+4 {
+  1: 1
+  2: 1271000
+  3 {
+    1: "Ruth, George\'s daughter, the owner of this home."
+    1: "She smirks."
+    1: "It\'s almost as if we\'re telling the truth because, like, you know, Amanda seems very skeptical of them."
+    1: "So Ruth is like, it\'s almost like we\'re telling the truth of why we\'re here and this is our house."
+  }
+}
+4 {
+  1: 1
+  2: 1287000
+  3 {
+    1: "And you would think that Amanda would be embarrassed, but she just stares at Ruth like Ruth is the one being weird."
+    1: "Ruth holds her place and she\'s staring back, arms crossed."
+    1: "So, Amanda."
+    1: "How old is?"
+    1: "Ruth like probably 19."
+    1: "So Amanda\'s husband tries to come in and does damage control."
+    1: "Clay is like, I\'m Clay, by the way."
+  }
+}
+4 {
+  1: 1
+  2: 1306200
+  3 {
+    1: "Ruth."
+    1: "And I\'m GH again."
+    1: "Clay."
+    1: "Nice to meet you."
+    1: "Yeah."
+    1: "Why don\'t we sit down and, you know, talk."
+    1: "The children are sleeping, Clay, and everyone is just awkwardly standing there."
+    1: "Like, why is she so upset?"
+  }
+}
+4 {
+  1: 1
+  2: 1322120
+  3 {
+    1: "And Clay says, honey, but I I wouldn\'t worry too much about them."
+    1: "You know, Archie would sleep through the atom bomb."
+    1: "You know, why don\'t we all go into the kitchen?"
+    1: "Clay is ushering, Ruth and GH through."
+    1: "And Amanda is just following behind them slowly, watching them."
+    1: "George is trying to break the tension and explain why they\'re here."
+  }
+}
+4 {
+  1: 1
+  2: 1340240
+  3 {
+    1: "We were at the Symphony in the Bronx."
+    1: "Have you guys been?"
+    1: "No, their productions are in a class of their own."
+    1: "Yeah, Dad\'s on the board of the Philharmonic."
+    1: "He likes to encourage everyone he knows to take an interest in classical music."
+    1: "So in other words, I\'m a very lucky daughter, kind of making a joke."
+  }
+}
+4 {
+  1: 1
+  2: 1357680
+  3 {
+    1: "Like, I don\'t wanna sit through this right."
+    1: "And Clay is trying to be interested, but Amanda is giving Karen which okay."
+    1: "So side note, I think Amanda\'s reaction is somewhat warranted in the sense that, like, if people show up saying they\'re the owners of my vacation home that I rented, I would also be highly skeptical of letting them in."
+  }
+}
+4 {
+  1: 1
+  2: 1374680
+  3 {
+    1: "However, the racist comments kind of debunk everything that she\'s done."
+    1: "So it\'s like a mixture of like, on one hand people are like, I get why she\'s skeptical, but on the other hand, you don\'t have to be skeptical and racist."
+    1: "You could just be skeptical."
+    1: "So she\'s like Cardigan wrapped tightly around her, you know, arms crossed, lips tight and thin."
+  }
+}
+4 {
+  1: 1
+  2: 1392920
+  3 {
+    1: "Even when Ruth asks if she can get a glass of water for herself, Clay says yes, because technically, it\'s her home."
+    1: "Amanda is glaring at him, like he just offered a serial killer a knife."
+    1: "George is noticing all of this Anyway, We were driving back to the city, to our city home, and then something happened."
+  }
+}
+4 {
+  1: 1
+  2: 1411040
+  3 {
+    1: "A blackout."
+    1: "A blackout, Yes."
+    1: "Well, the lights seem good here."
+    1: "Everything seems to be working good here."
+    1: "A glance around and, yeah, most of the lights are still on, which is, you know, something you would think that our little Karen Amanda would point out."
+    1: "But instead she\'s watching Ruth staring her down."
+  }
+}
+4 {
+  1: 1
+  2: 1428160
+  3 {
+    1: "Ruth is grabbing a cup from the cabinet, and she knows exactly which cabinet to open."
+    1: "She walks over to the sink and fills it with water."
+    1: "George, the dad continues."
+    1: "Well, that\'s exactly right."
+    1: "We thought, well, with everything that\'s probably going on in the city right now, we we didn\'t."
+  }
+}
+4 {
+  1: 1
+  2: 1444800
+  3 {
+    1: "He doesn\'t know what to say."
+    1: "So Ruth walks over with her glass."
+    1: "We live on the 14th floor in the city, and he can\'t climb 14 flights because of his knee."
+    1: "Plus the traffic lights went out."
+    1: "We would have been sitting in a six hour parking lot if we headed home."
+    1: "So there was a blackout and you decided to drive all the way out here."
+  }
+}
+4 {
+  1: 1
+  2: 1460720
+  3 {
+    1: "These roads are familiar to me."
+    1: "I barely even thought about it."
+    1: "So when we saw the lights go out, I looked at Ruth."
+    1: "So Ruth is now saying Ruth is now finishing George\'s sentence."
+    1: "And he said that he would feel better if we stayed here, you know, in our house."
+  }
+}
+4 {
+  1: 1
+  2: 1476280
+  3 {
+    1: "Wait, you want to stay here, but we\'re staying here?"
+    1: "Well, under the circumstances, we thought you might understand, Clay responds."
+    1: "Yeah, of course."
+    1: "Amanda starts walking over, and Clay starts noticing."
+  }
+}
+4 {
+  1: 1
+  2: 1491960
+  3 {
+    1: "Oh, my God."
+    1: "I\'m about to get beat up."
+    1: "So he starts changing his message."
+    1: "It\'s just Amanda takes over."
+    1: "Look, I think what he means, what my husband Clay means, is, of course we understand."
+    1: "I know it\'s a surprise, but we thought maybe if you let us stay."
+  }
+}
+4 {
+  1: 1
+  2: 1509600
+  3 {
+    1: "George is very gentle, but Ruth is standing her ground."
+    1: "She\'s looking at them like because, you know, it is our house."
+    1: "Which is valid, right?"
+    1: "Like they could easily kick the Stanfords out in the middle of the night if they really wanted."
+    1: "I\'m sure they might get sued, I don\'t know."
+    1: "Or give them their money back, kick them out."
+  }
+}
+4 {
+  1: 1
+  2: 1525240
+  3 {
+    1: "They could easily do that."
+    1: "But they\'re being very nice about it, Like we can all stay here, right?"
+    1: "George is stammering and he smiles."
+    1: "What my daughter is trying to say is we wanted to be somewhere safe."
+    1: "We\'re on vacation."
+    1: "We\'re staying here."
+  }
+}
+4 {
+  1: 1
+  2: 1541720
+  3 {
+    1: "Amanda."
+    1: "Clay."
+    1: "We could absolutely refund you your money."
+    1 {
+      11: 0x20746e617720756f
+      14: 0x6f742073
+      4: 108
+      12: 0x3f657661
+    }
+    1: "It\'s the middle of the night."
+    1: "My children are sleeping upstairs."
+    1: "You come in here and you talk about refunding our."
+    1: "I think I need to call the company."
+    1: "I don\'t even think you could do this."
+    1: "She goes and grabs her laptop like a little Karen and she\'s like Stampin array."
+  }
+}
+4 {
+  1: 1
+  2: 1559960
+  3 {
+    1: "And George is like that\'s really not necessary, Amanda."
+    1: "And why not?"
+    1: "Because we\'re not asking you to leave."
+    1: "We could refund you say, 50% of what you paid and there\'s an in law suite down in the basement downstairs."
+    1: "We could stay there."
+    1: "Now Ruth is confused."
+  }
+}
+4 {
+  1: 1
+  2: 1576800
+  3 {
+    1: "Dad."
+    1: "You want us to stay downstairs, but Clay is interested 50%."
+    1: "Clay walks over to his wife, Amanda."
+    1: "That\'s a good offer."
+    1: "She ignores him."
+    1: "I I think I need to look at the terms and conditions here."
+  }
+}
+4 {
+  1: 1
+  2: 1592920
+  3 {
+    1: "Look, I just, I just."
+    1: "I don\'t feel comfortable staying in this house with people I don\'t know."
+    1: "It felt like she wanted to see black people, honestly."
+    1: "Honestly."
+    1: "Like it was weird."
+    1: "Like you could just say strangers, but like, why was there a weird pause?"
+    1: "And she says it\'s a blackout."
+  }
+}
+4 {
+  1: 1
+  2: 1609800
+  3 {
+    1: "It could be over in a couple of hours."
+    1: "George walks over from the kitchen island to the locked wine cabinet in the corner, and he tries to open the bottom drawer with one of his keys, but it won\'t open and he tries another, and it still won\'t open."
+    1: "And he tries another."
+    1: "It still won\'t open and he\'s bent over and he laughs nervously because everyone\'s staring at him."
+  }
+}
+4 {
+  1: 1
+  2: 1627480
+  3 {
+    1: "I should have listened to my wife and had these labeled already, but then click."
+    1: "Ah, here we are."
+    1: "George opens the drawer and there\'s two things inside."
+    1: "Nobody else can see."
+    1: "An envelope and next to it is a silver gun."
+    1: "He grabs the envelope and closes the door and locks it again."
+  }
+}
+4 {
+  1: 1
+  2: 1645720
+  3 {
+    1: "I could give you $1000 now for the night."
+    1: "That should cover almost half of what you\'re paying for the weekend."
+    1: "Clay\'s eyes are big."
+    1: "He grabs the envelope and he kind of shrugs."
+    1: "At Amanda, $1000 is $1000."
+    1: "Honey, like you can\'t act like refund is like making money."
+  }
+}
+4 {
+  1: 1
+  2: 1663160
+  3 {
+    1: "He\'s like, so excited."
+    1: "I\'m like, dude, you pay for it."
+    1: "You know that, right?"
+    1: "He said, girl math, OK, we\'ll be very grateful."
+    1: "And tomorrow we\'ll know a little bit more and we can figure this out."
+    1: "Amanda turns to her husband."
+    1: "I think I need to discuss this privately with my husband, and she walks out of there."
+  }
+}
+4 {
+  1: 1
+  2: 1679720
+  3 {
+    1: "Clay follows after her, and he catches up with his wife in the master bedroom and he\'s sitting on the chair, elbows on his knees, stressed out, and Amanda is pacing the room."
+    1: "Why did you tell them that they could stay?"
+    1: "I mean, it\'s a blackout."
+    1: "What, you you think they\'re lying when it\'s a young woman and her father?"
+    1: "They look innocent enough."
+    1: "They\'re strangers."
+  }
+}
+4 {
+  1: 1
+  2: 1696880
+  3 {
+    1: "They introduce themselves."
+    1: "They knocked on the door in the middle of the night."
+    1: "Well, would you Rather than burst in?"
+    1: "They scared the shit out of me, Clay."
+    1: "Well, I think you know they were scared too, right?"
+    1: "I mean, they didn\'t know what else to do."
+    1: "Well, here\'s an idea."
+    1: "Go to a hotel."
+  }
+}
+4 {
+  1: 1
+  2: 1712360
+  3 {
+    1: "This is their home, as you know."
+    1: "The girl kept reminding us."
+    1: "Well, we didn\'t ask for any proof."
+    1: "I didn\'t hear their card."
+    1: "Did you?"
+    1: "No, but it\'s windy."
+    1: "Maybe we didn\'t hear him."
+    1: "Or maybe they snuck up the road."
+    1: "Or maybe."
+    1 {
+      8: 0x77202c61646e616d
+      12: 0x6f687320
+      14: 0x6320646c
+      12: 0x206e776f64206d6c
+      12: 0x2e656c7474696c20
+    }
+  }
+}
+4 {
+  1: 1
+  2: 1728280
+  3 {
+    1: "I\'m sorry."
+    1: "This really doesn\'t seem like their house."
+    1: "The board of the Philharmonic?"
+    1: "I don\'t know."
+    1: "It just all feels like a con to me."
+    1: "They want to stay here with us."
+    1: "Forget it."
+    1: "I wouldn\'t be able to sleep with strangers in this house."
+    1: "Rose is right down the hall."
+    1: "What if he sneaks in?"
+    1: "I don\'t know."
+    1: "What if he?"
+  }
+}
+4 {
+  1: 1
+  2: 1743800
+  3 {
+    1: "I don\'t even want to think about it."
+    1: "You don\'t think he\'d want to molest Archie, though, do you?"
+    1: "And Amanda is like, what are you talking about?"
+    1: "I\'m just saying, I don\'t like the way any of this sounds."
+    1: "OK, He came here because he doesn\'t want to climb a flight of stairs."
+    1: "Give me a break."
+    1: "All this feels a little improvised."
+  }
+}
+4 {
+  1: 1
+  2: 1760680
+  3 {
+    1: "God, what if it\'s a scam?"
+    1: "What if?"
+    1: "What if?"
+    1: "What if the blackout and the the whatever, That\'s just all part of the story."
+    1: "I don\'t think they made that up, honey."
+    1: "I mean, that\'s probably why the phones and the Internet aren\'t working."
+    1: "And besides, hey, he had the keys."
+    1: "He opened up the liquor cabinet, remember?"
+    1: "So what if he had the keys?"
+  }
+}
+4 {
+  1: 1
+  2: 1776960
+  3 {
+    1: "Maybe he\'s a handyman and she\'s the housekeeper."
+    1: "The housekeeper always knows where the stash of money is, and besides, he had his back to us."
+    1: "Maybe he broke into it."
+    1: "Honey, I don\'t see what he has to gain by giving us 1000 bucks."
+    1: "Why are you trying so hard to believe everyone except your own wife?"
+  }
+}
+4 {
+  1: 1
+  2: 1793200
+  3 {
+    1: "Something is happening, and I don\'t trust them."
+    1: "I think they\'re scared."
+    1: "They\'re scared."
+    1: "Nice people who need a place to spend the night."
+    1: "And he tries to hug her to calm her down."
+    1: "It kind of works."
+    1: "And he says, all right, I\'m going to go down there and I\'m going to talk to them and if I get a bad vibe, I\'m going to say no, we\'re not comfortable with this arrangement, OK?"
+  }
+}
+4 {
+  1: 1
+  2: 1815120
+  3 {
+    1: "But if things are cool, I say we let them stay."
+    1: "I wish I had your faith in people, Clay."
+    1: "And they make their way downstairs and George is making his signature cocktail for himself and one for Clay."
+    1: "How about you, Amanda?"
+    1: "What\'s in it exactly?"
+    1: "Before George answers, Amanda responds."
+  }
+}
+4 {
+  1: 1
+  2: 1833440
+  3 {
+    1: "Actually, I\'ll pass."
+    1: "And she snatches her glass of wine off the table."
+    1: "And Ruth is annoyed, like she\'s walking off because, like, jeez, like all these microaggressions."
+    1: "But Amanda is far from done."
+    1: "She does not care that she\'s offending them."
+    1: "She sits down and goes straight into interrogation mode."
+  }
+}
+4 {
+  1: 1
+  2: 1848960
+  3 {
+    1: "How long have you been here, George?"
+    1: "Oh, bought it almost 20 years ago now."
+    1: "But at this point it\'s it\'s home."
+    1: "Or a home away from home."
+    1: "I guess we fixed it up about five years back."
+    1: "We had a great contractor."
+    1: "A lot of details were his idea."
+    1: "And where in the city do you live?"
+  }
+}
+4 {
+  1: 1
+  2: 1867400
+  3 {
+    1: "We\'re on park between 81st and 82nd."
+    1: "How about you?"
+    1: "Brooklyn Clay is now talking Sunset Park."
+    1: "Well, it\'s actually a Park Slope."
+    1: "Ah, very nice."
+    1: "That\'s where everyone wants to be these days."
+    1: "Affordable too, and you just see Amanda kind of win."
+    1: "Let\'s go."
+  }
+}
+4 {
+  1: 1
+  2: 1884840
+  3 {
+    1: "I think Ruth even looked over there when she was thinking about flying the coop."
+    1: "And where\'s your wife?"
+    1: "I\'m curious if you\'re worried about her in the city."
+    1: "Well, she\'s on a work trip to Morocco."
+    1: "She\'s an art dealer, so she travels a lot."
+    1: "Her flight is due back here in the morning, actually."
+    1: "Uh, huh."
+  }
+}
+4 {
+  1: 1
+  2: 1902240
+  3 {
+    1: "I see."
+    1: "Can I see some ID, please?"
+    1: "Clay is like, oh, Amanda, it\'s a fair ask."
+    1: "You\'re a stranger showing up in the middle of the night and my kids are upstairs."
+    1: "George is like, of course, I understand."
+    1: "And he starts feeling for soup pockets."
+  }
+}
+4 {
+  1: 1
+  2: 1919200
+  3 {
+    1: "Well, you\'re never going to believe this, but I must have left my wallet in the coat pocket when I checked in at the Symphony in the commotion."
+    1: "I must have forgotten it there."
+    1: "But you said you heard about the blackout while you were already on your way home, and suddenly a loud blaring beep noise interrupts them."
+  }
+}
+4 {
+  1: 1
+  2: 1936840
+  3 {
+    1: "It\'s really loud, like, think tornado warning."
+    1: "But worse, the three adults in the kitchen whip their heads to the living room and Ruth is standing in front of the TV with the remote in her hands."
+    1: "And it\'s like she tried to turn on the TV, but something\'s going on, on the television."
+    1: "It\'s a national alert, effective immediately."
+  }
+}
+4 {
+  1: 1
+  2: 1952880
+  3 {
+    1: "This is not a test emergency."
+    1: "Broadcast system issued an unrecognized emergency warning."
+    1: "This is a national emergency."
+    1: "All radio stations and televisions will seize their programs during this alert."
+    1: "This is a national emergency."
+  }
+}
+4 {
+  1: 1
+  2: 1968400
+  3 {
+    1: "All it was so loud."
+    1: "Ruth tries to switch over to another channel, even lowering the volume, but nothing is working."
+    1: "But."
+    1: "What is it?"
+    1: "What\'s the alarm?"
+    1: "What\'s the What is it saying?"
+    1: "Nothing."
+    1: "It\'s saying nothing, Just that this is a national emergency."
+    1: "What emergency?"
+    1: "We don\'t know."
+  }
+}
+4 {
+  1: 1
+  2: 1985080
+  3 {
+    1: "Everyone else seems concerned."
+    1: "They\'re like, what?"
+    1 {
+      8: 0x6772656d
+      12: 0x2e79636e
+    }
+    1: "But Amanda is, like, chilling."
+    1: "She\'s like, well, no need to get stressed."
+    1: "We\'re only talking about a blackout here."
+    1: "Ruth is looking at this lady like, you cannot be serious, Like, you cannot be so skeptical of minorities, but then, like, not skeptical of a national order that\'s like, blaring in your face."
+  }
+}
+4 {
+  1: 1
+  2: 2005680
+  3 {
+    1: "But you\'re like, minorities cannot be homeowners."
+    1: "It\'s like, very bizarre."
+    1: "Ruth is like, what, the fork lady?"
+    1: "A blackout is not nothing, Amanda."
+    1: "It could be something, the symptom of something bigger, like terrorism or a bomb like the one that you said your son would sleep through."
+    1: "And George is like Ruth sweetie."
+  }
+}
+4 {
+  1: 1
+  2: 2023320
+  3 {
+    1: "And finally, some sense from the Stanfords."
+    1: "Clay puts his foot down and he says, I think that you guys should stay here tonight."
+    1: "Tomorrow we will sort everything out."
+    1: "And things always look different by the light of day."
+    1: "They all kind of stand somewhat in agreement when all of a sudden a noise is behind them."
+  }
+}
+4 {
+  1: 1
+  2: 2041200
+  3 {
+    1: "The Jenga tower on the table that the Stanfords were working on falls out of nowhere."
+    1: "Oh yeah, listen up here."
+    1: "All I want this holiday season is a small, minuscule, tiny, inconsequential, easy to achieve thing."
+  }
+}
+4 {
+  1: 1
+  2: 2062400
+  3 {
+    1: "Which is happiness."
+    1: "I\'m kidding."
+    1: "Here\'s what I really want this holiday season."
+    1: "I just don\'t want to have a stye."
+    1: "This is crazy."
+    1: "So recently I had this mascara that I was using."
+    1: "I ended up seeing thrives viral liquid lash extension mascara online and I feel like you guys have seen it too."
+    1: "It\'s like the viral turquoise tubes all over socials."
+  }
+}
+4 {
+  1: 1
+  2: 2078120
+  3 {
+    1: "You know what I\'m talking about?"
+    1: "So I saw that I was like, you know what, let me test it out."
+    1: "My lashes were out of this world."
+    1: "This right now on my lashes is 1 coat and I didn\'t even go in for a second coat first of all, And I try to make my top lashes not that heavy anymore, but I didn\'t even go in for a second coat."
+  }
+}
+4 {
+  1: 1
+  2: 2094040
+  3 {
+    1: "This is like not even a full coat."
+    1: "It\'s like half a coat."
+    1: "It lasts all day."
+    1: "This is like the end of the night."
+    1: "There is no clumping, smudging, no flaking, which was my biggest problem."
+    1: "And this has a side effect that I was not expecting."
+    1: "This is an anecdotal story, but I stopped getting styes after switching over to Thrive Cosmetics Mascara."
+  }
+}
+4 {
+  1: 1
+  2: 2112120
+  3 {
+    1: "I don\'t know if it\'s the fact that it easily removes."
+    1: "So usually when I wear a mascara that doesn\'t clomp, that doesn\'t like smudge and doesn\'t flake, it takes me 25 soaked in oil type of toner pads to even just get like the first layer of mascara off."
+  }
+}
+4 {
+  1: 1
+  2: 2127520
+  3 {
+    1: "This mascara slides right off with warm water and a washcloth like I can take it off without soap."
+    1: "And it\'s 100% vegan and cruel Lt. free made with clean skin loving ingredients."
+    1: "It\'s high performance and trademark formulas and uncompromising standards."
+    1: "And they\'re brilliant eye brightener."
+  }
+}
+4 {
+  1: 1
+  2: 2142840
+  3 {
+    1: "OK, don\'t even get me started on this."
+    1: "It\'s like this highlight stick that\'s made to brighten and open your eyes, giving you this instant eye lift."
+    1: "You just apply it to the inner corners of your eyes."
+    1: "But you can also use it like this effortless, glowy, well rested, shimmery eyeshadow look."
+  }
+}
+4 {
+  1: 1
+  2: 2158160
+  3 {
+    1: "So give the gift of Thrive Cosmetics luxury beauty that gives back."
+    1: "Right now, you can get an exclusive 20% off your first order at thrivecosmetics.com/bake."
+    1: "That\'s Thrive Cosmetics CAUSEMET ics.com/bake for 20% off your first order."
+  }
+}
+4 {
+  1: 1
+  2: 2174800
+  3 {
+    1: "Thank you, Sir, for sponsoring today\'s episode."
+    1: "And let\'s get back into it."
+    1: "Down in the basement."
+    1: "Ruth is now complaining to her dad."
+    1: "I can\'t believe we\'re staying in the basement."
+    1: "What do we get to do tomorrow?"
+    1: "Their laundry."
+    1: "Ruth, please."
+    1: "I\'ll take the floor."
+  }
+}
+4 {
+  1: 1
+  2: 2190440
+  3 {
+    1: "You take the bed and the first thing that George does when he gets downstairs is turn on the TV and it\'s the same national emergency that\'s playing and Ruth looks at her."
+    1: "Dad, we need to get them out of here."
+    1: "Dad, we\'re not going to do that by scaring them."
+    1: "They need to think that everything\'s going to be OK A."
+  }
+}
+4 {
+  1: 1
+  2: 2206440
+  3 {
+    1: "What?"
+    1: "But everything is going to be OK, isn\'t it?"
+    1: "George looks at Ruth and he turns to walk away."
+    1: "What\'s going on?"
+    1: "What are you thinking?"
+    1: "Your client didn\'t tell you anything else, did he?"
+    1: "There\'s no point in talking about this Ruth until we know more."
+    1: "Upstairs, Clay and Amanda are in bed and Clay is trying to knock out, but Amanda is arms cross plotting."
+  }
+}
+4 {
+  1: 1
+  2: 2226280
+  3 {
+    1: "OK, she\'s with us, that girl."
+    1: "She\'s she\'s poking me."
+    1: "Amanda\'s sitting up while Clay is laying down and he\'s trying to cuddle up with Amanda."
+    1: "Don\'t take it too personal, honey."
+    1: "I don\'t think I can listen to much more of that snark, even if it does turn out to be their house."
+  }
+}
+4 {
+  1: 1
+  2: 2241960
+  3 {
+    1: "Oh, my goodness."
+    1: "Are we still on that?"
+    1: "Well, there\'s not a single photo on the wall."
+    1: "Not one."
+    1: "Not a wedding picture of the supposed art dealer\'s life on the business trap or that spoiled brat as a baby."
+    1: "Like, think about it."
+    1: "I\'m sure they take them down when they went the house out for privacy concerns."
+  }
+}
+4 {
+  1: 1
+  2: 2259680
+  3 {
+    1: "I don\'t know."
+    1: "There\'s just something off about them."
+    1: "OK, Why didn\'t you say anything about what we saw on the beach today?"
+    1: "The boat?"
+    1: "It was an oil tanker, honey."
+    1: "Well, why didn\'t you tell them?"
+    1: "I don\'t know."
+    1: "Just seemed like I was piling on."
+    1: "Why didn\'t you?"
+    1: "I was afraid."
+  }
+}
+4 {
+  1: 1
+  2: 2276920
+  3 {
+    1: "Afraid of what?"
+    1: "That it would confirm something in the main floor."
+    1: "So the Sanfords are at the very top, George and Ruth are in the basement and on the main level where like the living room kitchen are."
+    1: "The TV is still on and it\'s a blue screen now with the national alert playing."
+    1: "But for a brief second there\'s a static and a new message shows up."
+  }
+}
+4 {
+  1: 1
+  2: 2294440
+  3 {
+    1: "It\'s ACNN breaking News headline that reads Cyberattack across the Country."
+    1: "Power outages Report along East Coast Metropolitan Areas."
+    1: "Like a flash."
+    1: "It\'s like, that\'s what was trying to be played, but someone\'s like trying to take over type of vibe."
+    1: "And now we head into Part 2, The Curve."
+  }
+}
+4 {
+  1: 1
+  2: 2315320
+  3 {
+    1: "Amanda wakes up to Rose sitting on top of her, shaking her mom Mom Mom Rosie."
+    1: "Rosie, What\'s wrong?"
+    1: "Mom 2 problems One."
+    1: "I was literally about to start the Friends series finale, but the Internet on my iPad still isn\'t working."
+    1: "I tried to watch it on the TV because I read somewhere that\'s like, were those things called where they like, play old things again and again?"
+  }
+}
+4 {
+  1: 1
+  2: 2334720
+  3 {
+    1: "Reruns."
+    1: "Honey, what do they do that again?"
+    1: "I don\'t know, Rosie."
+    1: "We are really bored back then."
+    1: "Anyways, there\'s something wrong with the TV."
+    1: "It\'s all messed up."
+    1: "That\'s problem #2."
+    1: "Please fix it."
+    1: "I have incredible anxiety about how they\'re going to wrap up the show."
+    1: "Don\'t you think you\'re taking this a little too seriously?"
+  }
+}
+4 {
+  1: 1
+  2: 2350920
+  3 {
+    1: "Honey, this isn\'t fair."
+    1: "It\'s a vacation."
+    1: "Dad said that we\'re on vacation."
+    1: "We can have as much screen time as we want."
+    1: "Well, AI did not say that and B Dad, the one who said that is still asleep."
+    1: "So just go wait in the living room and I\'ll I\'ll be downstairs."
+  }
+}
+4 {
+  1: 1
+  2: 2366560
+  3 {
+    1: "And I don\'t really think much of this detail."
+    1: "But apparently everyone on Tiktok is dissecting this detail for later today."
+    1: "But Rose is wearing a NASA shirt."
+    1: "Amanda rolls over and she grabs her phone from the night stand."
+    1: "She\'s drowsy, but once she sees what\'s on her phone, she shoots straight up."
+    1: "All the notifications on her screen are about cyber attacks and major blackouts."
+  }
+}
+4 {
+  1: 1
+  2: 2385800
+  3 {
+    1: "Clay, honey, get up, get up, get up."
+    1: "Look, he takes her phone."
+    1: "What am I looking at?"
+    1: "It doesn\'t say anything."
+    1: "What?"
+    1: "No, that doesn\'t make sense."
+    1: "It\'s just there."
+    1: "Her lock screen is back to normal and there are no notifications, just a family photo of the Sanfords in front of their Christmas tree."
+  }
+}
+4 {
+  1: 1
+  2: 2402480
+  3 {
+    1: "Are you sure, honey?"
+    1: "What did it say?"
+    1: "Yes, of course I\'m sure."
+    1: "There were four news articles, 2 about the blackout and then one that just said that hackers were behind the power outage."
+    1: "Hackers."
+    1: "Yeah."
+    1: "And then there was one that said breaking."
+    1: "But then it was just like gibberish."
+    1: "No words, just random letters."
+    1: "Maybe they hacked the cell network."
+  }
+}
+4 {
+  1: 1
+  2: 2420040
+  3 {
+    1: "Is that a question you\'re asking me?"
+    1: "How would I know?"
+    1: "Why are you being so nonchalant about all of this?"
+    1: "Honey, did you forget that there are these people still in our house?"
+    1: "I trusted you to handle this place."
+    1: "It\'s up and he\'s looking determined all of a sudden."
+    1: "OK, got it."
+    1: "I\'m going to go drive into town."
+  }
+}
+4 {
+  1: 1
+  2: 2435200
+  3 {
+    1: "I\'ll go to the store, buy a newspaper, and someone in town must know more about what\'s going on."
+    1: "Right."
+    1: "I\'m going to take care of this."
+    1: "He kisses her, jumps off the bed."
+    1: "Meanwhile, their daughter Rose is waiting for them to come downstairs to fix the TV."
+    1: "And she still has no idea that there\'s two strangers in the house."
+    1: "But she does notice a beautiful Bentley parked outside."
+  }
+}
+4 {
+  1: 1
+  2: 2453040
+  3 {
+    1: "Amanda comes downstairs."
+    1: "And Oh yes, honey, about the car Last night, these people, this gods, they had to come by."
+    1: "There was a problem, and they weren\'t too far from here, so they stopped by."
+    1: "What, Mom?"
+    1: "What are you even talking about?"
+    1: "Rose gets annoyed at her parents."
+  }
+}
+4 {
+  1: 1
+  2: 2470040
+  3 {
+    1: "She doesn\'t care about the strangers."
+    1: "She just doesn\'t like the fact that they can\'t fix the TV."
+    1: "So she literally goes to pout near the pool."
+    1: "But she hears a little rustling, and she turns to her right, and by the bushes there\'s deer, not even just one, but like 10, staring at her."
+  }
+}
+4 {
+  1: 1
+  2: 2488720
+  3 {
+    1: "Rose looks back at her parents, and they\'re in the kitchen, completely oblivious, and she starts walking in the grass, towards the deer."
+    1: "Rose is outside with the deer."
+    1: "Clay is driving into town."
+    1: "Amanda is alone in the kitchen."
+    1: "Ruth is the one to come upstairs first to grab a cup of coffee."
+    1: "And they\'re alone."
+  }
+}
+4 {
+  1: 1
+  2: 2504360
+  3 {
+    1: "And she says, You mind if I have some coffee?"
+    1: "Amanda says."
+    1: "Help yourself."
+    1: "You know where the mugs are, right?"
+    1: "I had news alerts on my phone this morning."
+    1: "Your phone is working."
+    1: "No, I mean, they must have come in overnight somehow, and then they disappeared."
+    1: "What did they say?"
+  }
+}
+4 {
+  1: 1
+  2: 2521800
+  3 {
+    1: "There were two about the blackout and then something about hackers being behind it."
+    1: "Hackers."
+    1: "Where are the power plants in New York City, do you know?"
+    1: "I mean, they must be in Queens, I guess, Or or near the river."
+    1: "Why are you asking about power plants?"
+  }
+}
+4 {
+  1: 1
+  2: 2537520
+  3 {
+    1: "Hackers, Hackers can get into power plants."
+    1: "That\'s probably what caused the outage."
+    1: "You remember that thing that happened in Jersey a few years back?"
+    1: "It nearly caused a a meltdown."
+    1: "But as quickly as Ruth is into the conversation, she\'s over it."
+    1: "She\'s staring out the window at Rose."
+    1: "Is that your daughter out there?"
+    1: "She\'s sweet."
+    1: "How old is she?"
+  }
+}
+4 {
+  1: 1
+  2: 2553800
+  3 {
+    1: "13 last month."
+    1: "Still kind of a baby at heart, though."
+    1: "And Amanda says if it\'s OK, I would like to keep what\'s going on between the adults."
+    1: "The kids like the pool, and I\'m just going to encourage them to do that until we know more."
+    1: "I don\'t want them to panic over nothing."
+    1: "I mean, I don\'t want to scare anyone, Amanda, but I disagree with you."
+  }
+}
+4 {
+  1: 1
+  2: 2570880
+  3 {
+    1: "Disagree with me about what?"
+    1: "I don\'t think this is nothing."
+    1: "So what is it that you said you do?"
+    1: "I mean, advertising on the client side?"
+    1: "I manage relationships."
+    1 {
+      9: 117
+      13: 46
+    }
+    1: "I\'d have never guessed that."
+    1: "And what about your husband?"
+  }
+}
+4 {
+  1: 1
+  2: 2587000
+  3 {
+    1: "Clay is a professor at City College."
+    1: "English and Media Studies."
+    1: "You know, I\'ve always had plenty of friends major in media studies, but I never even know what it means."
+    1: "And you?"
+    1: "What is it that you do, Ruth?"
+    1: "Me."
+    1: "Oh, I\'m still figuring my shit out, trying not to rush into anything."
+  }
+}
+4 {
+  1: 1
+  2: 2604200
+  3 {
+    1: "The last thing I want is to be sucked into a career that I regret 10 years from now."
+    1: "Which by that point I would be trapped by the pressure to stay on course because I\'ll be too old to re enter the workforce."
+    1: "You know what I mean?"
+    1: "George walks upstairs in that moment."
+    1: "Morning."
+    1: "Any news anyone?"
+    1: "Phones are still not working."
+  }
+}
+4 {
+  1: 1
+  2: 2619680
+  3 {
+    1: "Looks like the TV\'s are out."
+    1: "Where\'s Clay?"
+    1: "He went to the store to get newspaper or to try and find someone to talk to, to see if they know what\'s going on."
+    1: "Smart."
+    1: "I thought I\'d go over to the neighbor\'s house, The Huxley\'s."
+    1: "They only live a few miles down the road and you think they\'ll be home?"
+  }
+}
+4 {
+  1: 1
+  2: 2636000
+  3 {
+    1: "Unlikely."
+    1: "It is the offseason."
+    1: "You often see no one here around this time, but I\'ll drive back anyway and check."
+    1: "Before you go, Dad, you might want to hear about the alerts."
+    1: "Alerts."
+    1: "Well, I had alerts on my phone this morning."
+    1: "Two of them were about the blackout, and then there was one of them, and hackers were behind."
+  }
+}
+4 {
+  1: 1
+  2: 2655160
+  3 {
+    1: "It was what it said."
+    1 {
+      9: 117
+      13: 46
+    }
+    1: "What, you think there\'s going to be a meltdown at the power plant, too?"
+    1: "George chuckles and kind of side eyes Ruth."
+    1: "And he smiles and says, is that what Ruth told you?"
+    1: "Among other horrifying things."
+  }
+}
+4 {
+  1: 1
+  2: 2670360
+  3 {
+    1: "Yeah, that\'s what she told me."
+    1: "Well, obviously my Ruthie is being a little paranoid."
+    1: "Dad, aren\'t you the one that always said that if you\'re not paranoid by now, it\'s probably too late."
+    1: "I\'m sure this will turn out to be a big nothing like that."
+    1: "Love you, bug."
+  }
+}
+4 {
+  1: 1
+  2: 2686720
+  3 {
+    1: "Is that coffee?"
+    1: "Can I have some?"
+    1: "He turns to the coffee machine and Amanda\'s confused."
+    1: "I\'m sorry, what is the love you bug?"
+    1: "It was a computer worm back in the 2000s."
+    1: "People would get an e-mail with the subject line."
+    1: "I love you."
+    1: "You clicked on the attachment and it would send it all to your contacts."
+  }
+}
+4 {
+  1: 1
+  2: 2701960
+  3 {
+    1: "It crippled businesses because of a virus it implanted and caused billions of dollars in damages."
+    1: "Turns out it was just two teenagers in the Philippines."
+    1: "Could just be as innocent as that."
+    1: "Amanda smiles and says, I I think I\'ll go wake my son up."
+    1: "And once she\'s out of sight, we see George\'s smile kind of fall, and he stares at the drawer of the liquor cabinet with the gun inside."
+  }
+}
+4 {
+  1: 1
+  2: 2724000
+  3 {
+    1: "Dad, I\'m worried about Mom."
+    1: "You think her flight\'s going to be OK?"
+    1: "Sure."
+    1: "Matter of fact, I bet she\'s redirected to some airport in Ohio."
+    1: "And she\'s probably cussing out the every customer service Rep until they get her on a plane home."
+    1: "Dad, do you remember the time the three of us went to Italy?"
+    1: "Yes."
+  }
+}
+4 {
+  1: 1
+  2: 2739920
+  3 {
+    1: "And what made you think of that?"
+    1: "I don\'t know what else to think about right now."
+    1: "So meanwhile, Archie wakes up, the son wakes up, goes to the pool, and the two of them, they\'re hanging out by the pool, the two kids."
+    1: "And you would think that Archie is the smarter one because of the age and the fact that Rose can\'t seem to talk about anything else but her show friends, which she\'s the one that keeps feeling like something is off."
+  }
+}
+4 {
+  1: 1
+  2: 2761200
+  3 {
+    1: "Archie is busy trying to sneakily take pictures of Ruth\'s butt in her bikini at the pool."
+    1: "Yeah."
+    1: "Who did mom say these people were?"
+    1: "Again, Rose doesn\'t respond."
+    1: "What are you looking at, Rose?"
+    1: "Archie, I saw something this morning."
+    1: "She gets up and starts walking towards the bushes and Archie follows after her."
+  }
+}
+4 {
+  1: 1
+  2: 2779040
+  3 {
+    1: "Dear."
+    1: "I saw dear."
+    1: "Yeah, they\'re everywhere, dumbass."
+    1: "They\'re like squirrels or pigeons."
+    1: "Who cares?"
+    1: "No, this is different."
+    1: "Archie."
+    1: "Like they were trying to tell us something."
+    1: "We should see what else is out there."
+    1: "Jeez, are you really that bored?"
+    1: "Is this because you can\'t watch your stupid show?"
+  }
+}
+4 {
+  1: 1
+  2: 2795760
+  3 {
+    1: "Rose won\'t even look at Archie."
+    1: "Instead, she announces in a creepy voice."
+    1: "I\'m going."
+    1: "She steps forward into the bushes, and Archies follows after her because he probably has to take care of her and has no choice."
+    1: "And tell me how they\'re suddenly in a forest, like deep in a forest."
+    1: "Okay."
+  }
+}
+4 {
+  1: 1
+  2: 2811120
+  3 {
+    1: "They can kind of see the big vacation house peeking out from the trees, but clearly it\'s a very secluded home."
+    1: "Rose is on a mission."
+    1: "She\'s walking in around and they see this like weird shed in the middle of the forest and it looks like a serial killer bunker a little bit."
+    1: "I mean, there are windows, so it\'s not that creepy, but it is a little weird."
+  }
+}
+4 {
+  1: 1
+  2: 2828240
+  3 {
+    1: "They walk inside the shed and Archie is disappointed."
+    1: "This place is so boring."
+    1: "It\'s just a bunch of gardening tools."
+    1: "Side note, there is a whole conversation about the outfit choices for these two in the scene."
+    1: "So remember how I said Rose is wearing a NASA shirt, Archie is wearing an Obey shirt which is a street wear brand or like a skater brand."
+  }
+}
+4 {
+  1: 1
+  2: 2847360
+  3 {
+    1: "But the word is not lost on people because it says obey."
+    1: "They both look around and Archie says oh maybe this is where he sleeps."
+    1: "Who?"
+    1: "Whoever made that impression And we pan over and it\'s a pile of leaves and like a human sized dent, not a bad setup."
+  }
+}
+4 {
+  1: 1
+  2: 2863920
+  3 {
+    1: "Whoever he is, look."
+    1: "And he\'s got a little window over here to look out of, so he can look directly at directly at what they both look out the window."
+    1: "Your room."
+    1: "He can see straight into your room."
+    1: "Just imagine it\'s all dark out here."
+    1: "Your little bedside lamp is glowing."
+  }
+}
+4 {
+  1: 1
+  2: 2879760
+  3 {
+    1: "He could just follow the light up to you."
+    1: "Boom."
+    1: "And Rose screams out."
+    1: "She bumps her head on the window."
+    1: "That\'s not funny, Archie."
+    1: "That really hurt."
+    1: "He\'ll be fine."
+    1: "No, I won\'t."
+    1: "Dude, calm the down."
+    1: "As joke this morning I saw deer, Archie, not deer."
+  }
+}
+4 {
+  1: 1
+  2: 2897840
+  3 {
+    1: "Like a ton of deer. 100 maybe."
+    1: "Maybe more, right in the backyard."
+    1: "Archie\'s looking at her like she\'s still crazy."
+    1: "It was really weird."
+    1: "Archie, do deer just go around in big groups like that?"
+    1: "What the fuck would I know anything about deer?"
+    1: "If you\'re so worried about it, why don\'t you just ask Mom or Dad?"
+    1: "Like they even care."
+  }
+}
+4 {
+  1: 1
+  2: 2916240
+  3 {
+    1: "No one cares about what I have to say."
+    1: "Yeah, that\'s probably true."
+    1: "Which, yeah, no one does care about what she has to say."
+    1: "It\'s kind of sad."
+    1: "Meanwhile, Clay is driving into town to try and get some damn answers, and he\'s driving with his windows down this empty country Rd. literally just trees on both sides."
+  }
+}
+4 {
+  1: 1
+  2: 2933840
+  3 {
+    1: "I have no idea where this is."
+    1: "Like they\'re saying it\'s close to the city, but then like, suddenly it\'s like the country\'s."
+    1: "I have no idea."
+    1: "Geographically speaking, I\'m lost."
+    1: "But then, like, random shots show New York City in the skyline, so I\'m like, where are we anyway?"
+    1: "It\'s so rural that there\'s not even a suburban Plaza Insight, and he\'s trying to fumble with the radio, but no stations are working."
+  }
+}
+4 {
+  1: 1
+  2: 2955920
+  3 {
+    1: "And he hears this like rumbling noise, as if an airplane is flying out nearby."
+    1: "And he keeps driving aimlessly with a cigarette out the window, enjoying his peace and quiet when he sees a woman on the side of the road."
+    1: "This is like a two lane Rd. in the countryside."
+    1: "There\'s not people."
+    1: "There\'s not even another car."
+  }
+}
+4 {
+  1: 1
+  2: 2971480
+  3 {
+    1: "This woman is frantically trying to get his attention."
+    1: "She\'s waving her arms side to side."
+    1: "Help me."
+    1: "Help me."
+    1: "He slows down and stops on the side of the road and she\'s screaming in Spanish."
+    1: "Senor senor, senor, Honestly, she looks like she\'s seen some shit."
+    1: "Her face is red."
+    1: "This does not appear to be a regular hitchhiker."
+  }
+}
+4 {
+  1: 1
+  2: 2987640
+  3 {
+    1: "She\'s frantically trying to talk to him in Spanish and she\'s very passionate about what she is saying and Clay is kind of creeped out."
+    1: "He keeps trying to tell her I\'m sorry I I don\'t speak Spanish, but the woman keeps frantically yelling and trying to motion with her."
+    1: "Her arms and Clay still can\'t understand her."
+  }
+}
+4 {
+  1: 1
+  2: 3004440
+  3 {
+    1: "Do you know what she\'s saying?"
+    1: "No, do I speak?"
+    1: "No, but sometimes they have subtitles, you know."
+    1: "No, no."
+    1: "And I think with everything going on, the fact that they are the only ones on the road, with each frantic word, Clay is getting more scared."
+    1: "For some reason, the woman is now crying, gasping, screaming, and Clay can\'t do it anymore."
+  }
+}
+4 {
+  1: 1
+  2: 3024360
+  3 {
+    1: "He just goes, I\'m so sorry, and he starts driving, He starts driving off."
+    1: "Leaving, she trying to get in the car."
+    1: "No, she\'s like trying."
+    1: "She\'s like scared and trying to explain something to him."
+    1: "Like, don\'t go there."
+    1: "Maybe, but he just starts driving off and the woman is like desperately trying to hold on to his window."
+  }
+}
+4 {
+  1: 1
+  2: 3043640
+  3 {
+    1: "And she needs help, clearly."
+    1: "But Clay does not care."
+    1: "So he just starts slowly driving off, refusing to make eye contact with this woman."
+    1: "He drives a little faster, faster, rolls up his window, and he just books it out of there, driving, and he can\'t even hear her and see."
+    1: "He doesn\'t even want to look in the rearview mirror to see if she\'s following, but that buzzing noise in the background keeps getting louder and louder."
+  }
+}
+4 {
+  1: 1
+  2: 3064360
+  3 {
+    1: "And then eventually, maybe like a mile or two away, The lady\'s gone."
+    1: "He looks up and there is a giant plane on top of him, flying really low."
+    1: "But that\'s not the alarming part."
+    1: "The plane is releasing some sort of red something red into the air, like chemtrail vibes, but it\'s like red smoke or something."
+  }
+}
+4 {
+  1: 1
+  2: 3082920
+  3 {
+    1: "Who knows?"
+    1: "Clay is not taking the chance."
+    1: "He you turns it out of there, trying to make sure that his car doesn\'t get covered in red, because again, who really knows what this is?"
+    1: "He starts you turning, driving as fast as he can in the opposite direction, away from the plane, and he\'s screaming."
+    1: "Oh, Shadow Shadow shit."
+  }
+}
+4 {
+  1: 1
+  2: 3099720
+  3 {
+    1: "And the plane catches up and his car is covered in red."
+    1: "Meanwhile, back at home, George has driven to his neighbor\'s house by himself."
+    1: "And you know how he was just comforting his daughter that their mother was going to be OK and everything?"
+    1: "He probably doesn\'t really think so."
+    1: "He probably lied to her to calm her down, because when he\'s alone in his Bentley at his neighbor\'s house, he looks really stressed out."
+  }
+}
+4 {
+  1: 1
+  2: 3121400
+  3 {
+    1: "He takes out his phone in front of his neighbor\'s house and texts Maya, his wife, but not a single text message is getting delivered."
+    1: "He has no updates on where she is."
+    1: "If she\'s OK, OK when she\'s coming home, nothing."
+    1: "George pulls up to the neighbor\'s house, the Huxley\'s."
+    1: "And the house is beautiful by the way."
+    1: "It looks like a oh man, I wanna say like a 20,000 square foot Rhode Island Esque beach house near the water has its own private beach."
+  }
+}
+4 {
+  1: 1
+  2: 3144080
+  3 {
+    1: "But when George pulls up, the entire place is trashed."
+    1: "Windows are broken into."
+    1: "There\'s furniture outside the house, dog crates, suitcases just toppled over in the grass in front."
+    1: "Plotted plants have been smashed."
+    1: "It looks like a hurricane went through this house, but that doesn\'t even make sense."
+  }
+}
+4 {
+  1: 1
+  2: 3159960
+  3 {
+    1: "They\'re neighbors."
+    1: "How can a hurricane only hit one house?"
+    1: "But I think George was expecting that or something, because he brought his gun with him, which you don\'t casually do when you\'re just visiting a neighbor."
+    1: "He slips it into his jacket pocket, gets out of the car, and he goes to the front door that\'s already open."
+  }
+}
+4 {
+  1: 1
+  2: 3177160
+  3 {
+    1: "He pushes it in and steps in."
+    1: "Squish."
+    1: "The floor of the house is wet."
+    1: "Squish."
+    1: "Squish."
+    1: "Hello."
+    1: "Anyone home?"
+    1: "It\'s GHI Let myself in."
+    1: "Outside, the house was a mess."
+    1: "Inside is even a bigger mess."
+  }
+}
+4 {
+  1: 1
+  2: 3193840
+  3 {
+    1: "He starts digging through the utility closet in the garage and he finds this black plastic briefcase."
+    1: "He pulls it out and opens it up."
+    1: "Inside is a giant phone, like a brick phone."
+    1: "What are those?"
+    1: "Satellite phones?"
+    1: "Do you know what I\'m talking about?"
+    1: "That you would get if there\'s like, you need to connect to the satellites."
+    1 {
+      10: 0x75682068
+      13: 46
+    }
+    1: "He gets the phone out, extends the antenna, and steps into the driveway."
+  }
+}
+4 {
+  1: 1
+  2: 3213600
+  3 {
+    1: "But still no signal."
+    1: "That\'s weird."
+    1: "So it\'s not even just the cellular networks are down."
+    1: "It seems like the satellites are down."
+    1: "Anyway, he leaves the driveway and goes to the backyard of the house and he looks frozen in fear or shock."
+    1: "I don\'t know, but for the first time we see how close this house is to the ocean and George looks up to see the seagulls going crazy and he starts walking faster and faster towards the private beach."
+  }
+}
+4 {
+  1: 1
+  2: 3237560
+  3 {
+    1: "There\'s trash everywhere on the beach and we can\'t really see much, but it does resemble the lawn of the Huxley home."
+    1: "Like, there\'s trash everywhere."
+    1: "George looks down and there\'s half buried in the sand."
+    1: "A watch."
+    1: "It\'s really weird."
+    1: "Who just leaves their watch, right?"
+  }
+}
+4 {
+  1: 1
+  2: 3252960
+  3 {
+    1: "Is this a Huxley watch?"
+    1: "He bends down to pick it up, but it\'s attached to something."
+    1: "He pulls it up out of the sand and outcomes A severed arm attached to the watch."
+    1: "George starts freaking out, falls back on the sand, and he\'s flat on his back, breathing heavy."
+    1: "When he turns to his other side and there is a man in a pilot\'s uniform dead laying next to him, eyes wide, it looks like his face is frozen in terror."
+  }
+}
+4 {
+  1: 1
+  2: 3276120
+  3 {
+    1: "He So the arm is detached from the body."
+    1: "Yeah, what\'s up?"
+    1: "He scrambles to get up."
+    1: "Oh shit, oh shit."
+    1: "And he starts looking around and there\'s chairs everywhere, and on them are dead people buckled in as if they\'re they\'re ready for a ride."
+    1: "And he looks to the right and there\'s a giant plane that\'s on the beach, Crushed."
+  }
+}
+4 {
+  1: 1
+  2: 3297520
+  3 {
+    1: "What?"
+    1: "Yeah."
+    1: "Is it his wife?"
+    1: "And then another plane is heading straight towards him."
+    1: "He turns and he starts bugging it."
+    1: "He barely makes it into the Huxley house when the plane lands on the sand crashing and all of the windows burst with debris again."
+  }
+}
+4 {
+  1: 1
+  2: 3318440
+  3 {
+    1: "But guess who hasn\'t gotten the message that the world is ending yet?"
+    1: "Amanda."
+    1: "She\'s too busy being a wine mom and committing microaggressions."
+    1: "She\'s drinking near the pool and Ruth is tanning next to her and says You going into the water?"
+    1: "No, you."
+    1: "No, I don\'t think so."
+    1: "Seems like a hassle."
+  }
+}
+4 {
+  1: 1
+  2: 3335040
+  3 {
+    1: "Why?"
+    1: "Because of your hair or what the heck?"
+    1: "Ruth gives her a what?"
+    1: "The fork."
+    1: "Did you just say?"
+    1: "More like I don\'t trust that one of your kids didn\'t pee in the pool."
+    1: "Which like, side note, kids being in the pool is like not really an aggressive thing to say."
+    1: "Like your hair."
+  }
+}
+4 {
+  1: 1
+  2: 3350280
+  3 {
+    1: "That comment is aggressive."
+    1: "But Amanda, Amanda looks so disgusted and offended, Like Ruth is so rude."
+    1: "She says they wouldn\'t do that."
+    1: "And yet we really can\'t know, can we?"
+    1: "Next to them is Rose\'s iPad."
+    1: "The screen is frozen during the scene of the show."
+  }
+}
+4 {
+  1: 1
+  2: 3365920
+  3 {
+    1: "Friends Your daughter watches the show."
+    1: "Friends Watch is far too weak of a word."
+    1: "More like worships."
+    1: "What?"
+    1: "Don\'t get me wrong, I watched it too, but it\'s almost nostalgic for a time that never existed."
+    1: "You know, Amanda doesn\'t really say much."
+  }
+}
+4 {
+  1: 1
+  2: 3383120
+  3 {
+    1: "She tries to change the subject."
+    1: "I hope the kids didn\'t wander too far from here."
+    1: "And in come the Sanford kids."
+    1: "They\'re walking out from the bushes and Archie stops A he looks down and there is a bug attached to his ankle, sucking his blood."
+  }
+}
+4 {
+  1: 1
+  2: 3398440
+  3 {
+    1: "He reaches down and pulls it from his skin, throwing it."
+    1: "There\'s like mucus and blood everywhere."
+    1: "Meanwhile, Rose spots another deer."
+    1: "Archie, will you please look?"
+    1: "What?"
+    1: "What are you talking about?"
+    1: "Archie, there\'s another deer."
+    1: "Look, when he finally looks, the deer is gone."
+  }
+}
+4 {
+  1: 1
+  2: 3415360
+  3 {
+    1: "We should go there."
+    1: "Follow the deer."
+    1: "No, that I\'m hungry."
+    1: "Come on, let\'s go, Rose."
+    1: "He starts walking off, and Rose looks up and there\'s like a flock of geese just flying over them."
+    1: "Rose, I said, let\'s go."
+    1: "Rose snaps out of it and runs inside with Archie."
+  }
+}
+4 {
+  1: 1
+  2: 3431320
+  3 {
+    1: "George has now come home, and he doesn\'t even look shaken up."
+    1: "He looks defeated, like there\'s no hope in anything anymore."
+    1: "He\'s sitting there soaking wet in his suit, hands in his lap, staring at Ruth and Amanda."
+    1: "Ruth finally breaks the silence."
+    1: "So, Dad, are you going to tell us why you\'re soaking wet?"
+  }
+}
+4 {
+  1: 1
+  2: 3447880
+  3 {
+    1: "I fell in the pool."
+    1: "You fell in the pool?"
+    1: "I tripped over something."
+    1: "Yeah, I fell in the pool."
+    1: "What were you doing near the pool?"
+    1: "I thought you were looking for rich."
+    1: "Honey, do you mind grabbing me a change of clothes and getting me something to wear?"
+    1: "I\'m afraid this is the only change of clothes I had downstairs."
+  }
+}
+4 {
+  1: 1
+  2: 3466240
+  3 {
+    1: "Ruth doesn\'t want to go, but because she can tell her dad is lying, but she has no choice."
+    1: "So she leaves to grab him a pair of clothes."
+    1: "And Amanda is sitting there and George says I saw it."
+    1: "You know what?"
+    1: "You saw what?"
+    1: "A while ago, before all this happened, I looked at the market and I knew something was coming."
+  }
+}
+4 {
+  1: 1
+  2: 3484160
+  3 {
+    1: "What do you mean?"
+    1: "In my line of work, you have to understand the patterns that govern the world."
+    1: "You have to learn how to read the curve, spend as long as I have doing it, it can help you see the future."
+    1 {
+      9: 0x2e73646c6f682074
+    }
+    1: "Study."
+    1: "It promises harmony."
+    1: "It inches up or down."
+    1: "You know that means something."
+  }
+}
+4 {
+  1: 1
+  2: 3500640
+  3 {
+    1: "Cheech, why are you telling me this?"
+    1: "Did your neighbor say something to you?"
+    1: "No."
+    1: "He wasn\'t home."
+    1: "But he has a satellite phone I thought could help us."
+    1: "I tried to use it."
+    1: "It didn\'t work."
+    1: "Even though it had enough battery."
+    1: "The only reason why it wouldn\'t work is that our satellites got knocked out of Commission."
+  }
+}
+4 {
+  1: 1
+  2: 3518120
+  3 {
+    1: "Our satellites?"
+    1: "You think something happened to our satellites?"
+    1: "The ones in space satellites or network computers down here?"
+    1: "So you think the hackers or whatever knocked out our satellites?"
+    1: "Don\'t you think we\'re maybe getting a little carried away?"
+    1: "I mean, maybe you just didn\'t use the phone, right?"
+  }
+}
+4 {
+  1: 1
+  2: 3535160
+  3 {
+    1: "I saw a plane nosedive out of the sky into the ocean, and it wasn\'t the first."
+    1: "We see Ruth hiding behind the wall, listening in."
+    1: "I no longer think this is just a couple of teenagers in the Philippines, Amanda sighs."
+    1: "And then there\'s a rumble."
+    1: "What the was that?"
+  }
+}
+4 {
+  1: 1
+  2: 3552120
+  3 {
+    1: "It\'s like the house is shaking."
+    1: "Earthquake."
+    1: "What the?"
+    1: "And then what?"
+    1: "Sounds like bombs start going off in the distance."
+    1: "The house rumbles again, and Amanda starts looking around for her kids."
+    1: "Where are my kids?"
+    1: "And then there\'s this almost frequency high pitched noise that\'s literally so loud, probably emitting from all their devices and it\'s really bad."
+  }
+}
+4 {
+  1: 1
+  2: 3572280
+  3 {
+    1: "Everyone, Amanda, George, Ruth, they all grab their heads to cover their ears, but it still hurts."
+    1: "They\'re literally wincing in pain."
+    1: "But it\'s not just in the house, it\'s also outside in the woods too."
+    1: "Archie and Rose, they stop walking and they double over in pain as they\'re trying to hold their heads together."
+    1: "And side note, Archie has slower reflexes, so he listens to it a second too long."
+  }
+}
+4 {
+  1: 1
+  2: 3591640
+  3 {
+    1: "And then we enter into Part 3, the noise."
+    1: "Everyone\'s gathered back at the house."
+    1: "Well, mine is clay."
+    1: "I don\'t know where clay is, OK?"
+    1: "And just to describe how bad the noise is, one of the windows of the house has a crack in it."
+    1: "It didn\'t break, but it has a crack."
+    1: "They\'re all shaken up."
+    1: "And Archie says I should have covered my ears sooner."
+  }
+}
+4 {
+  1: 1
+  2: 3609080
+  3 {
+    1: "Now my head feels weird."
+    1: "Ruth tries to comfort him, and the kids are told to go upstairs while the rest of adults, including Ruth because she\'s an adult, they\'re going to think about what to do next."
+    1: "When the kids are finally upstairs, Amanda whips around to George."
+    1: "Since you\'re the one with the crystal ball."
+    1: "What the hell was that?"
+    1: "Was that a bomb?"
+  }
+}
+4 {
+  1: 1
+  2: 3624720
+  3 {
+    1: "A missile."
+    1: "So they\'re just walking around holding their ears."
+    1: "Well, the frequency stopped."
+    1: "Oh, I see it."
+    1: "Ruth, who has an obsession with power plant, says could have been a power plant explosion."
+    1: "Ruth, we don\'t know anything for certain."
+    1: "Well, you, George, seemed pretty certain a minute ago with your haunting soliloquy."
+  }
+}
+4 {
+  1: 1
+  2: 3644240
+  3 {
+    1: "Nothing has changed."
+    1: "Nothing\'s changed."
+    1: "Everything has changed."
+    1: "And we\'re sitting here like, like, I don\'t know."
+    1: "What is this?"
+    1: "It\'s sitting ducks or sitting."
+    1: "Yeah, waiting to be shot."
+    1: "I mean, nothing changed in terms of what we do."
+    1: "We wait for Clay to come home and see what he\'s learned from town."
+  }
+}
+4 {
+  1: 1
+  2: 3661160
+  3 {
+    1: "Should I drive to town and look for him?"
+    1: "We should fill the bathtubs with water."
+    1: "Are there enough batteries and Tylenol and food and the generator and like one of those, like, hand cranked radios in a straw that makes it safe to drink water or something?"
+    1: "I think that we shouldn\'t do anything until Clay comes back."
+  }
+}
+4 {
+  1: 1
+  2: 3676920
+  3 {
+    1: "What if he\'s not coming back?"
+    1: "Ruth tries to reason."
+    1: "My dad is right."
+    1: "We\'re safe here."
+    1: "So we should just stay here and sit tight."
+    1: "How do you know that we\'re safe?"
+    1: "I mean, when you don\'t even know what the heck is happening to us, How do you know?"
+    1: "Maybe it was like, what was that?"
+    1: "10 Mile Island."
+  }
+}
+4 {
+  1: 1
+  2: 3692160
+  3 {
+    1: "I mean, there are power plants there, aren\'t there?"
+    1: "Three Mile Island Island."
+    1: "Honey."
+    1: "Yeah, maybe a power plant."
+    1: "Why are you so obsessed with power plants?"
+    1: "You\'re right, Amanda."
+    1: "Ruth, we should not speculate."
+    1: "Stop saying that."
+    1: "I just want someone to tell me what you\'re thinking."
+  }
+}
+4 {
+  1: 1
+  2: 3708160
+  3 {
+    1: "There\'s the blackout, and then you see planes crashing and George goes quiet and glances at Ruth."
+    1: "Who\'s looking at her dad."
+    1: "Like, Yeah, you should have told me that."
+    1: "Why didn\'t you tell me that?"
+    1: "What?"
+    1: "You you didn\'t tell her about the planes?"
+    1: "She\'s an adult, George."
+    1: "You cannot protect her, just like you cannot protect me right now."
+  }
+}
+4 {
+  1: 1
+  2: 3725520
+  3 {
+    1: "The the satellites aren\'t working."
+    1: "The phone\'s not working."
+    1: "And then the noise."
+    1: "And then what?"
+    1: "What happens next, Amanda?"
+    1: "Everything I know, I\'ve told you."
+    1: "I don\'t believe you."
+    1: "I haven\'t believed you the minute that you walked in through that front door."
+    1: "Golly, I wonder, what about us makes you so mistrustful?"
+  }
+}
+4 {
+  1: 1
+  2: 3743720
+  3 {
+    1: "Ruth, please."
+    1: "You always think you know what you\'re talking about, Ruth, don\'t you, Amanda?"
+    1: "Well, ain\'t that the pot calling the kettle black?"
+    1: "George is trying to calm the two women down, Ruth, but Amanda has already moved on."
+    1: "She\'s sitting down now and she says, Oh my God, he knew."
+  }
+}
+4 {
+  1: 1
+  2: 3762280
+  3 {
+    1: "Who knew?"
+    1: "At the market, the town yesterday, there was a guy in the parking lot."
+    1: "He was buying cases of water and canned goods."
+    1: "He knew this was going to happen."
+    1: "Bearded guy, probably wearing an old cowboy hat."
+    1: "How did you know Danny?"
+    1: "He\'s the contractor I was telling you about that helped with our house."
+  }
+}
+4 {
+  1: 1
+  2: 3780000
+  3 {
+    1: "I wouldn\'t read into it."
+    1: "He\'s a self-proclaimed survivalist doomsday prepper."
+    1: "That shopping list was probably a typical weekend for him."
+    1: "While they\'re talking, we see the front door open and Clay walks in."
+    1: "His body language is interesting."
+    1: "He\'s calm."
+    1: "He\'s not running, just like leisurely walking."
+    1: "But he looks like he\'s seen a ghost."
+    1: "Jesus Christ, What happened?"
+  }
+}
+4 {
+  1: 1
+  2: 3796760
+  3 {
+    1: "I was so worried."
+    1: "Clay."
+    1: "Amanda throws herself on her husband."
+    1 {
+      9: 0x2e65726568206d27
+    }
+    1: "I\'m OK."
+    1: "Are you OK?"
+    1: "Where are the kids?"
+    1: "Everyone is OK."
+    1: "Amanda\'s like, what happened?"
+    1: "Did you get into town?"
+    1: "I I didn\'t get far."
+    1: "And then I heard the noise."
+    1: "What do you mean?"
+  }
+}
+4 {
+  1: 1
+  2: 3812160
+  3 {
+    1: "Where have you been?"
+    1: "What were you doing?"
+    1: "I was going crazy."
+    1: "Why didn\'t you come?"
+    1: "I don\'t know."
+    1: "I just started to drive, and then I heard the noise and then I came right back."
+    1: "So you didn\'t see anyone that might help us figure out what\'s happening here?"
+    1: "No, I I didn\'t see anyone."
+    1: "Clay takes a sip of water and then he reaches into his pocket and pulls it out."
+  }
+}
+4 {
+  1: 1
+  2: 3832160
+  3 {
+    1: "But I I did see something."
+    1: "It\'s a red piece of paper."
+    1: "So the plane was dropping massive amounts of red pieces of paper."
+    1: "His hands are super shaky and he shows it to the group is this huge plane, you know, flying in the middle of nowhere, dropping off thousands of these."
+  }
+}
+4 {
+  1: 1
+  2: 3848880
+  3 {
+    1: "I have no idea what it says."
+    1: "They all crowd around and on one side there\'s a feminist looking snake at the front."
+    1: "It\'s really ominous and there\'s venom dripping from the fangs and the tongue rolls out of its mouth and it\'s into Arabic lettering, because of course it\'s Arabic lettering, right?"
+    1: "But just you wait, it\'s gonna, it\'s gonna evolve, OK?"
+  }
+}
+4 {
+  1: 1
+  2: 3866560
+  3 {
+    1: "The Koreans get involved."
+    1: "Yeah."
+    1: "Anyway, George flips it over and there\'s a whole paragraph in Arabic and they\'re all staring at it, confused."
+    1: "What the hell does this mean?"
+    1: "And Archie stands in front of them."
+    1: "He came back downstairs."
+    1: "The son says death to America."
+  }
+}
+4 {
+  1: 1
+  2: 3881960
+  3 {
+    1: "They look up and Archie has what?"
+    1: "Death to America."
+    1: "Here, let me see it."
+    1: "I mean, I don\'t know what the back the rest of it says, but this part on the snake definitely means death to America."
+    1: "I remember it from a video game that I was playing."
+    1: "They\'re all silent."
+  }
+}
+4 {
+  1: 1
+  2: 3897920
+  3 {
+    1: "Nothing about this makes sense."
+    1: "If they were attacking us, why would they advertise it like this?"
+    1: "Death to America is where the Sanfords draw the line."
+    1: "Not the plane crash, but a red piece of paper."
+    1: "I mean, I will give it to them."
+    1: "It is creepy, right?"
+    1: "But the Sanfords immediately start packing up their bags and speed packing them into the car in the driveway."
+  }
+}
+4 {
+  1: 1
+  2: 3914280
+  3 {
+    1: "They\'re like, maybe this shit is only happening on the island, right?"
+    1: "So George."
+    1: "George, I mean, who wanted nothing to do with them?"
+    1: "He feels like this is a bad idea."
+    1: "I mean, I think that that the worst fears have been confirmed."
+    1: "Whatever this may be, it\'s not good."
+    1: "And I don\'t think he can in good conscience let them leave."
+  }
+}
+4 {
+  1: 1
+  2: 3930520
+  3 {
+    1: "This is the safest place to be right now."
+    1: "But the Sanfords are still getting in their car and George is trying to explain like it\'s not even English."
+    1: "What\'s the point of this?"
+    1: "Like let\'s just stay."
+    1: "There\'s no point."
+    1: "But they don\'t care."
+    1: "They hop in their car and they drive off."
+    1: "They\'re speeding away in their family van trying to stay positive."
+  }
+}
+4 {
+  1: 1
+  2: 3947160
+  3 {
+    1: "They\'re going to go to their sister\'s house, who\'s not in the city."
+    1: "She lives in Jersey, but they have to get through the city to get to Jersey."
+    1: "And Amanda\'s saying if we hit traffic, at least we\'ll be able to talk to some people, see if anyone has any information on what\'s going on."
+    1 {
+      9: 0x7a61726320732774
+      15: 0x6577207461687420
+      4: 104
+      12: 0x65732074276e6576
+      12: 0x6e61206e
+      15: 0x2e74657920656e6f
+    }
+    1: "Clay is like, I\'m sure we\'ll see someone as soon as we hit the highway."
+  }
+}
+4 {
+  1: 1
+  2: 3963640
+  3 {
+    1: "Phones could work in New Jersey."
+    1: "The truth is we don\'t know anything that\'s going on outside of this island."
+    1: "They could have Internet, the phone lines could be OK."
+    1: "We\'ll look back at this and laugh."
+    1: "You know, I guarantee that."
+    1: "The vacation from hell."
+    1: "Exactly."
+    1: "You know, things get funnier with time."
+    1: "Isn\'t that what they say?"
+    1: "I think they say it a little bit differently."
+  }
+}
+4 {
+  1: 1
+  2: 3980560
+  3 {
+    1: "But you know what?"
+    1: "I know what you mean."
+    1: "Amanda And roses staring out the window."
+    1: "Sirens, sweetie."
+    1: "What sirens?"
+    1: "You just hear what sounds like beeping noises."
+    1: "Amanda just kind of ignores it and they pull up onto the freeway."
+    1: "Or like the lane that leads into the freeway which is a small two way lane, right?"
+  }
+}
+4 {
+  1: 1
+  2: 3999040
+  3 {
+    1: "Just two lanes and in front of them it\'s jam packed bumper to bumper with white sedans."
+    1: "No lights on both sides of the street."
+    1: "I mean all white sedans trying to head out of the island into the city and it looks super congested."
+    1: "Not even congested."
+    1: "It looks like someone parked a ton of identical cars next to each other on the middle of the road."
+  }
+}
+4 {
+  1: 1
+  2: 4018360
+  3 {
+    1: "What?"
+    1: "The fork?"
+    1: "Amanda turns to her husband."
+    1: "You stay with the kids."
+    1: "I\'m going to go take a look."
+    1: "She starts walking towards the cars."
+    1: "And here\'s what\'s weird about the whole thing, right?"
+    1: "Why would there be so much traffic out of a small town like this?"
+    1: "And why are all the cars so similar?"
+    1: "White sedans?"
+  }
+}
+4 {
+  1: 1
+  2: 4034400
+  3 {
+    1: "She walks closer and closer, and she realizes they\'re not all just white sedans."
+    1: "They\'re all white Tesla\'s, and they\'re all empty."
+    1: "And the reason that they\'re all parked, sitting there, they\'ve all slammed into each other."
+    1: "It\'s a massive pile up of Tesla\'s, but nobody\'s driving."
+  }
+}
+4 {
+  1: 1
+  2: 4050400
+  3 {
+    1: "Maybe they were."
+    1: "And they\'re a lot."
+    1: "They\'re gone now."
+    1: "I mean, we don\'t know."
+    1: "Amanda starts weaving through the cars, and Clay is watching his wife from the car and he\'s starting to feel anxious."
+    1: "The whole situation is weird."
+    1: "You know what, kids?"
+    1: "I\'m going to go with your mom."
+    1: "Stay."
+    1: "Sit tight, OK?"
+    1: "He hops out."
+    1: "Honey, you see anyone?"
+  }
+}
+4 {
+  1: 1
+  2: 4066840
+  3 {
+    1: "There\'s nobody here."
+    1: "The whole thing gets weirder."
+    1: "She looks down at the cars and they still have their dealership stickers on the window."
+    1: "Why would brand new cars be parked on the road, Crashed into each other?"
+    1: "These aren\'t even residents that tried to get out of the island and then left their abandoned cars, their new cars from the dealership."
+  }
+}
+4 {
+  1: 1
+  2: 4082280
+  3 {
+    1: "The license plates aren\'t even registered."
+    1: "They all just say Tesla."
+    1: "They\'re all brand new."
+    1: "What\'d you say, honey?"
+    1: "They\'re all brand new."
+    1: "Clay whips around, and behind them there\'s the sound of another car speeding towards them."
+    1: "Clay is like, oh, whoa, someones coming honey."
+    1: "Hello."
+    1: "Hello."
+    1: "He starts waving his arms around like one of those stranded island people."
+  }
+}
+4 {
+  1: 1
+  2: 4100640
+  3 {
+    1: "Like, you know when you\'re stranded and you\'re like waving on a plane, right?"
+    1: "Right."
+    1: "Anyway, but Amanda is trying to analyze this bizarre car accident situation, and she keeps investigating, going from car to car."
+    1: "And one of the dealership stickers reads in big bold letters."
+    1: "Tesla full self driving capability."
+    1: "Amanda stares back at Clay, then back at the dealership sticker, then back at Clay."
+  }
+}
+4 {
+  1: 1
+  2: 4118920
+  3 {
+    1: "The car that Clay is trying to flag down right at them to save them a brand new white Tesla."
+    1: "Amanda starts booking it back to the SUV."
+    1: "Click."
+    1: "Get in the car."
+    1: "Well, shouldn\'t we talk to them?"
+    1: "Get in the fucking car right now."
+    1: "Clay listens, hops into the car."
+  }
+}
+4 {
+  1: 1
+  2: 4135359
+  3 {
+    1: "What are you doing?"
+    1: "Shouldn\'t we flag them down?"
+    1: "Maybe they know something."
+    1: "He\'s being ignored."
+    1: "Amanda does not have time for his shit."
+    1: "Like, keep up man."
+    1: "Amanda throws the car in reverse, shifts out of the way just in time, and she screams."
+    1: "There\'s no one in the car and the Tesla crashes into the pile of Tesla\'s in front of them."
+  }
+}
+4 {
+  1: 1
+  2: 4151920
+  3 {
+    1: "She U turns it back into the island to drive back to the vacation home and the whole time there\'s more Tesla\'s flying at them."
+    1: "And one thing is clear."
+    1: "There\'s no way out of the island."
+    1: "And now we enter into Part 4, the flood Ding Dong."
+    1: "The door to the vacation mansion rings."
+  }
+}
+4 {
+  1: 1
+  2: 4169359
+  3 {
+    1: "George opens the front door to the Sanfords."
+    1: "They look completely helpless."
+    1: "George silently invites them in and they just sit in silence around the kitchen for a minute."
+    1: "Amanda says What if we went to a shelter?"
+    1: "Does the military have a bomb shelter or base around here?"
+    1: "I mean, do they have to have those things ready for emergencies like this?"
+  }
+}
+4 {
+  1: 1
+  2: 4187479
+  3 {
+    1: "I don\'t know where those would even be even if I did."
+    1: "You said all the cars came off the lot."
+    1: "If they did that to every dealership, the main roads are likely clogged up."
+    1: "We\'ll stay here until we know more."
+    1: "How much more do we need to know?"
+    1: "We\'re probably in the middle of a war zone."
+    1: "People are likely dead."
+    1: "Just we need to make a plan."
+  }
+}
+4 {
+  1: 1
+  2: 4204280
+  3 {
+    1: "We can\'t just sit here and do nothing."
+    1: "We need to go somewhere."
+    1: "Clay is like, he\'s right, honey."
+    1: "It\'s too dangerous."
+    1: "We stay here tonight and then in the morning."
+    1: "Maybe."
+    1: "Maybe what?"
+    1: "Maybe."
+    1: "I don\'t know."
+    1: "OK, the whole group is frustrated with the fact that none of them have a genius plan to get out of this."
+  }
+}
+4 {
+  1: 1
+  2: 4221320
+  3 {
+    1: "So they all separate, and at night shit starts going down again."
+    1: "Ruth goes to the master bedroom to find Clay kneeling by the bathtub."
+    1: "What are you doing?"
+    1: "Filling up the tub?"
+    1: "That\'s what they say to do you know, for water."
+    1: "Do you vape?"
+    1: "Not really."
+    1: "I mean, that\'s like a marijuana, right?"
+  }
+}
+4 {
+  1: 1
+  2: 4238400
+  3 {
+    1: "I mean, I know, I know they got different kinds now, like fruit flavors or."
+    1: "Yeah, marijuana."
+    1: "Do you vape?"
+    1: "And we see the two of them sitting outside in the backyard by the campfire and Clay is vaping from Ruth\'s pen and it\'s quiet."
+    1: "And Ruth breaks the silence by turning to Clay and says, have you ever one of your students?"
+  }
+}
+4 {
+  1: 1
+  2: 4256280
+  3 {
+    1: "Clay chokes on the smoke."
+    1: "I can\'t believe you just asked me that."
+    1: "I mean, is that what I look like to you?"
+    1: "Like that kind of guy?"
+    1: "You look like the kind of guy whom things come easy to, especially women."
+    1: "Well, I guess that\'s a compliment, I guess, right?"
+  }
+}
+4 {
+  1: 1
+  2: 4272880
+  3 {
+    1: "The energy is weird."
+    1: "Like, I don\'t know what to make of it."
+    1: "I think Ruth is good at reading people, so I have a feeling that Clay seems to be this nice husband stereotype."
+    1: "But probably, I don\'t know, maybe he\'s sleeping with his, like that girl Maria that he was talking about that wrote the book."
+    1: "The vibes are odd."
+  }
+}
+4 {
+  1: 1
+  2: 4288800
+  3 {
+    1: "The vibes are odd."
+    1: "Speaking of Amanda, she\'s inside the house pouring herself another glass of wine, and George is in the kitchen."
+    1: "I always thought of myself as a sophisticated man, someone who had seen the world for what it was."
+    1: "But I have never seen anything like this."
+    1: "So now I wonder if that thing I always thought about myself was a delusion."
+  }
+}
+4 {
+  1: 1
+  2: 4308360
+  3 {
+    1: "George, I wouldn\'t be so hard on yourself."
+    1: "You dig deep enough, it\'s probably all a delusion."
+    1: "I mean, take your line of work, for example."
+    1: "Imaginary numbers moving around, imaginary money."
+    1: "Personally, I think my business is a lot less complicated than all that."
+    1: "At its most basic, my work is always and has always been about people."
+  }
+}
+4 {
+  1: 1
+  2: 4325880
+  3 {
+    1: "And I feel really bad for you, George."
+    1: "And why is that?"
+    1: "Because people are terrible."
+    1: "I mean, look at the way I treated you."
+    1: "And now we are having a drink together."
+    1: "George lists his glass and they cheers."
+    1: "I am sorry, by the way, for what I said did."
+  }
+}
+4 {
+  1: 1
+  2: 4342720
+  3 {
+    1: "Thought it didn\'t matter."
+    1: "I mean, I was wrong and I\'m sorry."
+    1: "You know, Amanda, some of my smartest clients have lost a lot of money because they base their choices on preconceived beliefs instead of truth."
+    1: "Seeing the difference is one of the hardest things a person can do, and when they don\'t, it\'s got to be madding, huh?"
+  }
+}
+4 {
+  1: 1
+  2: 4361160
+  3 {
+    1: "Depending on the person, I might take a little satisfaction in watching the market punish them."
+    1: "The scary ones, though, are the ones who don\'t learn even after they lose lots, and I mean lots of money."
+    1: "Nothing frightens me more than a person unwilling to learn, even at their own expense."
+  }
+}
+4 {
+  1: 1
+  2: 4378040
+  3 {
+    1: "That\'s a darkness I\'ll I\'ll never understand."
+    1: "Silence."
+    1: "Both of them."
+    1: "Stare out the window."
+    1: "The quiet is so noisy, you know."
+    1: "It\'s one of the first things I noticed when we started spending nights here."
+    1: "Found it very hard to sleep."
+    1: "Not like at home, where you hear everything."
+  }
+}
+4 {
+  1: 1
+  2: 4395000
+  3 {
+    1: "The sirens, the traffic, the people."
+    1: "I miss that."
+    1: "What the sirens are, the people."
+    1: "And the two of them giggle."
+    1: "You know, I\'m starting to like you, George."
+    1: "And that\'s a bold statement coming from me because I can\'t remember the last time I liked anybody."
+  }
+}
+4 {
+  1: 1
+  2: 4412240
+  3 {
+    1: "Amanda smiles, but then she starts looking serious again."
+    1: "Why did you really come here?"
+    1: "And don\'t tell me it\'s because of your knee."
+    1: "That wasn\'t a lie."
+    1: "I did have knee surgery."
+    1: "I twisted up pretty bad playing basketball."
+    1: "But that\'s not why you came here."
+    1: "Why I came here involved something that happened to me a few years back."
+  }
+}
+4 {
+  1: 1
+  2: 4431240
+  3 {
+    1: "George starts getting very serious."
+    1: "One of my clients invited me and my wife to a private event."
+    1: "My client."
+    1: "I won\'t say his name, but you\'d recognize it, though."
+    1: "Is he a celebrity?"
+    1: "Oh, no, nothing like that."
+    1: "But in the business world, he\'s one of the biggest out there."
+    1: "He deals mostly in defense contracting."
+  }
+}
+4 {
+  1: 1
+  2: 4446720
+  3 {
+    1: "I\'m talking hush hush, top secret money from the Pentagon."
+    1: "Perhaps the most powerful person I\'ve ever had a meal with."
+    1: "Anyway, we\'re at this soiree at his house and it\'s getting late."
+    1: "My wife, she wants to go, but he and I are just having a blast and he doesn\'t want the night to end."
+    1: "So after a few more glares, my wife agrees to take a cab home."
+  }
+}
+4 {
+  1: 1
+  2: 4465320
+  3 {
+    1: "Oof."
+    1: "But she wasn\'t happy about that, not at all."
+    1: "So the man and I, we\'re having a few drinks, getting really, really saucy."
+    1: "And at one point I don\'t think that he could stand, and I was probably pretty wobbly myself."
+    1: "So he takes me into his study, we smoke a few cigars and we\'re sort of that flying high, laughing at almost everything stage."
+  }
+}
+4 {
+  1: 1
+  2: 4484040
+  3 {
+    1: "And eventually he starts in on about how much he likes me and how he wishes he could invite me on this trip that he\'s about to go on."
+    1: "Well, what kind of trip?"
+    1: "Where is he going?"
+    1: "That\'s exactly what I asked."
+    1: "And then he turns to me and he says, oh, you know, just my annual meeting with the rest of the evil cabal that run the world."
+  }
+}
+4 {
+  1: 1
+  2: 4501760
+  3 {
+    1: "Amanda looks kind of scared."
+    1: "But after a few seconds, George stops and he starts laughing."
+    1: "He was that kind of guy, always known for jokes like that."
+    1: "Again, if I told you his name, you would understand."
+    1: "Well, I\'d just have to take your word for it."
+    1: "But now, if you\'ll excuse me, I\'m going to top off my wine."
+  }
+}
+4 {
+  1: 1
+  2: 4518600
+  3 {
+    1: "Amanda starts to get up from the dining table, but George reaches across and grabs her wrist."
+    1: "Then yesterday, before the Symphony, my friend calls me up."
+    1: "No scheduled appointment, just like he usually does."
+    1: "Just calls me out of the blue and wants me to move around some money and we\'re talking some big numbers even for him."
+  }
+}
+4 {
+  1: 1
+  2: 4535160
+  3 {
+    1: "And as we\'re getting off the phone, I asked if he wanted to grab a drink tonight."
+    1: "He tells me he\'s going away for a while and I joke back at him."
+    1: "Oh yeah, you hanging out with your evil cabal this weekend?"
+    1: "I thought that was only during the winter solstice, but he doesn\'t laugh and he always laughs, even with bad jokes."
+  }
+}
+4 {
+  1: 1
+  2: 4553760
+  3 {
+    1: "All he said was take care of yourself, almost as if he felt sorry for me."
+    1: "My guy doesn\'t even like help him out."
+    1: "Like, give him some quick tips like come on man, pack it up."
+    1: "Like, come on."
+    1: "Ever since, I haven\'t been able to get it out of my head."
+  }
+}
+4 {
+  1: 1
+  2: 4571760
+  3 {
+    1: "Are you saying you think that your friend is somehow behind what happened here?"
+    1: "No, no, nothing like that."
+    1: "A conspiracy theory about a shadow group of people running the world is far too lazy of an explanation, especially when the truth is much scarier."
+    1: "What\'s the truth?"
+    1: "No one\'s in control."
+  }
+}
+4 {
+  1: 1
+  2: 4588200
+  3 {
+    1: "No one\'s pulling the strings."
+    1: "Sure, there are those, like my friend, who might have access to the right kinds of information, but when events like this happen to the world the best, even the most powerful people, all they can hope for is a heads up."
+    1: "Sorry."
+    1: "I guess the story is kind of a buzz kill."
+  }
+}
+4 {
+  1: 1
+  2: 4605320
+  3 {
+    1: "Yeah, I think I changed my mind."
+    1: "I don\'t think I like you anymore."
+    1: "Meanwhile, upstairs we have Rose opening the door to her brother Archie\'s room, and she looks exhausted."
+    1: "Rose, What do you want?"
+    1: "I\'m never going to find out what happens to Ross and Rachel and Friends, am I?"
+    1: "Oh, my God, you\'re still on this shit."
+  }
+}
+4 {
+  1: 1
+  2: 4622160
+  3 {
+    1: "Who gives a fuck?"
+    1: "Well, I do, obviously."
+    1: "Why do you care so much about that show anyway?"
+    1: "They make me happy."
+    1: "I really need that right now, don\'t you?"
+    1: "If there\'s any hope left in this up world, I want to at least find out how things turn out for them."
+  }
+}
+4 {
+  1: 1
+  2: 4637680
+  3 {
+    1: "I care about them."
+    1: "Yeah, well, maybe you shouldn\'t."
+    1: "I\'m just saying you\'re probably right."
+    1: "Way things are going, you\'re never going to see that show again."
+    1: "So if I were you, I\'d find something else to care about."
+    1: "So that night, the whole Sanford family decide to sleep in the same bed because they\'re all scared and Rose and Amanda are the last ones awake."
+  }
+}
+4 {
+  1: 1
+  2: 4653920
+  3 {
+    1: "And Rose tells her mom, Mom, I keep thinking about that West Wing episode."
+    1: "There\'s this story someone tells the president."
+    1: "Wait, you watched The West Wing, honey?"
+    1: "Yeah, only that Aaron Sorkin seasons."
+    1: "Anyway, the story was about a man who lived by the river and he hears on the radio that the river is going to flood the whole town and that everyone should leave."
+  }
+}
+4 {
+  1: 1
+  2: 4672520
+  3 {
+    1: "But the man doesn\'t go anywhere because he prays every day."
+    1: "He knows that God loves him and he knows that God will save him."
+    1: "But then when the flood actually happens, there\'s a guy in a rowboat and he sees the man and says, hey, come on, I can save you."
+    1: "But the man tells him he isn\'t going anywhere."
+    1: "Then a helicopter comes flying by and the pilot lowers the ladder."
+  }
+}
+4 {
+  1: 1
+  2: 4687960
+  3 {
+    1: "But the man tells him he\'s not going anywhere."
+    1: "After that, the man drowns in the flood, and then he goes up to heaven, and he\'s really angry at God."
+    1: "And he tells him, I pray to you every day."
+    1: "I thought you loved me."
+    1: "Why didn\'t you save me?"
+    1: "And God says I sent you a radio report, a rowboat and a helicopter."
+  }
+}
+4 {
+  1: 1
+  2: 4703120
+  3 {
+    1: "What more do you want?"
+    1: "Rosie, what is this about?"
+    1: "I think I\'m done waiting."
+    1: "Amanda doesn\'t ask any more questions."
+    1: "She just leaves it at that and tries to fall asleep."
+    1: "Downstairs in the in law suite, George and Ruth are getting ready for bed and they\'re laying in the bed together and Ruth is telling her dad I\'m scared."
+  }
+}
+4 {
+  1: 1
+  2: 4721200
+  3 {
+    1: "It\'s just us now, isn\'t it?"
+    1: "What do you mean by that, honey?"
+    1: "What I mean is, if Shake goes down, do you trust these people that are in our house?"
+    1: "We already know the wife has no chill."
+    1: "That boy was sneaking pictures of me by the pool."
+    1: "That little girl keeps staring into the woods like Donnie Darko, and I\'m pretty sure the husband wants to fuck me."
+  }
+}
+4 {
+  1: 1
+  2: 4737720
+  3 {
+    1: "George is looking at his daughter like be so fucking for real right now."
+    1: "How do you know that?"
+    1: "He\'s not actually going to do anything?"
+    1: "Dad, he\'s not that guy."
+    1: "But does he want to?"
+    1: "Absolutely."
+    1: "My point remains, I don\'t trust them."
+    1: "I\'m not going to let anything happen to you, if that\'s what you\'re asking."
+  }
+}
+4 {
+  1: 1
+  2: 4755000
+  3 {
+    1: "I\'m asking for you to remember that if the world falls apart, trust should not be doled out easily to anyone, especially white people."
+    1: "Even mom would agree with that."
+    1: "OK, sweetie, I got it."
+    1: "Do you?"
+    1: "Because we\'re sleeping in the basement of our own home for the second night in a row."
+  }
+}
+4 {
+  1: 1
+  2: 4771280
+  3 {
+    1: "Just what exactly was the point of letting them back in the house?"
+    1: "It\'s the right thing to do."
+    1: "And that right there, Dad, that\'s what\'s going to fuck us up in the end."
+    1: "The next morning, they all wake up and Archie\'s teeth are falling out."
+    1: "Oh yeah, every single one of them."
+  }
+}
+4 {
+  1: 1
+  2: 4786480
+  3 {
+    1: "He\'s reaching in there and just pulling them out like 1 by 1."
+    1: "Pop, pop, pop, pop, pop."
+    1: "They\'re falling out."
+    1: "Like no pain, nothing."
+    1: "No pain."
+    1: "Just mucus gums."
+    1: "Blood."
+    1: "And he\'s toothless now."
+    1: "Yeah, he\'s like my teeth."
+    1: "My teeth."
+    1: "Yeah."
+  }
+}
+4 {
+  1: 1
+  2: 4802080
+  3 {
+    1 {
+      10: 0x75682068
+      13: 46
+    }
+    1: "And he\'s like, what\'s happening to me?"
+    1: "My teeth."
+    1: "They felt weird."
+    1: "I don\'t know."
+    1: "Yeah, it\'s a whole thing."
+    1: "So now we enter into Part 5, the last one in the living room."
+    1: "We have Ruth and George sitting silently, staring at Archie and Amanda."
+    1: "Ruth is trying to be nice."
+  }
+}
+4 {
+  1: 1
+  2: 4818840
+  3 {
+    1: "How are you feeling, Archie?"
+    1: "Besides your teeth falling out?"
+    1: "I mean, what kind of question is that?"
+    1: "Ruth."
+    1: "He\'s obviously sick."
+    1: "This is Amanda."
+    1: "And Archie protests."
+    1: "No, no, no, I\'m not sick."
+    1: "My teeth just fell off."
+    1: "Archie mutters."
+    1: "Maybe it was the bug that bit me."
+  }
+}
+4 {
+  1: 1
+  2: 4834560
+  3 {
+    1: "I don\'t know What bug."
+    1: "A bug bit me yesterday."
+    1: "And there was."
+    1: "Why are you laughing?"
+    1: "Why are you laughing?"
+    1: "And I guess everyone is just being super."
+    1: "So they decide that they\'re going to take Archie to go meet up with the contractor, the doomsday prepper, because he probably has some medicine."
+  }
+}
+4 {
+  1: 1
+  2: 4859040
+  3 {
+    1: "Oh, what were they doing the whole time?"
+    1: "Exactly."
+    1: "So the plan is, the plan is George and Clay are going to take Archie to the contractor."
+    1: "Amanda is going to go look for Rose because they haven\'t seen her all morning."
+    1: "She\'s missing."
+    1: "Yeah, I don\'t know."
+    1: "It\'s a whole thing she\'s missing."
+    1: "And Ruth is probably going to help Amanda look for Rose."
+  }
+}
+4 {
+  1: 1
+  2: 4875640
+  3 {
+    1: "That\'s the plan."
+    1: "That\'s the plan."
+    1: "While Amanda and Ruth are looking for Rose, they have like a little bonding moment where Amanda fesses up that she\'s mean to everyone because she works in marketing and like, marketing is all about analyzing people and she sees the bad in people."
+  }
+}
+4 {
+  1: 1
+  2: 4892960
+  3 {
+    1: "I don\'t know, it\'s kind of dumb."
+    1: "She\'s just mean."
+    1: "I don\'t know what to say, right?"
+    1: "That\'s not really a good excuse."
+    1: "She\'s just mean and kind of racist."
+    1: "But they do have a moment where they Amanda does save Ruth from a bunch of deer that want to attack Ruth."
+    1: "It was like a whole thing."
+    1: "It was kind of weird."
+    1: "So they\'re over it."
+  }
+}
+4 {
+  1: 1
+  2: 4908320
+  3 {
+    1: "They\'re fine now and they\'re still just looking for Rose in the woods."
+    1: "And they see kind of like these bike trails that lead to a neighbor\'s house, like a red brick house."
+    1: "So just keep that in mind."
+    1: "Meanwhile, George Clay and the sun, they arrive at the contractor\'s house and it looks like a colonial style house, right?"
+  }
+}
+4 {
+  1: 1
+  2: 4925720
+  3 {
+    1: "There\'s an American flag out front, a security camera pointed directly at them and outcomes."
+    1: "Danny, it\'s the man in the hat."
+    1: "He\'s wearing like the cowboy boots and everything."
+    1: "He looks very American, and George is kind of explaining the situation, apologizing for, you know, bothering you."
+    1: "But the world\'s descending, and we just need some meds."
+  }
+}
+4 {
+  1: 1
+  2: 4944240
+  3 {
+    1: "Danny whips out a shotgun."
+    1: "I\'m going to need you and your comrade to step off the porch and stand by your vehicle."
+    1: "Whoa, what?"
+    1: "Off the porch and by your vehicle?"
+    1: "George looks so confused and betrayed, but he does what he\'s told."
+  }
+}
+4 {
+  1: 1
+  2: 4960440
+  3 {
+    1: "What can I do for you?"
+    1: "We\'re just checking in on you, Danny."
+    1: "Seeing if you know anything about what\'s going on out there."
+    1: "And hi, I\'m Clay."
+    1: "My family rented from George."
+    1: "GH, we\'re from the city."
+    1: "Wow, that\'s a lucky break for your family."
+  }
+}
+4 {
+  1: 1
+  2: 4977120
+  3 {
+    1: "Imagine what a shit show the city must be right now."
+    1: "I gotta be honest with you, though."
+    1: "I\'m surprised you guys are even out."
+    1: "We came out here because my son needs help."
+    1: "He\'s vomiting."
+    1: "He\'s he\'s lost his teeth."
+    1: "They fell out."
+    1: "We can\'t explain it."
+    1: "His teeth, huh?"
+    1: "It\'s got to be something with the noise, You know, something about the noise."
+  }
+}
+4 {
+  1: 1
+  2: 4996760
+  3 {
+    1: "Well, it\'s not dissimilar to what happened to Cuba a while back."
+    1: "Microwave weapons, they call it, produces a kind of radiation that can be beamed out through sound."
+    1: "Some people lost their teeth there, too."
+    1: "Outside of that, the only other thing I know for sure is there\'s not a lot of information getting out."
+    1: "So I assume it\'s a war."
+  }
+}
+4 {
+  1: 1
+  2: 5013640
+  3 {
+    1: "The beginning of one."
+    1: "Anyway, They\'ve been saying there\'s a lot of chatter."
+    1: "This has to be what they were chattering about."
+    1: "Chatter."
+    1: "What do you?"
+    1: "What do you mean, chatter?"
+    1: "Danny smiles and chuckles."
+    1: "You got to be the papers."
+    1: "Deeper than page one, buddy."
+    1: "The Russians recalled their staff from Washington."
+  }
+}
+4 {
+  1: 1
+  2: 5030560
+  3 {
+    1: "Did you even notice that something\'s afoot?"
+    1: "Now what it is exactly, I don\'t know."
+    1: "Maybe this is just as much as we\'re ever going to know."
+    1: "Maybe we just need to sit tight, be safe, pray Whatever works for you."
+    1: "George is trying to get them back on topic."
+    1: "Well, Danny, it\'s like Clay said."
+  }
+}
+4 {
+  1: 1
+  2: 5046760
+  3 {
+    1: "His son isn\'t doing well."
+    1: "We\'re going to need more than just prayers and knowing how primed you are for these kinds of situations."
+    1: "We\'re thinking you might have some medicine that\'s going to be able to help him."
+    1: "What I got isn\'t your business, Danny."
+    1: "Come on now."
+    1: "It\'s me, George."
+    1: "We know each other."
+    1: "We\'re friends."
+    1: "That\'s the old way."
+  }
+}
+4 {
+  1: 1
+  2: 5062880
+  3 {
+    1: "George."
+    1: "You\'re not thinking clearly."
+    1: "Danny."
+    1: "What are you saying?"
+    1: "You\'re telling me, you\'re telling this man we\'re not going to take care of his son?"
+    1: "Nothing makes a whole lot of sense right now."
+    1: "And when nothing makes sense in the world, you got to do what\'s rational, and that\'s protect my own."
+    1: "What you do, that\'s your business."
+  }
+}
+4 {
+  1: 1
+  2: 5081320
+  3 {
+    1: "I thought I was doing the right thing by bringing them here."
+    1: "Now, if you have some medicine that can help me, Clay interrupts."
+    1: "George."
+    1: "Well, we can pay."
+    1: "What do you say, $1000?"
+    1: "Cash might not mean much if the government falls."
+    1: "Clay looks confused with with the whole network\'s down."
+  }
+}
+4 {
+  1: 1
+  2: 5096840
+  3 {
+    1: "My credit cards aren\'t gonna work."
+    1: "There\'s no Venmo or Apple Pay."
+    1: "I mean, cash might be the only thing that means something, right?"
+    1 {
+      10: 108
+      12: 0x2e657361
+    }
+    1: "My son\'s sick."
+    1: "He needs your help."
+    1: "He\'s 16."
+    1: "You\'re in a difficult position."
+    1 {
+      9: 0x2e74692074656720
+    }
+    1: "I would do anything I had for my family."
+    1: "His hand grips his shotgun tighter."
+  }
+}
+4 {
+  1: 1
+  2: 5112960
+  3 {
+    1: "So that\'s what I\'m doing."
+    1: "I\'m locking my doors."
+    1: "I\'m waiting."
+    1: "I\'m watching and I\'m getting my gun."
+    1: "Other than that, I don\'t have any answers for you guys."
+    1: "I\'m going to go back inside my house now."
+    1: "I\'m going to say goodbye and good luck."
+    1: "You come out again, you\'re welcome to stop by, but I can\'t offer you much more than conversation right now."
+  }
+}
+4 {
+  1: 1
+  2: 5131960
+  3 {
+    1: "I suggest you try."
+    1: "Your neighbors, The Thorns, They did a basement conversion on the down low a while back."
+    1: "No permits or nothing."
+    1: "A buddy of mine worked on it."
+    1: "He wouldn\'t even show me the plans."
+    1: "Now you asked me."
+    1: "That\'s rich asshole talk for Doomsday bunker."
+    1: "Come on, Danny."
+    1: "You can\'t desert us like this, Danny continues, smiling."
+  }
+}
+4 {
+  1: 1
+  2: 5150000
+  3 {
+    1: "Haven\'t you been picking up?"
+    1: "What\'s going on out there, George?"
+    1: "We\'ve all been deserted."
+    1: "All due respect, I would like all of you to get off my property now."
+    1: "George steps forward and he pulls out his gun and he\'s putting it."
+    1: "There\'s like a shotgun, a gun."
+    1: "And Clay is screaming."
+  }
+}
+4 {
+  1: 1
+  2: 5165200
+  3 {
+    1: "What the fuck is going on right now?"
+    1: "I promised this boy\'s mother I\'d get him some help."
+    1: "The only thing you\'re helping him is a quick death."
+    1: "Unless you lower your weapon."
+    1: "GHGH, just put your gun down."
+    1: "We\'ll find another way to the hospital."
+    1: "There is no other way, Clay."
+  }
+}
+4 {
+  1: 1
+  2: 5180920
+  3 {
+    1: "Besides, he\'s not gonna shoot us."
+    1: "Danny cocks the shotgun."
+    1: "It sounds like he\'s gonna shoot us."
+    1: "I\'m telling you, he\'s bluffing."
+    1: "The fuck I am."
+    1: "Clay jumps in and he\'s like, hold on, hold on, hold on."
+    1: "And I guess it works, because the next scene we see Clay shaking out blue Oval pills into Archie\'s hand and Danny\'s sitting on his porch smiling."
+  }
+}
+4 {
+  1: 1
+  2: 5202040
+  3 {
+    1: "I guess an old fashioned barter system was to be expected at some point."
+    1: "Click like a barter system where you start trading."
+    1: "Oh, what did they trade?"
+    1: "That\'s like Clay Whispers."
+    1: "It\'s still cash, so it\'s not really a barter system."
+    1: "He gave him $1000 for some Advil."
+  }
+}
+4 {
+  1: 1
+  2: 5220240
+  3 {
+    1: "What?"
+    1: "Danny\'s now sitting on his porch, feeling relaxed."
+    1: "Hey, I got another tidbit for y\'all free of charge."
+    1: "What a plot twist."
+    1: "What the hell?"
+    1: "All that for what?"
+    1: "I don\'t get it."
+    1: "How did?"
+    1: "OK."
+    1: "Danny\'s like, hey, I got another tidbit for y\'all free of charge if you want it."
+  }
+}
+4 {
+  1: 1
+  2: 5239120
+  3 {
+    1: "It\'s the Koreans behind all of this."
+    1: "Stephanie."
+    1: "Koreans, What makes you say that?"
+    1: "Just trust me."
+    1: "Is the Koreans or the Chinese?"
+    1: "One of them, George, looks like Clay, and Clay nods."
+  }
+}
+4 {
+  1: 1
+  2: 5256360
+  3 {
+    1: "He digs in his pocket and approaches Danny with the red paper."
+    1: "I was driving around yesterday."
+    1: "There was a big drone dropping these everywhere."
+    1: "It means death to America."
+    1: "So we\'re thinking Iranians."
+    1: "He says it like that."
+    1: "Painfully American."
+    1: "But it has a snake on there."
+    1: "Right, Yeah."
+  }
+}
+4 {
+  1: 1
+  2: 5271480
+  3 {
+    1: "And it\'s an Arabic I."
+    1: "Think it\'s like probably like Voldemort or something."
+    1: "Yeah."
+    1: "And it\'s probably just like a teenage kid."
+    1: "Like around."
+    1: "OK."
+    1: "I remember hearing something on NPR once about Iranians cyber capabilities."
+    1: "Danny puts on his little reading glasses, and he looks at the paper and smirks."
+  }
+}
+4 {
+  1: 1
+  2: 5288440
+  3 {
+    1: "What\'s so funny about that?"
+    1: "Before the phones went out, I heard from a friend of mine in San Diego about a similar event."
+    1: "Planes dropping pamphlets, except they were in Korean or Mandarin."
+    1: "Like I said, he couldn\'t tell which, but seeing as he did 4 tours in Iraq, he sure as shit would have known if it looked like this."
+  }
+}
+4 {
+  1: 1
+  2: 5308040
+  3 {
+    1: "He ends it back to Clay."
+    1: "We made a lot of enemies around the world."
+    1: "Maybe all this means few of them teamed up."
+    1: "George\'s face of concern grows as if he just put two and two together."
+    1: "So he gets back into the car and before he drives, he\'s just staring and Clay is like, GH, what\'s going on?"
+  }
+}
+4 {
+  1: 1
+  2: 5326200
+  3 {
+    1: "Before we go, I need to know that you\'re on the level with me."
+    1: "No matter how far this thing goes, I need to know that we\'re good because of what just happened here."
+    1: "Is happening everywhere."
+    1: "We need to get to that bunker Danny was telling us about at the Thorn residence."
+    1: "What are you talking about?"
+    1: "You know something at a sneaking suspicion."
+  }
+}
+4 {
+  1: 1
+  2: 5342600
+  3 {
+    1: "But I wanted information first."
+    1: "All the signs were there, sure, but I didn\'t want to scare anyone."
+    1: "You\'d have called me crazy because it was crazy."
+    1: "It would have made more sense if we were on the brink of an all out invasion."
+    1: "But this?"
+    1: "I don\'t think we\'d actually let something like this happen."
+    1: "I thought we were smarter than that."
+  }
+}
+4 {
+  1: 1
+  2: 5359040
+  3 {
+    1: "What are you talking about, George?"
+    1: "What happened?"
+    1: "My primary clients work in the defense sector."
+    1: "I spend a lot of time studying the cost benefit analysis of military campaigns."
+    1: "There was one program in particular that terrified my client the most."
+    1: "A simple three stage maneuver that could topple a country\'s government from within."
+  }
+}
+4 {
+  1: 1
+  2: 5375120
+  3 {
+    1: "The first stage, isolation."
+    1: "The cyber attacks disable their communication and transportation."
+    1: "Then make the target as deaf, dumb, and paralyzed as possible, setting them up for the second stage, synchronized chaos."
+    1: "Terrorize them with covert attacks and misinformation overwhelming their defense capabilities, leaving their weapon systems vulnerable to extremists in their own military."
+  }
+}
+4 {
+  1: 1
+  2: 5397680
+  3 {
+    1: "Without a clear enemy or motive, people will start turning on each other."
+    1: "If done successfully, the third stage will happen on its own."
+    1: "What\'s the third stage?"
+    1: "Coup d\'etat, civil war, collapse."
+    1: "The program was considered the most cost effective way to destabilize a country, because if the target nation was dysfunctional enough, it would in essence do the work for you."
+  }
+}
+4 {
+  1: 1
+  2: 5421640
+  3 {
+    1: "Whoever started this wants us to finish it, and George is rushing to the Thorn residence in the car."
+    1: "Meanwhile, the Thorn residence is this red brick house and the door is bright red."
+    1: "Everything looks normal except for So the Sanford\'s house was all blue."
+  }
+}
+4 {
+  1: 1
+  2: 5438920
+  3 {
+    1: "This house is all red, like the house is all red Brick house."
+    1: "The door is bright red and like I said, every other house in this neighborhood so far it looked like that LA or that colonial style."
+    1: "So it\'s like really red."
+    1: "And even the inside hallways are all red and the plaque on the door says the thorns."
+  }
+}
+4 {
+  1: 1
+  2: 5455120
+  3 {
+    1: "And inside we hear this aggressive crunching noise and we see Ruth sitting alone at the head of a fancy dinner table, eating snacks, just eating up all the snacks."
+    1: "She pauses, gets up, and enters the all red hallway."
+    1: "Not a wine red, not a pink, red red."
+  }
+}
+4 {
+  1: 1
+  2: 5474600
+  3 {
+    1: "And at the end of the hall she sees this steel door."
+    1: "Hope begins in the dark is the sign it\'s got."
+    1: "It\'s like a bank vault."
+    1: "She starts cranking it and it opens."
+    1: "It\'s a 5 inch steel door."
+    1: "She opens it up and turns on the switch Commode Survival shelters made in the USA."
+  }
+}
+4 {
+  1: 1
+  2: 5495160
+  3 {
+    1: "The dial clicks on, and it\'s like a whole new house in there."
+    1: "It\'s a bunker, living room, pallets of those Big Blue water jugs, dining table, eight seats, a bowl of fresh pears and oranges in the middle, a kitchen stocked all the amenities, a generator, paper towels, pots, pans, bedrooms, a sink."
+  }
+}
+4 {
+  1: 1
+  2: 5513760
+  3 {
+    1: "And above it is a window that glitches for a second before a screen illuminates."
+    1: "And it\'s a rendered image of like a like outside."
+    1: "It\'s ATV screen that looks like it\'s outside."
+    1: "There\'s plants, like ingrown plants for, you know, veggies and stuff like that, Mattresses with fluffy sheets."
+  }
+}
+4 {
+  1: 1
+  2: 5530680
+  3 {
+    1: "There\'s a washer and dryer, a gym equipment, a fully rigged electrical system, a pantry that looks more like a Trader Joe\'s."
+    1: "It\'s insane."
+    1: "There\'s security monitors with a message on there that reads EMERGENCY ALERT White House in major cities under attack by rogue armed forces."
+  }
+}
+4 {
+  1: 1
+  2: 5546080
+  3 {
+    1: "Elevated radiation levels detected by multiple population centers seek immediate shelter and roses."
+    1: "Standing in the middle of the bunker, it\'s beautiful and one entire wall is filled with DVDs."
+    1: "There\'s a giant movie theater size screen and she goes and pulls one out and slides the DVADN and she sits down and clicks from the menu the last one and we hear the friends intro come on and she smiles as the screen goes black."
+  }
+}
+4 {
+  1: 1
+  2: 5577360
+  3 {
+    1: "OK, so Rose found it first."
+    1: "Yes, but it seems like all of them are going to get there."
+    1: "OK, so they\'re all going to, yeah."
+    1: "Be sitting in there and."
+    1: "Yeah."
+    1: "So there\'s a lot of different ways that people see this movie."
+    1: "Some people see it as just a movie, and they\'re like, OK, it wasn\'t like the best movie."
+  }
+}
+4 {
+  1: 1
+  2: 5593080
+  3 {
+    1: "And the ending was kind of like, Nah, right."
+    1: "Some people see it like that."
+    1: "Some people see it as, like, the Obamas are warning us about what\'s about to happen."
+    1: "And then that didn\'t help because immediately after like, Teslas were recalled, there was like a software update that needed to happen."
+    1: "And then like a ship like docked or something, it was weird."
+  }
+}
+4 {
+  1: 1
+  2: 5609640
+  3 {
+    1: "So then people are like, see it\'s happening."
+    1: "And then there was a power outage in New York City right after this movie. 200 people\'s powers went out."
+    1: "But then people were like, see, it\'s happening."
+    1: "But then people were like, it\'s 205 people."
+    1: "I mean, like, yeah, it sucks."
+  }
+}
+4 {
+  1: 1
+  2: 5624760
+  3 {
+    1: "But like, it\'s 200 people will be fine."
+    1: "And it\'s like a whole thing."
+    1: "So some people think this is what\'s gonna happen."
+    1: "And then you have a group of people that think it\'s already happening."
+    1: "Like, we\'re all already turning on each other."
+    1: "So like, whoever\'s doing this, this is just like the dramatized version of it."
+    1: "Like we\'re already turning on each other, so and then we\'re all turning on each other and Rose, tinted glasses."
+  }
+}
+4 {
+  1: 1
+  2: 5646560
+  3 {
+    1: "So Rose, her name is Rose and she just keeps looking for the escape like we all do on social media."
+    1: "Like just looking for an escape from what\'s going on in the world."
+    1: "And it\'s like the only thing that makes her happy."
+    1: "Yeah."
+    1: "And then she is the one that is catching on to all these things like the deer, the boat, everything."
+  }
+}
+4 {
+  1: 1
+  2: 5662840
+  3 {
+    1: "And she\'s like wearing the NASA shirt."
+    1: "Some people think that it\'s observant."
+    1: "Some people think like it\'s ahead of the curve and know something we don\'t know."
+    1: "And her brother was wearing the OBEY shirt."
+    1: "So it\'s like the contrast of the different types of people in the population, like some people who are constantly observant and the the people that are taking a back seat and just focus on their smaller scale life events."
+  }
+}
+4 {
+  1: 1
+  2: 5685920
+  3 {
+    1: "Why is there so many deers?"
+    1: "Oh, migration patterns were disrupted by something."
+    1: "Yeah."
+    1: "Maybe it\'s also symbolism, like nature will take over or something."
+    1: "Mm hmm."
+    1: "Yeah."
+    1: "I will say, you know, it was just, it\'s a lot."
+  }
+}
+4 {
+  1: 1
+  2: 5703320
+  3 {
+    1: "Yeah, it\'s just a lot."
+    1: "I just think it\'s a fascinating, like I am not someone that takes movies that seriously, right?"
+    1: "I wish I could be a bit more conspiratorial, but I don\'t think I I think naturally I\'m just not a conspiratorial person, right?"
+    1: "However, I think this movie was so fun in the sense that you can really dig down so many different rabbit holes and you\'re going to find a group of people that are so passionate and they think something else about this movie."
+  }
+}
+4 {
+  1: 1
+  2: 5730720
+  3 {
+    1: "Like people either really hate it, they think it\'s going to happen."
+    1: "They think it\'s already happening."
+    1: "There are a group of people that are literally digging down into every single Easter egg."
+    1: "Like there were hidden QR codes throughout the movie."
+    1: "There are certain things that are said throughout the movie, like the red and the blue for the political colors People are hypothesizing."
+  }
+}
+4 {
+  1: 1
+  2: 5747800
+  3 {
+    1: "Is that what that means?"
+    1: "And then, like, one thing that I did read was like, in the end, it doesn\'t matter the political colors because, like, when the world ends, nobody cares."
+    1: "Like, you\'re going to be down in the bunkers with someone, Right?"
+    1: "So, like, that was that could have been a message."
+  }
+}
+4 {
+  1: 1
+  2: 5763680
+  3 {
+    1: "Some people think the part where George is talking about how they always think that there\'s, like, a shadowy group of people that run the world."
+    1: "But that\'s not true."
+    1: "People are like, is that the Obamas telling us there\'s no shadowy group of people that run the world?"
+    1: "And, like, they also be stressing out like us, like, what\'s going on?"
+  }
+}
+4 {
+  1: 1
+  2: 5780240
+  3 {
+    1: "Yeah."
+    1: "And people are wondering, like, do the, I mean, I should look into it?"
+    1: "Do the Obamas executive produce a lot of movies?"
+    1: "Why would they choose this one in particular?"
+    1: "Some people were wondering it just because the Obamas don\'t seem like people who pick random movies, is what they said like to just like executive produce."
+  }
+}
+4 {
+  1: 1
+  2: 5797000
+  3 {
+    1: "They don\'t seem like the type to be like, oh, let me just like, pick a random book adaptation."
+    1: "Yeah, but it\'s very interesting."
+    1: "This movie is very fascinating. 1 Netizen pointed out."
+    1: "Right."
+    1: "That it doesn\'t matter where you stand politically, you will have a view of this movie."
+  }
+}
+4 {
+  1: 1
+  2: 5813360
+  3 {
+    1: "Because so some people who think that the end of the world is near, they think this is a warning that it\'s coming."
+    1: "But then the people that are adamant that the end of the world is not near, they think that the people that think the world of the the world is ending is getting played by this movie."
+  }
+}
+4 {
+  1: 1
+  2: 5830760
+  3 {
+    1: "Like, they\'re saying, like they\'re getting made fun of in this movie and don\'t even realize they\'re getting made fun of."
+    1: "But then the people are like, no, we\'re not getting made fun of."
+    1: "Like, you\'re dumb if you can\'t even open your eyes for a second."
+    1: "So it\'s like, it\'s so interesting."
+    1: "I\'ve seen, like, literal fights on Reddit."
+    1: "Wow."
+  }
+}
+4 {
+  1: 1
+  2: 5846480
+  3 {
+    1: "Yeah."
+    1: "And I have no opinion."
+    1: "What I think my opinion on this is, it\'s just intriguing because I haven\'t seen a movie recently that has caused this much in person discourse that\'s passionate because usually it\'s like, oh, the movie\'s good, the movie is bad, you don\'t like the movie that I liked."
+  }
+}
+4 {
+  1: 1
+  2: 5862320
+  3 {
+    1: "I\'m mad."
+    1: "Does this leave you with any lasting feelings about the world in the future or not much?"
+    1: "You\'re like, that\'s cool."
+    1: "Yeah, it makes me not want to go to New York City as often."
+    1: "I\'m just kidding about the world in the future."
+  }
+}
+4 {
+  1: 1
+  2: 5879400
+  3 {
+    1: "Because you know like when I watch these end of the world type of movie like the movie don\'t look up that was a good one And then the even all of us are dead."
+    1: "That show, remember, I was like, in my little world, I\'m like, holy shit babe, this brings so much perspective and feelings and."
+  }
+}
+4 {
+  1: 1
+  2: 5899480
+  3 {
+    1: "Yeah, I liked the part where they all make up in the end and they all kind of come together because it gives you like, it\'s really grim."
+    1: "But at least it\'s still hope that regardless of race, political affiliation, like when the world is ending, I guess humans are just humans, right?"
+  }
+}
+4 {
+  1: 1
+  2: 5918480
+  3 {
+    1: "And we\'ll be hopefully in the bunker somewhere and around watching friends watching this video wondering, Damn, those were the good old days, wasn\'t it?"
+    1: "Now we\'re in a bunker."
+    1: "What do we do?"
+    1: "Those are my thoughts."
+    1: "What are your thoughts?"
+    1: "Please leave it in the comments."
+  }
+}
+4 {
+  1: 1
+  2: 5933880
+  3 {
+    1: "Let me know what you guys thought about it and I hope you guys are joined and I\'ll see you guys tomorrow."
+    1: "Bye."
+  }
+}
