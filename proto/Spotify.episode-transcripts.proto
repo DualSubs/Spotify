@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option optimize_for = CODE_SIZE;
+
+// https://episode-transcripts.spotifycdn.com/1.0/spotify:transcript:
+message Transcript {
+    string version = 1;
+    string uri = 2;
+    string timeStamp = 3;
+    repeated Section sections = 4;
+}
+
+message Section {
+    int32 startMs = 2;
+    Content content = 3;
+}
+
+message Content {
+    repeated string texts = 1;
+}
