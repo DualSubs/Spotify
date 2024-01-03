@@ -1,0 +1,16 @@
+#!name=🍿️ DualSubs: 🎵 Spotify Transcripts
+#!desc=Spotify播客转译文本双语模块
+#!openUrl=http://boxjs.com/#/app/DualSubs.Translate
+#!author=VirgilClyne
+#!homepage=https://github.com/DualSubs
+#!manual=https://github.com/DualSubs/Spotify/wiki/🍿-DualSubs:-🎵-Spotify
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png
+
+#[rewrite_local]
+# DualSubs.Spotify.Transcript-read-along.Translate.response.proto
+^https?:\/\/spclient\.wg\.spotify\.com\/transcript-read-along\/v2\/episode\/\w+ url script-response-body https://raw.githubusercontent.com/DualSubs/Spotify/main/js/DualSubs.Transcripts.Translate.response.js
+# DualSubs.Spotify.Episode-transcripts.Translate.response.proto
+^https?:\/\/episode-transcripts\.spotifycdn\.com\/1\.0\/spotify:transcript:\w+ url script-response-body https://raw.githubusercontent.com/DualSubs/Spotify/main/js/DualSubs.Transcripts.Translate.response.js
+
+#[mitm]
+hostname = spclient.wg.spotify.com, episode-transcripts.spotifycdn.com

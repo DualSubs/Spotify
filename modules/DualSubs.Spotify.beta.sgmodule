@@ -9,8 +9,6 @@
 [Script]
 DualSubs.Spotify.Lyrics.Translate.response.json = type=http-response, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json, requires-body=1, debug=1, script-path=https://raw.githubusercontent.com/DualSubs/Universal/beta/js/DualSubs.Subtitles.Translate.response.beta.js
 DualSubs.Spotify.Lyrics.Translate.response.proto = type=http-response, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*), requires-body=1, binary-body-mode=1, debug=1, script-path=https://raw.githubusercontent.com/DualSubs/Universal/beta/js/DualSubs.Subtitles.Translate.response.beta.js
-DualSubs.Spotify.Transcript-read-along.Translate.response.proto = type=http-response, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/transcript-read-along\/v2\/episode\/\w+, requires-body=1, binary-body-mode=1, debug=1, script-path=https://raw.githubusercontent.com/DualSubs/Universal/beta/js/DualSubs.Subtitles.Translate.response.beta.js
-DualSubs.Spotify.Episode-transcripts.Translate.response.proto = type=http-response, pattern=^https?:\/\/episode-transcripts\.spotifycdn\.com\/1\.0\/spotify:transcript:\w+, requires-body=1, binary-body-mode=1, debug=1, script-path=https://raw.githubusercontent.com/DualSubs/Universal/beta/js/DualSubs.Subtitles.Translate.response.beta.js
 
 [MITM]
-hostname = %APPEND% spclient.wg.spotify.com, episode-transcripts.spotifycdn.com
+hostname = %APPEND% spclient.wg.spotify.com
