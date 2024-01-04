@@ -161,13 +161,8 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 				case "GET":
 					if (PATH.startsWith("color-lyrics/v2/track/")) {
 						let _Request = JSON.parse(JSON.stringify($request));
-						_Request.method = "head";
-						//_Request.method = "options";
-						//if ( _Request?.headers?.Accept) _Request.headers.Accept = "*/*";
-						//if (_Request?.headers?.accept) _Request.headers.accept = "*/*";
-						//if (!_Request?.headers?.["Access-Control-Request-Method"] && !_Request?.headers?.["access-control-request-method"]) _Request.headers["access-control-request-method"] = "GET";
-						await fetch(_Request).then(response => {
-							$.log(`🚧 ${$.name}, 调试信息`, `response: ${JSON.stringify(response)}`, "");
+						await $.http.get(_Request).then(response => {
+							//$.log(`🚧 ${$.name}, 调试信息`, `response: ${JSON.stringify(response)}`, "");
 							switch (response?.statusCode ?? response?.status) {
 								case 200:
 									url.query.subtype = "Translate";
@@ -443,22 +438,6 @@ function setCache(cache, cacheSize = 100) {
 	return cache;
 };
 
-function fetch(request) {
-	return new Promise((resolve) => {
-		$.post(request, (error, response, data) => {
-			try {
-				if (error) throw new Error(error)
-				else if (response) resolve(response);
-				else throw new Error(response);
-			} catch (e) {
-				$.logErr(`❗️${$.name}, ${fetch.name}执行失败, request = ${JSON.stringify(request)}, error = ${JSON.stringify(error || e)}, response = ${JSON.stringify(response)}, data = ${data}`, "")
-			} finally {
-				//$.log(`🚧 ${$.name}, ${fetch.name}调试信息`, `request = ${JSON.stringify(request)}`, `data = ${data}`, "")
-				resolve()
-			}
-		})
-	})
-};
 /***************** Env *****************/
 // prettier-ignore
 // https://github.com/chavyleung/scripts/blob/master/Env.min.js
