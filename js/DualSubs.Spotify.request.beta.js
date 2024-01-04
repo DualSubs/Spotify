@@ -2,7 +2,7 @@
 README:https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.1(3) request.beta");
+const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.2(3) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Default":{
@@ -159,12 +159,14 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 					};
 					//break; // 不中断，继续处理URL
 				case "GET":
-				case "HEAD":
-				case "OPTIONS":
 					if (PATH.startsWith("color-lyrics/v2/track/")) {
 						let _Request = JSON.parse(JSON.stringify($request));
-						_Request.method = "options";
-						await $.http.get(_Request).then(response => {
+						_Request.method = "head";
+						//_Request.method = "options";
+						//if ( _Request?.headers?.Accept) _Request.headers.Accept = "*/*";
+						//if (_Request?.headers?.accept) _Request.headers.accept = "*/*";
+						//if (!_Request?.headers?.["Access-Control-Request-Method"] && !_Request?.headers?.["access-control-request-method"]) _Request.headers["access-control-request-method"] = "GET";
+						await fetch(_Request).then(response => {
 							$.log(`🚧 ${$.name}, 调试信息`, `response: ${JSON.stringify(response)}`, "");
 							switch (response?.statusCode ?? response?.status) {
 								case 200:
@@ -179,14 +181,16 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 							};
 						});
 					};
-					if ($request?.headers?.Host) $request.headers.Host = url.host;
-					$request.url = URL.stringify(url);
-					$.log(`🚧 ${$.name}, 调试信息`, `$request.url: ${$request.url}`, "");
+				case "HEAD":
+				case "OPTIONS":
 					break;
 				case "CONNECT":
 				case "TRACE":
 					break;
 			};
+			if ($request?.headers?.Host) $request.headers.Host = url.host;
+			$request.url = URL.stringify(url);
+			$.log(`🚧 ${$.name}, 调试信息`, `$request.url: ${$request.url}`, "");
 			break;
 		case false:
 			break;
@@ -439,6 +443,22 @@ function setCache(cache, cacheSize = 100) {
 	return cache;
 };
 
+function fetch(request) {
+	return new Promise((resolve) => {
+		$.post(request, (error, response, data) => {
+			try {
+				if (error) throw new Error(error)
+				else if (response) resolve(response);
+				else throw new Error(response);
+			} catch (e) {
+				$.logErr(`❗️${$.name}, ${fetch.name}执行失败, request = ${JSON.stringify(request)}, error = ${JSON.stringify(error || e)}, response = ${JSON.stringify(response)}, data = ${data}`, "")
+			} finally {
+				//$.log(`🚧 ${$.name}, ${fetch.name}调试信息`, `request = ${JSON.stringify(request)}`, `data = ${data}`, "")
+				resolve()
+			}
+		})
+	})
+};
 /***************** Env *****************/
 // prettier-ignore
 // https://github.com/chavyleung/scripts/blob/master/Env.min.js
