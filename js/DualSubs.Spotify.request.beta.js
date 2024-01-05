@@ -2,7 +2,7 @@
 README:https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.2(3) request.beta");
+const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.3(5) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Default":{
@@ -160,8 +160,58 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 					//break; // 不中断，继续处理URL
 				case "GET":
 					if (PATH.startsWith("color-lyrics/v2/track/")) {
-						let _Request = JSON.parse(JSON.stringify($request));
-						await $.http.get(_Request).then(response => {
+						let trackId = PATHs?.[3];
+						$.log(`🚧 ${$.name}, 调试信息`, `trackId: ${trackId}`, "");
+						//let _request = JSON.parse(JSON.stringify($request));
+						//_request.url = `https://api.spotify.com/v1/tracks?ids=${trackId}`;
+						//$.log(`🚧 ${$.name}, 调试信息`, `_request: ${JSON.stringify(_request)}`, "");
+						const detectStutus = $.http.get($request);
+						//const detectTrack = $.http.get(_request);
+						//const detectTrack = $httpClient.get(_request);
+						const detectTrack = $.http.get({"url":`https://api.spotify.com/v1/tracks?ids=${trackId}`, "headers": $request.headers});
+						await Promise.allSettled([detectStutus, detectTrack]).then(results => {
+							/*
+							results.forEach((result,i) => {
+								$.log(`🚧 ${$.name}, 调试信息`, `result[${i}]: ${JSON.stringify(result)}`, "");
+							});
+							*/
+							if (results[0].status === "fulfilled") {
+								let response = results[0].value;
+								switch (response?.statusCode ?? response?.status) {
+									case 200:
+										url.query.subtype = "Translate";
+										break;
+									case 401:
+									default:
+										break;
+									case 404:
+										url.query.subtype = "External";
+										break;
+								};
+							};
+							if (results[1].status === "fulfilled") {
+								let response = results[1].value;
+								body = JSON.parse(response.body);
+								body?.tracks?.forEach?.(track => {
+									//$.log(`🚧 ${$.name}`, `track: ${JSON.stringify(track)}`, "");
+									const trackId = track?.id;
+									const trackInfo = {
+										"track": track?.name,
+										"album": track?.album?.name,
+										"artist": track?.artists?.[0]?.name
+									};
+									// 写入数据
+									Caches.Metadatas.Tracks.set(trackId, trackInfo);
+								});
+								// 格式化缓存
+								$.log(`🚧 ${$.name}`, `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
+								Caches.Metadatas.Tracks = setCache(Caches.Metadatas.Tracks, Settings.CacheSize);
+								// 写入持久化储存
+								$.setjson(Caches.Metadatas.Tracks, `@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`);
+							};
+						});
+						/*
+						await $.http.get($request).then(response => {
 							//$.log(`🚧 ${$.name}, 调试信息`, `response: ${JSON.stringify(response)}`, "");
 							switch (response?.statusCode ?? response?.status) {
 								case 200:
@@ -175,6 +225,14 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									break;
 							};
 						});
+						let trackId = PATHs[3]
+						$.log(`🚧 ${$.name}, 调试信息`, `trackId: ${trackId}`, "");
+						let _Request = JSON.parse(JSON.stringify($request));
+						_Request.url = `https://api.spotify.com/v1/tracks/${trackId}`;
+						await $.http.get(_Request).then(response => {
+							$.log(`🚧 ${$.name}, 调试信息`, `response: ${JSON.stringify(response)}`, "");
+						})
+						*/
 					};
 				case "HEAD":
 				case "OPTIONS":
