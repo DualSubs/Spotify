@@ -647,7 +647,14 @@ async function injectionLyric(resource = "NeteaseMusicNodeJS", trackInfo = {}, b
 			switch (PLATFORM) {
 				case "Spotify":
 					body.lyrics.lines = LRC.toSpotify(externalLyric?.lrc?.lyric);
-					//body.lyrics.alternatives = LRC.toSpotify(externalLyric?.tlyric?.lyric);
+					/*
+					let tlyric = LRC.toSpotify(externalLyric?.tlyric?.lyric);
+					let duolyric = LRC.combineSpotify(body.lyrics.lines, tlyric);
+					body.lyrics.alternatives = [{
+						"language": "zh",
+						"lines": duolyric.map(line => line?.twords ?? "♪")
+					}];
+					*/
 					body.lyrics.provider = "NeteaseMusic";
 					body.lyrics.providerLyricsId = trackInfo.NeteaseMusic.id.toString();
 					body.lyrics.providerDisplayName = `网易云音乐 - ${externalLyric?.lyricUser?.nickname}`;
@@ -901,7 +908,7 @@ function URLs(t){return new class{constructor(t=[]){this.name="URL v1.2.5",this.
 function LRCs(opts) {
 	return new (class {
 		constructor(opts) {
-			this.name = "LRC v0.1.1";
+			this.name = "LRC v0.2.0";
 			this.opts = opts;
 			this.newLine = (this?.opts?.includes("\n")) ? "\n" : (this?.opts?.includes("\r")) ? "\r" : (this?.opts?.includes("\r\n")) ? "\r\n" : "\n";
 		};
@@ -914,7 +921,7 @@ function LRCs(opts) {
 					case "{":
 						line = JSON.parse(line);
 						Line = {
-							"startTimeMs": line.t,
+							"startTimeMs": (line.t < 0) ? 0 : line.t,
 							"words": line?.c?.map?.(word => word.tx).join(" "),
 							"syllables": [],
 							"endTimeMs": 0
@@ -943,7 +950,23 @@ function LRCs(opts) {
 		};
 
 		fromSpotify(json = new Array) {
-			console.log(`☑️ ${this.name}, stringify LRC`, "");
+			console.log(`☑️ ${this.name}, LRC.fromSpotify`, "");
+		};
+
+		combineSpotify(array1 = new Array, array2 = new Array) {
+			console.log(`☑️ ${this.name}, LRC.combineSpotify`, "");
+			let duolyric = [];
+			for (let line1 in array1) {
+				for (let line2 in array2) {
+					if (line1.startTimeMs === line2.startTimeMs) {
+						line1.twords = line2?.words ?? "♪";
+						break;
+					};
+				};
+				duolyric.push(line1);
+			};
+			console.log(`✅ ${this.name}, LRC.combineSpotify, duolyric: ${JSON.stringify(duolyric)}`, "");
+			return duolyric;
 		};
 	})(opts)
 };
