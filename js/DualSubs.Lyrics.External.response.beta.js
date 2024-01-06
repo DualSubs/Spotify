@@ -2,7 +2,7 @@
 README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.3.2(1) Lyrics.External.response.beta");
+const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.3.3(1) Lyrics.External.response.beta");
 const URL = new URLs();
 const LRC = new LRCs();
 const DataBase = {
@@ -127,51 +127,16 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 					"Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
 					"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0",
 				];
-				switch (Settings.Resourse) {
-					case "NeteaseMusic1":
+				switch (Settings.Resource) {
+					case "NeteaseMusicNodeJS":
 					default: {
-						const HostPool = [
-							"api.music.areschang.top",
-							"mu-api.yuk0.com"
-						];
-						// 搜索歌曲
-						const searchUrl = {
-							"scheme": "https",
-							//"host": "api.music.areschang.top",
-							//"host": "mu-api.yuk0.com",
-							"host": HostPool[Math.floor(Math.random() * HostPool.length)],
-							//"path": "search",
-							"path": "cloudsearch",
-							"query": {
-								"type": 1,
-								"limit": 1,
-								"offset": 0,
-								"keywords": encodeURIComponent(trackInfo.track+"+"+trackInfo.artist),
-							}
-						};
-						$.log(`🚧 ${$.name}, 调试信息`, `searchUrl: ${JSON.stringify(searchUrl)}`, "");
-						const searchRequest = {
-							"url": URL.stringify(searchUrl),
-							"headers": {
-								"Accept": "*/*",
-								"User-Agent": UAPool[Math.floor(Math.random() * UAPool.length)], // 随机UA
-								"Refer": "music.163.com"
-							}
-						};
-						const searchResult = await $.http.get(URL.stringify(searchUrl)).then(response => {
-						//const searchResult = await $.http.get(searchRequest).then(response => {
-							$.log(`🚧 ${$.name}, 调试信息`, `searchResult: ${JSON.stringify(response.body)}`, "");
-							body = JSON.parse(response.body);
-							trackInfo.NeteaseMusic = {
-								"id": body?.result?.songs?.[0]?.id,
-								"track": body?.result?.songs?.[0]?.name,
-								"album": body?.result?.songs?.[0]?.ar?.name,
-								"artist": body?.result?.songs?.[0]?.al?.name
-							};
-							$.log(`🚧 ${$.name}, 调试信息`, `trackInfo.NeteaseMusic : ${JSON.stringify(trackInfo.NeteaseMusic)}`, "");
-						});
+						trackInfo.NeteaseMusic = await searchTrack("NeteaseMusicNodeJS", `${trackInfo.track} - ${trackInfo.artist}`)
 						// 查询歌词
 						if (trackInfo?.NeteaseMusic?.id) {
+							const HostPool = [
+								"api.music.areschang.top",
+								"mu-api.yuk0.com"
+							];
 							const lyricUrl = {
 								"scheme": "https",
 								//"host": "api.music.areschang.top",
@@ -208,64 +173,8 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 						break;
 					};
 					case "NeteaseMusic":
-						const searchUrl = {
-							"scheme": "https",
-							"host": "music.163.com",
-							"path": "api/search/pc",
-							"query": {
-								"type": 1,
-								"limit": 1,
-								"offset": 0,
-								"s": encodeURIComponent(trackInfo.track+"+"+trackInfo.artist),
-							}
-						};
-						$.log(`🚧 ${$.name}, 调试信息`, `searchUrl: ${JSON.stringify(searchUrl)}`, "");
-						const searchRequest = {
-							"url": URL.stringify(searchUrl),
-							"headers": {
-								"Accept": "*/*",
-								"User-Agent": UAPool[Math.floor(Math.random() * UAPool.length)], // 随机UA
-								"Refer": "music.163.com"
-							}
-						};
-						const searchResult = await $.http.get(searchRequest).then(response => {
-							$.log(`🚧 ${$.name}, 调试信息`, `searchResult: ${JSON.stringify(response)}`, "");
-						});
 						break;
 					case "QQMusic": {
-						const searchUrl = {
-							"scheme": "https",
-							"host": "c.y.qq.com",
-							"path": "soso/fcgi-bin/search_for_qq_cp",
-							//"path": "soso/fcgi-bin/client_search_cp",
-							"query": {
-								"format": "json",
-								//"outCharset": 'utf-8',
-								//"ct": 24,
-								//"qqmusic_ver": 1298,
-								"p": 1,
-								"n": 1,
-								"w": encodeURIComponent(trackInfo.track+"+"+trackInfo.artist),
-								//"key": encodeURIComponent(trackInfo.track+"+"+trackInfo.artist),
-								"remoteplace": 'txt.yqq.song',
-								//"t": 0,
-								//"aggr": 1,
-								//"cr": 1,
-								//"lossless": 0,
-								//"flag_qc": 0,
-								//"platform": 'yqq.json',
-							}
-						};
-						$.log(`🚧 ${$.name}, 调试信息`, `searchUrl: ${JSON.stringify(searchUrl)}`, "");
-						const searchRequest = {
-							"url": URL.stringify(searchUrl),
-							"headers": {
-								"refer": "c.y.qq.com"
-							}
-						};
-						const searchResult = await $.http.get(searchRequest).then(response => {
-							$.log(`🚧 ${$.name}, 调试信息`, `searchResult: ${JSON.stringify(response)}`, "");
-						});
 						break;
 					};
 				};
@@ -748,6 +657,121 @@ async function Fetch(request = {}) {
 	$.log(`✅ ${$.name}, Fetch Ruled Reqeust`, "");
 	$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
 	return response;
+};
+
+async function searchTrack (resource = "NeteaseMusicNodeJS", keyword = ""){
+	$.log(`☑️ ${$.name}, Search Track`, `resource: ${resource}, keyword: ${keyword}`, "");
+	const UAPool = [
+		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36", // 13.5%
+		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36", // 6.6%
+		"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0", // 6.4%
+		"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0", // 6.2%
+		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36", // 5.2%
+		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36", // 4.8%
+		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
+		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134",
+		"Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+		"Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Mobile/15E148 Safari/604.1",
+		"Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+		"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0",
+	];
+	const searchRequest = {
+		"headers": {
+			"Accept": "application/json",
+			"User-Agent": UAPool[Math.floor(Math.random() * UAPool.length)], // 随机UA
+		}
+	};
+	const trackInfo = {};
+	switch (resource) {
+		case "NeteaseMusicNodeJS":
+		default: {
+			const HostPool = [
+				"api.music.areschang.top",
+				"mu-api.yuk0.com"
+			];
+			// 搜索歌曲
+			const searchUrl = {
+				"scheme": "https",
+				//"host": "api.music.areschang.top",
+				//"host": "mu-api.yuk0.com",
+				"host": HostPool[Math.floor(Math.random() * HostPool.length)],
+				//"path": "search",
+				"path": "cloudsearch",
+				"query": {
+					"type": 1,
+					"limit": 1,
+					"offset": 0,
+					"keywords": encodeURIComponent(keyword),
+				}
+			};
+			$.log(`🚧 ${$.name}, 调试信息`, `searchUrl: ${JSON.stringify(searchUrl)}`, "");
+			searchRequest.url = URL.stringify(searchUrl);
+			searchRequest.headers.Refer = "music.163.com";
+			const searchResult = await $.http.get(searchRequest).then(response => {
+				//$.log(`🚧 ${$.name}, 调试信息`, `searchResult: ${JSON.stringify(response.body)}`, "");
+				body = JSON.parse(response.body);
+				trackInfo.id = body?.result?.songs?.[0]?.id;
+				trackInfo.track = body?.result?.songs?.[0]?.name;
+				trackInfo.album = body?.result?.songs?.[0]?.ar?.name;
+				trackInfo.artist = body?.result?.songs?.[0]?.al?.name;
+			});
+			break;
+		};
+		case "NeteaseMusic": {
+			const searchUrl = {
+				"scheme": "https",
+				"host": "music.163.com",
+				"path": "api/search/pc",
+				"query": {
+					"type": 1,
+					"limit": 1,
+					"offset": 0,
+					"s": encodeURIComponent(keyword),
+				}
+			};
+			$.log(`🚧 ${$.name}, 调试信息`, `searchUrl: ${JSON.stringify(searchUrl)}`, "");
+			searchRequest.url = URL.stringify(searchUrl);
+			searchRequest.headers.Refer = "music.163.com";
+			const searchResult = await $.http.get(searchRequest).then(response => {
+				$.log(`🚧 ${$.name}, 调试信息`, `searchResult: ${JSON.stringify(response)}`, "");
+			});
+			break;
+		};
+		case "QQMusic": {
+			const searchUrl = {
+				"scheme": "https",
+				"host": "c.y.qq.com",
+				"path": "soso/fcgi-bin/search_for_qq_cp",
+				//"path": "soso/fcgi-bin/client_search_cp",
+				"query": {
+					"format": "json",
+					//"outCharset": 'utf-8',
+					//"ct": 24,
+					//"qqmusic_ver": 1298,
+					"p": 1,
+					"n": 1,
+					"w": encodeURIComponent(keyword),
+					//"key": encodeURIComponent(keyword),
+					"remoteplace": 'txt.yqq.song',
+					//"t": 0,
+					//"aggr": 1,
+					//"cr": 1,
+					//"lossless": 0,
+					//"flag_qc": 0,
+					//"platform": 'yqq.json',
+				}
+			};
+			$.log(`🚧 ${$.name}, 调试信息`, `searchUrl: ${JSON.stringify(searchUrl)}`, "");
+			searchRequest.url = URL.stringify(searchUrl);
+			searchRequest.headers.Refer = "c.y.qq.com";
+			const searchResult = await $.http.get(searchRequest).then(response => {
+				$.log(`🚧 ${$.name}, 调试信息`, `searchResult: ${JSON.stringify(response)}`, "");
+			});
+			break;
+		};
+	};
+	$.log(`✅ ${$.name}, Search Track`, `trackInfo: ${JSON.stringify(trackInfo)}`, "");
+	return trackInfo;
 };
 
 /**
