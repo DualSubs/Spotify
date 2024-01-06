@@ -2,12 +2,12 @@
 README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.3.3(1) Lyrics.External.response.beta");
+const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.4.0(3) Lyrics.External.response.beta");
 const URL = new URLs();
 const LRC = new LRCs();
 const DataBase = {
 	"Default":{
-		"Settings":{"Switch":true,"Type":"Translate","Types":["Official","Translate"],"Languages":["EN","ZH"],"CacheSize":50}
+		"Settings":{"Switch":true,"Type":"Translate","Types":["Official","Translate"],"Languages":["EN","ZH"],"CacheSize":25}
 	},
 	"Universal":{
 		"Settings":{"Switch":true,"Types":["Official","Translate"],"Languages":["EN","ZH"]},
@@ -32,7 +32,7 @@ const DataBase = {
 		}
 	},
 	"Spotify":{
-		"Settings":{"Switch":true,"Types":["Translate","External"],"Languages":["EN","ZH"],"ShowOnly":true,"CacheSize":100}
+		"Settings":{"Switch":true,"Types":["Translate","External"],"Languages":["EN","ZH"],"ShowOnly":true,"CacheSize":50}
 	},
 	"Official":{
 		"Settings":{"CacheSize":50,"Position":"Reverse","Offset":0,"Tolerance":1000}
@@ -48,13 +48,13 @@ const DataBase = {
 		}
 	},
 	"External":{
-		"Settings":{"URL":undefined,"ShowOnly":false,"Position":"Forward","Offset":0,"Tolerance":1000}
+		"Settings":{"Resource":"NeteaseMusicNodeJS","URL":undefined,"ShowOnly":false,"Position":"Forward","Offset":0,"Tolerance":1000}
 	},
 	"API":{
 		"Settings":{"GoogleCloud":{"Version":"v2","Mode":"Key","Auth":undefined},"Microsoft":{"Version":"Azure","Mode":"Token","Region":undefined,"Auth":undefined},"DeepL":{"Version":"Free","Auth":undefined},"DeepLX":{"Endpoint":undefined,"Auth":undefined}}
 	}
 };
-
+$.log(`🚧 ${$.name}, start`, `$response: ${JSON.stringify($response)}`, "");
 /***************** Processing *****************/
 // 解构URL
 let url = URL.parse($request?.url);
@@ -81,108 +81,15 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 			$.log(`⚠ ${$.name}, Type: ${Type}, Languages: ${Languages}`, "");
 			// 创建空数据
 			let body = {};
-			// 获取当前歌词信息
-			let lyrics = {
-				"syncType": "LINE_SYNCED",
-				//"syncType": 1,
-				"lines": [
-					{
-						"startTimeMs": "0",
-						"words": "",
-						"syllables": [],
-						"endTimeMs": "0"
-					}
-				],
-				"provider": "",
-				"providerLyricsId": "",
-				"providerDisplayName": "",
-				"syncLyricsUri": "",
-				"isDenseTypeface": true,
-				"alternatives": [],
-				"language": "",
-				//"isRtlLanguage": false,
-				//"fullscreenAction": "FULLSCREEN_LYRICS",
-				//"showUpsell": false,
-				//"capStatus": "NONE",
-				//"impressionsRemaining": 0
-			};
-			
+			// 查询缓存
 			const trackId = PATHs?.[3];
 			$.log(`🚧 ${$.name}, 调试信息`, `trackId: ${trackId}`, "");
-			if (Caches.Metadatas.Tracks.has(trackId)) {
-				const trackInfo = Caches.Metadatas.Tracks.get(trackId);
-				$.log(`🚧 ${$.name}, 调试信息`, `trackInfo: ${JSON.stringify(trackInfo)}`, "");
-				// 获取外部歌词
-				const UAPool = [
-					"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36", // 13.5%
-					"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36", // 6.6%
-					"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0", // 6.4%
-					"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0", // 6.2%
-					"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36", // 5.2%
-					"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36", // 4.8%
-					"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
-					"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134",
-					"Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
-					"Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Mobile/15E148 Safari/604.1",
-					"Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-					"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0",
-				];
-				switch (Settings.Resource) {
-					case "NeteaseMusicNodeJS":
-					default: {
-						trackInfo.NeteaseMusic = await searchTrack("NeteaseMusicNodeJS", `${trackInfo.track} - ${trackInfo.artist}`)
-						// 查询歌词
-						if (trackInfo?.NeteaseMusic?.id) {
-							const HostPool = [
-								"api.music.areschang.top",
-								"mu-api.yuk0.com"
-							];
-							const lyricUrl = {
-								"scheme": "https",
-								//"host": "api.music.areschang.top",
-								//"host": "mu-api.yuk0.com",
-								"host": HostPool[Math.floor(Math.random() * HostPool.length)],
-								"path": "lyric/new",
-								"query": {
-									"id": trackInfo.NeteaseMusic.id
-								}
-							};
-							$.log(`🚧 ${$.name}, 调试信息`, `lyricUrl: ${JSON.stringify(lyricUrl)}`, "");
-							const lyricRequest = {
-								"url": URL.stringify(lyricUrl),
-								"headers": {
-									"Accept": "*/*",
-									"User-Agent": UAPool[Math.floor(Math.random() * UAPool.length)], // 随机UA
-									"Refer": "music.163.com"
-								}
-							};
-							const lyricResult = await $.http.get(URL.stringify(lyricUrl)).then(response => {
-							//const lyricResult = await $.http.get(lyricRequest).then(response => {
-								$.log(`🚧 ${$.name}, 调试信息`, `lyricResult: ${JSON.stringify(response.body)}`, "");
-								body = JSON.parse(response.body);
-								lyrics.lines = LRC.toSpotify(body?.lrc?.lyric);
-								$.log(`🚧 ${$.name}, 调试信息`, `lyrics.lines: ${JSON.stringify(lyrics.lines)}`, "");
-							});
-							// 构造歌词
-							lyrics.provider = "NeteaseMusic";
-							lyrics.providerLyricsId = trackInfo.NeteaseMusic.id.toString();
-							lyrics.providerDisplayName = "网易云音乐";
-							//$response.body = lyrics;
-							//body = lyrics;
-						};
-						break;
-					};
-					case "NeteaseMusic":
-						break;
-					case "QQMusic": {
-						break;
-					};
-				};
-				if (!FORMAT) {
-					FORMAT = $request?.headers?.Accept ?? $request?.headers?.accept;
-					$response.headers["Content-Type"] = FORMAT;
-					$response.status = 200;
-				};
+			const trackInfo = Caches.Metadatas.Tracks.get(trackId);
+			$.log(`🚧 ${$.name}, 调试信息`, `trackInfo: ${JSON.stringify(trackInfo)}`, "");
+			if (trackInfo && !FORMAT) {
+				FORMAT = $request?.headers?.Accept ?? $request?.headers?.accept;
+				$response.headers["Content-Type"] = FORMAT;
+				$response.status = 200;
 			};
 			// 格式判断
 			switch (FORMAT) {
@@ -229,7 +136,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 							break;
 						};
 						case "Spotify": {
-							//body = lyrics;
+							body = await injectionLyric(Settings.Resource, trackInfo, body);
 							break;
 						};
 					};
@@ -244,13 +151,15 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 				case "application/grpc+proto":
 				case "applecation/octet-stream":
 					//$.log(`🚧 ${$.name}`, `$response.body: ${$response.body}`, "");
+					/*
 					if (!$response.body) {
 						//const buffer = new ArrayBuffer(0, { maxByteLength: 20480 });
 						const buffer = [18, 33, 8, 128, 255, 253, 251, 255, 255, 255, 255, 255, 1, 16, 128, 128, 128, 248, 255, 255, 255, 255, 255, 1, 24, 255, 255, 255, 255, 255, 255, 255, 255, 255, 1];
 						$response.body = new Uint8Array(buffer);
 					};
-					let rawBody = $.isQuanX() ? new Uint8Array($response.bodyBytes) : $response.body;
-					$.log(`🚧 ${$.name}`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
+					*/
+					let rawBody = $.isQuanX() ? new Uint8Array($response.bodyBytes) : $response?.body ?? new Uint8Array();
+					//$.log(`🚧 ${$.name}`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 					/******************  initialization start  *******************/
 					// timostamm/protobuf-ts 2.9.0
 					// text-decoder
@@ -362,7 +271,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									/******************  initialization finish  *******************/
 									body = ColorLyricsResponse.fromBinary(rawBody);
 									$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
-									
+									/*
 									let UF = UnknownFieldHandler.list(body);
 									$.log(`🚧 ${$.name}`, `UF: ${JSON.stringify(UF)}`, "");
 									if (UF) {
@@ -375,10 +284,21 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 											$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
 										});
 									};
-									
-									lyrics.syncType = 1;
-									lyrics.fullscreenAction = 0;
-									body.lyrics = lyrics;
+									*/
+									//body = await injectionLyric(Settings.Resource, trackInfo, body);
+									body.lyrics = await injectionLyric(Settings.Resource, trackInfo, body).then(body => body.lyrics);
+									switch (body?.lyrics?.syncType) {
+										case "UNSYNCED":
+											body.lyrics.syncType = 0;
+											break;
+										case "LINE_SYNCED":
+											body.lyrics.syncType = 1;
+											break;
+										case "SYLLABLE_SYNCED":
+											body.lyrics.syncType = 2;
+											break;
+									};
+									body.lyrics.fullscreenAction = 0;
 									$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
 									rawBody = ColorLyricsResponse.toBinary(body);
 									break;
@@ -390,7 +310,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 							break;
 					};
 					// 写入二进制数据
-					$.log(`🚧 ${$.name}, 调试信息`, `rawBody: ${JSON.stringify(rawBody)}`, "");
+					//$.log(`🚧 ${$.name}, 调试信息`, `rawBody: ${JSON.stringify(rawBody)}`, "");
 					if ($.isQuanX()) $response.bodyBytes = rawBody
 					else $response.body = rawBody;
 					break;
@@ -659,8 +579,8 @@ async function Fetch(request = {}) {
 	return response;
 };
 
-async function searchTrack (resource = "NeteaseMusicNodeJS", keyword = ""){
-	$.log(`☑️ ${$.name}, Search Track`, `resource: ${resource}, keyword: ${keyword}`, "");
+async function injectionLyric(resource = "NeteaseMusicNodeJS", trackInfo = {}, body = $response.body){
+	$.log(`☑️ ${$.name}, Injection Lyric`, `resource: ${resource}, trackInfo: ${JSON.stringify(trackInfo)}`, "");
 	const UAPool = [
 		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36", // 13.5%
 		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36", // 6.6%
@@ -675,6 +595,75 @@ async function searchTrack (resource = "NeteaseMusicNodeJS", keyword = ""){
 		"Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
 		"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0",
 	];
+	// 外部歌词
+	let externalLyric = undefined;
+	// 构建歌词结构
+	if (!body) body = {};
+	// 按平台填充必要歌词信息
+	switch (PLATFORM) {
+		case "Spotify":
+			body.lyrics = {
+				"syncType": "LINE_SYNCED",
+				//"syncType": 1,
+				"lines": [
+					{
+						"startTimeMs": "0",
+						"words": "",
+						"syllables": [],
+						"endTimeMs": "0"
+					}
+				],
+				"provider": "",
+				"providerLyricsId": "",
+				"providerDisplayName": "",
+				"syncLyricsUri": "",
+				"isDenseTypeface": true,
+				"alternatives": [],
+				"language": "",
+				//"isRtlLanguage": false,
+				//"fullscreenAction": "FULLSCREEN_LYRICS",
+				//"showUpsell": false,
+				//"capStatus": "NONE",
+				//"impressionsRemaining": 0
+			};
+			body.colors = {
+				"background": -8421504, // 灰色
+				"text": -16777216, // 黑色
+				"highlightText": -1 // 白色
+			};
+			body.hasVocalRemoval = false;
+			break;
+	};
+	// 查询 提取 转换
+	switch (resource) {
+		case "NeteaseMusicNodeJS":
+		case "NeteaseMusic":
+		default:
+			trackInfo.NeteaseMusic = await searchTrack(resource, `${trackInfo.track} - ${trackInfo.artist}`, UAPool);
+			if (trackInfo?.NeteaseMusic?.id) externalLyric = await searchLyric(resource, trackInfo.NeteaseMusic.id, UAPool);
+			switch (PLATFORM) {
+				case "Spotify":
+					body.lyrics.lines = LRC.toSpotify(externalLyric?.lrc?.lyric);
+					//body.lyrics.alternatives = LRC.toSpotify(externalLyric?.tlyric?.lyric);
+					body.lyrics.provider = "NeteaseMusic";
+					body.lyrics.providerLyricsId = trackInfo.NeteaseMusic.id.toString();
+					body.lyrics.providerDisplayName = `网易云音乐 - ${externalLyric?.lyricUser?.nickname}`;
+					body.colors.background = -8249806; // 网易红 8527410 821E32 rgb(130,30,50)
+					$.log(`🚧 ${$.name}, 调试信息`, `body.lyrics.lines: ${JSON.stringify(body.lyrics.lines)}`, "");
+					break
+			};
+			break;
+		case "QQMusic":
+			trackInfo.QQMusic = await searchTrack(resource, `${trackInfo.track} - ${trackInfo.artist}`, UAPool);
+			break;
+	};
+	$.log(`✅ ${$.name}, Injection Lyric`, "");
+	$.log(`🚧 ${$.name}, Injection Lyric`, `body: ${JSON.stringify(body)}`, "");
+	return body;
+};
+
+async function searchTrack(resource = "NeteaseMusicNodeJS", keyword = "", UAPool = []){
+	$.log(`☑️ ${$.name}, Search Track`, `resource: ${resource}, keyword: ${keyword}`, "");
 	const searchRequest = {
 		"headers": {
 			"Accept": "application/json",
@@ -687,13 +676,12 @@ async function searchTrack (resource = "NeteaseMusicNodeJS", keyword = ""){
 		default: {
 			const HostPool = [
 				"api.music.areschang.top",
-				"mu-api.yuk0.com"
+				"mu-api.yuk0.com",
+				"netease.happyking.top"
 			];
 			// 搜索歌曲
 			const searchUrl = {
 				"scheme": "https",
-				//"host": "api.music.areschang.top",
-				//"host": "mu-api.yuk0.com",
 				"host": HostPool[Math.floor(Math.random() * HostPool.length)],
 				//"path": "search",
 				"path": "cloudsearch",
@@ -706,7 +694,7 @@ async function searchTrack (resource = "NeteaseMusicNodeJS", keyword = ""){
 			};
 			$.log(`🚧 ${$.name}, 调试信息`, `searchUrl: ${JSON.stringify(searchUrl)}`, "");
 			searchRequest.url = URL.stringify(searchUrl);
-			searchRequest.headers.Refer = "music.163.com";
+			searchRequest.headers.Referer = "https://music.163.com";
 			const searchResult = await $.http.get(searchRequest).then(response => {
 				//$.log(`🚧 ${$.name}, 调试信息`, `searchResult: ${JSON.stringify(response.body)}`, "");
 				body = JSON.parse(response.body);
@@ -731,7 +719,7 @@ async function searchTrack (resource = "NeteaseMusicNodeJS", keyword = ""){
 			};
 			$.log(`🚧 ${$.name}, 调试信息`, `searchUrl: ${JSON.stringify(searchUrl)}`, "");
 			searchRequest.url = URL.stringify(searchUrl);
-			searchRequest.headers.Refer = "music.163.com";
+			searchRequest.headers.Referer = "https://music.163.com";
 			const searchResult = await $.http.get(searchRequest).then(response => {
 				$.log(`🚧 ${$.name}, 调试信息`, `searchResult: ${JSON.stringify(response)}`, "");
 			});
@@ -763,7 +751,7 @@ async function searchTrack (resource = "NeteaseMusicNodeJS", keyword = ""){
 			};
 			$.log(`🚧 ${$.name}, 调试信息`, `searchUrl: ${JSON.stringify(searchUrl)}`, "");
 			searchRequest.url = URL.stringify(searchUrl);
-			searchRequest.headers.Refer = "c.y.qq.com";
+			searchRequest.headers.Referer = "https://c.y.qq.com";
 			const searchResult = await $.http.get(searchRequest).then(response => {
 				$.log(`🚧 ${$.name}, 调试信息`, `searchResult: ${JSON.stringify(response)}`, "");
 			});
@@ -772,6 +760,49 @@ async function searchTrack (resource = "NeteaseMusicNodeJS", keyword = ""){
 	};
 	$.log(`✅ ${$.name}, Search Track`, `trackInfo: ${JSON.stringify(trackInfo)}`, "");
 	return trackInfo;
+};
+
+async function searchLyric(resource = "NeteaseMusicNodeJS", trackId = undefined, UAPool = []){
+	$.log(`☑️ ${$.name}, Search Lyric`, `resource: ${resource}, trackId: ${trackId}`, "");
+	const lyricRequest = {
+		"headers": {
+			"Accept": "application/json",
+			"User-Agent": UAPool[Math.floor(Math.random() * UAPool.length)], // 随机UA
+		}
+	};
+	let lyricResult = {};
+	switch (resource) {
+		case "NeteaseMusicNodeJS":
+		default: {
+			const HostPool = [
+				"api.music.areschang.top",
+				"mu-api.yuk0.com",
+				"netease.happyking.top"
+			];
+			const lyricUrl = {
+				"scheme": "https",
+				"host": HostPool[Math.floor(Math.random() * HostPool.length)],
+				"path": "lyric/new",
+				"query": {
+					"id": trackId // trackInfo.NeteaseMusic.id
+				}
+			};
+			$.log(`🚧 ${$.name}, 调试信息`, `lyricUrl: ${JSON.stringify(lyricUrl)}`, "");
+			lyricRequest.url = URL.stringify(lyricUrl);
+			lyricRequest.headers.Referer = "https://music.163.com";
+			lyricResult = await $.http.get(lyricRequest).then(response => JSON.parse(response.body));
+			break;
+		};
+		case "NeteaseMusic": {
+			break;
+		};
+		case "QQMusic": {
+			break;
+		};
+	};
+	$.log(`✅ ${$.name}, Search Lyric`, "");
+	$.log(`🚧 ${$.name}, Search Lyric`, `lyricResult: ${JSON.stringify(lyricResult)}`, "");
+	return lyricResult;
 };
 
 /**
