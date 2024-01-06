@@ -2,8 +2,9 @@
 README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.3.0(18) Lyrics.External.response.beta");
+const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.3.2(1) Lyrics.External.response.beta");
 const URL = new URLs();
+const LRC = new LRCs();
 const DataBase = {
 	"Default":{
 		"Settings":{"Switch":true,"Type":"Translate","Types":["Official","Translate"],"Languages":["EN","ZH"],"CacheSize":50}
@@ -194,35 +195,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 							//const lyricResult = await $.http.get(lyricRequest).then(response => {
 								$.log(`🚧 ${$.name}, 调试信息`, `lyricResult: ${JSON.stringify(response.body)}`, "");
 								body = JSON.parse(response.body);
-								lyrics.lines = body?.lrc?.lyric?.split?.("\n")?.filter?.(Boolean)?.map?.(line=> {
-									let Line = {};
-									switch (line?.trim?.()?.substring?.(0, 1)) {
-										case "{":
-											line = JSON.parse(line);
-											Line = {
-												"startTimeMs": line.t,
-												"words": line?.c?.map?.(word => word.tx).join(" "),
-												"syllables": [],
-												//"endTimeMs": 0
-											};
-											break;
-										case "[":
-											const LineRegex = /^\[(?<startTimeMs>[:.1234567890]+)\](?<words>.*)/;
-											line = line.match(LineRegex)?.groups;
-											$.log(`🚧 ${$.name}, 调试信息`, `line: ${JSON.stringify(line)}`, "");
-											let startTimeMs = line.startTimeMs.split(":");
-											line.startTimeMs = Math.round((parseInt(startTimeMs[0], 10) * 60 + parseFloat(startTimeMs[1], 10)) * 1000);
-											Line = {
-												"startTimeMs": line.startTimeMs,
-												"words": line?.words ?? "♪",
-												"syllables": [],
-												//"endTimeMs": 0
-											};
-											break;
-									};
-									$.log(`🚧 ${$.name}, 调试信息`, `Line: ${JSON.stringify(Line)}`, "");
-									return Line;
-								});
+								lyrics.lines = LRC.toSpotify(body?.lrc?.lyric);
 								$.log(`🚧 ${$.name}, 调试信息`, `lyrics.lines: ${JSON.stringify(lyrics.lines)}`, "");
 							});
 							// 构造歌词
@@ -865,3 +838,54 @@ function getENV(key,names,database){let BoxJs=$.getjson(key,database),Argument={
 
 // https://github.com/VirgilClyne/GetSomeFries/blob/main/function/URL/URLs.embedded.min.js
 function URLs(t){return new class{constructor(t=[]){this.name="URL v1.2.5",this.opts=t,this.json={scheme:"",host:"",path:"",query:{}}}parse(t){let s=t.match(/(?:(?<scheme>.+):\/\/(?<host>[^/]+))?\/?(?<path>[^?]+)?\??(?<query>[^?]+)?/)?.groups??null;if(s?.path?s.paths=s.path.split("/"):s.path="",s?.paths){const t=s.paths[s.paths.length-1];if(t?.includes(".")){const e=t.split(".");s.format=e[e.length-1]}}return s?.query&&(s.query=Object.fromEntries(s.query.split("&").map((t=>t.split("="))))),s}stringify(t=this.json){let s="";return t?.scheme&&t?.host&&(s+=t.scheme+"://"+t.host),t?.path&&(s+=t?.host?"/"+t.path:t.path),t?.query&&(s+="?"+Object.entries(t.query).map((t=>t.join("="))).join("&")),s}}(t)}
+
+// https://github.com/DualSubs/LRC/blob/main/LRCs.embedded.min.js
+function LRCs(opts) {
+	return new (class {
+		constructor(opts) {
+			this.name = "LRC v0.1.1";
+			this.opts = opts;
+			this.newLine = (this?.opts?.includes("\n")) ? "\n" : (this?.opts?.includes("\r")) ? "\r" : (this?.opts?.includes("\r\n")) ? "\r\n" : "\n";
+		};
+
+		toSpotify(txt = new String) {
+			console.log(`☑️ ${this.name}, LRC.toSpotify`, "");
+			let json = txt?.split?.(this.newLine)?.filter?.(Boolean)?.map?.(line=> {
+				let Line = {};
+				switch (line?.trim?.()?.substring?.(0, 1)) {
+					case "{":
+						line = JSON.parse(line);
+						Line = {
+							"startTimeMs": line.t,
+							"words": line?.c?.map?.(word => word.tx).join(" "),
+							"syllables": [],
+							"endTimeMs": 0
+						};
+						break;
+					case "[":
+						const LineRegex = /^(?:\[(?<startTimeMs>[:.1234567890]+)\])?(?<words>.*)/;
+						line = line.match(LineRegex)?.groups;
+						$.log(`🚧 ${$.name}, 调试信息`, `line: ${JSON.stringify(line)}`, "");
+						let startTimeMs = (line?.startTimeMs ?? "0:0").split(":");
+						line.startTimeMs = Math.round((parseInt(startTimeMs[0], 10) * 60 + parseFloat(startTimeMs[1], 10)) * 1000);
+						if (line.startTimeMs < 0) line.startTimeMs = 0;
+						Line = {
+							"startTimeMs": line.startTimeMs,
+							"words": line?.words ?? "♪",
+							"syllables": [],
+							"endTimeMs": 0
+						};
+						break;
+				};
+				$.log(`🚧 ${$.name}, 调试信息`, `Line: ${JSON.stringify(Line)}`, "");
+				return Line;
+			});
+			console.log(`✅ ${this.name}, LRC.toSpotify, json: ${JSON.stringify(json)}`, "");
+			return json;
+		};
+
+		fromSpotify(json = new Array) {
+			console.log(`☑️ ${this.name}, stringify LRC`, "");
+		};
+	})(opts)
+};
