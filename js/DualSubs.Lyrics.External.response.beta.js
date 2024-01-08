@@ -2,7 +2,7 @@
 README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.4.0(3) Lyrics.External.response.beta");
+const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.4.0(4) Lyrics.External.response.beta");
 const URL = new URLs();
 const LRC = new LRCs();
 const DataBase = {
@@ -74,7 +74,7 @@ if (FORMAT === "application/octet-stream" || FORMAT === "text/plain") FORMAT = d
 $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 (async () => {
 	// 读取设置
-	const { Settings, Caches, Configs } = setENV("DualSubs", [(["YouTube", "Netflix", "BiliBili", "Spotify"].includes(PLATFORM)) ? PLATFORM : "Universal", "External"], DataBase);
+	const { Settings, Caches, Configs } = setENV("DualSubs", [(["YouTube", "Netflix", "BiliBili", "Spotify"].includes(PLATFORM)) ? PLATFORM : "Universal", "External", "API"], DataBase);
 	$.log(`⚠ ${$.name}`, `Settings.Switch: ${Settings?.Switch}`, "");
 	switch (Settings.Switch) {
 		case true:
@@ -139,7 +139,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 							break;
 						};
 						case "Spotify": {
-							body = await injectionLyric(Settings.Resource, trackInfo, body);
+							body = await injectionLyric(Settings.LrcVendor, trackInfo, body);
 							break;
 						};
 					};
@@ -288,8 +288,8 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 										});
 									};
 									*/
-									//body = await injectionLyric(Settings.LrcResource, trackInfo, body);
-									body.lyrics = await injectionLyric(Settings.LrcResource, trackInfo, body).then(body => body.lyrics);
+									//body = await injectionLyric(Settings.LrcVendor, trackInfo, body);
+									body.lyrics = await injectionLyric(Settings.LrcVendor, trackInfo, body).then(body => body.lyrics);
 									switch (body?.lyrics?.syncType) {
 										case "UNSYNCED":
 											body.lyrics.syncType = 0;
@@ -582,8 +582,8 @@ async function Fetch(request = {}) {
 	return response;
 };
 
-async function injectionLyric(resource = "NeteaseMusicNodeJS", trackInfo = {}, body = $response.body){
-	$.log(`☑️ ${$.name}, Injection Lyric`, `resource: ${resource}, trackInfo: ${JSON.stringify(trackInfo)}`, "");
+async function injectionLyric(vendor = "NeteaseMusicNodeJS", trackInfo = {}, body = $response.body){
+	$.log(`☑️ ${$.name}, Injection Lyric`, `vendor: ${vendor}, trackInfo: ${JSON.stringify(trackInfo)}`, "");
 	const UAPool = [
 		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36", // 13.5%
 		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36", // 6.6%
@@ -638,12 +638,12 @@ async function injectionLyric(resource = "NeteaseMusicNodeJS", trackInfo = {}, b
 			break;
 	};
 	// 查询 提取 转换
-	switch (resource) {
+	switch (vendor) {
 		case "NeteaseMusicNodeJS":
 		case "NeteaseMusic":
 		default:
-			trackInfo.NeteaseMusic = await searchTrack(resource, `${trackInfo.track} - ${trackInfo.artist}`, UAPool);
-			if (trackInfo?.NeteaseMusic?.id) externalLyric = await searchLyric(resource, trackInfo.NeteaseMusic.id, UAPool);
+			trackInfo.NeteaseMusic = await searchTrack(vendor, `${trackInfo.track} - ${trackInfo.artist}`, UAPool);
+			if (trackInfo?.NeteaseMusic?.id) externalLyric = await searchLyric(vendor, trackInfo.NeteaseMusic.id, UAPool);
 			switch (PLATFORM) {
 				case "Spotify":
 					body.lyrics.lines = LRC.toSpotify(externalLyric?.lrc?.lyric);
@@ -664,7 +664,7 @@ async function injectionLyric(resource = "NeteaseMusicNodeJS", trackInfo = {}, b
 			};
 			break;
 		case "QQMusic":
-			trackInfo.QQMusic = await searchTrack(resource, `${trackInfo.track} - ${trackInfo.artist}`, UAPool);
+			trackInfo.QQMusic = await searchTrack(vendor, `${trackInfo.track} - ${trackInfo.artist}`, UAPool);
 			break;
 	};
 	$.log(`✅ ${$.name}, Injection Lyric`, "");
@@ -672,8 +672,8 @@ async function injectionLyric(resource = "NeteaseMusicNodeJS", trackInfo = {}, b
 	return body;
 };
 
-async function searchTrack(resource = "NeteaseMusicNodeJS", keyword = "", UAPool = []){
-	$.log(`☑️ ${$.name}, Search Track`, `resource: ${resource}, keyword: ${keyword}`, "");
+async function searchTrack(vendor = "NeteaseMusicNodeJS", keyword = "", UAPool = []){
+	$.log(`☑️ ${$.name}, Search Track`, `vendor: ${vendor}, keyword: ${keyword}`, "");
 	const searchRequest = {
 		"headers": {
 			"Accept": "application/json",
@@ -681,7 +681,7 @@ async function searchTrack(resource = "NeteaseMusicNodeJS", keyword = "", UAPool
 		}
 	};
 	const trackInfo = {};
-	switch (resource) {
+	switch (vendor) {
 		case "NeteaseMusicNodeJS":
 		default: {
 			const HostPool = [
@@ -772,8 +772,8 @@ async function searchTrack(resource = "NeteaseMusicNodeJS", keyword = "", UAPool
 	return trackInfo;
 };
 
-async function searchLyric(resource = "NeteaseMusicNodeJS", trackId = undefined, UAPool = []){
-	$.log(`☑️ ${$.name}, Search Lyric`, `resource: ${resource}, trackId: ${trackId}`, "");
+async function searchLyric(vendor = "NeteaseMusicNodeJS", trackId = undefined, UAPool = []){
+	$.log(`☑️ ${$.name}, Search Lyric`, `vendor: ${vendor}, trackId: ${trackId}`, "");
 	const lyricRequest = {
 		"headers": {
 			"Accept": "application/json",
@@ -781,7 +781,7 @@ async function searchLyric(resource = "NeteaseMusicNodeJS", trackId = undefined,
 		}
 	};
 	let lyricResult = {};
-	switch (resource) {
+	switch (vendor) {
 		case "NeteaseMusicNodeJS":
 		default: {
 			const HostPool = [
