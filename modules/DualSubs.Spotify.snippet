@@ -7,10 +7,23 @@
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png
 
 #[rewrite_local]
+# DualSubs.Spotify.Tracks.response.json
+^https?:\/\/api\.spotify\.com\/v1\/tracks\? url script-response-body https://raw.githubusercontent.com/DualSubs/Spotify/main/js/DualSubs.Spotify.response.js
+
+# DualSubs.Spotify.Lyrics.Translate.request.json
+^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json url script-request-body https://raw.githubusercontent.com/DualSubs/Spotify/main/js/DualSubs.Spotify.request.js
+# DualSubs.Spotify.Lyrics.Translate.request.proto
+^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*) url script-request-body https://raw.githubusercontent.com/DualSubs/Spotify/main/js/DualSubs.Spotify.request.js
+
 # DualSubs.Spotify.Lyrics.Translate.response.json
 ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json url script-response-body https://raw.githubusercontent.com/DualSubs/Universal/main/js/DualSubs.Subtitles.Translate.response.js
 # DualSubs.Spotify.Lyrics.Translate.response.proto
 ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*) url script-response-body https://raw.githubusercontent.com/DualSubs/Universal/main/js/DualSubs.Subtitles.Translate.response.js
 
+# DualSubs.Spotify.Lyrics.External.response.json
+^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=External url script-response-body https://raw.githubusercontent.com/DualSubs/Universal/main/js/DualSubs.Lyrics.External.response.js
+# DualSubs.Spotify.Lyrics.External.response.proto
+^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=External  url script-response-body https://raw.githubusercontent.com/DualSubs/Universal/main/js/DualSubs.Lyrics.External.response.js
+
 #[mitm]
-hostname = spclient.wg.spotify.com
+hostname = api.spotify.com, spclient.wg.spotify.com

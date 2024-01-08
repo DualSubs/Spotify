@@ -8,19 +8,54 @@ icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spoti
 
 http:
   mitm:
+    - "api.spotify.com"
     - "spclient.wg.spotify.com"
   script:
-    - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json
-      name: DualSubs.Subtitles.Translate.response
+    - match: ^https?:\/\/api\.spotify\.com\/v1\/tracks\?
+      name: DualSubs.Spotify.response
       type: response
       require-body: true
+
+    - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json
+      name: DualSubs.Spotify.request
+      type: request
+      require-body: true
     - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)
-      name: DualSubs.Subtitles.Translate.response
+      name: DualSubs.Spotify.request
+      type: request
+      require-body: true
+      binary-mode: true
+
+    - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=Translate
+      name: DualSubs.Translate.response
+      type: response
+      require-body: true
+    - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=Translate
+      name: DualSubs.Translate.response
+      type: response
+      require-body: true
+      binary-mode: true
+
+    - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=External
+      name: DualSubs.External.response
+      type: response
+      require-body: true
+    - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=External
+      name: DualSubs.External.response
       type: response
       require-body: true
       binary-mode: true
 
 script-providers:
-  DualSubs.Subtitles.Translate.response:
+  DualSubs.Spotify.request:
+    url: https://raw.githubusercontent.com/DualSubs/Universal/main/js/DualSubs.Spotify.request.js
+    interval: 86400
+  DualSubs.Spotify.response:
+    url: https://raw.githubusercontent.com/DualSubs/Universal/main/js/DualSubs.Spotify.response.js
+    interval: 86400
+  DualSubs.Translate.response:
     url: https://raw.githubusercontent.com/DualSubs/Universal/main/js/DualSubs.Subtitles.Translate.response.js
+    interval: 86400
+  DualSubs.Lyrics.External.response:
+    url: https://raw.githubusercontent.com/DualSubs/Universal/main/js/DualSubs.Lyrics.External.response.js
     interval: 86400
