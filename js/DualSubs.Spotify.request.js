@@ -2,7 +2,7 @@
 README:https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.3(5) request.beta");
+const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.3(5) request");
 const URL = new URLs();
 const DataBase = {
 	"Default":{
