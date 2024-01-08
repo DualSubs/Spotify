@@ -27,21 +27,21 @@ http:
       binary-mode: true
 
     - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=Translate
-      name: DualSubs.Translate.response
+      name: DualSubs.Lyrics.Translate.response
       type: response
       require-body: true
     - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=Translate
-      name: DualSubs.Translate.response
+      name: DualSubs.Lyrics.Translate.response
       type: response
       require-body: true
       binary-mode: true
 
     - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=External
-      name: DualSubs.External.response
+      name: DualSubs.Lyrics.External.response
       type: response
       require-body: true
     - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=External
-      name: DualSubs.External.response
+      name: DualSubs.Lyrics.External.response
       type: response
       require-body: true
       binary-mode: true
@@ -53,7 +53,7 @@ script-providers:
   DualSubs.Spotify.response:
     url: https://raw.githubusercontent.com/DualSubs/Universal/main/js/DualSubs.Spotify.response.js
     interval: 86400
-  DualSubs.Translate.response:
+  DualSubs.Lyrics.Translate.response:
     url: https://raw.githubusercontent.com/DualSubs/Universal/main/js/DualSubs.Subtitles.Translate.response.js
     interval: 86400
   DualSubs.Lyrics.External.response:
