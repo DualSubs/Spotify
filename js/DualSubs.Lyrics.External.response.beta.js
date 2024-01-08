@@ -2,7 +2,7 @@
 README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.4.0(4) Lyrics.External.response.beta");
+const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.4.0(5) Lyrics.External.response.beta");
 const URL = new URLs();
 const LRC = new LRCs();
 const DataBase = {
@@ -329,7 +329,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 			default: { // 有回复数据，返回回复数据
 				//const FORMAT = ($response?.headers?.["Content-Type"] ?? $response?.headers?.["content-type"])?.split(";")?.[0];
 				$.log(`🎉 ${$.name}, finally`, `$response`, `FORMAT: ${FORMAT}`, "");
-				$.log(`🚧 ${$.name}, finally`, `$response: ${JSON.stringify($response)}`, "");
+				//$.log(`🚧 ${$.name}, finally`, `$response: ${JSON.stringify($response)}`, "");
 				if ($response?.headers?.["Content-Encoding"]) $response.headers["Content-Encoding"] = "identity";
 				if ($response?.headers?.["content-encoding"]) $response.headers["content-encoding"] = "identity";
 				if ($.isQuanX()) {
@@ -647,17 +647,19 @@ async function injectionLyric(vendor = "NeteaseMusicNodeJS", trackInfo = {}, bod
 			switch (PLATFORM) {
 				case "Spotify":
 					body.lyrics.lines = LRC.toSpotify(externalLyric?.lrc?.lyric);
-					/*
-					let tlyric = LRC.toSpotify(externalLyric?.tlyric?.lyric);
-					let duolyric = LRC.combineSpotify(body.lyrics.lines, tlyric);
-					body.lyrics.alternatives = [{
-						"language": "zh",
-						"lines": duolyric.map(line => line?.twords ?? "♪")
-					}];
-					*/
+
+					if (externalLyric?.tlyric?.lyric) {
+						let tlyric = LRC.toSpotify(externalLyric?.tlyric?.lyric);
+						let duolyric = LRC.combineSpotify(body.lyrics.lines, tlyric);
+						body.lyrics.alternatives.push({
+							"language": "zh",
+							"lines": duolyric.map(line => line?.twords ?? "♪")
+						});
+					}
+					
 					body.lyrics.provider = "NeteaseMusic";
 					body.lyrics.providerLyricsId = trackInfo.NeteaseMusic.id.toString();
-					body.lyrics.providerDisplayName = `网易云音乐 - ${externalLyric?.lyricUser?.nickname}`;
+					body.lyrics.providerDisplayName = `网易云音乐 - ${externalLyric?.lyricUser?.nickname ?? "未知"}`;
 					body.colors.background = -8249806; // 网易红 8527410 821E32 rgb(130,30,50)
 					$.log(`🚧 ${$.name}, 调试信息`, `body.lyrics.lines: ${JSON.stringify(body.lyrics.lines)}`, "");
 					break
@@ -955,7 +957,7 @@ function LRCs(opts) {
 
 		combineSpotify(array1 = new Array, array2 = new Array) {
 			console.log(`☑️ ${this.name}, LRC.combineSpotify`, "");
-			let duolyric = [];
+			let combineLyric = [];
 			for (let line1 in array1) {
 				for (let line2 in array2) {
 					if (line1.startTimeMs === line2.startTimeMs) {
@@ -963,10 +965,10 @@ function LRCs(opts) {
 						break;
 					};
 				};
-				duolyric.push(line1);
+				combineLyric.push(line1);
 			};
-			console.log(`✅ ${this.name}, LRC.combineSpotify, duolyric: ${JSON.stringify(duolyric)}`, "");
-			return duolyric;
+			console.log(`✅ ${this.name}, LRC.combineSpotify, combineLyric: ${JSON.stringify(combineLyric)}`, "");
+			return combineLyric;
 		};
 	})(opts)
 };
