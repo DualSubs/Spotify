@@ -120,7 +120,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 				case "application/grpc":
 				case "application/grpc+proto":
 				case "applecation/octet-stream":
-					let rawBody = $.isQuanX() ? new Uint8Array($response.bodyBytes) : $response.body;
+					let rawBody = $.isQuanX() ? new Uint8Array($response.bodyBytes) : $response?.body ?? new Uint8Array();
 					/******************  initialization start  *******************/
 					// timostamm/protobuf-ts 2.9.0
 					// text-decoder
@@ -389,6 +389,8 @@ function setENV(name, platforms, database) {
 	Caches.Playlists.Master = new Map(JSON.parse(Caches?.Playlists?.Master || "[]")); // Strings转Array转Map
 	Caches.Playlists.Subtitle = new Map(JSON.parse(Caches?.Playlists?.Subtitle || "[]")); // Strings转Array转Map
 	if (typeof Caches?.Subtitles !== "object") Caches.Subtitles = new Map(JSON.parse(Caches?.Subtitles || "[]")); // Strings转Array转Map
+	if (typeof Caches?.Metadatas !== "object" || Array.isArray(Caches.Metadatas)) Caches.Metadatas = {}; // 创建Playlists缓存
+	if (typeof Caches?.Metadatas?.Tracks !== "object") Caches.Metadatas.Tracks = new Map(JSON.parse(Caches?.Metadatas?.Tracks || "[]")); // Strings转Array转Map
 	/***************** Configs *****************/
 	return { Settings, Caches, Configs };
 };
