@@ -132,7 +132,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 				};
 				case "text/json":
 				case "application/json": {
-					if ($response.body) body = JSON.parse($response.body);
+					body = JSON.parse($response?.body ?? "{}");
 					//$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
 					switch (PLATFORM) {
 						case "YouTube": {
@@ -154,13 +154,6 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 				case "application/grpc+proto":
 				case "applecation/octet-stream":
 					//$.log(`🚧 ${$.name}`, `$response.body: ${$response.body}`, "");
-					/*
-					if (!$response.body) {
-						//const buffer = new ArrayBuffer(0, { maxByteLength: 20480 });
-						const buffer = [18, 33, 8, 128, 255, 253, 251, 255, 255, 255, 255, 255, 1, 16, 128, 128, 128, 248, 255, 255, 255, 255, 255, 1, 24, 255, 255, 255, 255, 255, 255, 255, 255, 255, 1];
-						$response.body = new Uint8Array(buffer);
-					};
-					*/
 					let rawBody = $.isQuanX() ? new Uint8Array($response.bodyBytes) : $response?.body ?? new Uint8Array();
 					//$.log(`🚧 ${$.name}`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 					/******************  initialization start  *******************/
@@ -910,9 +903,9 @@ function URLs(t){return new class{constructor(t=[]){this.name="URL v1.2.5",this.
 function LRCs(opts) {
 	return new (class {
 		constructor(opts) {
-			this.name = "LRC v0.2.0";
+			this.name = "LRC v0.2.1";
 			this.opts = opts;
-			this.newLine = (this?.opts?.includes("\n")) ? "\n" : (this?.opts?.includes("\r")) ? "\r" : (this?.opts?.includes("\r\n")) ? "\r\n" : "\n";
+			this.newLine = "\n";
 		};
 
 		toSpotify(txt = new String) {
@@ -932,7 +925,7 @@ function LRCs(opts) {
 					case "[":
 						const LineRegex = /^(?:\[(?<startTimeMs>[:.1234567890]+)\])?(?<words>.*)/;
 						line = line.match(LineRegex)?.groups;
-						$.log(`🚧 ${$.name}, 调试信息`, `line: ${JSON.stringify(line)}`, "");
+						//$.log(`🚧 ${$.name}, 调试信息`, `line: ${JSON.stringify(line)}`, "");
 						let startTimeMs = (line?.startTimeMs ?? "0:0").split(":");
 						line.startTimeMs = Math.round((parseInt(startTimeMs[0], 10) * 60 + parseFloat(startTimeMs[1], 10)) * 1000);
 						if (line.startTimeMs < 0) line.startTimeMs = 0;
@@ -958,8 +951,8 @@ function LRCs(opts) {
 		combineSpotify(array1 = new Array, array2 = new Array) {
 			console.log(`☑️ ${this.name}, LRC.combineSpotify`, "");
 			let combineLyric = [];
-			for (let line1 in array1) {
-				for (let line2 in array2) {
+			for (let line1 of array1) {
+				for (let line2 of array2) {
 					if (line1.startTimeMs === line2.startTimeMs) {
 						line1.twords = line2?.words ?? "♪";
 						break;
