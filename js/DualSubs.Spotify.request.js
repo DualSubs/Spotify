@@ -2,7 +2,7 @@
 README:https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.3(5) request");
+const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.3(6) request");
 const URL = new URLs();
 const DataBase = {
 	"Default":{
@@ -182,13 +182,14 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 								let response = results[0].value;
 								switch (response?.statusCode ?? response?.status) {
 									case 200:
-										url.query.subtype = "Translate";
+										if (Settings.Types.includes("Translate")) url.query.subtype = "Translate";
+										else if (Settings.Types.includes("External")) url.query.subtype = "External";
 										break;
 									case 401:
 									default:
 										break;
 									case 404:
-										url.query.subtype = "External";
+										if (Settings.Types.includes("External")) url.query.subtype = "External";
 										break;
 								};
 							};
