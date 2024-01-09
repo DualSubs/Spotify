@@ -12,11 +12,11 @@ http:
     - "episode-transcripts.spotifycdn.com"
   script:
     - match: ^https?:\/\/spclient\.wg\.spotify\.com\/transcript-read-along\/v2\/episode\/\w+
-      name: DualSubs.Spotify.Transcripts.Translate.response
+      name: DualSubs.Transcripts.Translate.response
       type: response
       require-body: true
     - match: ^https?:\/\/episode-transcripts\.spotifycdn\.com\/1\.0\/spotify:transcript:\w+
-      name: DualSubs.Spotify.Transcripts.Translate.response
+      name: DualSubs.Transcripts.Translate.response
       type: response
       require-body: true
       binary-mode: true
