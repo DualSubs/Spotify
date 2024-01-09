@@ -2,7 +2,7 @@
 README:https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.4(1) request.beta");
+const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.3(7) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Default":{
@@ -172,7 +172,6 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 						//const detectTrack = $.http.get(_request);
 						//const detectTrack = $httpClient.get(_request);
 						const detectTrack = $.http.get({"url":`https://api.spotify.com/v1/tracks?ids=${trackId}`, "headers": $request.headers});
-						const trackInfo = {};
 						await Promise.allSettled([detectStutus, detectTrack]).then(results => {
 							/*
 							results.forEach((result,i) => {
@@ -181,8 +180,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 							*/
 							if (results[0].status === "fulfilled") {
 								let response = results[0].value;
-								trackInfo.status = response?.statusCode ?? response?.status;
-								switch (trackInfo.status) {
+								switch (response?.statusCode ?? response?.status) {
 									case 200:
 										if (Settings.Types.includes("Translate")) url.query.subtype = "Translate";
 										else if (Settings.Types.includes("External")) url.query.subtype = "External";
@@ -198,24 +196,48 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 							if (results[1].status === "fulfilled") {
 								let response = results[1].value;
 								body = JSON.parse(response.body);
-								const track = body?.tracks?.[0];
-								//$.log(`🚧 ${$.name}, 调试信息`, `track: ${JSON.stringify(track)}`, "");
-								trackInfo.id = track?.id;
-								trackInfo.track = track?.name;
-								trackInfo.album = track?.album?.name;
-								trackInfo.artist = track?.artists?.[0]?.name;
+								body?.tracks?.forEach?.(track => {
+									//$.log(`🚧 ${$.name}`, `track: ${JSON.stringify(track)}`, "");
+									const trackId = track?.id;
+									const trackInfo = {
+										"id": track?.id,
+										"track": track?.name,
+										"album": track?.album?.name,
+										"artist": track?.artists?.[0]?.name
+									};
+									// 写入数据
+									Caches.Metadatas.Tracks.set(trackId, trackInfo);
+								});
+								// 格式化缓存
+								$.log(`🚧 ${$.name}`, `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
+								Caches.Metadatas.Tracks = setCache(Caches.Metadatas.Tracks, Settings.CacheSize);
+								// 写入持久化储存
+								$.setjson(Caches.Metadatas.Tracks, `@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`);
 							};
 						});
-						$.log(`🚧 ${$.name}, 调试信息`, `trackInfo: ${JSON.stringify(trackInfo)}`, "");
-						if (trackInfo.status !== 200) {
-							// 写入数据
-							Caches.Metadatas.Tracks.set(trackInfo.id, trackInfo);
-							// 格式化缓存
-							$.log(`🚧 ${$.name}, 调试信息`, `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
-							Caches.Metadatas.Tracks = setCache(Caches.Metadatas.Tracks, Settings.CacheSize);
-							// 写入持久化储存
-							$.setjson(Caches.Metadatas.Tracks, `@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`);
-						};
+						/*
+						await $.http.get($request).then(response => {
+							//$.log(`🚧 ${$.name}, 调试信息`, `response: ${JSON.stringify(response)}`, "");
+							switch (response?.statusCode ?? response?.status) {
+								case 200:
+									url.query.subtype = "Translate";
+									break;
+								case 401:
+								default:
+									break;
+								case 404:
+									url.query.subtype = "External";
+									break;
+							};
+						});
+						let trackId = PATHs[3]
+						$.log(`🚧 ${$.name}, 调试信息`, `trackId: ${trackId}`, "");
+						let _Request = JSON.parse(JSON.stringify($request));
+						_Request.url = `https://api.spotify.com/v1/tracks/${trackId}`;
+						await $.http.get(_Request).then(response => {
+							$.log(`🚧 ${$.name}, 调试信息`, `response: ${JSON.stringify(response)}`, "");
+						})
+						*/
 					};
 				case "HEAD":
 				case "OPTIONS":
