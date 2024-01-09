@@ -2,7 +2,7 @@
 README:https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.3(6) request.beta");
+const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.3(7) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Default":{
@@ -200,6 +200,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									//$.log(`🚧 ${$.name}`, `track: ${JSON.stringify(track)}`, "");
 									const trackId = track?.id;
 									const trackInfo = {
+										"id": track?.id,
 										"track": track?.name,
 										"album": track?.album?.name,
 										"artist": track?.artists?.[0]?.name
