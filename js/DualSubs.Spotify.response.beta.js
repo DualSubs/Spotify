@@ -2,7 +2,7 @@
 README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.4.0(3) response.beta");
+const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.5.0(5) response.beta");
 const URL = new URLs();
 const DataBase = {
 	"Default":{
@@ -117,12 +117,12 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 							//body.product = "premium";
 							body.country = Settings.Country;
 							//body.ads = "0";
-							//body.["on-demand"] = "1";
+							//body["on-demand"] = "1";
 							body["selected-language"] = Settings.Languages[1].toLowerCase();
-							//body.["multiuserplan-current-size"]
-							//body.["preferred-locale"]
-							//body.["multiuserplan-member-type"]
-							body["is-standalone-audiobooks"] = "1";
+							//body["multiuserplan-current-size"]
+							//body["preferred-locale"]
+							//body["multiuserplan-member-type"]
+							//body["is-standalone-audiobooks"]
 							//body.catalogue = "premium";
 							break;
 						case "v1/tracks":
@@ -138,7 +138,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 								Caches.Metadatas.Tracks.set(trackId, trackInfo);
 							});
 							// 格式化缓存
-							$.log(`🚧 ${$.name}`, `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
+							$.log(`🚧 ${$.name}, 调试信息`, `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
 							Caches.Metadatas.Tracks = setCache(Caches.Metadatas.Tracks, Settings.CacheSize);
 							// 写入持久化储存
 							$.setjson(Caches.Metadatas.Tracks, `@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`);
@@ -169,7 +169,6 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 						case "application/x-protobuf":
 						case "application/vnd.google.protobuf":
 							/******************  initialization start  *******************/
-							// @generated message type with reflection information, may provide speed optimized methods
 							class Any$Type extends MessageType {
 								constructor() {
 									super("google.protobuf.Any", [
@@ -309,9 +308,281 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 								}
 							}
 							const Any = new Any$Type();
-							/******************  initialization start  *******************/
+							class Error$Type extends MessageType {
+								constructor() {
+									super("Error", [
+										{ no: 1, name: "errorCode", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+										{ no: 2, name: "message", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+										{ no: 3, name: "logId", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+									]);
+								}
+							}
+							const Error = new Error$Type();
+							/******************  initialization finish  *******************/
 							switch (PATH) {
 								case "bootstrap/v1/bootstrap":
+								case "user-customization-service/v1/customize":
+									/******************  initialization start  *******************/
+									class BootstrapResponse$Type extends MessageType {
+										constructor() {
+											super("BootstrapResponse", [
+												{ no: 2, name: "ucsResponseV0", kind: "message", oneof: "ucsResponse", T: () => UcsResponseWrapperV0 },
+												{ no: 3, name: "trialsFacadeResponseV1", kind: "message", oneof: "ucsResponse", T: () => TrialsFacadeResponseWrapperV1 }
+											]);
+										}
+									}
+									const BootstrapResponse = new BootstrapResponse$Type();
+									class UcsResponseWrapperV0$Type extends MessageType {
+										constructor() {
+											super("UcsResponseWrapperV0", [
+												{ no: 1, name: "success", kind: "message", oneof: "result", T: () => UcsResponseWrapperSuccess },
+												{ no: 2, name: "error", kind: "message", oneof: "result", T: () => Error }
+											]);
+										}
+									}
+									const UcsResponseWrapperV0 = new UcsResponseWrapperV0$Type();
+									class UcsResponseWrapperSuccess$Type extends MessageType {
+										constructor() {
+											super("UcsResponseWrapperSuccess", [
+												{ no: 1, name: "customization", kind: "message", T: () => UcsResponseWrapper }
+											]);
+										}
+									}
+									const UcsResponseWrapperSuccess = new UcsResponseWrapperSuccess$Type();
+									class UcsResponseWrapper$Type extends MessageType {
+										constructor() {
+											super("UcsResponseWrapper", [
+												{ no: 1, name: "success", kind: "message", oneof: "result", T: () => UcsResponse },
+												{ no: 2, name: "error", kind: "message", oneof: "result", T: () => Error }
+											]);
+										}
+									}
+									const UcsResponseWrapper = new UcsResponseWrapper$Type();
+									class TrialsFacadeResponseWrapperV1$Type extends MessageType {
+										constructor() {
+											super("TrialsFacadeResponseWrapperV1", [
+												{ no: 1, name: "success", kind: "message", oneof: "result", T: () => TrialsFacadeResponseWrapperSuccess },
+												{ no: 2, name: "error", kind: "message", oneof: "result", T: () => Error }
+											]);
+										}
+									}
+									const TrialsFacadeResponseWrapperV1 = new TrialsFacadeResponseWrapperV1$Type();
+									class TrialsFacadeResponseWrapperSuccess$Type extends MessageType {
+										constructor() {
+											super("TrialsFacadeResponseWrapperSuccess", [
+												{ no: 1, name: "filed1", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+											]);
+										}
+									}
+									const TrialsFacadeResponseWrapperSuccess = new TrialsFacadeResponseWrapperSuccess$Type();
+									class UcsResponse$Type extends MessageType {
+										constructor() {
+											super("UcsResponse", [
+												{ no: 1, name: "resolveSuccess", kind: "message", oneof: "resolveResult", T: () => ResolveSuccess },
+												{ no: 2, name: "resolveError", kind: "message", oneof: "resolveResult", T: () => Error },
+												{ no: 3, name: "accountAttributesSuccess", kind: "message", oneof: "accountAttributesResult", T: () => AccountAttributesResponse },
+												{ no: 4, name: "accountAttributesError", kind: "message", oneof: "accountAttributesResult", T: () => Error },
+												{ no: 5, name: "fetchTimeMillis", kind: "scalar", T: 3 /*ScalarType.INT64*/ }
+											]);
+										}
+									}
+									const UcsResponse = new UcsResponse$Type();
+									class ResolveSuccess$Type extends MessageType {
+										constructor() {
+											super("ResolveSuccess", [
+												{ no: 1, name: "configuration", kind: "message", T: () => Configuration }
+											]);
+										}
+									}
+									const ResolveSuccess = new ResolveSuccess$Type();
+									class Configuration$Type extends MessageType {
+										constructor() {
+											super("Configuration", [
+												{ no: 1, name: "configurationAssignmentId", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+												{ no: 2, name: "fetchTimeMillis", kind: "scalar", T: 3 /*ScalarType.INT64*/ },
+												{ no: 3, name: "assignedValues", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => AssignedValue }
+											]);
+										}
+									}
+									const Configuration = new Configuration$Type();
+									class AssignedValue$Type extends MessageType {
+										constructor() {
+											super("AssignedValue", [
+												{ no: 1, name: "propertyId", kind: "message", T: () => PropertyId },
+												{ no: 2, name: "metadata", kind: "message", T: () => Metadata },
+												{ no: 3, name: "boolValue", kind: "message", oneof: "structuredValue", T: () => BoolValue },
+												{ no: 4, name: "intValue", kind: "message", oneof: "structuredValue", T: () => IntValue },
+												{ no: 5, name: "enumValue", kind: "message", oneof: "structuredValue", T: () => EnumValue }
+											]);
+										}
+									}
+									const AssignedValue = new AssignedValue$Type();
+									class PropertyId$Type extends MessageType {
+										constructor() {
+											super("PropertyId", [
+												{ no: 1, name: "scope", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+												{ no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+											]);
+										}
+									}
+									const PropertyId = new PropertyId$Type();
+									class Metadata$Type extends MessageType {
+										constructor() {
+											super("Metadata", [
+												{ no: 1, name: "policyId", kind: "scalar", T: 3 /*ScalarType.INT64*/ },
+												{ no: 2, name: "externalRealm", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+												{ no: 3, name: "externalRealmId", kind: "scalar", T: 3 /*ScalarType.INT64*/ }
+											]);
+										}
+									}
+									const Metadata = new Metadata$Type();
+									class BoolValue$Type extends MessageType {
+										constructor() {
+											super("BoolValue", [
+												{ no: 1, name: "value", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
+											]);
+										}
+									}
+									const BoolValue = new BoolValue$Type();
+									class EnumValue$Type extends MessageType {
+										constructor() {
+											super("EnumValue", [
+												{ no: 1, name: "value", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+											]);
+										}
+									}
+									const EnumValue = new EnumValue$Type();
+									class IntValue$Type extends MessageType {
+										constructor() {
+											super("IntValue", [
+												{ no: 1, name: "value", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+											]);
+										}
+									}
+									const IntValue = new IntValue$Type();
+									class AccountAttributesResponse$Type extends MessageType {
+										constructor() {
+											super("AccountAttributesResponse", [
+												{ no: 1, name: "accountAttributes", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "message", T: () => AccountAttribute } }
+											]);
+										}
+									}
+									const AccountAttributesResponse = new AccountAttributesResponse$Type();
+									class AccountAttribute$Type extends MessageType {
+										constructor() {
+											super("AccountAttribute", [
+												{ no: 2, name: "boolValue", kind: "scalar", oneof: "structuredValue", T: 8 /*ScalarType.BOOL*/ },
+												{ no: 3, name: "longValue", kind: "scalar", oneof: "structuredValue", T: 3 /*ScalarType.INT64*/ },
+												{ no: 4, name: "stringValue", kind: "scalar", oneof: "structuredValue", T: 9 /*ScalarType.STRING*/ }
+											]);
+										}
+									}
+									const AccountAttribute = new AccountAttribute$Type();
+									class Error$Type extends MessageType {
+										constructor() {
+											super("Error", [
+												{ no: 1, name: "errorCode", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+												{ no: 2, name: "message", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+												{ no: 3, name: "logId", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+											]);
+										}
+									}
+									const Error = new Error$Type();									
+									/******************  initialization finish  *******************/
+									switch (PATH) {
+										case "bootstrap/v1/bootstrap": {
+											body = BootstrapResponse.fromBinary(rawBody);
+											$.log(`🚧 ${$.name}, 调试信息`, `body: ${JSON.stringify(body)}`, "");
+											let UF = UnknownFieldHandler.list(body);
+											//$.log(`🚧 ${$.name}, 调试信息`, `UF: ${JSON.stringify(UF)}`, "");
+											if (UF) {
+												UF = UF.map(uf => {
+													//uf.no; // 22
+													//uf.wireType; // WireType.Varint
+													// use the binary reader to decode the raw data:
+													let reader = new BinaryReader(uf.data);
+													let addedNumber = reader.int32(); // 7777
+													$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
+												});
+											};
+											let accountAttributes = body?.ucsResponse?.ucsResponseV0?.result?.success?.customization?.result?.success?.accountAttributesResult?.accountAttributesSuccess?.accountAttributes;
+											if (accountAttributes) {
+												//accountAttributes['has-audiobooks-subscription'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['player-license'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "premium" } }; // "mft"
+												accountAttributes['country_code'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": Settings.Country } };
+												//accountAttributes['mobile'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['financial-product'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "pr:premium,tc:0" } }; // "pr:free,tc:0"
+												//accountAttributes['premium-mini'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['streaming-rules'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "" } }; // "shuffle-mode"
+												//accountAttributes['license-acceptance-grace-days'] = { "structuredValue": { "oneofKind": "longValue", "longValue": "30" } }; // "0"
+												//accountAttributes['name'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "Spotify Premium" } }; // "Spotify Free"
+												//accountAttributes['mobile-login'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['on-demand'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['ads'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": false } }; // true
+												//accountAttributes['catalogue'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "premium" } }; // "free"
+												//accountAttributes['high-bitrate'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['libspotify'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['nft-disabled'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "1" } }; // "0"
+												//accountAttributes['shuffle'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": false } }; // true
+												//accountAttributes['audio-quality'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "1" } }; // "0"
+												//accountAttributes['offline'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['hifi-eligible'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['pause-after'] = { "structuredValue": { "oneofKind": "longValue", "longValue": "0" } }; // "18000"
+												//accountAttributes['addon-hifi'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['can_use_superbird'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['type'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "premium" } }; // "free"
+											};
+											//$.log(`🚧 ${$.name}, 调试信息`, `body: ${JSON.stringify(body)}`, "");
+											rawBody = BootstrapResponse.toBinary(body);
+											break;
+										};
+										case "user-customization-service/v1/customize": {
+											body = UcsResponseWrapper.fromBinary(rawBody);
+											$.log(`🚧 ${$.name}, 调试信息`, `body: ${JSON.stringify(body)}`, "");
+											let UF = UnknownFieldHandler.list(body);
+											//$.log(`🚧 ${$.name}, 调试信息`, `UF: ${JSON.stringify(UF)}`, "");
+											if (UF) {
+												UF = UF.map(uf => {
+													//uf.no; // 22
+													//uf.wireType; // WireType.Varint
+													// use the binary reader to decode the raw data:
+													let reader = new BinaryReader(uf.data);
+													let addedNumber = reader.int32(); // 7777
+													$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
+												});
+											};
+											let accountAttributes = body?.result?.success?.accountAttributesResult?.accountAttributesSuccess?.accountAttributes;
+											if (accountAttributes) {
+												//accountAttributes['has-audiobooks-subscription'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['player-license'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "premium" } }; // "mft"
+												accountAttributes['country_code'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": Settings.Country } };
+												//accountAttributes['mobile'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['financial-product'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "pr:premium,tc:0" } }; // "pr:free,tc:0"
+												//accountAttributes['premium-mini'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['streaming-rules'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "" } }; // "shuffle-mode"
+												//accountAttributes['license-acceptance-grace-days'] = { "structuredValue": { "oneofKind": "longValue", "longValue": "30" } }; // "0"
+												//accountAttributes['name'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "Spotify Premium" } }; // "Spotify Free"
+												//accountAttributes['mobile-login'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['on-demand'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['ads'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": false } }; // true
+												//accountAttributes['catalogue'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "premium" } }; // "free"
+												//accountAttributes['high-bitrate'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['libspotify'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['nft-disabled'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "1" } }; // "0"
+												//accountAttributes['shuffle'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": false } }; // true
+												//accountAttributes['audio-quality'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "1" } }; // "0"
+												//accountAttributes['offline'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['hifi-eligible'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['pause-after'] = { "structuredValue": { "oneofKind": "longValue", "longValue": "0" } }; // "18000"
+												//accountAttributes['addon-hifi'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['can_use_superbird'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
+												//accountAttributes['type'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "premium" } }; // "free"
+											};
+											$.log(`🚧 ${$.name}, 调试信息`, `body: ${JSON.stringify(body)}`, "");
+											rawBody = UcsResponseWrapper.toBinary(body);
+											break;
+										};
+									};
 									break;
 								case "extended-metadata/v0/extended-metadata": {
 									/******************  initialization start  *******************/
@@ -373,9 +644,9 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									const EntityExtensionDataHeader = new EntityExtensionDataHeader$Type();
 									/******************  initialization start  *******************/
 									body = BatchedExtensionResponse.fromBinary(rawBody);
-									$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
+									$.log(`🚧 ${$.name}, 调试信息`, `body: ${JSON.stringify(body)}`, "");
 									let UF = UnknownFieldHandler.list(body);
-									//$.log(`🚧 ${$.name}`, `UF: ${JSON.stringify(UF)}`, "");
+									//$.log(`🚧 ${$.name}, 调试信息`, `UF: ${JSON.stringify(UF)}`, "");
 									if (UF) {
 										UF = UF.map(uf => {
 											//uf.no; // 22
@@ -386,7 +657,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 											$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
 										});
 									};
-									//$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
+									//$.log(`🚧 ${$.name}, 调试信息`, `body: ${JSON.stringify(body)}`, "");
 									rawBody = BatchedExtensionResponse.toBinary(body);
 									break;
 								};
