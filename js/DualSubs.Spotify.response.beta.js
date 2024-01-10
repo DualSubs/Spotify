@@ -2,7 +2,7 @@
 README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.4.0(1) response.beta");
+const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.4.0(3) response.beta");
 const URL = new URLs();
 const DataBase = {
 	"Default":{
@@ -31,7 +31,7 @@ const DataBase = {
 		}
 	},
 	"Spotify":{
-		"Settings":{"Switch":true,"Types":["Translate","External"],"Languages":["AUTO","ZH"]}
+		"Settings":{"Switch":true,"Types":["Translate","External"],"Languages":["AUTO","ZH"],"Country":"US"}
 	},
 	"Composite":{
 		"Settings":{"CacheSize":20,"Position":"Reverse","Offset":0,"Tolerance":1000}
@@ -113,6 +113,18 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 					body = JSON.parse($response?.body ?? "{}");
 					$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
 					switch (PATH) {
+						case "melody/v1/product_state":
+							//body.product = "premium";
+							body.country = Settings.Country;
+							//body.ads = "0";
+							//body.["on-demand"] = "1";
+							body["selected-language"] = Settings.Languages[1].toLowerCase();
+							//body.["multiuserplan-current-size"]
+							//body.["preferred-locale"]
+							//body.["multiuserplan-member-type"]
+							body["is-standalone-audiobooks"] = "1";
+							//body.catalogue = "premium";
+							break;
 						case "v1/tracks":
 							body?.tracks?.forEach?.(track => {
 								$.log(`🚧 ${$.name}`, `track: ${JSON.stringify(track)}`, "");
@@ -132,7 +144,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 							$.setjson(Caches.Metadatas.Tracks, `@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`);
 							break;
 					};
-					//$response.body = JSON.stringify(PlayList);
+					$response.body = JSON.stringify(body);
 					break;
 				};
 				case "application/protobuf":
@@ -299,6 +311,8 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 							const Any = new Any$Type();
 							/******************  initialization start  *******************/
 							switch (PATH) {
+								case "bootstrap/v1/bootstrap":
+									break;
 								case "extended-metadata/v0/extended-metadata": {
 									/******************  initialization start  *******************/
 									class BatchedExtensionResponse$Type extends MessageType {
