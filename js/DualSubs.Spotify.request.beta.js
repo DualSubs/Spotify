@@ -2,7 +2,7 @@
 README:https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.3(8) request.beta");
+const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.3(9) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Default":{
@@ -135,9 +135,9 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 						case "application/grpc":
 						case "application/grpc+proto":
 						case "applecation/octet-stream":
-							//$.log(`🚧 ${$.name}`, `$request.body: ${JSON.stringify($request.body)}`, "");
+							//$.log(`🚧 ${$.name}, 调试信息`, `$request.body: ${JSON.stringify($request.body)}`, "");
 							let rawBody = $.isQuanX() ? new Uint8Array($request?.bodyBytes ?? []) : $request?.body ?? new Uint8Array();
-							//$.log(`🚧 ${$.name}`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
+							//$.log(`🚧 ${$.name}, 调试信息`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 							/******************  initialization start  *******************/
 							// timostamm/protobuf-ts 2.9.0
 							// text-decoder
@@ -182,14 +182,14 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 								let response = results[0].value;
 								switch (response?.statusCode ?? response?.status) {
 									case 200:
-										if (Settings.Types.includes("Translate")) url.query.subtype = "Translate";
-										else if (Settings.Types.includes("External")) url.query.subtype = "External";
+										if (Settings.Types.includes("Translate")) $.lodash_set(url, "query.subtype", "Translate");
+										else if (Settings.Types.includes("External")) $.lodash_set(url, "query.subtype", "External");
 										break;
 									case 401:
 									default:
 										break;
 									case 404:
-										if (Settings.Types.includes("External")) url.query.subtype = "External";
+										if (Settings.Types.includes("External")) $.lodash_set(url, "query.subtype", "External");
 										break;
 								};
 							};
@@ -197,7 +197,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 								let response = results[1].value;
 								body = JSON.parse(response.body);
 								body?.tracks?.forEach?.(track => {
-									//$.log(`🚧 ${$.name}`, `track: ${JSON.stringify(track)}`, "");
+									//$.log(`🚧 ${$.name}, 调试信息`, `track: ${JSON.stringify(track)}`, "");
 									const trackId = track?.id;
 									const trackInfo = {
 										"id": track?.id,
