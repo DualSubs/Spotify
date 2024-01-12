@@ -2,7 +2,7 @@
 README:https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.3(9) request");
+const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.4(1) request");
 const URL = new URLs();
 const DataBase = {
 	"Default":{
@@ -165,13 +165,14 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 					if (PATH.startsWith("color-lyrics/v2/track/")) {
 						let trackId = PATHs?.[3];
 						$.log(`🚧 ${$.name}, 调试信息`, `trackId: ${trackId}`, "");
-						//let _request = JSON.parse(JSON.stringify($request));
-						//_request.url = `https://api.spotify.com/v1/tracks?ids=${trackId}`;
+						let _request = JSON.parse(JSON.stringify($request));
+						_request.url = `https://api.spotify.com/v1/tracks?ids=${trackId}`;
+						delete _request?.headers?.Host;
+						if (_request?.headers?.Accept) _request.headers.Accept = "application/json";
+						if (_request?.headers?.accept) _request.headers.accept = "application/json";
 						//$.log(`🚧 ${$.name}, 调试信息`, `_request: ${JSON.stringify(_request)}`, "");
 						const detectStutus = $.http.get($request);
-						//const detectTrack = $.http.get(_request);
-						//const detectTrack = $httpClient.get(_request);
-						const detectTrack = $.http.get({"url":`https://api.spotify.com/v1/tracks?ids=${trackId}`, "headers": $request.headers});
+						const detectTrack = $.http.get(_request);
 						await Promise.allSettled([detectStutus, detectTrack]).then(results => {
 							/*
 							results.forEach((result,i) => {
