@@ -354,11 +354,12 @@ function setENV(name, platforms, database) {
 		Settings.AutoCC = $persistentStore.read("自动显示翻译字幕") ?? Settings.AutoCC;
 		switch (Settings.AutoCC) {
 			case "是":
-			default:
 				Settings.AutoCC = true;
 				break;
 			case "否":
 				Settings.AutoCC = false;
+				break;
+			default:
 				break;
 		};
 		Settings.ShowOnly = $persistentStore.read("仅输出译文") ?? Settings.ShowOnly;
