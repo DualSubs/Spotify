@@ -2,8 +2,8 @@
 README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.5.0(6) response.beta");
-const URL = new URLs();
+const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.5.0(11) response.beta");
+const URI = new URIs();
 const DataBase = {
 	"Default":{
 		"Settings":{"Switch":true,"Type":"Translate","Types":["Official","Translate"],"Languages":["EN","ZH"],"CacheSize":50}
@@ -308,16 +308,6 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 								}
 							}
 							const Any = new Any$Type();
-							class Error$Type extends MessageType {
-								constructor() {
-									super("Error", [
-										{ no: 1, name: "errorCode", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-										{ no: 2, name: "message", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-										{ no: 3, name: "logId", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
-									]);
-								}
-							}
-							const Error = new Error$Type();
 							/******************  initialization finish  *******************/
 							switch (PATH) {
 								case "bootstrap/v1/bootstrap":
@@ -326,8 +316,8 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									class BootstrapResponse$Type extends MessageType {
 										constructor() {
 											super("BootstrapResponse", [
-												{ no: 2, name: "ucsResponseV0", kind: "message", oneof: "ucsResponse", T: () => UcsResponseWrapperV0 },
-												{ no: 3, name: "trialsFacadeResponseV1", kind: "message", oneof: "ucsResponse", T: () => TrialsFacadeResponseWrapperV1 }
+												{ no: 2, name: "ucsResponseV0", kind: "message", T: () => UcsResponseWrapperV0 },
+												{ no: 3, name: "trialsFacadeResponseV1", kind: "message", T: () => TrialsFacadeResponseWrapperV1 }
 											]);
 										}
 									}
@@ -335,8 +325,8 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									class UcsResponseWrapperV0$Type extends MessageType {
 										constructor() {
 											super("UcsResponseWrapperV0", [
-												{ no: 1, name: "success", kind: "message", oneof: "result", T: () => UcsResponseWrapperSuccess },
-												{ no: 2, name: "error", kind: "message", oneof: "result", T: () => Error }
+												{ no: 1, name: "success", kind: "message", T: () => UcsResponseWrapperSuccess },
+												{ no: 2, name: "error", kind: "message", T: () => Error }
 											]);
 										}
 									}
@@ -352,8 +342,8 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									class UcsResponseWrapper$Type extends MessageType {
 										constructor() {
 											super("UcsResponseWrapper", [
-												{ no: 1, name: "success", kind: "message", oneof: "result", T: () => UcsResponse },
-												{ no: 2, name: "error", kind: "message", oneof: "result", T: () => Error }
+												{ no: 1, name: "success", kind: "message", T: () => UcsResponse },
+												{ no: 2, name: "error", kind: "message", T: () => Error }
 											]);
 										}
 									}
@@ -361,8 +351,8 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									class TrialsFacadeResponseWrapperV1$Type extends MessageType {
 										constructor() {
 											super("TrialsFacadeResponseWrapperV1", [
-												{ no: 1, name: "success", kind: "message", oneof: "result", T: () => TrialsFacadeResponseWrapperSuccess },
-												{ no: 2, name: "error", kind: "message", oneof: "result", T: () => Error }
+												{ no: 1, name: "success", kind: "message", T: () => TrialsFacadeResponseWrapperSuccess },
+												{ no: 2, name: "error", kind: "message", T: () => Error }
 											]);
 										}
 									}
@@ -378,10 +368,10 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									class UcsResponse$Type extends MessageType {
 										constructor() {
 											super("UcsResponse", [
-												{ no: 1, name: "resolveSuccess", kind: "message", oneof: "resolveResult", T: () => ResolveSuccess },
-												{ no: 2, name: "resolveError", kind: "message", oneof: "resolveResult", T: () => Error },
-												{ no: 3, name: "accountAttributesSuccess", kind: "message", oneof: "accountAttributesResult", T: () => AccountAttributesResponse },
-												{ no: 4, name: "accountAttributesError", kind: "message", oneof: "accountAttributesResult", T: () => Error },
+												{ no: 1, name: "resolveSuccess", kind: "message", T: () => ResolveSuccess },
+												{ no: 2, name: "resolveError", kind: "message", T: () => Error },
+												{ no: 3, name: "accountAttributesSuccess", kind: "message", T: () => AccountAttributesResponse },
+												{ no: 4, name: "accountAttributesError", kind: "message", T: () => Error },
 												{ no: 5, name: "fetchTimeMillis", kind: "scalar", T: 3 /*ScalarType.INT64*/ }
 											]);
 										}
@@ -410,9 +400,9 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 											super("AssignedValue", [
 												{ no: 1, name: "propertyId", kind: "message", T: () => PropertyId },
 												{ no: 2, name: "metadata", kind: "message", T: () => Metadata },
-												{ no: 3, name: "boolValue", kind: "message", oneof: "structuredValue", T: () => BoolValue },
-												{ no: 4, name: "intValue", kind: "message", oneof: "structuredValue", T: () => IntValue },
-												{ no: 5, name: "enumValue", kind: "message", oneof: "structuredValue", T: () => EnumValue }
+												{ no: 3, name: "boolValue", kind: "message", T: () => BoolValue },
+												{ no: 4, name: "intValue", kind: "message", T: () => IntValue },
+												{ no: 5, name: "enumValue", kind: "message", T: () => EnumValue }
 											]);
 										}
 									}
@@ -471,9 +461,9 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									class AccountAttribute$Type extends MessageType {
 										constructor() {
 											super("AccountAttribute", [
-												{ no: 2, name: "boolValue", kind: "scalar", oneof: "structuredValue", T: 8 /*ScalarType.BOOL*/ },
-												{ no: 3, name: "longValue", kind: "scalar", oneof: "structuredValue", T: 3 /*ScalarType.INT64*/ },
-												{ no: 4, name: "stringValue", kind: "scalar", oneof: "structuredValue", T: 9 /*ScalarType.STRING*/ }
+												{ no: 2, name: "boolValue", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
+												{ no: 3, name: "longValue", kind: "scalar", opt: true, T: 3 /*ScalarType.INT64*/ },
+												{ no: 4, name: "stringValue", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
 											]);
 										}
 									}
@@ -487,7 +477,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 											]);
 										}
 									}
-									const Error = new Error$Type();									
+									const Error = new Error$Type();
 									/******************  initialization finish  *******************/
 									switch (PATH) {
 										case "bootstrap/v1/bootstrap": {
@@ -505,32 +495,39 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 													$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
 												});
 											};
-											let accountAttributes = body?.ucsResponse?.ucsResponseV0?.result?.success?.customization?.result?.success?.accountAttributesResult?.accountAttributesSuccess?.accountAttributes;
+											let accountAttributes = body?.ucsResponseV0?.success?.customization?.success?.accountAttributesSuccess?.accountAttributes;
 											if (accountAttributes) {
-												//accountAttributes['has-audiobooks-subscription'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['player-license'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "premium" } }; // "mft"
-												accountAttributes['country_code'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": Settings.Country } };
-												//accountAttributes['mobile'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['financial-product'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "pr:premium,tc:0" } }; // "pr:free,tc:0"
-												//accountAttributes['premium-mini'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['streaming-rules'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "" } }; // "shuffle-mode"
-												//accountAttributes['license-acceptance-grace-days'] = { "structuredValue": { "oneofKind": "longValue", "longValue": "30" } }; // "0"
-												//accountAttributes['name'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "Spotify Premium" } }; // "Spotify Free"
-												//accountAttributes['mobile-login'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['on-demand'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['ads'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": false } }; // true
-												//accountAttributes['catalogue'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "premium" } }; // "free"
-												//accountAttributes['high-bitrate'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['libspotify'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['nft-disabled'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "1" } }; // "0"
-												//accountAttributes['shuffle'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": false } }; // true
-												//accountAttributes['audio-quality'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "1" } }; // "0"
-												//accountAttributes['offline'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['hifi-eligible'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['pause-after'] = { "structuredValue": { "oneofKind": "longValue", "longValue": "0" } }; // "18000"
-												//accountAttributes['addon-hifi'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['can_use_superbird'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['type'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "premium" } }; // "free"
+												//accountAttributes["has-audiobooks-subscription"] = { "boolValue": true }; // false
+												//accountAttributes["player-license"] = { "stringValue": "premium" }; // "mft"
+												accountAttributes["country_code"] = { "stringValue": Settings.Country };
+												//accountAttributes["mobile"] = { "boolValue": true }; // false
+												//accountAttributes["financial-product"] = { "stringValue": "pr:premium,tc:0" }; // "pr:free,tc:0"
+												//accountAttributes["premium-mini"] = { "boolValue": true }; // false
+												//accountAttributes["streaming-rules"] = { "stringValue": "" }; // "shuffle-mode"
+												//accountAttributes["license-acceptance-grace-days"] = { "longValue": "30" }; // "0"
+												//accountAttributes["name"] = { "stringValue": "Spotify Premium" }; // "Spotify Free"
+												//accountAttributes["mobile-login"] = { "boolValue": true }; // false
+												//accountAttributes["hifi-optin-intent"] = { "boolValue": true }; // false
+												//accountAttributes["pick-and-shuffle"] = { "boolValue": false }; // true
+												//accountAttributes["on-demand"] = { "boolValue": true }; // false
+												//accountAttributes["ads"] = { "boolValue": false }; // true
+												//accountAttributes["catalogue"] = { "stringValue": "premium" }; // "free"
+												//accountAttributes["high-bitrate"] = { "boolValue": true }; // false
+												//accountAttributes["libspotify"] = { "boolValue": true }; // false
+												//accountAttributes["nft-disabled"] = { "stringValue": "1" }; // "0"
+												//accountAttributes["shuffle"] = { "boolValue": false }; // true
+												//accountAttributes["audio-quality"] = { "stringValue": "1" }; // "0"
+												//accountAttributes["offline"] = { "boolValue": true }; // false
+												//accountAttributes["hifi-eligible"] = { "boolValue": true }; // false
+												//accountAttributes["pause-after"] = { "longValue": "0" }; // "18000"
+												//accountAttributes["addon-hifi"] = { "boolValue": true }; // false
+												//accountAttributes["can_use_superbird"] = { "boolValue": true }; // false
+												//accountAttributes["type"] = { "stringValue": "premium" }; // "free"
+												//accountAttributes["loudness-levels"] = { "stringValue" : "1:-9.0,0.0,3.0:-2.0" };
+												//accountAttributes["payments-initial-campaign"] = { "stringValue" : "web" };
+												//accountAttributes["shuffle-eligible"] = { "boolValue" : true };
+												//accountAttributes["unrestricted"] = { "boolValue" : true };
+												//accountAttributes["com.spotify.madprops.use.ucs.product.state"] = { "boolValue" : true };
 											};
 											//$.log(`🚧 ${$.name}, 调试信息`, `body: ${JSON.stringify(body)}`, "");
 											rawBody = BootstrapResponse.toBinary(body);
@@ -551,32 +548,39 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 													$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
 												});
 											};
-											let accountAttributes = body?.result?.success?.accountAttributesResult?.accountAttributesSuccess?.accountAttributes;
+											let accountAttributes = body?.success?.accountAttributesSuccess?.accountAttributes;
 											if (accountAttributes) {
-												//accountAttributes['has-audiobooks-subscription'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['player-license'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "premium" } }; // "mft"
-												accountAttributes['country_code'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": Settings.Country } };
-												//accountAttributes['mobile'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['financial-product'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "pr:premium,tc:0" } }; // "pr:free,tc:0"
-												//accountAttributes['premium-mini'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['streaming-rules'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "" } }; // "shuffle-mode"
-												//accountAttributes['license-acceptance-grace-days'] = { "structuredValue": { "oneofKind": "longValue", "longValue": "30" } }; // "0"
-												//accountAttributes['name'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "Spotify Premium" } }; // "Spotify Free"
-												//accountAttributes['mobile-login'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['on-demand'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['ads'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": false } }; // true
-												//accountAttributes['catalogue'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "premium" } }; // "free"
-												//accountAttributes['high-bitrate'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['libspotify'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['nft-disabled'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "1" } }; // "0"
-												//accountAttributes['shuffle'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": false } }; // true
-												//accountAttributes['audio-quality'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "1" } }; // "0"
-												//accountAttributes['offline'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['hifi-eligible'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['pause-after'] = { "structuredValue": { "oneofKind": "longValue", "longValue": "0" } }; // "18000"
-												//accountAttributes['addon-hifi'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['can_use_superbird'] = { "structuredValue": { "oneofKind": "boolValue", "boolValue": true } }; // false
-												//accountAttributes['type'] = { "structuredValue": { "oneofKind": "stringValue", "stringValue": "premium" } }; // "free"
+												//accountAttributes["has-audiobooks-subscription"] = { "boolValue": true }; // false
+												//accountAttributes["player-license"] = { "stringValue": "premium" }; // "mft"
+												accountAttributes["country_code"] = { "stringValue": Settings.Country };
+												//accountAttributes["mobile"] = { "boolValue": true }; // false
+												//accountAttributes["financial-product"] = { "stringValue": "pr:premium,tc:0" }; // "pr:free,tc:0"
+												//accountAttributes["premium-mini"] = { "boolValue": true }; // false
+												//accountAttributes["streaming-rules"] = { "stringValue": "" }; // "shuffle-mode"
+												//accountAttributes["license-acceptance-grace-days"] = { "longValue": "30" }; // "0"
+												//accountAttributes["name"] = { "stringValue": "Spotify Premium" }; // "Spotify Free"
+												//accountAttributes["mobile-login"] = { "boolValue": true }; // false
+												//accountAttributes["hifi-optin-intent"] = { "boolValue": true }; // false
+												//accountAttributes["pick-and-shuffle"] = { "boolValue": false }; // true
+												//accountAttributes["on-demand"] = { "boolValue": true }; // false
+												//accountAttributes["ads"] = { "boolValue": false }; // true
+												//accountAttributes["catalogue"] = { "stringValue": "premium" }; // "free"
+												//accountAttributes["high-bitrate"] = { "boolValue": true }; // false
+												//accountAttributes["libspotify"] = { "boolValue": true }; // false
+												//accountAttributes["nft-disabled"] = { "stringValue": "1" }; // "0"
+												//accountAttributes["shuffle"] = { "boolValue": false }; // true
+												//accountAttributes["audio-quality"] = { "stringValue": "1" }; // "0"
+												//accountAttributes["offline"] = { "boolValue": true }; // false
+												//accountAttributes["hifi-eligible"] = { "boolValue": true }; // false
+												//accountAttributes["pause-after"] = { "longValue": "0" }; // "18000"
+												//accountAttributes["addon-hifi"] = { "boolValue": true }; // false
+												//accountAttributes["can_use_superbird"] = { "boolValue": true }; // false
+												//accountAttributes["type"] = { "stringValue": "premium" }; // "free"
+												//accountAttributes["loudness-levels"] = { "stringValue" : "1:-9.0,0.0,3.0:-2.0" };
+												//accountAttributes["payments-initial-campaign"] = { "stringValue" : "web" };
+												//accountAttributes["shuffle-eligible"] = { "boolValue" : true };
+												//accountAttributes["unrestricted"] = { "boolValue" : true };
+												//accountAttributes["com.spotify.madprops.use.ucs.product.state"] = { "boolValue" : true };
 											};
 											$.log(`🚧 ${$.name}, 调试信息`, `body: ${JSON.stringify(body)}`, "");
 											rawBody = UcsResponseWrapper.toBinary(body);
