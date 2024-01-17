@@ -4,17 +4,13 @@ option optimize_for = CODE_SIZE;
 
 // https://spclient.wg.spotify.com/bootstrap/v1/bootstrap
 message BootstrapResponse {
-	oneof ucsResponse {
-		UcsResponseWrapperV0 ucsResponseV0 = 2;
-		TrialsFacadeResponseWrapperV1 trialsFacadeResponseV1 = 3;
-	}
+	UcsResponseWrapperV0 ucsResponseV0 = 2;
+	TrialsFacadeResponseWrapperV1 trialsFacadeResponseV1 = 3;
 };
 
 message UcsResponseWrapperV0 {
-	oneof result {
-		UcsResponseWrapperSuccess success = 1;
-		Error error = 2;
-	}
+	UcsResponseWrapperSuccess success = 1;
+	Error error = 2;
 }
 
 message UcsResponseWrapperSuccess {
@@ -22,31 +18,23 @@ message UcsResponseWrapperSuccess {
 }
 
 message UcsResponseWrapper {
-	oneof result {
-		UcsResponse success = 1;
-		Error error = 2;
-	}
+	UcsResponse success = 1;
+	Error error = 2;
 }
 
 message TrialsFacadeResponseWrapperV1 {
-	oneof result {
-		TrialsFacadeResponseWrapperSuccess success = 1;
-		Error error = 2;
-	}
+	TrialsFacadeResponseWrapperSuccess success = 1;
+	Error error = 2;
 }
 
 message TrialsFacadeResponseWrapperSuccess {
 	int32 filed1 = 1;
 }
 message UcsResponse {
-	oneof resolveResult {
-		ResolveSuccess resolveSuccess = 1;
-		Error resolveError = 2;
-	}
-	oneof accountAttributesResult {
-		AccountAttributesResponse accountAttributesSuccess = 3;
-		Error accountAttributesError = 4;
-	}
+	ResolveSuccess resolveSuccess = 1;
+	Error resolveError = 2;
+	AccountAttributesResponse accountAttributesSuccess = 3;
+	Error accountAttributesError = 4;
 	int64 fetchTimeMillis = 5;
 }
 
@@ -63,11 +51,9 @@ message Configuration {
 message AssignedValue {
 	PropertyId propertyId = 1;
 	Metadata metadata = 2;
-	oneof structuredValue {
-		BoolValue boolValue = 3;
-		IntValue intValue = 4;
-		EnumValue enumValue = 5;
-	}
+	BoolValue boolValue = 3;
+	IntValue intValue = 4;
+	EnumValue enumValue = 5;
 }
 
 message PropertyId {
@@ -98,11 +84,9 @@ message AccountAttributesResponse {
 }
 
 message AccountAttribute {
-	oneof structuredValue {
-		bool boolValue = 2;
-		int64 longValue = 3;
-		string stringValue = 4;
-	}
+	optional bool boolValue = 2;
+	optional int64 longValue = 3;
+	optional string stringValue = 4;
 }
 
 message Error {
