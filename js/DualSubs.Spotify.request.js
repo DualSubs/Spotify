@@ -1,9 +1,9 @@
 /*
-README:https://github.com/DualSubs/Spotify
+README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.4(2) request");
-const URL = new URLs();
+const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.5(3) request");
+const URI = new URIs();
 const DataBase = {
 	"Default":{
 		"Settings":{"Switch":true,"Type":"Translate","Types":["Official","Translate"],"Languages":["EN","ZH"],"CacheSize":50}
@@ -62,27 +62,27 @@ let $response = undefined;
 
 /***************** Processing *****************/
 // 解构URL
-let url = URL.parse($request?.url);
-$.log(`⚠ ${$.name}`, `URL: ${JSON.stringify(url)}`, "");
+const URL = URI.parse($request.url);
+$.log(`⚠ ${$.name}`, `URL: ${JSON.stringify(URL)}`, "");
 // 获取连接参数
-const METHOD = $request?.method, HOST = url?.host, PATH = url?.path, PATHs = url?.paths;
+const METHOD = $request.method, HOST = URL.host, PATH = URL.path, PATHs = URL.paths;
 $.log(`⚠ ${$.name}`, `METHOD: ${METHOD}`, "");
 // 获取平台
 const PLATFORM = detectPlatform(HOST);
 $.log(`⚠ ${$.name}, PLATFORM: ${PLATFORM}`, "");
 // 解析格式
-let FORMAT = ($request?.headers?.["Content-Type"] ?? $request?.headers?.["content-type"])?.split(";")?.[0];
-if (FORMAT === "application/octet-stream" || FORMAT === "text/plain") FORMAT = detectFormat(url, $response?.body);
+let FORMAT = ($request.headers?.["Content-Type"] ?? $request.headers?.["content-type"])?.split(";")?.[0];
+if (FORMAT === "application/octet-stream" || FORMAT === "text/plain") FORMAT = detectFormat(URL, $request.body);
 $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 (async () => {
 	// 读取设置
-	const { Settings, Caches, Configs } = setENV("DualSubs", [(["YouTube", "Netflix", "BiliBili", "Spotify"].includes(PLATFORM)) ? PLATFORM : "Universal", url?.query?.subtype], DataBase);
+	const { Settings, Caches, Configs } = setENV("DualSubs", [(["YouTube", "Netflix", "BiliBili", "Spotify"].includes(PLATFORM)) ? PLATFORM : "Universal", URL.query?.subtype], DataBase);
 	$.log(`⚠ ${$.name}`, `Settings.Switch: ${Settings?.Switch}`, "");
 	switch (Settings.Switch) {
 		case true:
 		default:
 			// 获取字幕类型与语言
-			const Type = url?.query?.subtype ?? Settings.Type, Languages = [url?.query?.lang?.split?.(/[-_]/)?.[0]?.toUpperCase?.() ?? Settings.Languages[0], (url?.query?.tlang?.split?.(/[-_]/)?.[0] ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
+			const Type = URL.query?.subtype ?? Settings.Type, Languages = [URL.query?.lang?.split?.(/[-_]/)?.[0]?.toUpperCase?.() ?? Settings.Languages[0], (URL.query?.tlang?.split?.(/[-_]/)?.[0] ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
 			$.log(`⚠ ${$.name}, Type: ${Type}, Languages: ${Languages}`, "");
 			// 创建空数据
 			let body = {};
@@ -105,29 +105,18 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 						case "application/x-mpegurl":
 						case "application/vnd.apple.mpegurl":
 						case "audio/mpegurl":
-							//body = M3U8.parse($response.body);
-							//$.log(`🚧 ${$.name}`, "M3U8.parse($response.body)", JSON.stringify(body), "");
-							//$response.body = M3U8.stringify(body);
 							break;
 						case "text/xml":
 						case "text/plist":
 						case "application/xml":
 						case "application/plist":
 						case "application/x-plist":
-							//body = XML.parse($response.body);
-							//$.log(body);
-							//$response.body = XML.stringify(body);
 							break;
 						case "text/vtt":
 						case "application/vtt":
-							//body = VTT.parse($response.body);
-							//$.log(body);
-							//$response.body = VTT.stringify(body);
 							break;
 						case "text/json":
 						case "application/json":
-							//body = JSON.parse($request?.body ?? "{}");
-							//$request.body = JSON.stringify(body);
 							break;
 						case "application/protobuf":
 						case "application/x-protobuf":
@@ -174,30 +163,24 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 						const detectStutus = $.http.get($request);
 						const detectTrack = $.http.get(_request);
 						await Promise.allSettled([detectStutus, detectTrack]).then(results => {
-							/*
-							results.forEach((result, i) => {
-								$.log(`🚧 ${$.name}, 调试信息`, `result[${i}]: ${JSON.stringify(result)}`, "");
-							});
-							*/
 							switch (results[0].status) {
 								case "fulfilled":
 									let response = results[0].value;
 									switch (response?.statusCode ?? response?.status) {
 										case 200:
-											if (Settings.Types.includes("Translate")) $.lodash_set(url, "query.subtype", "Translate");
-											else if (Settings.Types.includes("External")) $.lodash_set(url, "query.subtype", "External");
+											if (Settings.Types.includes("Translate")) $.lodash_set(URL, "query.subtype", "Translate");
+											else if (Settings.Types.includes("External")) $.lodash_set(URL, "query.subtype", "External");
 											break;
 										case 401:
 										default:
 											break;
 										case 404:
-											if (Settings.Types.includes("External")) $.lodash_set(url, "query.subtype", "External");
+											if (Settings.Types.includes("External")) $.lodash_set(URL, "query.subtype", "External");
 											break;
 									};
 									break;
 								case "rejected":
-									$.log(`🚧 ${$.name}, 调试信息`, `detectStutus.reason: ${JSON.stringify(results[0].reason)}`, "");
-									if (Settings.Types.includes("External")) $.lodash_set(url, "query.subtype", "External");
+									if (Settings.Types.includes("External")) $.lodash_set(URL, "query.subtype", "External");
 									break;
 							};
 							switch (results[1].status) {
@@ -205,7 +188,6 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									let response = results[1].value;
 									body = JSON.parse(response.body);
 									body?.tracks?.forEach?.(track => {
-										//$.log(`🚧 ${$.name}, 调试信息`, `track: ${JSON.stringify(track)}`, "");
 										const trackId = track?.id;
 										const trackInfo = {
 											"id": track?.id,
@@ -235,8 +217,8 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 				case "TRACE":
 					break;
 			};
-			if ($request?.headers?.Host) $request.headers.Host = url.host;
-			$request.url = URL.stringify(url);
+			if ($request.headers?.Host) $request.headers.Host = URL.host;
+			$request.url = URI.stringify(URL);
 			$.log(`🚧 ${$.name}, 调试信息`, `$request.url: ${$request.url}`, "");
 			break;
 		case false:
@@ -247,7 +229,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 	.finally(() => {
 		switch ($response) {
 			default: { // 有构造回复数据，返回构造的回复数据
-				//const FORMAT = ($response?.headers?.["Content-Type"] ?? $response?.headers?.["content-type"])?.split(";")?.[0];
+				const FORMAT = ($response?.headers?.["Content-Type"] ?? $response?.headers?.["content-type"])?.split(";")?.[0];
 				$.log(`🎉 ${$.name}, finally`, `echo $response`, `FORMAT: ${FORMAT}`, "");
 				//$.log(`🚧 ${$.name}, finally`, `echo $response: ${JSON.stringify($response)}`, "");
 				if ($response?.headers?.["Content-Encoding"]) $response.headers["Content-Encoding"] = "identity";
@@ -388,11 +370,11 @@ function setENV(name, platforms, database) {
 	$.log(`✅ ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
 	/***************** Caches *****************/
 	//$.log(`✅ ${$.name}, Set Environment Variables`, `Caches: ${typeof Caches}`, `Caches内容: ${JSON.stringify(Caches)}`, "");
-	if (typeof Caches.Playlists !== "object" || Array.isArray(Caches.Playlists)) Caches.Playlists = {}; // 创建Playlists缓存
+	if (typeof Caches?.Playlists !== "object" || Array.isArray(Caches?.Playlists)) Caches.Playlists = {}; // 创建Playlists缓存
 	Caches.Playlists.Master = new Map(JSON.parse(Caches?.Playlists?.Master || "[]")); // Strings转Array转Map
 	Caches.Playlists.Subtitle = new Map(JSON.parse(Caches?.Playlists?.Subtitle || "[]")); // Strings转Array转Map
 	if (typeof Caches?.Subtitles !== "object") Caches.Subtitles = new Map(JSON.parse(Caches?.Subtitles || "[]")); // Strings转Array转Map
-	if (typeof Caches.Metadatas !== "object" || Array.isArray(Caches.Metadatas)) Caches.Metadatas = {}; // 创建Playlists缓存
+	if (typeof Caches?.Metadatas !== "object" || Array.isArray(Caches?.Metadatas)) Caches.Metadatas = {}; // 创建Playlists缓存
 	if (typeof Caches?.Metadatas?.Tracks !== "object") Caches.Metadatas.Tracks = new Map(JSON.parse(Caches?.Metadatas?.Tracks || "[]")); // Strings转Array转Map
 	/***************** Configs *****************/
 	return { Settings, Caches, Configs };
@@ -407,8 +389,8 @@ function setENV(name, platforms, database) {
  */
 function detectFormat(url, body) {
 	let format = undefined;
-	$.log(`☑️ ${$.name}`, `detectFormat, format: ${url?.format ?? url?.query?.fmt ?? url?.query?.format}`, "");
-	switch (url?.format ?? url?.query?.fmt ?? url?.query?.format) {
+	$.log(`☑️ ${$.name}`, `detectFormat, format: ${url.format ?? url.query?.fmt ?? url.query?.format}`, "");
+	switch (url.format ?? url.query?.fmt ?? url.query?.format) {
 		case "txt":
 			format = "text/plain";
 			break;
@@ -507,5 +489,5 @@ function Env(t,e){class s{constructor(t){this.env=t}send(t,e="GET"){t="string"==
  */
 function getENV(key,names,database){let BoxJs=$.getjson(key,database),Argument={};if("undefined"!=typeof $argument&&Boolean($argument)){let arg=Object.fromEntries($argument.split("&").map((item=>item.split("="))));for(let item in arg)setPath(Argument,item,arg[item])}const Store={Settings:database?.Default?.Settings||{},Configs:database?.Default?.Configs||{},Caches:{}};Array.isArray(names)||(names=[names]);for(let name of names)Store.Settings={...Store.Settings,...database?.[name]?.Settings,...BoxJs?.[name]?.Settings,...Argument},Store.Configs={...Store.Configs,...database?.[name]?.Configs},BoxJs?.[name]?.Caches&&"string"==typeof BoxJs?.[name]?.Caches&&(BoxJs[name].Caches=JSON.parse(BoxJs?.[name]?.Caches)),Store.Caches={...Store.Caches,...BoxJs?.[name]?.Caches};return function traverseObject(o,c){for(var t in o){var n=o[t];o[t]="object"==typeof n&&null!==n?traverseObject(n,c):c(t,n)}return o}(Store.Settings,((key,value)=>("true"===value||"false"===value?value=JSON.parse(value):"string"==typeof value&&(value?.includes(",")?value=value.split(","):value&&!isNaN(value)&&(value=parseInt(value,10))),value))),Store;function setPath(object,path,value){path.split(".").reduce(((o,p,i)=>o[p]=path.split(".").length===++i?value:o[p]||{}),object)}}
 
-// https://github.com/VirgilClyne/GetSomeFries/blob/main/function/URL/URLs.embedded.min.js
-function URLs(t){return new class{constructor(t=[]){this.name="URL v1.2.5",this.opts=t,this.json={scheme:"",host:"",path:"",query:{}}}parse(t){let s=t.match(/(?:(?<scheme>.+):\/\/(?<host>[^/]+))?\/?(?<path>[^?]+)?\??(?<query>[^?]+)?/)?.groups??null;if(s?.path?s.paths=s.path.split("/"):s.path="",s?.paths){const t=s.paths[s.paths.length-1];if(t?.includes(".")){const e=t.split(".");s.format=e[e.length-1]}}return s?.query&&(s.query=Object.fromEntries(s.query.split("&").map((t=>t.split("="))))),s}stringify(t=this.json){let s="";return t?.scheme&&t?.host&&(s+=t.scheme+"://"+t.host),t?.path&&(s+=t?.host?"/"+t.path:t.path),t?.query&&(s+="?"+Object.entries(t.query).map((t=>t.join("="))).join("&")),s}}(t)}
+// https://github.com/VirgilClyne/GetSomeFries/blob/main/function/URI/URIs.embedded.min.js
+function URIs(t){return new class{constructor(t=[]){this.name="URI v1.2.6",this.opts=t,this.json={scheme:"",host:"",path:"",query:{}}}parse(t){let s=t.match(/(?:(?<scheme>.+):\/\/(?<host>[^/]+))?\/?(?<path>[^?]+)?\??(?<query>[^?]+)?/)?.groups??null;if(s?.path?s.paths=s.path.split("/"):s.path="",s?.paths){const t=s.paths[s.paths.length-1];if(t?.includes(".")){const e=t.split(".");s.format=e[e.length-1]}}return s?.query&&(s.query=Object.fromEntries(s.query.split("&").map((t=>t.split("="))))),s}stringify(t=this.json){let s="";return t?.scheme&&t?.host&&(s+=t.scheme+"://"+t.host),t?.path&&(s+=t?.host?"/"+t.path:t.path),t?.query&&(s+="?"+Object.entries(t.query).map((t=>t.join("="))).join("&")),s}}(t)}
