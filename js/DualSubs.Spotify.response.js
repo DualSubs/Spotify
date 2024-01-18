@@ -2,8 +2,8 @@
 README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.4.0(2) response");
-const URL = new URLs();
+const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.5.0(11) response");
+const URI = new URIs();
 const DataBase = {
 	"Default":{
 		"Settings":{"Switch":true,"Type":"Translate","Types":["Official","Translate"],"Languages":["EN","ZH"],"CacheSize":50}
@@ -59,17 +59,17 @@ const DataBase = {
 
 /***************** Processing *****************/
 // 解构URL
-let url = URL.parse($request?.url);
-$.log(`⚠ ${$.name}`, `URL: ${JSON.stringify(url)}`, "");
+const URL = URI.parse($request.url);
+$.log(`⚠ ${$.name}`, `URL: ${JSON.stringify(URL)}`, "");
 // 获取连接参数
-const METHOD = $request?.method, HOST = url?.host, PATH = url?.path, PATHs = url?.paths;
+const METHOD = $request.method, HOST = URL.host, PATH = URL.path, PATHs = URL.paths;
 $.log(`⚠ ${$.name}`, `METHOD: ${METHOD}`, "");
 // 获取平台
 const PLATFORM = detectPlatform(HOST);
 $.log(`⚠ ${$.name}, PLATFORM: ${PLATFORM}`, "");
 // 解析格式
-let FORMAT = ($response?.headers?.["Content-Type"] ?? $response?.headers?.["content-type"])?.split(";")?.[0];
-if (FORMAT === "application/octet-stream" || FORMAT === "text/plain") FORMAT = detectFormat(url, $response?.body);
+let FORMAT = ($response.headers?.["Content-Type"] ?? $response.headers?.["content-type"])?.split(";")?.[0];
+if (FORMAT === "application/octet-stream" || FORMAT === "text/plain") FORMAT = detectFormat(URL, $response?.body);
 $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 (async () => {
 	// 读取设置
@@ -79,7 +79,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 		case true:
 		default:
 			// 获取字幕类型与语言
-			const Type = url?.query?.subtype ?? Settings.Type, Languages = [url?.query?.lang?.split?.(/[-_]/)?.[0]?.toUpperCase?.() ?? Settings.Languages[0], (url?.query?.tlang?.split?.(/[-_]/)?.[0] ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
+			const Type = URL.query?.subtype ?? Settings.Type, Languages = [URL.query?.lang?.split?.(/[-_]/)?.[0]?.toUpperCase?.() ?? Settings.Languages[0], (URL.query?.tlang?.split?.(/[-_]/)?.[0] ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
 			$.log(`⚠ ${$.name}, Type: ${Type}, Languages: ${Languages}`, "");
 			// 创建空数据
 			let body = {};
@@ -113,6 +113,10 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 					body = JSON.parse($response?.body ?? "{}");
 					$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
 					switch (PATH) {
+						case "melody/v1/product_state":
+							body.country = Settings.Country;
+							body["selected-language"] = Settings.Languages[1].toLowerCase();
+							break;
 						case "v1/tracks":
 							body?.tracks?.forEach?.(track => {
 								$.log(`🚧 ${$.name}`, `track: ${JSON.stringify(track)}`, "");
@@ -126,13 +130,13 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 								Caches.Metadatas.Tracks.set(trackId, trackInfo);
 							});
 							// 格式化缓存
-							$.log(`🚧 ${$.name}`, `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
+							$.log(`🚧 ${$.name}, 调试信息`, `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
 							Caches.Metadatas.Tracks = setCache(Caches.Metadatas.Tracks, Settings.CacheSize);
 							// 写入持久化储存
 							$.setjson(Caches.Metadatas.Tracks, `@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`);
 							break;
 					};
-					//$response.body = JSON.stringify(PlayList);
+					$response.body = JSON.stringify(body);
 					break;
 				};
 				case "application/protobuf":
@@ -157,7 +161,6 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 						case "application/x-protobuf":
 						case "application/vnd.google.protobuf":
 							/******************  initialization start  *******************/
-							// @generated message type with reflection information, may provide speed optimized methods
 							class Any$Type extends MessageType {
 								constructor() {
 									super("google.protobuf.Any", [
@@ -297,8 +300,198 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 								}
 							}
 							const Any = new Any$Type();
-							/******************  initialization start  *******************/
+							/******************  initialization finish  *******************/
 							switch (PATH) {
+								case "bootstrap/v1/bootstrap":
+								case "user-customization-service/v1/customize":
+									/******************  initialization start  *******************/
+									class BootstrapResponse$Type extends MessageType {
+										constructor() {
+											super("BootstrapResponse", [
+												{ no: 2, name: "ucsResponseV0", kind: "message", T: () => UcsResponseWrapperV0 },
+												{ no: 3, name: "trialsFacadeResponseV1", kind: "message", T: () => TrialsFacadeResponseWrapperV1 }
+											]);
+										}
+									}
+									const BootstrapResponse = new BootstrapResponse$Type();
+									class UcsResponseWrapperV0$Type extends MessageType {
+										constructor() {
+											super("UcsResponseWrapperV0", [
+												{ no: 1, name: "success", kind: "message", T: () => UcsResponseWrapperSuccess },
+												{ no: 2, name: "error", kind: "message", T: () => Error }
+											]);
+										}
+									}
+									const UcsResponseWrapperV0 = new UcsResponseWrapperV0$Type();
+									class UcsResponseWrapperSuccess$Type extends MessageType {
+										constructor() {
+											super("UcsResponseWrapperSuccess", [
+												{ no: 1, name: "customization", kind: "message", T: () => UcsResponseWrapper }
+											]);
+										}
+									}
+									const UcsResponseWrapperSuccess = new UcsResponseWrapperSuccess$Type();
+									class UcsResponseWrapper$Type extends MessageType {
+										constructor() {
+											super("UcsResponseWrapper", [
+												{ no: 1, name: "success", kind: "message", T: () => UcsResponse },
+												{ no: 2, name: "error", kind: "message", T: () => Error }
+											]);
+										}
+									}
+									const UcsResponseWrapper = new UcsResponseWrapper$Type();
+									class TrialsFacadeResponseWrapperV1$Type extends MessageType {
+										constructor() {
+											super("TrialsFacadeResponseWrapperV1", [
+												{ no: 1, name: "success", kind: "message", T: () => TrialsFacadeResponseWrapperSuccess },
+												{ no: 2, name: "error", kind: "message", T: () => Error }
+											]);
+										}
+									}
+									const TrialsFacadeResponseWrapperV1 = new TrialsFacadeResponseWrapperV1$Type();
+									class TrialsFacadeResponseWrapperSuccess$Type extends MessageType {
+										constructor() {
+											super("TrialsFacadeResponseWrapperSuccess", [
+												{ no: 1, name: "filed1", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+											]);
+										}
+									}
+									const TrialsFacadeResponseWrapperSuccess = new TrialsFacadeResponseWrapperSuccess$Type();
+									class UcsResponse$Type extends MessageType {
+										constructor() {
+											super("UcsResponse", [
+												{ no: 1, name: "resolveSuccess", kind: "message", T: () => ResolveSuccess },
+												{ no: 2, name: "resolveError", kind: "message", T: () => Error },
+												{ no: 3, name: "accountAttributesSuccess", kind: "message", T: () => AccountAttributesResponse },
+												{ no: 4, name: "accountAttributesError", kind: "message", T: () => Error },
+												{ no: 5, name: "fetchTimeMillis", kind: "scalar", T: 3 /*ScalarType.INT64*/ }
+											]);
+										}
+									}
+									const UcsResponse = new UcsResponse$Type();
+									class ResolveSuccess$Type extends MessageType {
+										constructor() {
+											super("ResolveSuccess", [
+												{ no: 1, name: "configuration", kind: "message", T: () => Configuration }
+											]);
+										}
+									}
+									const ResolveSuccess = new ResolveSuccess$Type();
+									class Configuration$Type extends MessageType {
+										constructor() {
+											super("Configuration", [
+												{ no: 1, name: "configurationAssignmentId", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+												{ no: 2, name: "fetchTimeMillis", kind: "scalar", T: 3 /*ScalarType.INT64*/ },
+												{ no: 3, name: "assignedValues", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => AssignedValue }
+											]);
+										}
+									}
+									const Configuration = new Configuration$Type();
+									class AssignedValue$Type extends MessageType {
+										constructor() {
+											super("AssignedValue", [
+												{ no: 1, name: "propertyId", kind: "message", T: () => PropertyId },
+												{ no: 2, name: "metadata", kind: "message", T: () => Metadata },
+												{ no: 3, name: "boolValue", kind: "message", T: () => BoolValue },
+												{ no: 4, name: "intValue", kind: "message", T: () => IntValue },
+												{ no: 5, name: "enumValue", kind: "message", T: () => EnumValue }
+											]);
+										}
+									}
+									const AssignedValue = new AssignedValue$Type();
+									class PropertyId$Type extends MessageType {
+										constructor() {
+											super("PropertyId", [
+												{ no: 1, name: "scope", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+												{ no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+											]);
+										}
+									}
+									const PropertyId = new PropertyId$Type();
+									class Metadata$Type extends MessageType {
+										constructor() {
+											super("Metadata", [
+												{ no: 1, name: "policyId", kind: "scalar", T: 3 /*ScalarType.INT64*/ },
+												{ no: 2, name: "externalRealm", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+												{ no: 3, name: "externalRealmId", kind: "scalar", T: 3 /*ScalarType.INT64*/ }
+											]);
+										}
+									}
+									const Metadata = new Metadata$Type();
+									class BoolValue$Type extends MessageType {
+										constructor() {
+											super("BoolValue", [
+												{ no: 1, name: "value", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
+											]);
+										}
+									}
+									const BoolValue = new BoolValue$Type();
+									class EnumValue$Type extends MessageType {
+										constructor() {
+											super("EnumValue", [
+												{ no: 1, name: "value", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+											]);
+										}
+									}
+									const EnumValue = new EnumValue$Type();
+									class IntValue$Type extends MessageType {
+										constructor() {
+											super("IntValue", [
+												{ no: 1, name: "value", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+											]);
+										}
+									}
+									const IntValue = new IntValue$Type();
+									class AccountAttributesResponse$Type extends MessageType {
+										constructor() {
+											super("AccountAttributesResponse", [
+												{ no: 1, name: "accountAttributes", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "message", T: () => AccountAttribute } }
+											]);
+										}
+									}
+									const AccountAttributesResponse = new AccountAttributesResponse$Type();
+									class AccountAttribute$Type extends MessageType {
+										constructor() {
+											super("AccountAttribute", [
+												{ no: 2, name: "boolValue", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
+												{ no: 3, name: "longValue", kind: "scalar", opt: true, T: 3 /*ScalarType.INT64*/ },
+												{ no: 4, name: "stringValue", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+											]);
+										}
+									}
+									const AccountAttribute = new AccountAttribute$Type();
+									class Error$Type extends MessageType {
+										constructor() {
+											super("Error", [
+												{ no: 1, name: "errorCode", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+												{ no: 2, name: "message", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+												{ no: 3, name: "logId", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+											]);
+										}
+									}
+									const Error = new Error$Type();
+							/******************  initialization finish  *******************/
+									switch (PATH) {
+										case "bootstrap/v1/bootstrap": {
+											body = BootstrapResponse.fromBinary(rawBody);
+											let accountAttributes = body?.ucsResponseV0?.success?.customization?.success?.accountAttributesSuccess?.accountAttributes;
+											if (accountAttributes) {
+												accountAttributes["country_code"] = { "stringValue": Settings.Country };
+											};
+											rawBody = BootstrapResponse.toBinary(body);
+											break;
+										};
+										case "user-customization-service/v1/customize": {
+											body = UcsResponseWrapper.fromBinary(rawBody);
+											let accountAttributes = body?.success?.accountAttributesSuccess?.accountAttributes;
+											if (accountAttributes) {
+												accountAttributes["country_code"] = { "stringValue": Settings.Country };
+											};
+											rawBody = UcsResponseWrapper.toBinary(body);
+											break;
+										};
+									};
+									break;
 								case "extended-metadata/v0/extended-metadata": {
 									/******************  initialization start  *******************/
 									class BatchedExtensionResponse$Type extends MessageType {
@@ -359,20 +552,6 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									const EntityExtensionDataHeader = new EntityExtensionDataHeader$Type();
 									/******************  initialization start  *******************/
 									body = BatchedExtensionResponse.fromBinary(rawBody);
-									$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
-									let UF = UnknownFieldHandler.list(body);
-									//$.log(`🚧 ${$.name}`, `UF: ${JSON.stringify(UF)}`, "");
-									if (UF) {
-										UF = UF.map(uf => {
-											//uf.no; // 22
-											//uf.wireType; // WireType.Varint
-											// use the binary reader to decode the raw data:
-											let reader = new BinaryReader(uf.data);
-											let addedNumber = reader.int32(); // 7777
-											$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
-										});
-									};
-									//$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
 									rawBody = BatchedExtensionResponse.toBinary(body);
 									break;
 								};
@@ -508,11 +687,11 @@ function setENV(name, platforms, database) {
 	$.log(`✅ ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
 	/***************** Caches *****************/
 	//$.log(`✅ ${$.name}, Set Environment Variables`, `Caches: ${typeof Caches}`, `Caches内容: ${JSON.stringify(Caches)}`, "");
-	if (typeof Caches?.Playlists !== "object" || Array.isArray(Caches.Playlists)) Caches.Playlists = {}; // 创建Playlists缓存
+	if (typeof Caches?.Playlists !== "object" || Array.isArray(Caches?.Playlists)) Caches.Playlists = {}; // 创建Playlists缓存
 	Caches.Playlists.Master = new Map(JSON.parse(Caches?.Playlists?.Master || "[]")); // Strings转Array转Map
 	Caches.Playlists.Subtitle = new Map(JSON.parse(Caches?.Playlists?.Subtitle || "[]")); // Strings转Array转Map
 	if (typeof Caches?.Subtitles !== "object") Caches.Subtitles = new Map(JSON.parse(Caches?.Subtitles || "[]")); // Strings转Array转Map
-	if (typeof Caches?.Metadatas !== "object" || Array.isArray(Caches.Metadatas)) Caches.Metadatas = {}; // 创建Playlists缓存
+	if (typeof Caches?.Metadatas !== "object" || Array.isArray(Caches?.Metadatas)) Caches.Metadatas = {}; // 创建Playlists缓存
 	if (typeof Caches?.Metadatas?.Tracks !== "object") Caches.Metadatas.Tracks = new Map(JSON.parse(Caches?.Metadatas?.Tracks || "[]")); // Strings转Array转Map
 	/***************** Configs *****************/
 	return { Settings, Caches, Configs };
@@ -706,5 +885,5 @@ function Env(t,e){class s{constructor(t){this.env=t}send(t,e="GET"){t="string"==
  */
 function getENV(key,names,database){let BoxJs=$.getjson(key,database),Argument={};if("undefined"!=typeof $argument&&Boolean($argument)){let arg=Object.fromEntries($argument.split("&").map((item=>item.split("="))));for(let item in arg)setPath(Argument,item,arg[item])}const Store={Settings:database?.Default?.Settings||{},Configs:database?.Default?.Configs||{},Caches:{}};Array.isArray(names)||(names=[names]);for(let name of names)Store.Settings={...Store.Settings,...database?.[name]?.Settings,...BoxJs?.[name]?.Settings,...Argument},Store.Configs={...Store.Configs,...database?.[name]?.Configs},BoxJs?.[name]?.Caches&&"string"==typeof BoxJs?.[name]?.Caches&&(BoxJs[name].Caches=JSON.parse(BoxJs?.[name]?.Caches)),Store.Caches={...Store.Caches,...BoxJs?.[name]?.Caches};return function traverseObject(o,c){for(var t in o){var n=o[t];o[t]="object"==typeof n&&null!==n?traverseObject(n,c):c(t,n)}return o}(Store.Settings,((key,value)=>("true"===value||"false"===value?value=JSON.parse(value):"string"==typeof value&&(value?.includes(",")?value=value.split(","):value&&!isNaN(value)&&(value=parseInt(value,10))),value))),Store;function setPath(object,path,value){path.split(".").reduce(((o,p,i)=>o[p]=path.split(".").length===++i?value:o[p]||{}),object)}}
 
-// https://github.com/VirgilClyne/GetSomeFries/blob/main/function/URL/URLs.embedded.min.js
-function URLs(t){return new class{constructor(t=[]){this.name="URL v1.2.5",this.opts=t,this.json={scheme:"",host:"",path:"",query:{}}}parse(t){let s=t.match(/(?:(?<scheme>.+):\/\/(?<host>[^/]+))?\/?(?<path>[^?]+)?\??(?<query>[^?]+)?/)?.groups??null;if(s?.path?s.paths=s.path.split("/"):s.path="",s?.paths){const t=s.paths[s.paths.length-1];if(t?.includes(".")){const e=t.split(".");s.format=e[e.length-1]}}return s?.query&&(s.query=Object.fromEntries(s.query.split("&").map((t=>t.split("="))))),s}stringify(t=this.json){let s="";return t?.scheme&&t?.host&&(s+=t.scheme+"://"+t.host),t?.path&&(s+=t?.host?"/"+t.path:t.path),t?.query&&(s+="?"+Object.entries(t.query).map((t=>t.join("="))).join("&")),s}}(t)}
+// https://github.com/VirgilClyne/GetSomeFries/blob/main/function/URI/URIs.embedded.min.js
+function URIs(t){return new class{constructor(t=[]){this.name="URI v1.2.6",this.opts=t,this.json={scheme:"",host:"",path:"",query:{}}}parse(t){let s=t.match(/(?:(?<scheme>.+):\/\/(?<host>[^/]+))?\/?(?<path>[^?]+)?\??(?<query>[^?]+)?/)?.groups??null;if(s?.path?s.paths=s.path.split("/"):s.path="",s?.paths){const t=s.paths[s.paths.length-1];if(t?.includes(".")){const e=t.split(".");s.format=e[e.length-1]}}return s?.query&&(s.query=Object.fromEntries(s.query.split("&").map((t=>t.split("="))))),s}stringify(t=this.json){let s="";return t?.scheme&&t?.host&&(s+=t.scheme+"://"+t.host),t?.path&&(s+=t?.host?"/"+t.path:t.path),t?.query&&(s+="?"+Object.entries(t.query).map((t=>t.join("="))).join("&")),s}}(t)}
