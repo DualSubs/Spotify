@@ -2,7 +2,7 @@
 README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.5(1) request.beta");
+const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.5(5) request.beta");
 const URI = new URIs();
 const DataBase = {
 	"Default":{
@@ -239,7 +239,6 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 			if ($request.headers?.Host) $request.headers.Host = URL.host;
 			$request.url = URI.stringify(URL);
 			$.log(`🚧 ${$.name}, 调试信息`, `$request.url: ${$request.url}`, "");
-			if ($.isQuanX()) $response = {}, $request.modified = true;
 			break;
 		case false:
 			break;
@@ -255,20 +254,10 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 				if ($response?.headers?.["Content-Encoding"]) $response.headers["Content-Encoding"] = "identity";
 				if ($response?.headers?.["content-encoding"]) $response.headers["content-encoding"] = "identity";
 				if ($.isQuanX()) {
+					$response.status = "HTTP/1.1 200 OK";
 					delete $response?.headers?.["Content-Length"];
 					delete $response?.headers?.["content-length"];
 					delete $response?.headers?.["Transfer-Encoding"];
-					switch ($request.modified) {
-						case true: // 已修改请求数据，发送修改的请求数据
-							$response.status = "HTTP/1.1 307 Temporary Redirect";
-							//$response.headers.Location = $request.url;
-							$.lodash_set($response, "headers.Location", $request.url);
-							break;
-						case false: // 未修改请求数据，发送原始的请求数据
-						default:
-							$response.status = "HTTP/1.1 200 OK";
-							break;
-					};
 					switch (FORMAT) {
 						case undefined: // 视为无body
 							// 返回普通数据
@@ -300,11 +289,11 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 					switch (FORMAT) {
 						case undefined: // 视为无body
 							// 返回普通数据
-							$.done({ url: $request.url, headers: $request.headers })
+							$.done({ url: $request.url, headers: $request.headers });
 							break;
 						default:
 							// 返回普通数据
-							$.done({ url: $request.url, headers: $request.headers, body: $request.body })
+							$.done({ url: $request.url, headers: $request.headers, body: $request.body });
 							break;
 						case "application/protobuf":
 						case "application/x-protobuf":

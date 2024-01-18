@@ -2,7 +2,7 @@
 README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.5(3) request");
+const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.5(5) request");
 const URI = new URIs();
 const DataBase = {
 	"Default":{
@@ -270,11 +270,11 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 					switch (FORMAT) {
 						case undefined: // 视为无body
 							// 返回普通数据
-							$.done({ url: $request.url, headers: $request.headers })
+							$.done({ url: $request.url, headers: $request.headers });
 							break;
 						default:
 							// 返回普通数据
-							$.done({ url: $request.url, headers: $request.headers, body: $request.body })
+							$.done({ url: $request.url, headers: $request.headers, body: $request.body });
 							break;
 						case "application/protobuf":
 						case "application/x-protobuf":
