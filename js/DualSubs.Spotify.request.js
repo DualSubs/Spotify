@@ -2,7 +2,7 @@
 README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.5(5) request");
+const $ = new Env("🍿 DualSubs: 🎵 Spotify v1.3.5(6) request");
 const URI = new URIs();
 const DataBase = {
 	"Default":{
@@ -71,7 +71,7 @@ $.log(`⚠ ${$.name}`, `METHOD: ${METHOD}`, "");
 const PLATFORM = detectPlatform(HOST);
 $.log(`⚠ ${$.name}, PLATFORM: ${PLATFORM}`, "");
 // 解析格式
-let FORMAT = ($request.headers?.["Content-Type"] ?? $request.headers?.["content-type"])?.split(";")?.[0];
+let FORMAT = $request.body ? ($response.headers?.["Content-Type"] ?? $response.headers?.["content-type"])?.split(";")?.[0] : undefined;
 if (FORMAT === "application/octet-stream" || FORMAT === "text/plain") FORMAT = detectFormat(URL, $request.body);
 $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 (async () => {
