@@ -105,28 +105,28 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 						case "application/x-mpegurl":
 						case "application/vnd.apple.mpegurl":
 						case "audio/mpegurl":
-							//body = M3U8.parse($response.body);
+							//body = M3U8.parse($request.body);
 							//$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
-							//$response.body = M3U8.stringify(body);
+							//$request.body = M3U8.stringify(body);
 							break;
 						case "text/xml":
 						case "text/plist":
 						case "application/xml":
 						case "application/plist":
 						case "application/x-plist":
-							//body = XML.parse($response.body);
+							//body = XML.parse($request.body);
 							//$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
-							//$response.body = XML.stringify(body);
+							//$request.body = XML.stringify(body);
 							break;
 						case "text/vtt":
 						case "application/vtt":
-							//body = VTT.parse($response.body);
+							//body = VTT.parse($request.body);
 							//$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
-							//$response.body = VTT.stringify(body);
+							//$request.body = VTT.stringify(body);
 							break;
 						case "text/json":
 						case "application/json":
-							//body = JSON.parse($request?.body ?? "{}");
+							//body = JSON.parse($request.body ?? "{}");
 							//$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
 							//$request.body = JSON.stringify(body);
 							break;
@@ -137,7 +137,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 						case "application/grpc+proto":
 						case "applecation/octet-stream":
 							//$.log(`🚧 ${$.name}, 调试信息`, `$request.body: ${JSON.stringify($request.body)}`, "");
-							let rawBody = $.isQuanX() ? new Uint8Array($request?.bodyBytes ?? []) : $request?.body ?? new Uint8Array();
+							let rawBody = $.isQuanX() ? new Uint8Array($request.bodyBytes ?? []) : $request.body ?? new Uint8Array();
 							//$.log(`🚧 ${$.name}, 调试信息`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 							/******************  initialization start  *******************/
 							// timostamm/protobuf-ts 2.9.0

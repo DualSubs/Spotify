@@ -117,7 +117,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 				case "application/grpc":
 				case "application/grpc+proto":
 				case "applecation/octet-stream":
-					let rawBody = $.isQuanX() ? new Uint8Array($response?.bodyBytes ?? []) : $response?.body ?? new Uint8Array();
+					let rawBody = $.isQuanX() ? new Uint8Array($response.bodyBytes ?? []) : $response.body ?? new Uint8Array();
 					/******************  initialization start  *******************/
 					// timostamm/protobuf-ts 2.9.0
 					// text-decoder
@@ -400,8 +400,8 @@ function setENV(name, platforms, database) {
  */
 function detectFormat(url, body) {
 	let format = undefined;
-	$.log(`☑️ ${$.name}`, `detectFormat, format: ${url?.format ?? url?.query?.fmt ?? url?.query?.format}`, "");
-	switch (url?.format ?? url?.query?.fmt ?? url?.query?.format) {
+	$.log(`☑️ ${$.name}`, `detectFormat, format: ${url.format ?? url.query?.fmt ?? url.query?.format}`, "");
+	switch (url.format ?? url.query?.fmt ?? url.query?.format) {
 		case "txt":
 			format = "text/plain";
 			break;

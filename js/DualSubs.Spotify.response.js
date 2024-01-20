@@ -110,7 +110,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 				};
 				case "text/json":
 				case "application/json": {
-					body = JSON.parse($response?.body ?? "{}");
+					body = JSON.parse($response.body ?? "{}");
 					$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
 					switch (PATH) {
 						case "melody/v1/product_state":
@@ -146,7 +146,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 				case "application/grpc+proto":
 				case "applecation/octet-stream":
 					//$.log(`🚧 ${$.name}`, `$response.body: ${JSON.stringify($response.body)}`, "");
-					let rawBody = $.isQuanX() ? new Uint8Array($response?.bodyBytes ?? []) : $response?.body ?? new Uint8Array();
+					let rawBody = $.isQuanX() ? new Uint8Array($response.bodyBytes ?? []) : $response.body ?? new Uint8Array();
 					//$.log(`🚧 ${$.name}`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 					/******************  initialization start  *******************/
 					// timostamm/protobuf-ts 2.9.0

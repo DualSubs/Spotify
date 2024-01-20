@@ -125,7 +125,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 						case "application/grpc+proto":
 						case "applecation/octet-stream":
 							//$.log(`🚧 ${$.name}, 调试信息`, `$request.body: ${JSON.stringify($request.body)}`, "");
-							let rawBody = $.isQuanX() ? new Uint8Array($request?.bodyBytes ?? []) : $request?.body ?? new Uint8Array();
+							let rawBody = $.isQuanX() ? new Uint8Array($request.bodyBytes ?? []) : $request.body ?? new Uint8Array();
 							//$.log(`🚧 ${$.name}, 调试信息`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 							/******************  initialization start  *******************/
 							// timostamm/protobuf-ts 2.9.0
