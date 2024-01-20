@@ -13,11 +13,11 @@
 # DualSubs.Spotify.Lyrics.request
 ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*) url script-request-body https://raw.githubusercontent.com/DualSubs/Spotify/beta/js/DualSubs.Spotify.request.beta.js
 
-# DualSubs.Spotify.Lyrics.Translate.response
-^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)subtype=Translate url script-response-body https://raw.githubusercontent.com/DualSubs/Universal/beta/js/DualSubs.Subtitles.Translate.response.beta.js
-
 # DualSubs.Spotify.Lyrics.External.response
 ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)subtype=External url script-response-body https://raw.githubusercontent.com/DualSubs/Universal/beta/js/DualSubs.Lyrics.External.response.beta.js
+
+# DualSubs.Spotify.Lyrics.Translate.response
+^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*) url script-response-body https://raw.githubusercontent.com/DualSubs/Universal/beta/js/DualSubs.Subtitles.Translate.response.beta.js
 
 #[mitm]
 hostname = api.spotify.com, spclient.wg.spotify.com
