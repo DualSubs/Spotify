@@ -1,11 +1,9 @@
 /*
-README: https://github.com/DualSubs/Universal
+README: https://github.com/DualSubs/Spotify
 */
 
-const $ = new Env("🍿️ DualSubs: 🎦 Universal v1.2.3(3) Transcripts.Translate.response.beta");
+const $ = new Env("🍿️ DualSubs: 🎵 Spotify v1.2.4(10) Transcripts.Translate.response.beta");
 const URI = new URIs();
-const XML = new XMLs();
-const VTT = new WebVTT(["milliseconds", "timeStamp", "singleLine", "\n"]); // "multiLine"
 const DataBase = {
 	"Default":{
 		"Settings":{"Switch":true,"Type":"Translate","Types":["Official","Translate"],"Languages":["EN","ZH"],"CacheSize":50}
@@ -81,7 +79,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 		case true:
 		default:
 			// 获取字幕类型与语言
-			const Type = URL.query?.subtype ?? Settings.Type, Languages = [URL.query?.lang?.split?.(/[-_]/)?.[0]?.toUpperCase?.() ?? Settings.Languages[0], (URL.query?.tlang?.split?.(/[-_]/)?.[0] ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
+			const Type = URL.query?.subtype ?? Settings.Type, Languages = [URL.query?.lang?.toUpperCase?.() ?? Settings.Languages[0], (URL.query?.tlang ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
 			$.log(`⚠ ${$.name}, Type: ${Type}, Languages: ${Languages}`, "");
 			// 创建空数据
 			let body = {};
@@ -588,7 +586,7 @@ async function Translate(text = [], method = "Part", vendor = "Google", source =
 /**
  * Translator
  * @author VirgilClyne
- * @param {String} type - type
+ * @param {String} vendor - vendor
  * @param {String} source - source
  * @param {String} target - target
  * @param {String} text - text
@@ -596,17 +594,43 @@ async function Translate(text = [], method = "Part", vendor = "Google", source =
  * @param {Object} database - Languages Database
  * @return {Promise<*>}
  */
-async function Translator(type = "Google", source = "", target = "", text = "", api = {}, database) {
+async function Translator(vendor = "Google", source = "", target = "", text = "", api = {}, database) {
 	$.log(`☑️ ${$.name}, Translator`, `orig: ${text}`, "");
+	// 转换语言代码
+	switch (vendor) {
+		case "Google":
+		case "GoogleCloud":
+			source = database.Google[source] ?? database.Google[source?.split?.(/[-_]/)?.[0]];
+			target = database.Google[target] ?? database.Google[source?.split?.(/[-_]/)?.[0]];
+			break;
+		case "Bing":
+		case "Microsoft":
+		case "Azure":
+			source = database.Microsoft[source] ?? database.Microsoft[source?.split?.(/[-_]/)?.[0]];
+			target = database.Microsoft[target] ?? database.Microsoft[source?.split?.(/[-_]/)?.[0]];
+			break;
+		case "DeepL":
+		case "DeepLX":
+			source = database.DeepL[source] ?? database.DeepL[source?.split?.(/[-_]/)?.[0]];
+			target = database.DeepL[target] ?? database.DeepL[source?.split?.(/[-_]/)?.[0]];
+			break;
+		case "BaiduFanyi":
+			source = database.Baidu[source] ?? database.Baidu[source?.split?.(/[-_]/)?.[0]];
+			target = database.Baidu[target] ?? database.Baidu[source?.split?.(/[-_]/)?.[0]];
+		case "YoudaoAI":
+			source = database.Youdao[source] ?? database.Youdao[source?.split?.(/[-_]/)?.[0]];
+			target = database.Youdao[target] ?? database.Youdao[source?.split?.(/[-_]/)?.[0]];
+			break;
+	};
 	// 构造请求
-	let request = await GetRequest(type, source, target, text, database);
+	let request = await GetRequest(vendor, source, target, text);
 	// 发送请求
-	let trans = await GetData(type, request);
+	let trans = await GetData(vendor, request);
 	$.log(`🚧 ${$.name}, Translator`, `trans: ${trans}`, "");
 	return trans
 	/***************** Fuctions *****************/
 	// Get Translate Request
-	async function GetRequest(type = "", source = "", target = "", text = "", database) {
+	async function GetRequest(vendor = "", source = "", target = "", text = "") {
 		$.log(`☑️ ${$.name}, Get Translate Request`, "");
 		const UAPool = [
 			"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36", // 13.5%
@@ -625,7 +649,7 @@ async function Translator(type = "Google", source = "", target = "", text = "", 
 		let request = {};
 		let BaseURL = "";
 		let texts = "";
-		switch (type) {
+		switch (vendor) {
 			default:
 			case "Google":
 				const BaseRequest = [
@@ -661,7 +685,7 @@ async function Translator(type = "Google", source = "", target = "", text = "", 
 				]
 				request = BaseRequest[Math.floor(Math.random() * (BaseRequest.length - 2))] // 随机Request, 排除最后两项
 				text = (Array.isArray(text)) ? text.join("\r") : text;
-				request.url = request.url + `&sl=${database.Google[source]}&tl=${database.Google[target]}&q=${encodeURIComponent(text)}`;
+				request.url = request.url + `&sl=${source}&tl=${target}&q=${encodeURIComponent(text)}`;
 				break;
 			case "GoogleCloud":
 				BaseURL = "https://translation.googleapis.com";
@@ -676,8 +700,8 @@ async function Translator(type = "Google", source = "", target = "", text = "", 
 						};
 						request.body = JSON.stringify({
 							"q": text,
-							"source": database.Google[source],
-							"target": database.Google[target],
+							"source": source,
+							"target": target,
 							"format": "html",
 							//"key": api?.Key
 						});
@@ -700,8 +724,8 @@ async function Translator(type = "Google", source = "", target = "", text = "", 
 							"Content-Type": "application/json; charset=utf-8"
 						};
 						request.body = JSON.stringify({
-							"sourceLanguageCode": database.Google[source],
-							"targetLanguageCode": database.Google[target],
+							"sourceLanguageCode": source,
+							"targetLanguageCode": target,
 							"contents": (Array.isArray(text)) ? text : [text],
 							"mimeType": "text/html"
 						});
@@ -730,8 +754,8 @@ async function Translator(type = "Google", source = "", target = "", text = "", 
 					"fromLang": "auto-detect",
 					//"text": '%s' % trans,
 					"text": text,
-					//"from": database.Microsoft[source],
-					"to": database.Microsoft[target]
+					//"from": source,
+					"to": target
 				});
 				break;
 			case "Microsoft":
@@ -750,7 +774,7 @@ async function Translator(type = "Google", source = "", target = "", text = "", 
 						BaseURL = "https://api.cognitive.microsofttranslator.us";
 						break;
 				};
-				request.url = `${BaseURL}/translate?api-version=3.0&textType=html&${(source !== "AUTO") ? `from=${ database.Microsoft[source]}` : ""}&to=${database.Microsoft[target]}`;
+				request.url = `${BaseURL}/translate?api-version=3.0&textType=html&${(source) ? `from=${source}` : ""}&to=${target}`;
 				request.headers = {
 					"Content-Type": "application/json; charset=UTF-8",
 					"Accept": "application/json, text/javascript, */*; q=0.01",
@@ -795,13 +819,7 @@ async function Translator(type = "Google", source = "", target = "", text = "", 
 					"User-Agent": "DualSubs",
 					"Content-Type": "application/x-www-form-urlencoded"
 				};
-				const source_lang = (database.DeepL[source].includes("EN")) ? "EN"
-					: (database.DeepL[source].includes("PT")) ? "PT"
-						: database.DeepL[source];
-				const target_lang = (database.DeepL[target] == "EN") ? "EN-US"
-					: (database.DeepL[target] == "PT") ? "PT-PT"
-						: database.DeepL[target];
-				const BaseBody = `auth_key=${api?.Key ?? api?.Auth}&source_lang=${source_lang}&target_lang=${target_lang}&tag_handling=html`;
+				const BaseBody = `auth_key=${api?.Key ?? api?.Auth}&source_lang=${source}&target_lang=${target}&tag_handling=html`;
 				text = (Array.isArray(text)) ? text : [text];
 				texts = await Promise.all(text?.map(async item => `&text=${encodeURIComponent(item)}`))
 				request.body = BaseBody + texts.join("");
@@ -816,16 +834,10 @@ async function Translator(type = "Google", source = "", target = "", text = "", 
 					"Content-Type": "application/json"
 				};
 				if (api?.Token) request.headers.Authorization = `Bearer ${api?.Token ?? api?.Auth}`;
-				const source_lang = (database.DeepL[source].includes("EN")) ? "EN"
-					: (database.DeepL[source].includes("PT")) ? "PT"
-						: database.DeepL[source];
-				const target_lang = (database.DeepL[target] == "EN") ? "EN-US"
-					: (database.DeepL[target] == "PT") ? "PT-PT"
-						: database.DeepL[target];
 				request.body = JSON.stringify({
 					"text": (Array.isArray(text)) ? text.join("||") : text,
-					"source_lang": source_lang,
-					"target_lang": target_lang,
+					"source_lang": source,
+					"target_lang": target,
 				});
 				break;
 			}
@@ -839,8 +851,8 @@ async function Translator(type = "Google", source = "", target = "", text = "", 
 				};
 				request.body = {
 					"q": text,
-					"from": database.Baidu[source],
-					"to": database.Baidu[target],
+					"from": source,
+					"to": target,
 					"appid": api?.Key,
 					"salt": uuidv4().toString(),
 					"sign": "",
@@ -856,8 +868,8 @@ async function Translator(type = "Google", source = "", target = "", text = "", 
 				};
 				request.body = {
 					"q": text,
-					"from": database.Youdao[source],
-					"to": database.Youdao[target],
+					"from": source,
+					"to": target,
 					"appKey": api?.Key,
 					"salt": uuidv4().toString(),
 					"signType": "v3",
@@ -870,34 +882,34 @@ async function Translator(type = "Google", source = "", target = "", text = "", 
 		return request
 	};
 	// Get Translate Data
-	async function GetData(type, request) {
+	async function GetData(vendor, request) {
 		$.log(`☑️ ${$.name}, Get Translate Data`, "");
 		let texts = [];
 		await Fetch(request)
 			.then(response => JSON.parse(response.body))
 			.then(_data => {
-				switch (type) {
+				switch (vendor) {
 					case "Google":
 					default:
 						if (Array.isArray(_data)) {
 							if (_data.length === 1) {
 								_data[0].pop();
 								texts = _data[0];
-							} else if (Array.isArray(_data?.[0])) texts = _data?.[0]?.map(item => item?.[0] ?? `翻译失败, 类型: ${type}`);
+							} else if (Array.isArray(_data?.[0])) texts = _data?.[0]?.map(item => item?.[0] ?? `翻译失败, vendor: ${vendor}`);
 							else texts = _data;
-						} else if (_data?.sentences) texts = _data?.sentences?.map(item => item?.trans ?? `翻译失败, 类型: ${type}`);
+						} else if (_data?.sentences) texts = _data?.sentences?.map(item => item?.trans ?? `翻译失败, vendor: ${vendor}`);
 						texts = texts?.join("")?.split(/\r/);
 						break;
 					case "GoogleCloud":
-						texts = _data?.data?.translations?.map(item => item?.translatedText ?? `翻译失败, 类型: ${type}`);
+						texts = _data?.data?.translations?.map(item => item?.translatedText ?? `翻译失败, vendor: ${vendor}`);
 						break;
 					case "Bing":
 					case "Microsoft":
 					case "Azure":
-						texts = _data?.map(item => item?.translations?.[0]?.text ?? `翻译失败, 类型: ${type}`);
+						texts = _data?.map(item => item?.translations?.[0]?.text ?? `翻译失败, vendor: ${vendor}`);
 						break;
 					case "DeepL":
-						texts = _data?.translations?.map(item => item?.text ?? `翻译失败, 类型: ${type}`);
+						texts = _data?.translations?.map(item => item?.text ?? `翻译失败, vendor: ${vendor}`);
 						break;
 					case "DeepLX":
 						texts = _data?.data?.split("||") ?? _data?.data;
@@ -950,8 +962,8 @@ async function Fetch(request = {}) {
 	let response = (request?.body ?? request?.bodyBytes)
 		? await $.http.post(request)
 		: await $.http.get(request);
-	$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
-	$.log(`✅ ${$.name}, Fetch Ruled Reqeust`, "");
+		$.log(`✅ ${$.name}, Fetch Ruled Reqeust`, "");
+		$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
 	return response;
 };
 
@@ -1043,9 +1055,3 @@ function getENV(key,names,database){let BoxJs=$.getjson(key,database),Argument={
 
 // https://github.com/VirgilClyne/GetSomeFries/blob/main/function/URI/URIs.embedded.min.js
 function URIs(t){return new class{constructor(t=[]){this.name="URI v1.2.6",this.opts=t,this.json={scheme:"",host:"",path:"",query:{}}}parse(t){let s=t.match(/(?:(?<scheme>.+):\/\/(?<host>[^/]+))?\/?(?<path>[^?]+)?\??(?<query>[^?]+)?/)?.groups??null;if(s?.path?s.paths=s.path.split("/"):s.path="",s?.paths){const t=s.paths[s.paths.length-1];if(t?.includes(".")){const e=t.split(".");s.format=e[e.length-1]}}return s?.query&&(s.query=Object.fromEntries(s.query.split("&").map((t=>t.split("="))))),s}stringify(t=this.json){let s="";return t?.scheme&&t?.host&&(s+=t.scheme+"://"+t.host),t?.path&&(s+=t?.host?"/"+t.path:t.path),t?.query&&(s+="?"+Object.entries(t.query).map((t=>t.join("="))).join("&")),s}}(t)}
-
-// https://github.com/DualSubs/WebVTT/blob/main/WebVTT.embedded.min.js
-function WebVTT(opts){return new class{constructor(opts=["milliseconds","timeStamp","singleLine","\n"]){this.name="WebVTT v2.1.4",this.opts=opts,this.lineBreak=this.opts.includes("\n")?"\n":this.opts.includes("\r")?"\r":this.opts.includes("\r\n")?"\r\n":"\n",this.vtt=new String,this.json={headers:{},comments:[],style:"",body:[]}}parse(vtt=this.vtt){const WebVTT_cue_Regex=this.opts.includes("milliseconds")?/^((?<index>\d+)(\r\n|\r|\n))?(?<timing>(?<startTime>[0-9:.,]+) --> (?<endTime>[0-9:.,]+)) ?(?<settings>.+)?[^](?<text>[\s\S]*)?$/:/^((?<index>\d+)(\r\n|\r|\n))?(?<timing>(?<startTime>[0-9:]+)[0-9.,]+ --> (?<endTime>[0-9:]+)[0-9.,]+) ?(?<settings>.+)?[^](?<text>[\s\S]*)?$/,Array=vtt.split(/\r\n\r\n|\r\r|\n\n/),Json={headers:{},comments:[],style:"",body:[]};return Array.forEach((item=>{switch((item=item.trim()).substring(0,5).trim()){case"WEBVT":{let cues=item.split(/\r\n|\r|\n/);Json.headers.type=cues.shift(),Json.headers.options=cues;break}case"NOTE":Json.comments.push(item);break;case"STYLE":{let cues=item.split(/\r\n|\r|\n/);cues.shift(),Json.style=cues.join(this.lineBreak);break}default:let cue=item.match(WebVTT_cue_Regex)?.groups;if(cue){if("WEBVTT"!==Json.headers?.type&&(cue.timing=cue?.timing?.replace?.(",","."),cue.startTime=cue?.startTime?.replace?.(",","."),cue.endTime=cue?.endTime?.replace?.(",",".")),this.opts.includes("timeStamp")){let ISOString=cue?.startTime?.replace?.(/(.*)/,"1970-01-01T$1Z");cue.timeStamp=this.opts.includes("milliseconds")?Date.parse(ISOString):Date.parse(ISOString)/1e3}cue.text=cue?.text?.trimEnd?.(),this.opts.includes("singleLine")?cue.text=cue?.text?.replace?.(/\r\n|\r|\n/," "):this.opts.includes("multiLine")&&(cue.text=cue?.text?.split?.(/\r\n|\r|\n/)),Json.body.push(cue)}}})),Json}stringify(json=this.json){return[json.headers=[json.headers?.type||"",json.headers?.options||""].flat(1/0).join(this.lineBreak),json.comments=json?.comments?.join?.(this.lineBreak),json.style=json?.style?.length>0?["STYLE",json.style].join(this.lineBreak):"",json.body=json.body.map((item=>(Array.isArray(item.text)&&(item.text=item.text.join(this.lineBreak)),item=`${item.index?item.index+this.lineBreak:""}${item.timing} ${item?.settings??""}${this.lineBreak}${item.text}`))).join(this.lineBreak+this.lineBreak)].join(this.lineBreak+this.lineBreak).trim()+this.lineBreak+this.lineBreak}}(opts)}
-
-// https://github.com/DualSubs/XML/blob/main/XML.embedded.min.js
-function XMLs(opts){return new class{#ATTRIBUTE_KEY="@";#CHILD_NODE_KEY="#";#UNESCAPE={"&amp;":"&","&lt;":"<","&gt;":">","&apos;":"'","&quot;":'"'};#ESCAPE={"&":"&amp;","<":"&lt;",">":"&gt;","'":"&apos;",'"':"&quot;"};constructor(opts){this.name="XML v0.3.6-2",this.opts=opts,BigInt.prototype.toJSON=()=>this.toString()}parse(xml=new String,reviver=""){const UNESCAPE=this.#UNESCAPE,ATTRIBUTE_KEY=this.#ATTRIBUTE_KEY,CHILD_NODE_KEY=this.#CHILD_NODE_KEY;let json=function fromXML(elem,reviver){let object;switch(typeof elem){case"string":case"undefined":object=elem;break;case"object":const raw=elem.raw,name=elem.name,tag=elem.tag,children=elem.children;object=raw||(tag?function(tag,reviver){if(!tag)return;const list=tag.split(/([^\s='"]+(?:\s*=\s*(?:'[\S\s]*?'|"[\S\s]*?"|[^\s'"]*))?)/),length=list.length;let attributes,val;for(let i=0;i<length;i++){let str=removeSpaces(list[i]);if(!str)continue;attributes||(attributes={});const pos=str.indexOf("=");if(pos<0)str=ATTRIBUTE_KEY+str,val=null;else{val=str.substr(pos+1).replace(/^\s+/,""),str=ATTRIBUTE_KEY+str.substr(0,pos).replace(/\s+$/,"");const firstChar=val[0];firstChar!==val[val.length-1]||"'"!==firstChar&&'"'!==firstChar||(val=val.substr(1,val.length-2)),val=unescapeXML(val)}reviver&&(val=reviver(str,val)),addObject(attributes,str,val)}return attributes;function removeSpaces(str){return str?.trim?.()}}(tag,reviver):children?{}:{[name]:void 0}),"plist"===name?object=Object.assign(object,fromPlist(children[0],reviver)):children?.forEach?.(((child,i)=>{"string"==typeof child?addObject(object,CHILD_NODE_KEY,fromXML(child,reviver),void 0):child.tag||child.children||child.raw?addObject(object,child.name,fromXML(child,reviver),void 0):addObject(object,child.name,fromXML(child,reviver),children?.[i-1]?.name)})),reviver&&(object=reviver(name||"",object))}return object;function addObject(object,key,val,prevKey=key){if(void 0!==val){const prev=object[prevKey];Array.isArray(prev)?prev.push(val):prev?object[prevKey]=[prev,val]:object[key]=val}}}(function(text){const list=text.split(/<([^!<>?](?:'[\S\s]*?'|"[\S\s]*?"|[^'"<>])*|!(?:--[\S\s]*?--|\[[^\[\]'"<>]+\[[\S\s]*?]]|DOCTYPE[^\[<>]*?\[[\S\s]*?]|(?:ENTITY[^"<>]*?"[\S\s]*?")?[\S\s]*?)|\?[\S\s]*?\?)>/),length=list.length,root={children:[]};let elem=root;const stack=[];for(let i=0;i<length;){const str=list[i++];str&&appendText(str);const tag=list[i++];tag&&parseNode(tag)}return root;function parseNode(tag){let child={};switch(tag[0]){case"/":const closed=tag.replace(/^\/|[\s\/].*$/g,"").toLowerCase();for(;stack.length;){const tagName=elem?.name?.toLowerCase?.();if(elem=stack.pop(),tagName===closed)break}break;case"?":"xml"===tag.slice(1,4)?(child.name="?xml",child.raw=tag.slice(5,-1)):(child.name="?",child.raw=tag.slice(1,-1)),appendChild(child);break;case"!":"DOCTYPE"===tag.slice(1,8)?(child.name="!DOCTYPE",child.raw=tag.slice(9)):"[CDATA["===tag.slice(1,8)&&"]]"===tag.slice(-2)?(child.name="!CDATA",child.raw=tag.slice(9,-2)):(child.name="!",child.raw=tag.slice(1)),appendChild(child);break;default:if(child=function(tag){const elem={children:[]};tag=tag.replace(/\s*\/?$/,"");const pos=tag.search(/[\s='"\/]/);pos<0?elem.name=tag:(elem.name=tag.substr(0,pos),elem.tag=tag.substr(pos));return elem}(tag),appendChild(child),"/"===tag.slice(-1))delete child.children;else stack.push(elem),elem=child}}function appendText(str){(str=function(str){return str?.replace?.(/^(\r\n|\r|\n|\t)+|(\r\n|\r|\n|\t)+$/g,"")}(str))&&appendChild(unescapeXML(str))}function appendChild(child){elem.children.push(child)}}(xml),reviver);return json;function fromPlist(elem,reviver){let object;switch(typeof elem){case"string":case"undefined":object=elem;break;case"object":const name=elem.name,children=elem.children;switch(object={},name){case"plist":let plist=fromPlist(children[0],reviver);object=Object.assign(object,plist);break;case"dict":let dict=children.map((child=>fromPlist(child,reviver)));dict=function(source,length){var index=0,target=[];for(;index<source.length;)target.push(source.slice(index,index+=length));return target}(dict,2),object=Object.fromEntries(dict);break;case"array":Array.isArray(object)||(object=[]),object=children.map((child=>fromPlist(child,reviver)));break;case"key":object=children[0];break;case"true":case"false":const boolean=name;object=JSON.parse(boolean);break;case"integer":const integer=children[0];object=BigInt(integer);break;case"real":const real=children[0];object=parseFloat(real);break;case"string":object=children[0]}reviver&&(object=reviver(name||"",object))}return object}function unescapeXML(str){return str.replace(/(&(?:lt|gt|amp|apos|quot|#(?:\d{1,6}|x[0-9a-fA-F]{1,5}));)/g,(function(str){if("#"===str[1]){const code="x"===str[2]?parseInt(str.substr(3),16):parseInt(str.substr(2),10);if(code>-1)return String.fromCharCode(code)}return UNESCAPE[str]||str}))}}stringify(json=new Object,tab=""){this.#ESCAPE;const ATTRIBUTE_KEY=this.#ATTRIBUTE_KEY,CHILD_NODE_KEY=this.#CHILD_NODE_KEY;let XML="";for(let elem in json)XML+=toXml(json[elem],elem,"");return XML=tab?XML.replace(/\t/g,tab):XML.replace(/\t|\n/g,""),XML;function toXml(Elem,Name,Ind){let xml="";switch(typeof Elem){case"object":if(Array.isArray(Elem))xml=Elem.reduce(((prevXML,currXML)=>prevXML+`${Ind}${toXml(currXML,Name,`${Ind}\t`)}\n`),"");else{let attribute="",hasChild=!1;for(let name in Elem)name[0]===ATTRIBUTE_KEY?(attribute+=` ${name.substring(1)}="${Elem[name].toString()}"`,delete Elem[name]):void 0===Elem[name]?Name=name:hasChild=!0;if(xml+=`${Ind}<${Name}${attribute}${hasChild?"":"/"}>`,hasChild){if("plist"===Name)xml+=toPlist(Elem,Name,`${Ind}\t`);else for(let name in Elem)if(name===CHILD_NODE_KEY)xml+=Elem[name];else xml+=toXml(Elem[name],name,`${Ind}\t`);xml+=("\n"===xml.slice(-1)?Ind:"")+`</${Name}>`}}break;case"string":switch(Name){case"?xml":xml+=`${Ind}<${Name} ${Elem.toString()}?>\n`;break;case"?":xml+=`${Ind}<${Name}${Elem.toString()}${Name}>`;break;case"!":xml+=`${Ind}\x3c!--${Elem.toString()}--\x3e`;break;case"!DOCTYPE":xml+=`${Ind}<!DOCTYPE ${Elem.toString()}>`;break;case"!CDATA":xml+=`${Ind}<![CDATA[${Elem.toString()}]]>`;case CHILD_NODE_KEY:xml+=Elem;break;default:xml+=`${Ind}<${Name}>${Elem.toString()}</${Name}>`}break;case"undefined":xml+=Ind+`<${Name.toString()}/>`}return xml}function toPlist(Elem,Name,Ind){let plist="";switch(typeof Elem){case"boolean":plist=`${Ind}<${Elem.toString()}/>`;break;case"number":plist=`${Ind}<real>${Elem.toString()}</real>`;break;case"bigint":plist=`${Ind}<integer>${Elem.toString()}</integer>`;break;case"string":plist=`${Ind}<string>${Elem.toString()}</string>`;break;case"object":let array="";if(Array.isArray(Elem)){for(var i=0,n=Elem.length;i<n;i++)array+=`${Ind}${toPlist(Elem[i],Name,`${Ind}\t`)}`;plist=`${Ind}<array>${array}${Ind}</array>`}else{let dict="";Object.entries(Elem).forEach((([key,value])=>{dict+=`${Ind}<key>${key}</key>`,dict+=toPlist(value,key,Ind)})),plist=`${Ind}<dict>${dict}${Ind}</dict>`}}return plist}}}(opts)}
