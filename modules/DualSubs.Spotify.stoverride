@@ -49,10 +49,10 @@ http:
 
 script-providers:
   DualSubs.Spotify.request:
-    url: https://raw.githubusercontent.com/DualSubs/Spotify/main/js/DualSubs.Spotify.request.js
+    url: https://raw.githubusercontent.com/DualSubs/Spotify/main/js/Spotify.request.js
     interval: 86400
   DualSubs.Spotify.response:
-    url: https://raw.githubusercontent.com/DualSubs/Spotify/main/js/DualSubs.Spotify.response.js
+    url: https://raw.githubusercontent.com/DualSubs/Spotify/main/js/Spotify.response.js
     interval: 86400
   DualSubs.Translate.Lyrics.response:
     url: https://raw.githubusercontent.com/DualSubs/Universal/main/js/Translate.response.js

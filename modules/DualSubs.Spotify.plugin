@@ -8,10 +8,10 @@
 #!category=🍿️ DualSubs
 
 [Script]
-http-response ^https?:\/\/api\.spotify\.com\/v1\/tracks\? requires-body=1, script-path=https://raw.githubusercontent.com/DualSubs/Spotify/main/js/DualSubs.Spotify.response.js, tag=DualSubs.Spotify.Tracks.response.json
+http-response ^https?:\/\/api\.spotify\.com\/v1\/tracks\? requires-body=1, script-path=https://raw.githubusercontent.com/DualSubs/Spotify/main/js/Spotify.response.js, tag=DualSubs.Spotify.Tracks.response.json
 
-http-request ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json requires-body=1, script-path=https://raw.githubusercontent.com/DualSubs/Spotify/main/js/DualSubs.Spotify.request.js, tag=DualSubs.Spotify.Lyrics.request.json
-http-request ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*) requires-body=1, binary-body-mode=1, script-path=https://raw.githubusercontent.com/DualSubs/Spotify/main/js/DualSubs.Spotify.request.js, tag=DualSubs.Spotify.Lyrics.request.proto
+http-request ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json requires-body=1, script-path=https://raw.githubusercontent.com/DualSubs/Spotify/main/js/Spotify.request.js, tag=DualSubs.Spotify.Lyrics.request.json
+http-request ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*) requires-body=1, binary-body-mode=1, script-path=https://raw.githubusercontent.com/DualSubs/Spotify/main/js/Spotify.request.js, tag=DualSubs.Spotify.Lyrics.request.proto
 
 http-response ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=Translate requires-body=1, script-path=https://raw.githubusercontent.com/DualSubs/Universal/main/js/Translate.response.js, tag=DualSubs.Spotify.Translate.Lyrics.response.json
 http-response ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=Translate requires-body=1, binary-body-mode=1, script-path=https://raw.githubusercontent.com/DualSubs/Universal/main/js/Translate.response.js, tag=DualSubs.Spotify.Translate.Lyrics.response.proto
