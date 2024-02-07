@@ -4,11 +4,12 @@ import URIs from "./URI/URI.mjs";
 import Database from "./database/index.mjs";
 import setENV from "./function/setENV.mjs";
 import setCache from "./function/setCache.mjs";
+import modifiedAccountAttributes from "./function/modifiedAccountAttributes.mjs";
 
 import { TextEncoder , TextDecoder } from "./text-encoding/index.js";
 import { WireType, UnknownFieldHandler, reflectionMergePartial, MESSAGE_TYPE, MessageType, BinaryReader, isJsonObject, typeofJsonValue, jsonWriteOptions } from "../node_modules/@protobuf-ts/runtime/build/es2015/index.js";
 
-const $ = new ENVs("🍿️ DualSubs: 🎵 Spotify v1.5.1(1) response");
+const $ = new ENVs("🍿️ DualSubs: 🎵 Spotify v1.5.1(2) response");
 const URI = new URIs();
 
 /***************** Processing *****************/
@@ -416,6 +417,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 											let accountAttributes = body?.ucsResponseV0?.success?.customization?.success?.accountAttributesSuccess?.accountAttributes;
 											if (accountAttributes) {
 												accountAttributes["country_code"] = { "stringValue": Settings.Country };
+												accountAttributes = modifiedAccountAttributes(accountAttributes);
 											};
 											rawBody = BootstrapResponse.toBinary(body);
 											break;
@@ -425,6 +427,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 											let accountAttributes = body?.success?.accountAttributesSuccess?.accountAttributes;
 											if (accountAttributes) {
 												accountAttributes["country_code"] = { "stringValue": Settings.Country };
+												accountAttributes = modifiedAccountAttributes(accountAttributes);
 											};
 											rawBody = UcsResponseWrapper.toBinary(body);
 											break;
