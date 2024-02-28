@@ -8,7 +8,7 @@ import setCache from "./function/setCache.mjs";
 import { TextEncoder , TextDecoder } from "./text-encoding/index.js";
 import { WireType, UnknownFieldHandler, reflectionMergePartial, MESSAGE_TYPE, MessageType, BinaryReader, isJsonObject, typeofJsonValue, jsonWriteOptions } from "../node_modules/@protobuf-ts/runtime/build/es2015/index.js";
 
-const $ = new ENVs("🍿 DualSubs: 🎵 Spotify v1.3.6(2) request");
+const $ = new ENVs("🍿 DualSubs: 🎵 Spotify v1.3.6(3) request");
 const URI = new URIs();
 
 // 构造回复数据
@@ -81,6 +81,15 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 								case "application/protobuf":
 								case "application/x-protobuf":
 								case "application/vnd.google.protobuf":
+									switch (PATH) {
+										case "bootstrap/v1/bootstrap":
+										case "user-customization-service/v1/customize":
+											delete $request.headers?.["If-None-Match"];
+											delete $request.headers?.["if-none-match"];
+											break;
+										case "extended-metadata/v0/extended-metadata":
+											break;
+									};
 									break;
 								case "application/grpc":
 								case "application/grpc+proto":

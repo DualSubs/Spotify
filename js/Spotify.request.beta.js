@@ -4420,7 +4420,7 @@ var RepeatType;
     RepeatType[RepeatType["UNPACKED"] = 2] = "UNPACKED";
 })(RepeatType || (RepeatType = {}));
 
-const $ = new ENV("🍿 DualSubs: 🎵 Spotify v1.3.6(2) request.beta");
+const $ = new ENV("🍿 DualSubs: 🎵 Spotify v1.3.6(3) request.beta");
 const URI = new URI$1();
 
 // 构造回复数据
@@ -4500,7 +4500,19 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 						case "application/octet-stream":
 							//$.log(`🚧 ${$.name}, 调试信息`, `$request.body: ${JSON.stringify($request.body)}`, "");
 							let rawBody = $.isQuanX() ? new Uint8Array($request.bodyBytes ?? []) : $request.body ?? new Uint8Array();
-							// 写入二进制数据
+							//$.log(`🚧 ${$.name}, 调试信息`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
+							switch (FORMAT) {
+								case "application/protobuf":
+								case "application/x-protobuf":
+								case "application/vnd.google.protobuf":
+									switch (PATH) {
+										case "bootstrap/v1/bootstrap":
+										case "user-customization-service/v1/customize":
+											delete $request.headers?.["If-None-Match"];
+											delete $request.headers?.["if-none-match"];
+											break;
+									}									break;
+							}							// 写入二进制数据
 							$request.body = rawBody;
 							break;
 					}					//break; // 不中断，继续处理URL
