@@ -4420,7 +4420,7 @@ var RepeatType;
     RepeatType[RepeatType["UNPACKED"] = 2] = "UNPACKED";
 })(RepeatType || (RepeatType = {}));
 
-const $ = new ENV("🍿 DualSubs: 🎵 Spotify v1.3.6(3) request.beta");
+const $ = new ENV("🍿 DualSubs: 🎵 Spotify v1.3.6(4) request.beta");
 const URI = new URI$1();
 
 // 构造回复数据
@@ -4434,7 +4434,7 @@ $.log(`⚠ ${$.name}`, `URL: ${JSON.stringify(URL)}`, "");
 const METHOD = $request.method; URL.host; const PATH = URL.path, PATHs = URL.paths;
 $.log(`⚠ ${$.name}`, `METHOD: ${METHOD}`, "");
 // 解析格式
-const FORMAT = $request.body ? ($response.headers?.["content-type"])?.split(";")?.[0] : undefined;
+const FORMAT = ($request.headers?.["Content-Type"] ?? $request.headers?.["content-type"])?.split(";")?.[0];
 $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 (async () => {
 	// 读取设置

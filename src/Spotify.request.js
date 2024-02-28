@@ -8,7 +8,7 @@ import setCache from "./function/setCache.mjs";
 import { TextEncoder , TextDecoder } from "./text-encoding/index.js";
 import { WireType, UnknownFieldHandler, reflectionMergePartial, MESSAGE_TYPE, MessageType, BinaryReader, isJsonObject, typeofJsonValue, jsonWriteOptions } from "../node_modules/@protobuf-ts/runtime/build/es2015/index.js";
 
-const $ = new ENVs("🍿 DualSubs: 🎵 Spotify v1.3.6(3) request");
+const $ = new ENVs("🍿 DualSubs: 🎵 Spotify v1.3.6(4) request");
 const URI = new URIs();
 
 // 构造回复数据
@@ -22,7 +22,7 @@ $.log(`⚠ ${$.name}`, `URL: ${JSON.stringify(URL)}`, "");
 const METHOD = $request.method, HOST = URL.host, PATH = URL.path, PATHs = URL.paths;
 $.log(`⚠ ${$.name}`, `METHOD: ${METHOD}`, "");
 // 解析格式
-const FORMAT = $request.body ? ($response.headers?.["Content-Type"] ?? $response.headers?.["content-type"])?.split(";")?.[0] : undefined;
+const FORMAT = ($request.headers?.["Content-Type"] ?? $request.headers?.["content-type"])?.split(";")?.[0];
 $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 (async () => {
 	// 读取设置
