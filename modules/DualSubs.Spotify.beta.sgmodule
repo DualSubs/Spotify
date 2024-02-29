@@ -7,7 +7,7 @@
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png
 #!category=🍿️ DualSubs
 #!arguments=Vendor:Google,LrcVendor:NeteaseMusic
-#!arguments-desc=Vendor: [翻译器]服务商API\nLrcVendor: [歌词]服务商API\n  └ 网易云音乐（官方）: NeteaseMusic\n  └ QQ音乐（官方）: QQMusic\n  └ 网易云音乐 NodeJS API: NeteaseMusicNodeJS
+#!arguments-desc=Vendor: [翻译器]服务商API\n  └ Google: Google Translate\n  └ GoogleCloud: Google Cloud Translate（需填写API）\n  └ Microsoft: Microsoft Translator（需填写API）\n  └ DeepL: DeepL API（需填写API）\nLrcVendor: [歌词]服务商API\n  └ NeteaseMusic: 网易云音乐（官方）\n  └ QQMusic: QQ音乐（官方）\n  └ NeteaseMusicNodeJS: 网易云音乐 NodeJS API
 
 [Script]
 DualSubs.Spotify.Tracks.response.json = type=http-response, pattern=^https?:\/\/api\.spotify\.com\/v1\/tracks\?, requires-body=1, debug=1, script-path=https://raw.githubusercontent.com/DualSubs/Spotify/beta/js/Spotify.response.beta.js, argument=Vendor={{{Vendor}}}&LrcVendor={{{LrcVendor}}}
