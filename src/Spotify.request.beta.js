@@ -1,5 +1,7 @@
-import ENVs from "./ENV/ENV.mjs";
-import URIs from "./URI/URI.mjs";
+import _ from './ENV/Lodash.mjs'
+import $Storage from './ENV/$Storage.mjs'
+import ENV from "./ENV/ENV.mjs";
+import URI from "./URI/URI.mjs";
 
 import Database from "./database/index.mjs";
 import setENV from "./function/setENV.mjs";
@@ -8,8 +10,7 @@ import setCache from "./function/setCache.mjs";
 import { TextEncoder , TextDecoder } from "./text-encoding/index.js";
 import { WireType, UnknownFieldHandler, reflectionMergePartial, MESSAGE_TYPE, MessageType, BinaryReader, isJsonObject, typeofJsonValue, jsonWriteOptions } from "../node_modules/@protobuf-ts/runtime/build/es2015/index.js";
 
-const $ = new ENVs("🍿 DualSubs: 🎵 Spotify v1.3.6(4) request.beta");
-const URI = new URIs();
+const $ = new ENV("🍿 DualSubs: 🎵 Spotify v1.3.6(4) request.beta");
 
 // 构造回复数据
 let $response = undefined;
@@ -86,7 +87,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 						case "application/grpc":
 						case "application/grpc+proto":
 						case "application/octet-stream":
-							//$.log(`🚧 ${$.name}, 调试信息`, `$request.body: ${JSON.stringify($request.body)}`, "");
+							//$.log(`🚧 ${$.name}, 调试信息`, `$request: ${JSON.stringify($request, null, 2)}`, "");
 							let rawBody = $.isQuanX() ? new Uint8Array($request.bodyBytes ?? []) : $request.body ?? new Uint8Array();
 							//$.log(`🚧 ${$.name}, 调试信息`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 							switch (FORMAT) {
@@ -135,20 +136,20 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									let response = results[0].value;
 									switch (response?.statusCode ?? response?.status) {
 										case 200:
-											if (Settings.Types.includes("Translate")) $.lodash.set(URL, "query.subtype", "Translate");
-											else if (Settings.Types.includes("External")) $.lodash.set(URL, "query.subtype", "External");
+											if (Settings.Types.includes("Translate")) _.set(URL, "query.subtype", "Translate");
+											else if (Settings.Types.includes("External")) _.set(URL, "query.subtype", "External");
 											break;
 										case 401:
 										default:
 											break;
 										case 404:
-											if (Settings.Types.includes("External")) $.lodash.set(URL, "query.subtype", "External");
+											if (Settings.Types.includes("External")) _.set(URL, "query.subtype", "External");
 											break;
 									};
 									break;
 								case "rejected":
 									$.log(`🚧 ${$.name}, 调试信息`, `detectStutus.reason: ${JSON.stringify(results[0].reason)}`, "");
-									if (Settings.Types.includes("External")) $.lodash.set(URL, "query.subtype", "External");
+									if (Settings.Types.includes("External")) _.set(URL, "query.subtype", "External");
 									break;
 							};
 							switch (results[1].status) {
@@ -171,7 +172,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 									$.log(`🚧 ${$.name}`, `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
 									Caches.Metadatas.Tracks = setCache(Caches.Metadatas.Tracks, Settings.CacheSize);
 									// 写入持久化储存
-									$.setjson(Caches.Metadatas.Tracks, `@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`);
+									$Storage.setItem(`@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`, Caches.Metadatas.Tracks);
 									break;
 								case "rejected":
 									$.log(`🚧 ${$.name}, 调试信息`, `detectTrack.reason: ${JSON.stringify(results[1].reason)}`, "");
