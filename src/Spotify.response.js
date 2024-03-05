@@ -11,28 +11,28 @@ import modifiedAccountAttributes from "./function/modifiedAccountAttributes.mjs"
 import { TextEncoder , TextDecoder } from "./text-encoding/index.js";
 import { WireType, UnknownFieldHandler, reflectionMergePartial, MESSAGE_TYPE, MessageType, BinaryReader, isJsonObject, typeofJsonValue, jsonWriteOptions } from "../node_modules/@protobuf-ts/runtime/build/es2015/index.js";
 
-const $ = new ENV("🍿️ DualSubs: 🎵 Spotify v1.5.1(3) response");
+const $ = new ENV("🍿️ DualSubs: 🎵 Spotify v1.5.1(4) response");
 
 /***************** Processing *****************/
 // 解构URL
 const URL = URI.parse($request.url);
-$.log(`⚠ ${$.name}`, `URL: ${JSON.stringify(URL)}`, "");
+$.log(`⚠ URL: ${JSON.stringify(URL)}`, "");
 // 获取连接参数
 const METHOD = $request.method, HOST = URL.host, PATH = URL.path, PATHs = URL.paths;
-$.log(`⚠ ${$.name}`, `METHOD: ${METHOD}`, "");
+$.log(`⚠ METHOD: ${METHOD}`, "");
 // 解析格式
 const FORMAT = ($response.headers?.["Content-Type"] ?? $response.headers?.["content-type"])?.split(";")?.[0];
-$.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
+$.log(`⚠ FORMAT: ${FORMAT}`, "");
 (async () => {
 	// 读取设置
-	const { Settings, Caches, Configs } = setENV($, "DualSubs", "Spotify", Database);
-	$.log(`⚠ ${$.name}`, `Settings.Switch: ${Settings?.Switch}`, "");
+	const { Settings, Caches, Configs } = setENV("DualSubs", "Spotify", Database);
+	$.log(`⚠ Settings.Switch: ${Settings?.Switch}`, "");
 	switch (Settings.Switch) {
 		case true:
 		default:
 			// 获取字幕类型与语言
 			const Type = URL.query?.subtype ?? Settings.Type, Languages = [URL.query?.lang?.toUpperCase?.() ?? Settings.Languages[0], (URL.query?.tlang ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
-			$.log(`⚠ ${$.name}, Type: ${Type}, Languages: ${Languages}`, "");
+			$.log(`⚠ Type: ${Type}, Languages: ${Languages}`, "");
 			// 创建空数据
 			let body = {};
 			// 格式判断
@@ -61,7 +61,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 				case "text/json":
 				case "application/json":
 					body = JSON.parse($response.body ?? "{}");
-					$.log(`🚧 ${$.name}`, `body: ${JSON.stringify(body)}`, "");
+					$.log(`🚧 body: ${JSON.stringify(body)}`, "");
 					switch (PATH) {
 						case "melody/v1/product_state":
 							body.country = Settings.Country;
@@ -69,7 +69,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 							break;
 						case "v1/tracks":
 							body?.tracks?.forEach?.(track => {
-								$.log(`🚧 ${$.name}`, `track: ${JSON.stringify(track)}`, "");
+								$.log(`🚧 track: ${JSON.stringify(track)}`, "");
 								const trackId = track?.id;
 								const trackInfo = {
 									"track": track?.name,
@@ -80,7 +80,7 @@ $.log(`⚠ ${$.name}, FORMAT: ${FORMAT}`, "");
 								Caches.Metadatas.Tracks.set(trackId, trackInfo);
 							});
 							// 格式化缓存
-							//$.log(`🚧 ${$.name}, 调试信息`, `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
+							//$.log(`🚧 调试信息`, `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
 							Caches.Metadatas.Tracks = setCache(Caches.Metadatas.Tracks, Settings.CacheSize);
 							// 写入持久化储存
 							$Storage.setItem(`@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`, Caches.Metadatas.Tracks);
