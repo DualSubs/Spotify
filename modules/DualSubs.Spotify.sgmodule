@@ -10,7 +10,7 @@
 #!arguments-desc=Types: [歌词]启用类型（多选）\n    ├ Translate: 翻译歌词（翻译器）\n    └ External: 外部歌词（外部源）\n\nVendor: [翻译器]服务商API\n    ├ Google: Google Translate\n    ├ GoogleCloud: Google Cloud Translate（需填写API）\n    ├ Microsoft: Microsoft Translator（需填写API）\n    └ DeepL: DeepL API（需填写API）\n\nLrcVendor: [外部源]歌词服务商API\n    ├ NeteaseMusic: 网易云音乐（官方）\n    ├ QQMusic: QQ音乐（官方）\n    └ NeteaseMusicNodeJS: 网易云音乐 NodeJS API
 
 [Script]
-DualSubs.Spotify.Tracks.response.json = type=http-response, pattern=^https?:\/\/api\.spotify\.com\/v1\/tracks\?, requires-body=1, script-path=https://raw.githubusercontent.com/DualSubs/Spotify/main/js/Spotify.response.js, argument=
+DualSubs.Spotify.Tracks.response.json = type=http-response, pattern=^https?:\/\/api\.spotify\.com\/v1\/tracks\?, requires-body=1, engine=webview, script-path=https://raw.githubusercontent.com/DualSubs/Spotify/main/js/Spotify.response.js, argument=
 
 DualSubs.Spotify.Lyrics.request.json = type=http-request, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json, requires-body=1, script-path=https://raw.githubusercontent.com/DualSubs/Spotify/main/js/Spotify.request.js, argument=Types="{{{Types}}}"
 DualSubs.Spotify.Lyrics.request.proto = type=http-request, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*), requires-body=1, binary-body-mode=1, script-path=https://raw.githubusercontent.com/DualSubs/Spotify/main/js/Spotify.request.js, argument=Types="{{{Types}}}"

@@ -8,7 +8,6 @@ import setENV from "./function/setENV.mjs";
 import setCache from "./function/setCache.mjs";
 import modifiedAccountAttributes from "./function/modifiedAccountAttributes.mjs";
 
-import { TextEncoder , TextDecoder } from "./text-encoding/index.js";
 import { WireType, UnknownFieldHandler, reflectionMergePartial, MESSAGE_TYPE, MessageType, BinaryReader, isJsonObject, typeofJsonValue, jsonWriteOptions } from "../node_modules/@protobuf-ts/runtime/build/es2015/index.js";
 
 const $ = new ENV("🍿️ DualSubs: 🎵 Spotify v1.5.1(4) response");
