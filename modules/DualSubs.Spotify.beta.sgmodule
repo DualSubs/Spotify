@@ -4,7 +4,7 @@
 #!author=VirgilClyne
 #!homepage=https://github.com/DualSubs
 #!manual=https://github.com/DualSubs/Spotify/wiki/🍿-DualSubs:-🎵-Spotify
-#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png
+#!icon=https://github.com/DualSubs/Spotify/raw/beta/src/assets/icon_rounded.png
 #!category=🍿️ DualSubs
 #!arguments=Types:"Translate,External",Vendor:Google,LrcVendor:NeteaseMusic
 #!arguments-desc=Types: [歌词]启用类型（多选）\n    ├ Translate: 翻译歌词（翻译器）\n    └ External: 外部歌词（外部源）\n\nVendor: [翻译器]服务商API\n    ├ Google: Google Translate\n    ├ GoogleCloud: Google Cloud Translate（需填写API）\n    ├ Microsoft: Microsoft Translator（需填写API）\n    └ DeepL: DeepL API（需填写API）\n\nLrcVendor: [外部源]歌词服务商API\n    ├ NeteaseMusic: 网易云音乐（官方）\n    ├ QQMusic: QQ音乐（官方）\n    └ NeteaseMusicNodeJS: 网易云音乐 NodeJS API
