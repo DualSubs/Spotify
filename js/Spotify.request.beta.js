@@ -710,37 +710,6 @@ class ENV {
 	}
 }
 
-class URI {
-	static name = "URI";
-	static version = "1.2.7";
-	static about() { return console.log(`\n🟧 ${this.name} v${this.version}\n`) };
-	static #json = { scheme: "", host: "", path: "", query: {} };
-
-	static parse(url) {
-		const URLRegex = /(?:(?<scheme>.+):\/\/(?<host>[^/]+))?\/?(?<path>[^?]+)?\??(?<query>[^?]+)?/;
-		let json = url.match(URLRegex)?.groups ?? null;
-		if (json?.path) json.paths = json.path.split("/"); else json.path = "";
-		//if (json?.paths?.at(-1)?.includes(".")) json.format = json.paths.at(-1).split(".").at(-1);
-		if (json?.paths) {
-			const fileName = json.paths[json.paths.length - 1];
-			if (fileName?.includes(".")) {
-				const list = fileName.split(".");
-				json.format = list[list.length - 1];
-			}
-		}
-		if (json?.query) json.query = Object.fromEntries(json.query.split("&").map((param) => param.split("=")));
-		return json
-	};
-
-	static stringify(json = this.#json) {
-		let url = "";
-		if (json?.scheme && json?.host) url += json.scheme + "://" + json.host;
-		if (json?.path) url += (json?.host) ? "/" + json.path : json.path;
-		if (json?.query) url += "?" + Object.entries(json.query).map(param => param.join("=")).join("&");
-		return url
-	};
-}
-
 var Settings$1 = {
 	Switch: true,
 	Type: "Translate",
@@ -895,18 +864,18 @@ function setCache(cache, cacheSize = 100) {
 	return cache;
 }
 
-const $ = new ENV("🍿 DualSubs: 🎵 Spotify v1.3.6(5) request.beta");
+const $ = new ENV("🍿 DualSubs: 🎵 Spotify v1.4.0(2) request.beta");
 
 // 构造回复数据
 let $response = undefined;
 
 /***************** Processing *****************/
 // 解构URL
-const URL = URI.parse($request.url);
-$.log(`⚠ URL: ${JSON.stringify(URL)}`, "");
+const url = new URL($request.url);
+$.log(`⚠ url: ${url.toJSON()}`, "");
 // 获取连接参数
-const METHOD = $request.method; URL.host; const PATH = URL.path, PATHs = URL.paths;
-$.log(`⚠ METHOD: ${METHOD}`, "");
+const METHOD = $request.method, HOST = url.hostname, PATH = url.pathname, PATHs = url.pathname.split("/").filter(Boolean);
+$.log(`⚠ METHOD: ${METHOD}, HOST: ${HOST}, PATH: ${PATH}` , "");
 // 解析格式
 const FORMAT = ($request.headers?.["Content-Type"] ?? $request.headers?.["content-type"])?.split(";")?.[0];
 $.log(`⚠ FORMAT: ${FORMAT}`, "");
@@ -918,7 +887,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 		case true:
 		default:
 			// 获取字幕类型与语言
-			const Type = URL.query?.subtype ?? Settings.Type, Languages = [URL.query?.lang?.toUpperCase?.() ?? Settings.Languages[0], (URL.query?.tlang ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
+			const Type = url.searchParams.get("subtype") ?? Settings.Type, Languages = [url.searchParams.get("lang")?.toUpperCase?.() ?? Settings.Languages[0], (url.searchParams.get("tlang") ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
 			$.log(`⚠ Type: ${Type}, Languages: ${Languages}`, "");
 			// 创建空数据
 			let body = {};
@@ -934,7 +903,6 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							break;
 						case "application/x-www-form-urlencoded":
 						case "text/plain":
-						case "text/html":
 						default:
 							break;
 						case "application/x-mpegURL":
@@ -946,6 +914,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							//$request.body = M3U8.stringify(body);
 							break;
 						case "text/xml":
+						case "text/html":
 						case "text/plist":
 						case "application/xml":
 						case "application/plist":
@@ -980,8 +949,8 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 								case "application/x-protobuf":
 								case "application/vnd.google.protobuf":
 									switch (PATH) {
-										case "bootstrap/v1/bootstrap":
-										case "user-customization-service/v1/customize":
+										case "/bootstrap/v1/bootstrap":
+										case "/user-customization-service/v1/customize":
 											delete $request.headers?.["If-None-Match"];
 											delete $request.headers?.["if-none-match"];
 											break;
@@ -991,12 +960,11 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							break;
 					}					//break; // 不中断，继续处理URL
 				case "GET":
-					if (PATH.startsWith("color-lyrics/v2/track/")) {
+					if (PATH.startsWith("/color-lyrics/v2/track/")) {
 						let trackId = PATHs?.[3];
 						$.log(`🚧 调试信息`, `trackId: ${trackId}`, "");
 						let _request = JSON.parse(JSON.stringify($request));
 						_request.url = `https://api.spotify.com/v1/tracks?ids=${trackId}`;
-						delete _request?.headers?.Host;
 						if (_request?.headers?.Accept) _request.headers.Accept = "application/json";
 						if (_request?.headers?.accept) _request.headers.accept = "application/json";
 						//$.log(`🚧 调试信息`, `_request: ${JSON.stringify(_request)}`, "");
@@ -1013,19 +981,19 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 									let response = results[0].value;
 									switch (response?.statusCode ?? response?.status) {
 										case 200:
-											if (Settings.Types.includes("Translate")) Lodash.set(URL, "query.subtype", "Translate");
-											else if (Settings.Types.includes("External")) Lodash.set(URL, "query.subtype", "External");
+											if (Settings.Types.includes("Translate")) url.searchParams.set("subtype", "Translate");
+											else if (Settings.Types.includes("External")) url.searchParams.set("subtype", "External");
 											break;
 										case 401:
 										default:
 											break;
 										case 404:
-											if (Settings.Types.includes("External")) Lodash.set(URL, "query.subtype", "External");
+											if (Settings.Types.includes("External")) url.searchParams.set("subtype", "External");
 											break;
 									}									break;
 								case "rejected":
 									$.log(`🚧 调试信息`, `detectStutus.reason: ${JSON.stringify(results[0].reason)}`, "");
-									if (Settings.Types.includes("External")) Lodash.set(URL, "query.subtype", "External");
+									if (Settings.Types.includes("External")) url.searchParams.set("subtype", "External");
 									break;
 							}							switch (results[1].status) {
 								case "fulfilled":
@@ -1053,8 +1021,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 									$.log(`🚧 调试信息`, `detectTrack.reason: ${JSON.stringify(results[1].reason)}`, "");
 									break;
 							}						});
-					}			}			if ($request.headers?.Host) $request.headers.Host = URL.host;
-			$request.url = URI.stringify(URL);
+					}			}			$request.url = url.toString();
 			$.log(`🚧 调试信息`, `$request.url: ${$request.url}`, "");
 			break;
 		case false:

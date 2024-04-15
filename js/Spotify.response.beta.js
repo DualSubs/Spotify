@@ -710,37 +710,6 @@ class ENV {
 	}
 }
 
-class URI {
-	static name = "URI";
-	static version = "1.2.7";
-	static about() { return console.log(`\n🟧 ${this.name} v${this.version}\n`) };
-	static #json = { scheme: "", host: "", path: "", query: {} };
-
-	static parse(url) {
-		const URLRegex = /(?:(?<scheme>.+):\/\/(?<host>[^/]+))?\/?(?<path>[^?]+)?\??(?<query>[^?]+)?/;
-		let json = url.match(URLRegex)?.groups ?? null;
-		if (json?.path) json.paths = json.path.split("/"); else json.path = "";
-		//if (json?.paths?.at(-1)?.includes(".")) json.format = json.paths.at(-1).split(".").at(-1);
-		if (json?.paths) {
-			const fileName = json.paths[json.paths.length - 1];
-			if (fileName?.includes(".")) {
-				const list = fileName.split(".");
-				json.format = list[list.length - 1];
-			}
-		}
-		if (json?.query) json.query = Object.fromEntries(json.query.split("&").map((param) => param.split("=")));
-		return json
-	};
-
-	static stringify(json = this.#json) {
-		let url = "";
-		if (json?.scheme && json?.host) url += json.scheme + "://" + json.host;
-		if (json?.path) url += (json?.host) ? "/" + json.path : json.path;
-		if (json?.query) url += "?" + Object.entries(json.query).map(param => param.join("=")).join("&");
-		return url
-	};
-}
-
 var Settings$1 = {
 	Switch: true,
 	Type: "Translate",
@@ -3875,15 +3844,15 @@ class MessageType {
     }
 }
 
-const $ = new ENV("🍿️ DualSubs: 🎵 Spotify v1.5.1(4) response.beta");
+const $ = new ENV("🍿️ DualSubs: 🎵 Spotify v1.6.0(1) response.beta");
 
 /***************** Processing *****************/
 // 解构URL
-const URL = URI.parse($request.url);
-$.log(`⚠ URL: ${JSON.stringify(URL)}`, "");
+const url = new URL($request.url);
+$.log(`⚠ url: ${url.toJSON()}`, "");
 // 获取连接参数
-const METHOD = $request.method; URL.host; const PATH = URL.path; URL.paths;
-$.log(`⚠ METHOD: ${METHOD}`, "");
+const METHOD = $request.method, HOST = url.hostname, PATH = url.pathname;
+$.log(`⚠ METHOD: ${METHOD}, HOST: ${HOST}, PATH: ${PATH}` , "");
 // 解析格式
 const FORMAT = ($response.headers?.["Content-Type"] ?? $response.headers?.["content-type"])?.split(";")?.[0];
 $.log(`⚠ FORMAT: ${FORMAT}`, "");
@@ -3895,7 +3864,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 		case true:
 		default:
 			// 获取字幕类型与语言
-			const Type = URL.query?.subtype ?? Settings.Type, Languages = [URL.query?.lang?.toUpperCase?.() ?? Settings.Languages[0], (URL.query?.tlang ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
+			const Type = url.searchParams.get("subtype") ?? Settings.Type, Languages = [url.searchParams.get("lang")?.toUpperCase?.() ?? Settings.Languages[0], (url.searchParams.get("tlang") ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
 			$.log(`⚠ Type: ${Type}, Languages: ${Languages}`, "");
 			// 创建空数据
 			let body = {};
@@ -3905,7 +3874,6 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 					break;
 				case "application/x-www-form-urlencoded":
 				case "text/plain":
-				case "text/html":
 				default:
 					break;
 				case "application/x-mpegURL":
@@ -3917,6 +3885,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 					//$response.body = M3U8.stringify(body);
 					break;
 				case "text/xml":
+				case "text/html":
 				case "text/plist":
 				case "application/xml":
 				case "application/plist":
@@ -3936,7 +3905,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 					body = JSON.parse($response.body ?? "{}");
 					$.log(`🚧 body: ${JSON.stringify(body)}`, "");
 					switch (PATH) {
-						case "melody/v1/product_state":
+						case "/melody/v1/product_state":
 							//body.product = "premium";
 							body.country = Settings.Country;
 							//body.ads = "0";
@@ -3948,7 +3917,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							//body["is-standalone-audiobooks"]
 							//body.catalogue = "premium";
 							break;
-						case "v1/tracks":
+						case "/v1/tracks":
 							body?.tracks?.forEach?.(track => {
 								$.log(`🚧 track: ${JSON.stringify(track)}`, "");
 								const trackId = track?.id;
@@ -4123,8 +4092,8 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							const Any = new Any$Type();
 							/******************  initialization finish  *******************/
 							switch (PATH) {
-								case "bootstrap/v1/bootstrap":
-								case "user-customization-service/v1/customize":
+								case "/bootstrap/v1/bootstrap":
+								case "/user-customization-service/v1/customize":
 									/******************  initialization start  *******************/
 									class BootstrapResponse$Type extends MessageType {
 										constructor() {
@@ -4293,7 +4262,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 									const Error = new Error$Type();
 									/******************  initialization finish  *******************/
 									switch (PATH) {
-										case "bootstrap/v1/bootstrap": {
+										case "/bootstrap/v1/bootstrap": {
 											body = BootstrapResponse.fromBinary(rawBody);
 											$.log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
 											let UF = UnknownFieldHandler.list(body);
@@ -4314,7 +4283,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 											}											//$.log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
 											rawBody = BootstrapResponse.toBinary(body);
 											break;
-										}										case "user-customization-service/v1/customize": {
+										}										case "/user-customization-service/v1/customize": {
 											body = UcsResponseWrapper.fromBinary(rawBody);
 											$.log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
 											let UF = UnknownFieldHandler.list(body);
@@ -4336,7 +4305,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 											rawBody = UcsResponseWrapper.toBinary(body);
 											break;
 										}									}									break;
-								case "extended-metadata/v0/extended-metadata": {
+								case "/extended-metadata/v0/extended-metadata": {
 									/******************  initialization start  *******************/
 									class BatchedExtensionResponse$Type extends MessageType {
 										constructor() {
