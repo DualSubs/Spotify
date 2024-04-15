@@ -1,24 +1,23 @@
 import _ from './ENV/Lodash.mjs'
 import $Storage from './ENV/$Storage.mjs'
 import ENV from "./ENV/ENV.mjs";
-import URI from "./URI/URI.mjs";
 
 import Database from "./database/index.mjs";
 import setENV from "./function/setENV.mjs";
 import setCache from "./function/setCache.mjs";
 
-const $ = new ENV("🍿 DualSubs: 🎵 Spotify v1.3.6(5) request");
+const $ = new ENV("🍿 DualSubs: 🎵 Spotify v1.4.0(2) request");
 
 // 构造回复数据
 let $response = undefined;
 
 /***************** Processing *****************/
 // 解构URL
-const URL = URI.parse($request.url);
-$.log(`⚠ URL: ${JSON.stringify(URL)}`, "");
+const url = new URL($request.url);
+$.log(`⚠ url: ${url.toJSON()}`, "");
 // 获取连接参数
-const METHOD = $request.method, HOST = URL.host, PATH = URL.path, PATHs = URL.paths;
-$.log(`⚠ METHOD: ${METHOD}`, "");
+const METHOD = $request.method, HOST = url.hostname, PATH = url.pathname, PATHs = url.pathname.split("/").filter(Boolean);
+$.log(`⚠ METHOD: ${METHOD}, HOST: ${HOST}, PATH: ${PATH}` , "");
 // 解析格式
 const FORMAT = ($request.headers?.["Content-Type"] ?? $request.headers?.["content-type"])?.split(";")?.[0];
 $.log(`⚠ FORMAT: ${FORMAT}`, "");
@@ -30,7 +29,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 		case true:
 		default:
 			// 获取字幕类型与语言
-			const Type = URL.query?.subtype ?? Settings.Type, Languages = [URL.query?.lang?.toUpperCase?.() ?? Settings.Languages[0], (URL.query?.tlang ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
+			const Type = url.searchParams.get("subtype") ?? Settings.Type, Languages = [url.searchParams.get("lang")?.toUpperCase?.() ?? Settings.Languages[0], (url.searchParams.get("tlang") ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
 			$.log(`⚠ Type: ${Type}, Languages: ${Languages}`, "");
 			// 创建空数据
 			let body = {};
@@ -46,7 +45,6 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							break;
 						case "application/x-www-form-urlencoded":
 						case "text/plain":
-						case "text/html":
 						default:
 							break;
 						case "application/x-mpegURL":
@@ -55,6 +53,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 						case "audio/mpegurl":
 							break;
 						case "text/xml":
+						case "text/html":
 						case "text/plist":
 						case "application/xml":
 						case "application/plist":
@@ -78,12 +77,12 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 								case "application/x-protobuf":
 								case "application/vnd.google.protobuf":
 									switch (PATH) {
-										case "bootstrap/v1/bootstrap":
-										case "user-customization-service/v1/customize":
+										case "/bootstrap/v1/bootstrap":
+										case "/user-customization-service/v1/customize":
 											delete $request.headers?.["If-None-Match"];
 											delete $request.headers?.["if-none-match"];
 											break;
-										case "extended-metadata/v0/extended-metadata":
+										case "/extended-metadata/v0/extended-metadata":
 											break;
 									};
 									break;
@@ -97,12 +96,11 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 					};
 					//break; // 不中断，继续处理URL
 				case "GET":
-					if (PATH.startsWith("color-lyrics/v2/track/")) {
+					if (PATH.startsWith("/color-lyrics/v2/track/")) {
 						let trackId = PATHs?.[3];
 						$.log(`🚧 调试信息`, `trackId: ${trackId}`, "");
 						let _request = JSON.parse(JSON.stringify($request));
 						_request.url = `https://api.spotify.com/v1/tracks?ids=${trackId}`;
-						delete _request?.headers?.Host;
 						if (_request?.headers?.Accept) _request.headers.Accept = "application/json";
 						if (_request?.headers?.accept) _request.headers.accept = "application/json";
 						//$.log(`🚧 调试信息`, `_request: ${JSON.stringify(_request)}`, "");
@@ -114,19 +112,19 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 									let response = results[0].value;
 									switch (response?.statusCode ?? response?.status) {
 										case 200:
-											if (Settings.Types.includes("Translate")) _.set(URL, "query.subtype", "Translate");
-											else if (Settings.Types.includes("External")) _.set(URL, "query.subtype", "External");
+											if (Settings.Types.includes("Translate")) url.searchParams.set("subtype", "Translate");
+											else if (Settings.Types.includes("External")) url.searchParams.set("subtype", "External");
 											break;
 										case 401:
 										default:
 											break;
 										case 404:
-											if (Settings.Types.includes("External")) _.set(URL, "query.subtype", "External");
+											if (Settings.Types.includes("External")) url.searchParams.set("subtype", "External");
 											break;
 									};
 									break;
 								case "rejected":
-									if (Settings.Types.includes("External")) _.set(URL, "query.subtype", "External");
+									if (Settings.Types.includes("External")) url.searchParams.set("subtype", "External");
 									break;
 							};
 							switch (results[1].status) {
@@ -163,8 +161,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 				case "TRACE":
 					break;
 			};
-			if ($request.headers?.Host) $request.headers.Host = URL.host;
-			$request.url = URI.stringify(URL);
+			$request.url = url.toString();
 			$.log(`🚧 调试信息`, `$request.url: ${$request.url}`, "");
 			break;
 		case false:

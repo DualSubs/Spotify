@@ -1,7 +1,6 @@
 import _ from './ENV/Lodash.mjs'
 import $Storage from './ENV/$Storage.mjs'
 import ENV from "./ENV/ENV.mjs";
-import URI from "./URI/URI.mjs";
 
 import Database from "./database/index.mjs";
 import setENV from "./function/setENV.mjs";
@@ -10,15 +9,15 @@ import modifiedAccountAttributes from "./function/modifiedAccountAttributes.mjs"
 
 import { WireType, UnknownFieldHandler, reflectionMergePartial, MESSAGE_TYPE, MessageType, BinaryReader, isJsonObject, typeofJsonValue, jsonWriteOptions } from "../node_modules/@protobuf-ts/runtime/build/es2015/index.js";
 
-const $ = new ENV("🍿️ DualSubs: 🎵 Spotify v1.5.1(4) response");
+const $ = new ENV("🍿️ DualSubs: 🎵 Spotify v1.6.0(1) response");
 
 /***************** Processing *****************/
 // 解构URL
-const URL = URI.parse($request.url);
-$.log(`⚠ URL: ${JSON.stringify(URL)}`, "");
+const url = new URL($request.url);
+$.log(`⚠ url: ${url.toJSON()}`, "");
 // 获取连接参数
-const METHOD = $request.method, HOST = URL.host, PATH = URL.path, PATHs = URL.paths;
-$.log(`⚠ METHOD: ${METHOD}`, "");
+const METHOD = $request.method, HOST = url.hostname, PATH = url.pathname;
+$.log(`⚠ METHOD: ${METHOD}, HOST: ${HOST}, PATH: ${PATH}` , "");
 // 解析格式
 const FORMAT = ($response.headers?.["Content-Type"] ?? $response.headers?.["content-type"])?.split(";")?.[0];
 $.log(`⚠ FORMAT: ${FORMAT}`, "");
@@ -30,7 +29,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 		case true:
 		default:
 			// 获取字幕类型与语言
-			const Type = URL.query?.subtype ?? Settings.Type, Languages = [URL.query?.lang?.toUpperCase?.() ?? Settings.Languages[0], (URL.query?.tlang ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
+			const Type = url.searchParams.get("subtype") ?? Settings.Type, Languages = [url.searchParams.get("lang")?.toUpperCase?.() ?? Settings.Languages[0], (url.searchParams.get("tlang") ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
 			$.log(`⚠ Type: ${Type}, Languages: ${Languages}`, "");
 			// 创建空数据
 			let body = {};
@@ -40,7 +39,6 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 					break;
 				case "application/x-www-form-urlencoded":
 				case "text/plain":
-				case "text/html":
 				default:
 					break;
 				case "application/x-mpegURL":
@@ -49,6 +47,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 				case "audio/mpegurl":
 					break;
 				case "text/xml":
+				case "text/html":
 				case "text/plist":
 				case "application/xml":
 				case "application/plist":
@@ -62,11 +61,11 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 					body = JSON.parse($response.body ?? "{}");
 					$.log(`🚧 body: ${JSON.stringify(body)}`, "");
 					switch (PATH) {
-						case "melody/v1/product_state":
+						case "/melody/v1/product_state":
 							body.country = Settings.Country;
 							body["selected-language"] = Settings.Languages[1].toLowerCase();
 							break;
-						case "v1/tracks":
+						case "/v1/tracks":
 							body?.tracks?.forEach?.(track => {
 								$.log(`🚧 track: ${JSON.stringify(track)}`, "");
 								const trackId = track?.id;
@@ -240,8 +239,8 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							const Any = new Any$Type();
 							/******************  initialization finish  *******************/
 							switch (PATH) {
-								case "bootstrap/v1/bootstrap":
-								case "user-customization-service/v1/customize":
+								case "/bootstrap/v1/bootstrap":
+								case "/user-customization-service/v1/customize":
 									/******************  initialization start  *******************/
 									class BootstrapResponse$Type extends MessageType {
 										constructor() {
@@ -410,7 +409,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 									const Error = new Error$Type();
 							/******************  initialization finish  *******************/
 									switch (PATH) {
-										case "bootstrap/v1/bootstrap": {
+										case "/bootstrap/v1/bootstrap": {
 											body = BootstrapResponse.fromBinary(rawBody);
 											let accountAttributes = body?.ucsResponseV0?.success?.customization?.success?.accountAttributesSuccess?.accountAttributes;
 											if (accountAttributes) {
@@ -420,7 +419,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 											rawBody = BootstrapResponse.toBinary(body);
 											break;
 										};
-										case "user-customization-service/v1/customize": {
+										case "/user-customization-service/v1/customize": {
 											body = UcsResponseWrapper.fromBinary(rawBody);
 											let accountAttributes = body?.success?.accountAttributesSuccess?.accountAttributes;
 											if (accountAttributes) {
@@ -432,7 +431,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 										};
 									};
 									break;
-								case "extended-metadata/v0/extended-metadata": {
+								case "/extended-metadata/v0/extended-metadata": {
 									/******************  initialization start  *******************/
 									class BatchedExtensionResponse$Type extends MessageType {
 										constructor() {
