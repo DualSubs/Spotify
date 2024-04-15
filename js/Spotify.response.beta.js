@@ -864,7 +864,8 @@ function setCache(cache, cacheSize = 100) {
 	return cache;
 }
 
-function modifiedAccountAttributes(accountAttributes) {
+function modifiedAccountAttributes(accountAttributes = {}) {
+	accountAttributes["audiobook-onboarding-completed"] = { "boolValue": true }; // false
 	accountAttributes["has-audiobooks-subscription"] = { "boolValue": true }; // false
 	accountAttributes["player-license"] = { "stringValue": "premium" }; // "mft"
 	//accountAttributes["country_code"] = { "stringValue": Settings.Country };
