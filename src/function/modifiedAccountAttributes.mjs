@@ -1,4 +1,5 @@
-export default function modifiedAccountAttributes(accountAttributes) {
+export default function modifiedAccountAttributes(accountAttributes = {}) {
+	accountAttributes["audiobook-onboarding-completed"] = { "boolValue": true }; // false
 	accountAttributes["has-audiobooks-subscription"] = { "boolValue": true }; // false
 	accountAttributes["player-license"] = { "stringValue": "premium" }; // "mft"
 	//accountAttributes["country_code"] = { "stringValue": Settings.Country };
