@@ -5,11 +5,12 @@ import ENV from "./ENV/ENV.mjs";
 import Database from "./database/index.mjs";
 import setENV from "./function/setENV.mjs";
 import setCache from "./function/setCache.mjs";
+import modifiedAssignedValues from "./function/modifiedAssignedValues.mjs";
 import modifiedAccountAttributes from "./function/modifiedAccountAttributes.mjs";
 
 import { WireType, UnknownFieldHandler, reflectionMergePartial, MESSAGE_TYPE, MessageType, BinaryReader, isJsonObject, typeofJsonValue, jsonWriteOptions } from "../node_modules/@protobuf-ts/runtime/build/es2015/index.js";
 
-const $ = new ENV("🍿️ DualSubs: 🎵 Spotify v1.6.0(1) response.beta");
+const $ = new ENV("🍿️ DualSubs: 🎵 Spotify v1.7.0(1002) response.beta");
 
 /***************** Processing *****************/
 // 解构URL
@@ -443,6 +444,10 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 													$.log(`🚧 no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
 												});
 											};
+											let assignedValues = body?.ucsResponseV0?.success?.customization?.success?.resolveSuccess?.configuration?.assignedValues;
+											if (assignedValues) {
+												assignedValues = modifiedAssignedValues(assignedValues);
+											};
 											let accountAttributes = body?.ucsResponseV0?.success?.customization?.success?.accountAttributesSuccess?.accountAttributes;
 											if (accountAttributes) {
 												accountAttributes["country_code"] = { "stringValue": Settings.Country };
@@ -466,6 +471,10 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 													let addedNumber = reader.int32(); // 7777
 													$.log(`🚧 no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
 												});
+											};
+											let assignedValues = body?.success?.resolveSuccess?.configuration?.assignedValues;
+											if (assignedValues) {
+												assignedValues = modifiedAssignedValues(assignedValues);
 											};
 											let accountAttributes = body?.success?.accountAttributesSuccess?.accountAttributes;
 											if (accountAttributes) {
