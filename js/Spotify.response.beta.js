@@ -958,6 +958,7 @@ function modifiedAccountAttributes(accountAttributes = {}) {
 	accountAttributes["addon-hifi"] = { "boolValue": true }; // false
 	accountAttributes["can_use_superbird"] = { "boolValue": true }; // false
 	accountAttributes["type"] = { "stringValue": "premium" }; // "free"
+	accountAttributes["india-experience"] = { "stringValue": "1" }; // "0"
 	accountAttributes["loudness-levels"] = { "stringValue": "1:-9.0,0.0,3.0:-2.0" };
 	accountAttributes["payments-initial-campaign"] = { "stringValue": "web" };
 	accountAttributes["shuffle-eligible"] = { "boolValue": true };
