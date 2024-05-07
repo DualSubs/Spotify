@@ -6,7 +6,7 @@ import Database from "./database/index.mjs";
 import setENV from "./function/setENV.mjs";
 import setCache from "./function/setCache.mjs";
 
-const $ = new ENV("🍿 DualSubs: 🎵 Spotify v1.4.1(1004) request.beta");
+const $ = new ENV("🍿 DualSubs: 🎵 Spotify v1.4.1(1005) request.beta");
 
 // 构造回复数据
 let $response = undefined;
@@ -111,10 +111,6 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 					//break; // 不中断，继续处理URL
 				case "GET":
 					if (PATH.startsWith("/color-lyrics/v2/track/")) {
-						if ($request.headers["Spotify-App-Version"]) $request.headers["Spotify-App-Version"] = "8.8.96.395";
-						if ($request.headers["spotify-app-version"]) $request.headers["spotify-app-version"] = "8.8.96.395";
-						if ($request.headers["User-Agent"]) $request.headers["User-Agent"] = "Spotify/8.8.96 iOS/17.2.1 (iPhone14,3)";
-						if ($request.headers["user-agent"]) $request.headers["user-agent"] = "Spotify/8.8.96 iOS/17.2.1 (iPhone14,3)";
 						let trackId = PATHs?.[3];
 						$.log(`🚧 调试信息`, `trackId: ${trackId}`, "");
 						let _request = JSON.parse(JSON.stringify($request));
