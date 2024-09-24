@@ -1,7 +1,4 @@
 {
-	"name": "dualsubs-spotify",
-	"version": "1.0.0",
-	"description": "DualSubs: Spotify",
 	"type": "module",
 	"repository": {
 		"type": "git",
@@ -12,7 +9,10 @@
 	},
 	"scripts": {
 		"build": "rollup -c",
-		"test": "rollup --config --configDebug"
+		"test": "rollup --config --configDebug",
+		"Lyrics": "protoc --ts_out ./src/protobuf --ts_opt generate_dependencies --ts_opt long_type_number --ts_opt output_javascript --proto_path ./src/protobuf Lyrics.proto",
+		"Bootstrap": "protoc --ts_out ./src/protobuf --ts_opt generate_dependencies --ts_opt long_type_number --ts_opt output_javascript --proto_path ./src/protobuf bootstrap.new.proto",
+		"ExtendedMetadata": "protoc --ts_out ./src/protobuf --ts_opt generate_dependencies --ts_opt long_type_number --ts_opt output_javascript --proto_path ./src/protobuf ExtendedMetadata.proto"
 	},
 	"browserslist": [
 		"iOS >= 15"
@@ -21,10 +21,16 @@
 	"author": "VirgilClyne",
 	"license": "Apache-2.0",
 	"devDependencies": {
+		"@protobuf-ts/plugin": "^2.9.3",
 		"@protobuf-ts/runtime": "^2.9.3",
 		"@rollup/plugin-commonjs": "^25.0.7",
 		"@rollup/plugin-json": "^6.1.0",
+		"@rollup/plugin-node-resolve": "^15.2.3",
 		"@rollup/plugin-terser": "^0.4.4",
 		"rollup": "^4.9.6"
+	},
+	"dependencies": {
+		"@protobuf-ts/runtime-rpc": "^2.9.3",
+		"@protobuf-ts/runtime": "^2.9.3"
 	}
 }

@@ -30,15 +30,16 @@ message TrialsFacadeResponseWrapperV1 {
 message TrialsFacadeResponseWrapperSuccess {
 	int32 filed1 = 1;
 }
+
 message UcsResponse {
-	ResolveSuccess resolveSuccess = 1;
+	ResolveResponse resolveSuccess = 1;
 	Error resolveError = 2;
 	AccountAttributesResponse accountAttributesSuccess = 3;
 	Error accountAttributesError = 4;
 	int64 fetchTimeMillis = 5;
 }
 
-message ResolveSuccess {
+message ResolveResponse {
 	Configuration configuration = 1;
 }
 

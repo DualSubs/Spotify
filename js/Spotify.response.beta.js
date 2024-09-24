@@ -1,4 +1,18 @@
 /* README: https://github.com/DualSubs */
+console.log('🍿 DualSubs: 🎵 Spotify β Response')
+const $platform = platform();
+function platform() {
+    if ("undefined" !== typeof $environment && $environment["surge-version"])
+        return "Surge"
+    if ("undefined" !== typeof $environment && $environment["stash-version"])
+        return "Stash"
+    if ("undefined" !== typeof module && !!module.exports) return "Node.js"
+    if ("undefined" !== typeof $task) return "Quantumult X"
+    if ("undefined" !== typeof $loon) return "Loon"
+    if ("undefined" !== typeof $rocket) return "Shadowrocket"
+    if ("undefined" !== typeof Egern) return "Egern"
+}
+
 /* https://www.lodashjs.com */
 class Lodash {
 	static name = "Lodash";
@@ -71,25 +85,13 @@ class Lodash {
 }
 
 /* https://developer.mozilla.org/zh-CN/docs/Web/API/Storage/setItem */
-class $Storage {
-	static name = "$Storage";
-	static version = "1.0.9";
-	static about() { return console.log(`\n🟧 ${this.name} v${this.version}\n`) };
-	static data = null
-	static dataFile = 'box.dat'
+class Storage {
+	static name = "Storage";
+	static version = "1.1.0";
+	static about () { return log("", `🟧 ${this.name} v${this.version}`, "") };
+	static data = null;
+	static dataFile = 'box.dat';
 	static #nameRegex = /^@(?<key>[^.]+)(?:\.(?<path>.*))?$/;
-
-	static #platform() {
-		if ('undefined' !== typeof $environment && $environment['surge-version'])
-			return 'Surge'
-		if ('undefined' !== typeof $environment && $environment['stash-version'])
-			return 'Stash'
-		if ('undefined' !== typeof module && !!module.exports) return 'Node.js'
-		if ('undefined' !== typeof $task) return 'Quantumult X'
-		if ('undefined' !== typeof $loon) return 'Loon'
-		if ('undefined' !== typeof $rocket) return 'Shadowrocket'
-		if ('undefined' !== typeof Egern) return 'Egern'
-	}
 
     static getItem(keyName = new String, defaultValue = null) {
         let keyValue = defaultValue;
@@ -97,22 +99,22 @@ class $Storage {
 		switch (keyName.startsWith('@')) {
 			case true:
 				const { key, path } = keyName.match(this.#nameRegex)?.groups;
-				//console.log(`1: ${key}, ${path}`);
+				//log(`1: ${key}, ${path}`);
 				keyName = key;
 				let value = this.getItem(keyName, {});
-				//console.log(`2: ${JSON.stringify(value)}`)
+				//log(`2: ${JSON.stringify(value)}`)
 				if (typeof value !== "object") value = {};
-				//console.log(`3: ${JSON.stringify(value)}`)
+				//log(`3: ${JSON.stringify(value)}`)
 				keyValue = Lodash.get(value, path);
-				//console.log(`4: ${JSON.stringify(keyValue)}`)
+				//log(`4: ${JSON.stringify(keyValue)}`)
 				try {
 					keyValue = JSON.parse(keyValue);
 				} catch (e) {
 					// do nothing
-				}				//console.log(`5: ${JSON.stringify(keyValue)}`)
+				}				//log(`5: ${JSON.stringify(keyValue)}`)
 				break;
 			default:
-				switch (this.#platform()) {
+				switch ($platform) {
 					case 'Surge':
 					case 'Loon':
 					case 'Stash':
@@ -140,7 +142,7 @@ class $Storage {
 
 	static setItem(keyName = new String, keyValue = new String) {
 		let result = false;
-		//console.log(`0: ${typeof keyValue}`);
+		//log(`0: ${typeof keyValue}`);
 		switch (typeof keyValue) {
 			case "object":
 				keyValue = JSON.stringify(keyValue);
@@ -151,19 +153,19 @@ class $Storage {
 		}		switch (keyName.startsWith('@')) {
 			case true:
 				const { key, path } = keyName.match(this.#nameRegex)?.groups;
-				//console.log(`1: ${key}, ${path}`);
+				//log(`1: ${key}, ${path}`);
 				keyName = key;
 				let value = this.getItem(keyName, {});
-				//console.log(`2: ${JSON.stringify(value)}`)
+				//log(`2: ${JSON.stringify(value)}`)
 				if (typeof value !== "object") value = {};
-				//console.log(`3: ${JSON.stringify(value)}`)
+				//log(`3: ${JSON.stringify(value)}`)
 				Lodash.set(value, path, keyValue);
-				//console.log(`4: ${JSON.stringify(value)}`)
+				//log(`4: ${JSON.stringify(value)}`)
 				result = this.setItem(keyName, value);
-				//console.log(`5: ${result}`)
+				//log(`5: ${result}`)
 				break;
 			default:
-				switch (this.#platform()) {
+				switch ($platform) {
 					case 'Surge':
 					case 'Loon':
 					case 'Stash':
@@ -199,7 +201,7 @@ class $Storage {
 				result = this.setItem(keyName, value);
 				break;
 			default:
-				switch (this.#platform()) {
+				switch ($platform) {
 					case 'Surge':
 					case 'Loon':
 					case 'Stash':
@@ -222,7 +224,7 @@ class $Storage {
 
     static clear() {
 		let result = false;
-		switch (this.#platform()) {
+		switch ($platform) {
 			case 'Surge':
 			case 'Loon':
 			case 'Stash':
@@ -292,458 +294,84 @@ class $Storage {
 
 }
 
-class ENV {
-	static name = "ENV"
-	static version = '1.8.3'
-	static about() { return console.log(`\n🟧 ${this.name} v${this.version}\n`) }
+function logError(error) {
+    switch ($platform) {
+        case "Surge":
+        case "Loon":
+        case "Stash":
+        case "Egern":
+        case "Shadowrocket":
+        case "Quantumult X":
+        default:
+            log("", `❗️执行错误!`, error, "");
+            break
+        case "Node.js":
+            log("", `❗️执行错误!`, error.stack, "");
+            break
+    }}
 
-	constructor(name, opts) {
-		console.log(`\n🟧 ${ENV.name} v${ENV.version}\n`);
-		this.name = name;
-		this.logs = [];
-		this.isMute = false;
-		this.isMuteLog = false;
-		this.logSeparator = '\n';
-		this.encoding = 'utf-8';
-		this.startTime = new Date().getTime();
-		Object.assign(this, opts);
-		this.log(`\n🚩 开始!\n${name}\n`);
-	}
-	
-	environment() {
-		switch (this.platform()) {
-			case 'Surge':
-				$environment.app = 'Surge';
-				return $environment
-			case 'Stash':
-				$environment.app = 'Stash';
-				return $environment
-			case 'Egern':
-				$environment.app = 'Egern';
-				return $environment
-			case 'Loon':
-				let environment = $loon.split(' ');
-				return {
-					"device": environment[0],
-					"ios": environment[1],
-					"loon-version": environment[2],
-					"app": "Loon"
-				};
-			case 'Quantumult X':
-				return {
-					"app": "Quantumult X"
-				};
-			case 'Node.js':
-				process.env.app = 'Node.js';
-				return process.env
-			default:
-				return {}
-		}
-	}
-
-	platform() {
-		if ('undefined' !== typeof $environment && $environment['surge-version'])
-			return 'Surge'
-		if ('undefined' !== typeof $environment && $environment['stash-version'])
-			return 'Stash'
-		if ('undefined' !== typeof module && !!module.exports) return 'Node.js'
-		if ('undefined' !== typeof $task) return 'Quantumult X'
-		if ('undefined' !== typeof $loon) return 'Loon'
-		if ('undefined' !== typeof $rocket) return 'Shadowrocket'
-		if ('undefined' !== typeof Egern) return 'Egern'
-	}
-
-	isNode() {
-		return 'Node.js' === this.platform()
-	}
-
-	isQuanX() {
-		return 'Quantumult X' === this.platform()
-	}
-
-	isSurge() {
-		return 'Surge' === this.platform()
-	}
-
-	isLoon() {
-		return 'Loon' === this.platform()
-	}
-
-	isShadowrocket() {
-		return 'Shadowrocket' === this.platform()
-	}
-
-	isStash() {
-		return 'Stash' === this.platform()
-	}
-
-	isEgern() {
-		return 'Egern' === this.platform()
-	}
-
-	async getScript(url) {
-		return await this.fetch(url).then(response => response.body);
-	}
-
-	async runScript(script, runOpts) {
-		let httpapi = $Storage.getItem('@chavy_boxjs_userCfgs.httpapi');
-		httpapi = httpapi?.replace?.(/\n/g, '')?.trim();
-		let httpapi_timeout = $Storage.getItem('@chavy_boxjs_userCfgs.httpapi_timeout');
-		httpapi_timeout = (httpapi_timeout * 1) ?? 20;
-		httpapi_timeout = runOpts?.timeout ?? httpapi_timeout;
-		const [password, address] = httpapi.split('@');
-		const request = {
-			url: `http://${address}/v1/scripting/evaluate`,
-			body: {
-				script_text: script,
-				mock_type: 'cron',
-				timeout: httpapi_timeout
-			},
-			headers: { 'X-Key': password, 'Accept': '*/*' },
-			timeout: httpapi_timeout
-		};
-		await this.fetch(request).then(response => response.body, error => this.logErr(error));
-	}
-
-	initGotEnv(opts) {
-		this.got = this.got ? this.got : require('got');
-		this.cktough = this.cktough ? this.cktough : require('tough-cookie');
-		this.ckjar = this.ckjar ? this.ckjar : new this.cktough.CookieJar();
-		if (opts) {
-			opts.headers = opts.headers ? opts.headers : {};
-			if (undefined === opts.headers.Cookie && undefined === opts.cookieJar) {
-				opts.cookieJar = this.ckjar;
-			}
-		}
-	}
-
-	async fetch(request = {} || "", option = {}) {
-		// 初始化参数
-		switch (request.constructor) {
-			case Object:
-				request = { ...option, ...request };
-				break;
-			case String:
-				request = { ...option, "url": request };
-				break;
-		}		// 自动判断请求方法
-		if (!request.method) {
-			request.method = "GET";
-			if (request.body ?? request.bodyBytes) request.method = "POST";
-		}		// 移除请求头中的部分参数, 让其自动生成
-		delete request.headers?.Host;
-		delete request.headers?.[":authority"];
-		delete request.headers?.['Content-Length'];
-		delete request.headers?.['content-length'];
-		// 定义请求方法（小写）
-		const method = request.method.toLocaleLowerCase();
-		// 判断平台
-		switch (this.platform()) {
-			case 'Loon':
-			case 'Surge':
-			case 'Stash':
-			case 'Egern':
-			case 'Shadowrocket':
-			default:
-				// 转换请求参数
-				if (request.timeout) {
-					request.timeout = parseInt(request.timeout, 10);
-					if (this.isSurge()) ; else request.timeout = request.timeout * 1000;
-				}				if (request.policy) {
-					if (this.isLoon()) request.node = request.policy;
-					if (this.isStash()) Lodash.set(request, "headers.X-Stash-Selected-Proxy", encodeURI(request.policy));
-					if (this.isShadowrocket()) Lodash.set(request, "headers.X-Surge-Proxy", request.policy);
-				}				if (typeof request.redirection === "boolean") request["auto-redirect"] = request.redirection;
-				// 转换请求体
-				if (request.bodyBytes && !request.body) {
-					request.body = request.bodyBytes;
-					delete request.bodyBytes;
-				}				// 发送请求
-				return await new Promise((resolve, reject) => {
-					$httpClient[method](request, (error, response, body) => {
-						if (error) reject(error);
-						else {
-							response.ok = /^2\d\d$/.test(response.status);
-							response.statusCode = response.status;
-							if (body) {
-								response.body = body;
-								if (request["binary-mode"] == true) response.bodyBytes = body;
-							}							resolve(response);
-						}
-					});
-				});
-			case 'Quantumult X':
-				// 转换请求参数
-				if (request.policy) Lodash.set(request, "opts.policy", request.policy);
-				if (typeof request["auto-redirect"] === "boolean") Lodash.set(request, "opts.redirection", request["auto-redirect"]);
-				// 转换请求体
-				if (request.body instanceof ArrayBuffer) {
-					request.bodyBytes = request.body;
-					delete request.body;
-				} else if (ArrayBuffer.isView(request.body)) {
-					request.bodyBytes = request.body.buffer.slice(request.body.byteOffset, request.body.byteLength + request.body.byteOffset);
-					delete object.body;
-				} else if (request.body) delete request.bodyBytes;
-				// 发送请求
-				return await $task.fetch(request).then(
-					response => {
-						response.ok = /^2\d\d$/.test(response.statusCode);
-						response.status = response.statusCode;
-						return response;
-					},
-					reason => Promise.reject(reason.error));
-			case 'Node.js':
-				let iconv = require('iconv-lite');
-				this.initGotEnv(request);
-				const { url, ...option } = request;
-				return await this.got[method](url, option)
-					.on('redirect', (response, nextOpts) => {
-						try {
-							if (response.headers['set-cookie']) {
-								const ck = response.headers['set-cookie']
-									.map(this.cktough.Cookie.parse)
-									.toString();
-								if (ck) {
-									this.ckjar.setCookieSync(ck, null);
-								}
-								nextOpts.cookieJar = this.ckjar;
-							}
-						} catch (e) {
-							this.logErr(e);
-						}
-						// this.ckjar.setCookieSync(response.headers['set-cookie'].map(Cookie.parse).toString())
-					})
-					.then(
-						response => {
-							response.statusCode = response.status;
-							response.body = iconv.decode(response.rawBody, this.encoding);
-							response.bodyBytes = response.rawBody;
-							return response;
-						},
-						error => Promise.reject(error.message));
-		}	};
-
-	/**
-	 *
-	 * 示例:$.time('yyyy-MM-dd qq HH:mm:ss.S')
-	 *    :$.time('yyyyMMddHHmmssS')
-	 *    y:年 M:月 d:日 q:季 H:时 m:分 s:秒 S:毫秒
-	 *    其中y可选0-4位占位符、S可选0-1位占位符，其余可选0-2位占位符
-	 * @param {string} format 格式化参数
-	 * @param {number} ts 可选: 根据指定时间戳返回格式化日期
-	 *
-	 */
-	time(format, ts = null) {
-		const date = ts ? new Date(ts) : new Date();
-		let o = {
-			'M+': date.getMonth() + 1,
-			'd+': date.getDate(),
-			'H+': date.getHours(),
-			'm+': date.getMinutes(),
-			's+': date.getSeconds(),
-			'q+': Math.floor((date.getMonth() + 3) / 3),
-			'S': date.getMilliseconds()
-		};
-		if (/(y+)/.test(format))
-			format = format.replace(
-				RegExp.$1,
-				(date.getFullYear() + '').substr(4 - RegExp.$1.length)
-			);
-		for (let k in o)
-			if (new RegExp('(' + k + ')').test(format))
-				format = format.replace(
-					RegExp.$1,
-					RegExp.$1.length == 1
-						? o[k]
-						: ('00' + o[k]).substr(('' + o[k]).length)
-				);
-		return format
-	}
-
-	/**
-	 * 系统通知
-	 *
-	 * > 通知参数: 同时支持 QuanX 和 Loon 两种格式, EnvJs根据运行环境自动转换, Surge 环境不支持多媒体通知
-	 *
-	 * 示例:
-	 * $.msg(title, subt, desc, 'twitter://')
-	 * $.msg(title, subt, desc, { 'open-url': 'twitter://', 'media-url': 'https://github.githubassets.com/images/modules/open_graph/github-mark.png' })
-	 * $.msg(title, subt, desc, { 'open-url': 'https://bing.com', 'media-url': 'https://github.githubassets.com/images/modules/open_graph/github-mark.png' })
-	 *
-	 * @param {*} title 标题
-	 * @param {*} subt 副标题
-	 * @param {*} desc 通知详情
-	 * @param {*} opts 通知参数
-	 *
-	 */
-	msg(title = name, subt = '', desc = '', opts) {
-		const toEnvOpts = (rawopts) => {
-			switch (typeof rawopts) {
-				case undefined:
-					return rawopts
-				case 'string':
-					switch (this.platform()) {
-						case 'Surge':
-						case 'Stash':
-						case 'Egern':
-						default:
-							return { url: rawopts }
-						case 'Loon':
-						case 'Shadowrocket':
-							return rawopts
-						case 'Quantumult X':
-							return { 'open-url': rawopts }
-						case 'Node.js':
-							return undefined
-					}
-				case 'object':
-					switch (this.platform()) {
-						case 'Surge':
-						case 'Stash':
-						case 'Egern':
-						case 'Shadowrocket':
-						default: {
-							let openUrl =
-								rawopts.url || rawopts.openUrl || rawopts['open-url'];
-							return { url: openUrl }
-						}
-						case 'Loon': {
-							let openUrl =
-								rawopts.openUrl || rawopts.url || rawopts['open-url'];
-							let mediaUrl = rawopts.mediaUrl || rawopts['media-url'];
-							return { openUrl, mediaUrl }
-						}
-						case 'Quantumult X': {
-							let openUrl =
-								rawopts['open-url'] || rawopts.url || rawopts.openUrl;
-							let mediaUrl = rawopts['media-url'] || rawopts.mediaUrl;
-							let updatePasteboard =
-								rawopts['update-pasteboard'] || rawopts.updatePasteboard;
-							return {
-								'open-url': openUrl,
-								'media-url': mediaUrl,
-								'update-pasteboard': updatePasteboard
-							}
-						}
-						case 'Node.js':
-							return undefined
-					}
-				default:
-					return undefined
-			}
-		};
-		if (!this.isMute) {
-			switch (this.platform()) {
-				case 'Surge':
-				case 'Loon':
-				case 'Stash':
-				case 'Egern':
-				case 'Shadowrocket':
-				default:
-					$notification.post(title, subt, desc, toEnvOpts(opts));
-					break
-				case 'Quantumult X':
-					$notify(title, subt, desc, toEnvOpts(opts));
-					break
-				case 'Node.js':
-					break
-			}
-		}
-		if (!this.isMuteLog) {
-			let logs = ['', '==============📣系统通知📣=============='];
-			logs.push(title);
-			subt ? logs.push(subt) : '';
-			desc ? logs.push(desc) : '';
-			console.log(logs.join('\n'));
-			this.logs = this.logs.concat(logs);
-		}
-	}
-
-	log(...logs) {
-		if (logs.length > 0) {
-			this.logs = [...this.logs, ...logs];
-		}
-		console.log(logs.join(this.logSeparator));
-	}
-
-	logErr(error) {
-		switch (this.platform()) {
-			case 'Surge':
-			case 'Loon':
-			case 'Stash':
-			case 'Egern':
-			case 'Shadowrocket':
-			case 'Quantumult X':
-			default:
-				this.log('', `❗️ ${this.name}, 错误!`, error);
-				break
-			case 'Node.js':
-				this.log('', `❗️${this.name}, 错误!`, error.stack);
-				break
-		}
-	}
-
-	wait(time) {
-		return new Promise((resolve) => setTimeout(resolve, time))
-	}
-
-	done(object = {}) {
-		const endTime = new Date().getTime();
-		const costTime = (endTime - this.startTime) / 1000;
-		this.log("", `🚩 ${this.name}, 结束! 🕛 ${costTime} 秒`, "");
-		switch (this.platform()) {
-			case 'Surge':
-				if (object.policy) Lodash.set(object, "headers.X-Surge-Policy", object.policy);
-				$done(object);
-				break;
-			case 'Loon':
-				if (object.policy) object.node = object.policy;
-				$done(object);
-				break;
-			case 'Stash':
-				if (object.policy) Lodash.set(object, "headers.X-Stash-Selected-Proxy", encodeURI(object.policy));
-				$done(object);
-				break;
-			case 'Egern':
-				$done(object);
-				break;
-			case 'Shadowrocket':
-			default:
-				$done(object);
-				break;
-			case 'Quantumult X':
-				if (object.policy) Lodash.set(object, "opts.policy", object.policy);
-				// 移除不可写字段
-				delete object["auto-redirect"];
-				delete object["auto-cookie"];
-				delete object["binary-mode"];
-				delete object.charset;
-				delete object.host;
-				delete object.insecure;
-				delete object.method; // 1.4.x 不可写
-				delete object.opt; // $task.fetch() 参数, 不可写
-				delete object.path; // 可写, 但会与 url 冲突
-				delete object.policy;
-				delete object["policy-descriptor"];
-				delete object.scheme;
-				delete object.sessionIndex;
-				delete object.statusCode;
-				delete object.timeout;
-				if (object.body instanceof ArrayBuffer) {
-					object.bodyBytes = object.body;
-					delete object.body;
-				} else if (ArrayBuffer.isView(object.body)) {
-					object.bodyBytes = object.body.buffer.slice(object.body.byteOffset, object.body.byteLength + object.body.byteOffset);
-					delete object.body;
-				} else if (object.body) delete object.bodyBytes;
-				$done(object);
-				break;
-			case 'Node.js':
-				process.exit(1);
-				break;
-		}
-	}
+function done(object = {}) {
+    switch ($platform) {
+        case "Surge":
+            if (object.policy) Lodash.set(object, "headers.X-Surge-Policy", object.policy);
+            log("", `🚩 执行结束! 🕛 ${(new Date().getTime() / 1000 - $script.startTime)} 秒`, "");
+            $done(object);
+            break;
+        case "Loon":
+            if (object.policy) object.node = object.policy;
+            log("", `🚩 执行结束! 🕛 ${(new Date() - $script.startTime) / 1000} 秒`, "");
+            $done(object);
+            break;
+        case "Stash":
+            if (object.policy) Lodash.set(object, "headers.X-Stash-Selected-Proxy", encodeURI(object.policy));
+            log("", `🚩 执行结束! 🕛 ${(new Date() - $script.startTime) / 1000} 秒`, "");
+            $done(object);
+            break;
+        case "Egern":
+            log("", `🚩 执行结束!`, "");
+            $done(object);
+            break;
+        case "Shadowrocket":
+        default:
+            log("", `🚩 执行结束!`, "");
+            $done(object);
+            break;
+        case "Quantumult X":
+            if (object.policy) Lodash.set(object, "opts.policy", object.policy);
+            // 移除不可写字段
+            delete object["auto-redirect"];
+            delete object["auto-cookie"];
+            delete object["binary-mode"];
+            delete object.charset;
+            delete object.host;
+            delete object.insecure;
+            delete object.method; // 1.4.x 不可写
+            delete object.opt; // $task.fetch() 参数, 不可写
+            delete object.path; // 可写, 但会与 url 冲突
+            delete object.policy;
+            delete object["policy-descriptor"];
+            delete object.scheme;
+            delete object.sessionIndex;
+            delete object.statusCode;
+            delete object.timeout;
+            if (object.body instanceof ArrayBuffer) {
+                object.bodyBytes = object.body;
+                delete object.body;
+            } else if (ArrayBuffer.isView(object.body)) {
+                object.bodyBytes = object.body.buffer.slice(object.body.byteOffset, object.body.byteLength + object.body.byteOffset);
+                delete object.body;
+            } else if (object.body) delete object.bodyBytes;
+            log("", `🚩 执行结束!`, "");
+            $done(object);
+            break;
+        case "Node.js":
+            log("", `🚩 执行结束!`, "");
+            process.exit(1);
+            break;
+    }
 }
+
+const log = (...logs) => console.log(logs.join("\n"));
 
 var Settings$1 = {
 	Switch: true,
@@ -774,10 +402,10 @@ var Default = {
 };
 
 var Default$1 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	Configs: Configs,
-	Settings: Settings$1,
-	default: Default
+    __proto__: null,
+    Configs: Configs,
+    Settings: Settings$1,
+    default: Default
 });
 
 var Settings = {
@@ -796,9 +424,9 @@ var Spotify = {
 };
 
 var Spotify$1 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	Settings: Settings,
-	default: Spotify
+    __proto__: null,
+    Settings: Settings,
+    default: Spotify
 });
 
 var Database$1 = Database = {
@@ -808,7 +436,7 @@ var Database$1 = Database = {
 
 /**
  * Get Storage Variables
- * @link https://github.com/NanoCat-Me/ENV/blob/main/getStorage.mjs
+ * @link https://github.com/NanoCat-Me/utils/blob/main/getStorage.mjs
  * @author VirgilClyne
  * @param {String} key - Persistent Store Key
  * @param {Array} names - Platform Names
@@ -816,43 +444,43 @@ var Database$1 = Database = {
  * @return {Object} { Settings, Caches, Configs }
  */
 function getStorage(key, names, database) {
-    //console.log(`☑️ ${this.name}, Get Environment Variables`, "");
+    //log(`☑️ getStorage, Get Environment Variables`, "");
     /***************** BoxJs *****************/
     // 包装为局部变量，用完释放内存
     // BoxJs的清空操作返回假值空字符串, 逻辑或操作符会在左侧操作数为假值时返回右侧操作数。
-    let BoxJs = $Storage.getItem(key, database);
-    //console.log(`🚧 ${this.name}, Get Environment Variables`, `BoxJs类型: ${typeof BoxJs}`, `BoxJs内容: ${JSON.stringify(BoxJs)}`, "");
+    let BoxJs = Storage.getItem(key, database);
+    //log(`🚧 getStorage, Get Environment Variables`, `BoxJs类型: ${typeof BoxJs}`, `BoxJs内容: ${JSON.stringify(BoxJs)}`, "");
     /***************** Argument *****************/
     let Argument = {};
-    if (typeof $argument !== "undefined") {
-        if (Boolean($argument)) {
-            //console.log(`🎉 ${this.name}, $Argument`);
+    switch (typeof $argument) {
+        case "string":
             let arg = Object.fromEntries($argument.split("&").map((item) => item.split("=").map(i => i.replace(/\"/g, ''))));
-            //console.log(JSON.stringify(arg));
             for (let item in arg) Lodash.set(Argument, item, arg[item]);
-            //console.log(JSON.stringify(Argument));
-        }        //console.log(`✅ ${this.name}, Get Environment Variables`, `Argument类型: ${typeof Argument}`, `Argument内容: ${JSON.stringify(Argument)}`, "");
-    }    /***************** Store *****************/
+            break;
+        case "object":
+            for (let item in $argument) Lodash.set(Argument, item, $argument[item]);
+            break;
+    }    //log(`✅ getStorage, Get Environment Variables`, `Argument类型: ${typeof Argument}`, `Argument内容: ${JSON.stringify(Argument)}`, "");
+    /***************** Store *****************/
     const Store = { Settings: database?.Default?.Settings || {}, Configs: database?.Default?.Configs || {}, Caches: {} };
     if (!Array.isArray(names)) names = [names];
-    //console.log(`🚧 ${this.name}, Get Environment Variables`, `names类型: ${typeof names}`, `names内容: ${JSON.stringify(names)}`, "");
+    //log(`🚧 getStorage, Get Environment Variables`, `names类型: ${typeof names}`, `names内容: ${JSON.stringify(names)}`, "");
     for (let name of names) {
         Store.Settings = { ...Store.Settings, ...database?.[name]?.Settings, ...Argument, ...BoxJs?.[name]?.Settings };
         Store.Configs = { ...Store.Configs, ...database?.[name]?.Configs };
         if (BoxJs?.[name]?.Caches && typeof BoxJs?.[name]?.Caches === "string") BoxJs[name].Caches = JSON.parse(BoxJs?.[name]?.Caches);
         Store.Caches = { ...Store.Caches, ...BoxJs?.[name]?.Caches };
-    }    //console.log(`🚧 ${this.name}, Get Environment Variables`, `Store.Settings类型: ${typeof Store.Settings}`, `Store.Settings: ${JSON.stringify(Store.Settings)}`, "");
+    }    //log(`🚧 getStorage, Get Environment Variables`, `Store.Settings类型: ${typeof Store.Settings}`, `Store.Settings: ${JSON.stringify(Store.Settings)}`, "");
     traverseObject(Store.Settings, (key, value) => {
-        //console.log(`🚧 ${this.name}, traverseObject`, `${key}: ${typeof value}`, `${key}: ${JSON.stringify(value)}`, "");
+        //log(`🚧 getStorage, traverseObject`, `${key}: ${typeof value}`, `${key}: ${JSON.stringify(value)}`, "");
         if (value === "true" || value === "false") value = JSON.parse(value); // 字符串转Boolean
         else if (typeof value === "string") {
             if (value.includes(",")) value = value.split(",").map(item => string2number(item)); // 字符串转数组转数字
             else value = string2number(value); // 字符串转数字
         }        return value;
     });
-    //console.log(`✅ ${this.name}, Get Environment Variables`, `Store: ${typeof Store.Caches}`, `Store内容: ${JSON.stringify(Store)}`, "");
+    //log(`✅ getStorage, Get Environment Variables`, `Store: ${typeof Store.Caches}`, `Store内容: ${JSON.stringify(Store)}`, "");
     return Store;
-
     /***************** function *****************/
     function traverseObject(o, c) { for (var t in o) { var n = o[t]; o[t] = "object" == typeof n && null !== n ? traverseObject(n, c) : c(t, n); } return o }
     function string2number(string) { if (string && !isNaN(string)) string = parseInt(string, 10); return string }
@@ -867,11 +495,11 @@ function getStorage(key, names, database) {
  * @return {Object} { Settings, Caches, Configs }
  */
 function setENV(name, platforms, database) {
-	console.log(`☑️ Set Environment Variables`, "");
+	log(`☑️ Set Environment Variables`, "");
 	let { Settings, Caches, Configs } = getStorage(name, platforms, database);
 	/***************** Settings *****************/
 	if (!Array.isArray(Settings?.Types)) Settings.Types = (Settings.Types) ? [Settings.Types] : []; // 只有一个选项时，无逗号分隔
-	console.log(`✅ Set Environment Variables, Settings: ${typeof Settings}, Settings内容: ${JSON.stringify(Settings)}`, "");
+	log(`✅ Set Environment Variables, Settings: ${typeof Settings}, Settings内容: ${JSON.stringify(Settings)}`, "");
 	/***************** Caches *****************/
 	//console.log(`✅ Set Environment Variables, Caches: ${typeof Caches}, Caches内容: ${JSON.stringify(Caches)}`, "");
 	if (typeof Caches?.Playlists !== "object" || Array.isArray(Caches?.Playlists)) Caches.Playlists = {}; // 创建Playlists缓存
@@ -3755,6 +3383,7 @@ function repeatedMsgEq(type, a, b) {
     return true;
 }
 
+const baseDescriptors = Object.getOwnPropertyDescriptors(Object.getPrototypeOf({}));
 /**
  * This standard message type provides reflection-based
  * operations to work with a message.
@@ -3765,7 +3394,7 @@ class MessageType {
         this.typeName = name;
         this.fields = fields.map(normalizeFieldInfo);
         this.options = options !== null && options !== void 0 ? options : {};
-        this.messagePrototype = Object.defineProperty({}, MESSAGE_TYPE, { value: this });
+        this.messagePrototype = Object.create(null, Object.assign(Object.assign({}, baseDescriptors), { [MESSAGE_TYPE]: { value: this } }));
         this.refTypeCheck = new ReflectionTypeCheck(this);
         this.refJsonReader = new ReflectionJsonReader(this);
         this.refJsonWriter = new ReflectionJsonWriter(this);
@@ -3912,28 +3541,1629 @@ class MessageType {
     }
 }
 
-const $ = new ENV("🍿️ DualSubs: 🎵 Spotify v1.7.0(1002) response.beta");
+// @generated by protobuf-ts 2.9.4 with parameter generate_dependencies,long_type_number,output_javascript
+// @generated from protobuf file "bootstrap.new.proto" (syntax proto3)
+// tslint:disable
+// @generated by protobuf-ts 2.9.4 with parameter generate_dependencies,long_type_number,output_javascript
+// @generated from protobuf file "bootstrap.new.proto" (syntax proto3)
+// tslint:disable
+// @generated message type with reflection information, may provide speed optimized methods
+class BootstrapResponse$Type extends MessageType {
+    constructor() {
+        super("BootstrapResponse", [
+            { no: 2, name: "ucsResponseV0", kind: "message", T: () => UcsResponseWrapperV0 },
+            { no: 3, name: "trialsFacadeResponseV1", kind: "message", T: () => TrialsFacadeResponseWrapperV1 }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message BootstrapResponse
+ */
+const BootstrapResponse = new BootstrapResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UcsResponseWrapperV0$Type extends MessageType {
+    constructor() {
+        super("UcsResponseWrapperV0", [
+            { no: 1, name: "success", kind: "message", T: () => UcsResponseWrapperSuccess },
+            { no: 2, name: "error", kind: "message", T: () => Error$1 }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message UcsResponseWrapperV0
+ */
+const UcsResponseWrapperV0 = new UcsResponseWrapperV0$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UcsResponseWrapperSuccess$Type extends MessageType {
+    constructor() {
+        super("UcsResponseWrapperSuccess", [
+            { no: 1, name: "customization", kind: "message", T: () => UcsResponseWrapper }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message UcsResponseWrapperSuccess
+ */
+const UcsResponseWrapperSuccess = new UcsResponseWrapperSuccess$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UcsResponseWrapper$Type extends MessageType {
+    constructor() {
+        super("UcsResponseWrapper", [
+            { no: 1, name: "success", kind: "message", T: () => UcsResponse },
+            { no: 2, name: "error", kind: "message", T: () => Error$1 }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message UcsResponseWrapper
+ */
+const UcsResponseWrapper = new UcsResponseWrapper$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class TrialsFacadeResponseWrapperV1$Type extends MessageType {
+    constructor() {
+        super("TrialsFacadeResponseWrapperV1", [
+            { no: 1, name: "success", kind: "message", T: () => TrialsFacadeResponseWrapperSuccess },
+            { no: 2, name: "error", kind: "message", T: () => Error$1 }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message TrialsFacadeResponseWrapperV1
+ */
+const TrialsFacadeResponseWrapperV1 = new TrialsFacadeResponseWrapperV1$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class TrialsFacadeResponseWrapperSuccess$Type extends MessageType {
+    constructor() {
+        super("TrialsFacadeResponseWrapperSuccess", [
+            { no: 1, name: "filed1", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message TrialsFacadeResponseWrapperSuccess
+ */
+const TrialsFacadeResponseWrapperSuccess = new TrialsFacadeResponseWrapperSuccess$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UcsResponse$Type extends MessageType {
+    constructor() {
+        super("UcsResponse", [
+            { no: 1, name: "resolveSuccess", kind: "message", T: () => ResolveResponse },
+            { no: 2, name: "resolveError", kind: "message", T: () => Error$1 },
+            { no: 3, name: "accountAttributesSuccess", kind: "message", T: () => AccountAttributesResponse },
+            { no: 4, name: "accountAttributesError", kind: "message", T: () => Error$1 },
+            { no: 5, name: "fetchTimeMillis", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message UcsResponse
+ */
+const UcsResponse = new UcsResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ResolveResponse$Type extends MessageType {
+    constructor() {
+        super("ResolveResponse", [
+            { no: 1, name: "configuration", kind: "message", T: () => Configuration }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message ResolveResponse
+ */
+const ResolveResponse = new ResolveResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class Configuration$Type extends MessageType {
+    constructor() {
+        super("Configuration", [
+            { no: 1, name: "configurationAssignmentId", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "fetchTimeMillis", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 3, name: "assignedValues", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => AssignedValue }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message Configuration
+ */
+const Configuration = new Configuration$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class AssignedValue$Type extends MessageType {
+    constructor() {
+        super("AssignedValue", [
+            { no: 1, name: "propertyId", kind: "message", T: () => PropertyId },
+            { no: 2, name: "metadata", kind: "message", T: () => Metadata },
+            { no: 3, name: "boolValue", kind: "message", T: () => BoolValue },
+            { no: 4, name: "intValue", kind: "message", T: () => IntValue },
+            { no: 5, name: "enumValue", kind: "message", T: () => EnumValue }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message AssignedValue
+ */
+const AssignedValue = new AssignedValue$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class PropertyId$Type extends MessageType {
+    constructor() {
+        super("PropertyId", [
+            { no: 1, name: "scope", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message PropertyId
+ */
+const PropertyId = new PropertyId$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class Metadata$Type extends MessageType {
+    constructor() {
+        super("Metadata", [
+            { no: 1, name: "policyId", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 2, name: "externalRealm", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "externalRealmId", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message Metadata
+ */
+const Metadata = new Metadata$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class BoolValue$Type extends MessageType {
+    constructor() {
+        super("BoolValue", [
+            { no: 1, name: "value", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message BoolValue
+ */
+const BoolValue = new BoolValue$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class EnumValue$Type extends MessageType {
+    constructor() {
+        super("EnumValue", [
+            { no: 1, name: "value", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message EnumValue
+ */
+const EnumValue = new EnumValue$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class IntValue$Type extends MessageType {
+    constructor() {
+        super("IntValue", [
+            { no: 1, name: "value", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message IntValue
+ */
+const IntValue = new IntValue$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class AccountAttributesResponse$Type extends MessageType {
+    constructor() {
+        super("AccountAttributesResponse", [
+            { no: 1, name: "accountAttributes", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "message", T: () => AccountAttribute } }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message AccountAttributesResponse
+ */
+const AccountAttributesResponse = new AccountAttributesResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class AccountAttribute$Type extends MessageType {
+    constructor() {
+        super("AccountAttribute", [
+            { no: 2, name: "boolValue", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
+            { no: 3, name: "longValue", kind: "scalar", opt: true, T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 4, name: "stringValue", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message AccountAttribute
+ */
+const AccountAttribute = new AccountAttribute$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class Error$Type extends MessageType {
+    constructor() {
+        super("Error", [
+            { no: 1, name: "errorCode", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "message", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "logId", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message Error
+ */
+const Error$1 = new Error$Type();
 
+// @generated by protobuf-ts 2.9.4 with parameter generate_dependencies,long_type_number,output_javascript
+// @generated from protobuf file "google/protobuf/any.proto" (package "google.protobuf", syntax proto3)
+// tslint:disable
+//
+// Protocol Buffers - Google's data interchange format
+// Copyright 2008 Google Inc.  All rights reserved.
+// https://developers.google.com/protocol-buffers/
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+// notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+// copyright notice, this list of conditions and the following disclaimer
+// in the documentation and/or other materials provided with the
+// distribution.
+//     * Neither the name of Google Inc. nor the names of its
+// contributors may be used to endorse or promote products derived from
+// this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+// @generated message type with reflection information, may provide speed optimized methods
+class Any$Type extends MessageType {
+    constructor() {
+        super("google.protobuf.Any", [
+            { no: 1, name: "type_url", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "value", kind: "scalar", T: 12 /*ScalarType.BYTES*/ }
+        ]);
+    }
+    /**
+     * Pack the message into a new `Any`.
+     *
+     * Uses 'type.googleapis.com/full.type.name' as the type URL.
+     */
+    pack(message, type) {
+        return {
+            typeUrl: this.typeNameToUrl(type.typeName), value: type.toBinary(message),
+        };
+    }
+    /**
+     * Unpack the message from the `Any`.
+     */
+    unpack(any, type, options) {
+        if (!this.contains(any, type))
+            throw new Error("Cannot unpack google.protobuf.Any with typeUrl '" + any.typeUrl + "' as " + type.typeName + ".");
+        return type.fromBinary(any.value, options);
+    }
+    /**
+     * Does the given `Any` contain a packed message of the given type?
+     */
+    contains(any, type) {
+        if (!any.typeUrl.length)
+            return false;
+        let wants = typeof type == "string" ? type : type.typeName;
+        let has = this.typeUrlToName(any.typeUrl);
+        return wants === has;
+    }
+    /**
+     * Convert the message to canonical JSON value.
+     *
+     * You have to provide the `typeRegistry` option so that the
+     * packed message can be converted to JSON.
+     *
+     * The `typeRegistry` option is also required to read
+     * `google.protobuf.Any` from JSON format.
+     */
+    internalJsonWrite(any, options) {
+        if (any.typeUrl === "")
+            return {};
+        let typeName = this.typeUrlToName(any.typeUrl);
+        let opt = jsonWriteOptions(options);
+        let type = opt.typeRegistry?.find(t => t.typeName === typeName);
+        if (!type)
+            throw new globalThis.Error("Unable to convert google.protobuf.Any with typeUrl '" + any.typeUrl + "' to JSON. The specified type " + typeName + " is not available in the type registry.");
+        let value = type.fromBinary(any.value, { readUnknownField: false });
+        let json = type.internalJsonWrite(value, opt);
+        if (typeName.startsWith("google.protobuf.") || !isJsonObject(json))
+            json = { value: json };
+        json["@type"] = any.typeUrl;
+        return json;
+    }
+    internalJsonRead(json, options, target) {
+        if (!isJsonObject(json))
+            throw new globalThis.Error("Unable to parse google.protobuf.Any from JSON " + typeofJsonValue(json) + ".");
+        if (typeof json["@type"] != "string" || json["@type"] == "")
+            return this.create();
+        let typeName = this.typeUrlToName(json["@type"]);
+        let type = options?.typeRegistry?.find(t => t.typeName == typeName);
+        if (!type)
+            throw new globalThis.Error("Unable to parse google.protobuf.Any from JSON. The specified type " + typeName + " is not available in the type registry.");
+        let value;
+        if (typeName.startsWith("google.protobuf.") && json.hasOwnProperty("value"))
+            value = type.fromJson(json["value"], options);
+        else {
+            let copy = Object.assign({}, json);
+            delete copy["@type"];
+            value = type.fromJson(copy, options);
+        }
+        if (target === undefined)
+            target = this.create();
+        target.typeUrl = json["@type"];
+        target.value = type.toBinary(value);
+        return target;
+    }
+    typeNameToUrl(name) {
+        if (!name.length)
+            throw new Error("invalid type name: " + name);
+        return "type.googleapis.com/" + name;
+    }
+    typeUrlToName(url) {
+        if (!url.length)
+            throw new Error("invalid type url: " + url);
+        let slash = url.lastIndexOf("/");
+        let name = slash > 0 ? url.substring(slash + 1) : url;
+        if (!name.length)
+            throw new Error("invalid type url: " + url);
+        return name;
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.typeUrl = "";
+        message.value = new Uint8Array(0);
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string type_url */ 1:
+                    message.typeUrl = reader.string();
+                    break;
+                case /* bytes value */ 2:
+                    message.value = reader.bytes();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* string type_url = 1; */
+        if (message.typeUrl !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.typeUrl);
+        /* bytes value = 2; */
+        if (message.value.length)
+            writer.tag(2, WireType.LengthDelimited).bytes(message.value);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message google.protobuf.Any
+ */
+const Any = new Any$Type();
+
+// @generated by protobuf-ts 2.9.4 with parameter generate_dependencies,long_type_number,output_javascript
+// @generated from protobuf file "ExtendedMetadata.proto" (package "com.spotify.extendedmetadata.proto", syntax proto3)
+// tslint:disable
+/**
+ * @generated from protobuf enum com.spotify.extendedmetadata.proto.ExtensionType
+ */
+var ExtensionType;
+(function (ExtensionType) {
+    /**
+     * @generated from protobuf enum value: UNKNOWN = 0;
+     */
+    ExtensionType[ExtensionType["UNKNOWN"] = 0] = "UNKNOWN";
+    /**
+     * @generated from protobuf enum value: GENERIC = 1;
+     */
+    ExtensionType[ExtensionType["GENERIC"] = 1] = "GENERIC";
+    /**
+     * @generated from protobuf enum value: ASSOC = 2;
+     */
+    ExtensionType[ExtensionType["ASSOC"] = 2] = "ASSOC";
+})(ExtensionType || (ExtensionType = {}));
+// message LocalExtensionQuery {
+// ExtensionKind kind = 1;
+// repeated a items = 2;
+// }
+// 
+// message LocalBatchedExtensionResponse {
+// repeated Extension items = 1;
+// }
+// 
+// message Extension {
+// ExtensionKind kind = 1;
+// repeated EntityExtension entities = 2;
+// }
+// 
+// message EntityExtension {
+// String uri = 1;
+// .google.protobuf.Any entity_data = 2;
+// ExtensionHeader header = 3;
+// }
+// 
+// message ExtensionHeader {
+// bool cache_valid = 1;
+// bool offline_valid = 2;
+// int32 status_code = 3;
+// bool empty = 4;
+// int64 cache_expiry_ts = 5;
+// int64 offline_expiry_ts = 6;
+// }
+/**
+ * @generated from protobuf enum com.spotify.extendedmetadata.proto.ExtensionKind
+ */
+var ExtensionKind;
+(function (ExtensionKind) {
+    /**
+     * @generated from protobuf enum value: UNKNOWN_EXTENSION = 0;
+     */
+    ExtensionKind[ExtensionKind["UNKNOWN_EXTENSION"] = 0] = "UNKNOWN_EXTENSION";
+    /**
+     * @generated from protobuf enum value: CANVAZ = 1;
+     */
+    ExtensionKind[ExtensionKind["CANVAZ"] = 1] = "CANVAZ";
+    /**
+     * @generated from protobuf enum value: STORYLINES = 2;
+     */
+    ExtensionKind[ExtensionKind["STORYLINES"] = 2] = "STORYLINES";
+    /**
+     * @generated from protobuf enum value: PODCAST_TOPICS = 3;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_TOPICS"] = 3] = "PODCAST_TOPICS";
+    /**
+     * @generated from protobuf enum value: PODCAST_SEGMENTS = 4;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_SEGMENTS"] = 4] = "PODCAST_SEGMENTS";
+    /**
+     * @generated from protobuf enum value: AUDIO_FILES = 5;
+     */
+    ExtensionKind[ExtensionKind["AUDIO_FILES"] = 5] = "AUDIO_FILES";
+    /**
+     * @generated from protobuf enum value: TRACK_DESCRIPTOR = 6;
+     */
+    ExtensionKind[ExtensionKind["TRACK_DESCRIPTOR"] = 6] = "TRACK_DESCRIPTOR";
+    /**
+     * @generated from protobuf enum value: PODCAST_COUNTER = 7;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_COUNTER"] = 7] = "PODCAST_COUNTER";
+    /**
+     * @generated from protobuf enum value: ARTIST_V4 = 8;
+     */
+    ExtensionKind[ExtensionKind["ARTIST_V4"] = 8] = "ARTIST_V4";
+    /**
+     * @generated from protobuf enum value: ALBUM_V4 = 9;
+     */
+    ExtensionKind[ExtensionKind["ALBUM_V4"] = 9] = "ALBUM_V4";
+    /**
+     * @generated from protobuf enum value: TRACK_V4 = 10;
+     */
+    ExtensionKind[ExtensionKind["TRACK_V4"] = 10] = "TRACK_V4";
+    /**
+     * @generated from protobuf enum value: SHOW_V4 = 11;
+     */
+    ExtensionKind[ExtensionKind["SHOW_V4"] = 11] = "SHOW_V4";
+    /**
+     * @generated from protobuf enum value: EPISODE_V4 = 12;
+     */
+    ExtensionKind[ExtensionKind["EPISODE_V4"] = 12] = "EPISODE_V4";
+    /**
+     * @generated from protobuf enum value: PODCAST_HTML_DESCRIPTION = 13;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_HTML_DESCRIPTION"] = 13] = "PODCAST_HTML_DESCRIPTION";
+    /**
+     * @generated from protobuf enum value: PODCAST_QUOTES = 14;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_QUOTES"] = 14] = "PODCAST_QUOTES";
+    /**
+     * @generated from protobuf enum value: USER_PROFILE = 15;
+     */
+    ExtensionKind[ExtensionKind["USER_PROFILE"] = 15] = "USER_PROFILE";
+    /**
+     * @generated from protobuf enum value: CANVAS_V1 = 16;
+     */
+    ExtensionKind[ExtensionKind["CANVAS_V1"] = 16] = "CANVAS_V1";
+    /**
+     * @generated from protobuf enum value: SHOW_V4_BASE = 17;
+     */
+    ExtensionKind[ExtensionKind["SHOW_V4_BASE"] = 17] = "SHOW_V4_BASE";
+    /**
+     * @generated from protobuf enum value: SHOW_V4_EPISODES_ASSOC = 18;
+     */
+    ExtensionKind[ExtensionKind["SHOW_V4_EPISODES_ASSOC"] = 18] = "SHOW_V4_EPISODES_ASSOC";
+    /**
+     * @generated from protobuf enum value: TRACK_DESCRIPTOR_SIGNATURES = 19;
+     */
+    ExtensionKind[ExtensionKind["TRACK_DESCRIPTOR_SIGNATURES"] = 19] = "TRACK_DESCRIPTOR_SIGNATURES";
+    /**
+     * @generated from protobuf enum value: PODCAST_AD_SEGMENTS = 20;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_AD_SEGMENTS"] = 20] = "PODCAST_AD_SEGMENTS";
+    /**
+     * @generated from protobuf enum value: EPISODE_TRANSCRIPTS = 21;
+     */
+    ExtensionKind[ExtensionKind["EPISODE_TRANSCRIPTS"] = 21] = "EPISODE_TRANSCRIPTS";
+    /**
+     * @generated from protobuf enum value: PODCAST_SUBSCRIPTIONS = 22;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_SUBSCRIPTIONS"] = 22] = "PODCAST_SUBSCRIPTIONS";
+    /**
+     * @generated from protobuf enum value: EXTRACTED_COLOR = 23;
+     */
+    ExtensionKind[ExtensionKind["EXTRACTED_COLOR"] = 23] = "EXTRACTED_COLOR";
+    /**
+     * @generated from protobuf enum value: PODCAST_VIRALITY = 24;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_VIRALITY"] = 24] = "PODCAST_VIRALITY";
+    /**
+     * @generated from protobuf enum value: IMAGE_SPARKLES_HACK = 25;
+     */
+    ExtensionKind[ExtensionKind["IMAGE_SPARKLES_HACK"] = 25] = "IMAGE_SPARKLES_HACK";
+    /**
+     * @generated from protobuf enum value: PODCAST_POPULARITY_HACK = 26;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_POPULARITY_HACK"] = 26] = "PODCAST_POPULARITY_HACK";
+    /**
+     * @generated from protobuf enum value: AUTOMIX_MODE = 27;
+     */
+    ExtensionKind[ExtensionKind["AUTOMIX_MODE"] = 27] = "AUTOMIX_MODE";
+    /**
+     * @generated from protobuf enum value: CUEPOINTS = 28;
+     */
+    ExtensionKind[ExtensionKind["CUEPOINTS"] = 28] = "CUEPOINTS";
+    /**
+     * @generated from protobuf enum value: PODCAST_POLL = 29;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_POLL"] = 29] = "PODCAST_POLL";
+    /**
+     * @generated from protobuf enum value: EPISODE_ACCESS = 30;
+     */
+    ExtensionKind[ExtensionKind["EPISODE_ACCESS"] = 30] = "EPISODE_ACCESS";
+    /**
+     * @generated from protobuf enum value: SHOW_ACCESS = 31;
+     */
+    ExtensionKind[ExtensionKind["SHOW_ACCESS"] = 31] = "SHOW_ACCESS";
+    /**
+     * @generated from protobuf enum value: PODCAST_QNA = 32;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_QNA"] = 32] = "PODCAST_QNA";
+    /**
+     * @generated from protobuf enum value: CLIPS = 33;
+     */
+    ExtensionKind[ExtensionKind["CLIPS"] = 33] = "CLIPS";
+    /**
+     * @generated from protobuf enum value: SHOW_V5 = 34;
+     */
+    ExtensionKind[ExtensionKind["SHOW_V5"] = 34] = "SHOW_V5";
+    /**
+     * @generated from protobuf enum value: EPISODE_V5 = 35;
+     */
+    ExtensionKind[ExtensionKind["EPISODE_V5"] = 35] = "EPISODE_V5";
+    /**
+     * @generated from protobuf enum value: PODCAST_CTA_CARDS = 36;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_CTA_CARDS"] = 36] = "PODCAST_CTA_CARDS";
+    /**
+     * @generated from protobuf enum value: PODCAST_RATING = 37;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_RATING"] = 37] = "PODCAST_RATING";
+    /**
+     * @generated from protobuf enum value: DISPLAY_SEGMENTS = 38;
+     */
+    ExtensionKind[ExtensionKind["DISPLAY_SEGMENTS"] = 38] = "DISPLAY_SEGMENTS";
+    /**
+     * @generated from protobuf enum value: GREENROOM = 39;
+     */
+    ExtensionKind[ExtensionKind["GREENROOM"] = 39] = "GREENROOM";
+    /**
+     * @generated from protobuf enum value: USER_CREATED = 40;
+     */
+    ExtensionKind[ExtensionKind["USER_CREATED"] = 40] = "USER_CREATED";
+    /**
+     * @generated from protobuf enum value: SHOW_DESCRIPTION = 41;
+     */
+    ExtensionKind[ExtensionKind["SHOW_DESCRIPTION"] = 41] = "SHOW_DESCRIPTION";
+    /**
+     * @generated from protobuf enum value: SHOW_HTML_DESCRIPTION = 42;
+     */
+    ExtensionKind[ExtensionKind["SHOW_HTML_DESCRIPTION"] = 42] = "SHOW_HTML_DESCRIPTION";
+    /**
+     * @generated from protobuf enum value: SHOW_PLAYABILITY = 43;
+     */
+    ExtensionKind[ExtensionKind["SHOW_PLAYABILITY"] = 43] = "SHOW_PLAYABILITY";
+    /**
+     * @generated from protobuf enum value: EPISODE_DESCRIPTION = 44;
+     */
+    ExtensionKind[ExtensionKind["EPISODE_DESCRIPTION"] = 44] = "EPISODE_DESCRIPTION";
+    /**
+     * @generated from protobuf enum value: EPISODE_HTML_DESCRIPTION = 45;
+     */
+    ExtensionKind[ExtensionKind["EPISODE_HTML_DESCRIPTION"] = 45] = "EPISODE_HTML_DESCRIPTION";
+    /**
+     * @generated from protobuf enum value: EPISODE_PLAYABILITY = 46;
+     */
+    ExtensionKind[ExtensionKind["EPISODE_PLAYABILITY"] = 46] = "EPISODE_PLAYABILITY";
+    /**
+     * @generated from protobuf enum value: SHOW_EPISODES_ASSOC = 47;
+     */
+    ExtensionKind[ExtensionKind["SHOW_EPISODES_ASSOC"] = 47] = "SHOW_EPISODES_ASSOC";
+    /**
+     * @generated from protobuf enum value: CLIENT_CONFIG = 48;
+     */
+    ExtensionKind[ExtensionKind["CLIENT_CONFIG"] = 48] = "CLIENT_CONFIG";
+    /**
+     * @generated from protobuf enum value: PLAYLISTABILITY = 49;
+     */
+    ExtensionKind[ExtensionKind["PLAYLISTABILITY"] = 49] = "PLAYLISTABILITY";
+    /**
+     * @generated from protobuf enum value: AUDIOBOOK_V5 = 50;
+     */
+    ExtensionKind[ExtensionKind["AUDIOBOOK_V5"] = 50] = "AUDIOBOOK_V5";
+    /**
+     * @generated from protobuf enum value: CHAPTER_V5 = 51;
+     */
+    ExtensionKind[ExtensionKind["CHAPTER_V5"] = 51] = "CHAPTER_V5";
+    /**
+     * @generated from protobuf enum value: AUDIOBOOK_SPECIFICS = 52;
+     */
+    ExtensionKind[ExtensionKind["AUDIOBOOK_SPECIFICS"] = 52] = "AUDIOBOOK_SPECIFICS";
+    /**
+     * @generated from protobuf enum value: EPISODE_RANKING = 53;
+     */
+    ExtensionKind[ExtensionKind["EPISODE_RANKING"] = 53] = "EPISODE_RANKING";
+    /**
+     * @generated from protobuf enum value: HTML_DESCRIPTION = 54;
+     */
+    ExtensionKind[ExtensionKind["HTML_DESCRIPTION"] = 54] = "HTML_DESCRIPTION";
+    /**
+     * @generated from protobuf enum value: CREATOR_CHANNEL = 55;
+     */
+    ExtensionKind[ExtensionKind["CREATOR_CHANNEL"] = 55] = "CREATOR_CHANNEL";
+    /**
+     * @generated from protobuf enum value: AUDIOBOOK_PROVIDERS = 56;
+     */
+    ExtensionKind[ExtensionKind["AUDIOBOOK_PROVIDERS"] = 56] = "AUDIOBOOK_PROVIDERS";
+    /**
+     * @generated from protobuf enum value: PLAY_TRAIT = 57;
+     */
+    ExtensionKind[ExtensionKind["PLAY_TRAIT"] = 57] = "PLAY_TRAIT";
+    /**
+     * @generated from protobuf enum value: CONTENT_WARNING = 58;
+     */
+    ExtensionKind[ExtensionKind["CONTENT_WARNING"] = 58] = "CONTENT_WARNING";
+    /**
+     * @generated from protobuf enum value: IMAGE_CUE = 59;
+     */
+    ExtensionKind[ExtensionKind["IMAGE_CUE"] = 59] = "IMAGE_CUE";
+    /**
+     * @generated from protobuf enum value: STREAM_COUNT = 60;
+     */
+    ExtensionKind[ExtensionKind["STREAM_COUNT"] = 60] = "STREAM_COUNT";
+    /**
+     * @generated from protobuf enum value: AUDIO_ATTRIBUTES = 61;
+     */
+    ExtensionKind[ExtensionKind["AUDIO_ATTRIBUTES"] = 61] = "AUDIO_ATTRIBUTES";
+    /**
+     * @generated from protobuf enum value: NAVIGABLE_TRAIT = 62;
+     */
+    ExtensionKind[ExtensionKind["NAVIGABLE_TRAIT"] = 62] = "NAVIGABLE_TRAIT";
+    /**
+     * @generated from protobuf enum value: NEXT_BEST_EPISODE = 63;
+     */
+    ExtensionKind[ExtensionKind["NEXT_BEST_EPISODE"] = 63] = "NEXT_BEST_EPISODE";
+    /**
+     * @generated from protobuf enum value: AUDIOBOOK_PRICE = 64;
+     */
+    ExtensionKind[ExtensionKind["AUDIOBOOK_PRICE"] = 64] = "AUDIOBOOK_PRICE";
+    /**
+     * @generated from protobuf enum value: EXPRESSIVE_PLAYLISTS = 65;
+     */
+    ExtensionKind[ExtensionKind["EXPRESSIVE_PLAYLISTS"] = 65] = "EXPRESSIVE_PLAYLISTS";
+    /**
+     * @generated from protobuf enum value: DYNAMIC_SHOW_EPISODE = 66;
+     */
+    ExtensionKind[ExtensionKind["DYNAMIC_SHOW_EPISODE"] = 66] = "DYNAMIC_SHOW_EPISODE";
+    /**
+     * @generated from protobuf enum value: LIVE = 67;
+     */
+    ExtensionKind[ExtensionKind["LIVE"] = 67] = "LIVE";
+    /**
+     * @generated from protobuf enum value: SKIP_PLAYED = 68;
+     */
+    ExtensionKind[ExtensionKind["SKIP_PLAYED"] = 68] = "SKIP_PLAYED";
+    /**
+     * @generated from protobuf enum value: AD_BREAK_FREE_PODCASTS = 69;
+     */
+    ExtensionKind[ExtensionKind["AD_BREAK_FREE_PODCASTS"] = 69] = "AD_BREAK_FREE_PODCASTS";
+    /**
+     * @generated from protobuf enum value: ASSOCIATIONS = 70;
+     */
+    ExtensionKind[ExtensionKind["ASSOCIATIONS"] = 70] = "ASSOCIATIONS";
+    /**
+     * @generated from protobuf enum value: PLAYLIST_EVALUATION = 71;
+     */
+    ExtensionKind[ExtensionKind["PLAYLIST_EVALUATION"] = 71] = "PLAYLIST_EVALUATION";
+    /**
+     * @generated from protobuf enum value: CACHE_INVALIDATIONS = 72;
+     */
+    ExtensionKind[ExtensionKind["CACHE_INVALIDATIONS"] = 72] = "CACHE_INVALIDATIONS";
+    /**
+     * @generated from protobuf enum value: LIVESTREAM_ENTITY = 73;
+     */
+    ExtensionKind[ExtensionKind["LIVESTREAM_ENTITY"] = 73] = "LIVESTREAM_ENTITY";
+    /**
+     * @generated from protobuf enum value: SINGLE_TAP_REACTIONS = 74;
+     */
+    ExtensionKind[ExtensionKind["SINGLE_TAP_REACTIONS"] = 74] = "SINGLE_TAP_REACTIONS";
+    /**
+     * @generated from protobuf enum value: USER_COMMENTS = 75;
+     */
+    ExtensionKind[ExtensionKind["USER_COMMENTS"] = 75] = "USER_COMMENTS";
+    /**
+     * @generated from protobuf enum value: CLIENT_RESTRICTIONS = 76;
+     */
+    ExtensionKind[ExtensionKind["CLIENT_RESTRICTIONS"] = 76] = "CLIENT_RESTRICTIONS";
+    /**
+     * @generated from protobuf enum value: PODCAST_GUEST = 77;
+     */
+    ExtensionKind[ExtensionKind["PODCAST_GUEST"] = 77] = "PODCAST_GUEST";
+    /**
+     * @generated from protobuf enum value: PLAYABILITY = 78;
+     */
+    ExtensionKind[ExtensionKind["PLAYABILITY"] = 78] = "PLAYABILITY";
+    /**
+     * @generated from protobuf enum value: COVER_IMAGE = 79;
+     */
+    ExtensionKind[ExtensionKind["COVER_IMAGE"] = 79] = "COVER_IMAGE";
+    /**
+     * @generated from protobuf enum value: SHARE_TRAIT = 80;
+     */
+    ExtensionKind[ExtensionKind["SHARE_TRAIT"] = 80] = "SHARE_TRAIT";
+    /**
+     * @generated from protobuf enum value: INSTANCE_SHARING = 81;
+     */
+    ExtensionKind[ExtensionKind["INSTANCE_SHARING"] = 81] = "INSTANCE_SHARING";
+    /**
+     * @generated from protobuf enum value: ARTIST_TOUR = 82;
+     */
+    ExtensionKind[ExtensionKind["ARTIST_TOUR"] = 82] = "ARTIST_TOUR";
+    /**
+     * @generated from protobuf enum value: AUDIOBOOK_GENRE = 83;
+     */
+    ExtensionKind[ExtensionKind["AUDIOBOOK_GENRE"] = 83] = "AUDIOBOOK_GENRE";
+    /**
+     * @generated from protobuf enum value: CONCEPT = 84;
+     */
+    ExtensionKind[ExtensionKind["CONCEPT"] = 84] = "CONCEPT";
+    /**
+     * @generated from protobuf enum value: ORIGINAL_VIDEO = 85;
+     */
+    ExtensionKind[ExtensionKind["ORIGINAL_VIDEO"] = 85] = "ORIGINAL_VIDEO";
+    /**
+     * @generated from protobuf enum value: SMART_SHUFFLE = 86;
+     */
+    ExtensionKind[ExtensionKind["SMART_SHUFFLE"] = 86] = "SMART_SHUFFLE";
+    /**
+     * @generated from protobuf enum value: LIVE_EVENTS = 87;
+     */
+    ExtensionKind[ExtensionKind["LIVE_EVENTS"] = 87] = "LIVE_EVENTS";
+    /**
+     * @generated from protobuf enum value: AUDIOBOOK_RELATIONS = 88;
+     */
+    ExtensionKind[ExtensionKind["AUDIOBOOK_RELATIONS"] = 88] = "AUDIOBOOK_RELATIONS";
+    /**
+     * @generated from protobuf enum value: HOME_POC_BASECARD = 89;
+     */
+    ExtensionKind[ExtensionKind["HOME_POC_BASECARD"] = 89] = "HOME_POC_BASECARD";
+    /**
+     * @generated from protobuf enum value: AUDIOBOOK_SUPPLEMENTS = 90;
+     */
+    ExtensionKind[ExtensionKind["AUDIOBOOK_SUPPLEMENTS"] = 90] = "AUDIOBOOK_SUPPLEMENTS";
+    /**
+     * @generated from protobuf enum value: PAID_PODCAST_BANNER = 91;
+     */
+    ExtensionKind[ExtensionKind["PAID_PODCAST_BANNER"] = 91] = "PAID_PODCAST_BANNER";
+    /**
+     * @generated from protobuf enum value: FEWER_ADS = 92;
+     */
+    ExtensionKind[ExtensionKind["FEWER_ADS"] = 92] = "FEWER_ADS";
+    /**
+     * @generated from protobuf enum value: WATCH_FEED_SHOW_EXPLORER = 93;
+     */
+    ExtensionKind[ExtensionKind["WATCH_FEED_SHOW_EXPLORER"] = 93] = "WATCH_FEED_SHOW_EXPLORER";
+    /**
+     * @generated from protobuf enum value: TRACK_EXTRA_DESCRIPTORS = 94;
+     */
+    ExtensionKind[ExtensionKind["TRACK_EXTRA_DESCRIPTORS"] = 94] = "TRACK_EXTRA_DESCRIPTORS";
+    /**
+     * @generated from protobuf enum value: TRACK_EXTRA_AUDIO_ATTRIBUTES = 95;
+     */
+    ExtensionKind[ExtensionKind["TRACK_EXTRA_AUDIO_ATTRIBUTES"] = 95] = "TRACK_EXTRA_AUDIO_ATTRIBUTES";
+    /**
+     * @generated from protobuf enum value: TRACK_EXTENDED_CREDITS = 96;
+     */
+    ExtensionKind[ExtensionKind["TRACK_EXTENDED_CREDITS"] = 96] = "TRACK_EXTENDED_CREDITS";
+    /**
+     * @generated from protobuf enum value: SIMPLE_TRAIT = 97;
+     */
+    ExtensionKind[ExtensionKind["SIMPLE_TRAIT"] = 97] = "SIMPLE_TRAIT";
+    /**
+     * @generated from protobuf enum value: AUDIO_ASSOCIATIONS = 98;
+     */
+    ExtensionKind[ExtensionKind["AUDIO_ASSOCIATIONS"] = 98] = "AUDIO_ASSOCIATIONS";
+    /**
+     * @generated from protobuf enum value: VIDEO_ASSOCIATIONS = 99;
+     */
+    ExtensionKind[ExtensionKind["VIDEO_ASSOCIATIONS"] = 99] = "VIDEO_ASSOCIATIONS";
+    /**
+     * @generated from protobuf enum value: PLAYLIST_TUNER = 100;
+     */
+    ExtensionKind[ExtensionKind["PLAYLIST_TUNER"] = 100] = "PLAYLIST_TUNER";
+    /**
+     * @generated from protobuf enum value: ARTIST_VIDEOS_ENTRYPOINT = 101;
+     */
+    ExtensionKind[ExtensionKind["ARTIST_VIDEOS_ENTRYPOINT"] = 101] = "ARTIST_VIDEOS_ENTRYPOINT";
+    /**
+     * @generated from protobuf enum value: PRERELEASE = 102;
+     */
+    ExtensionKind[ExtensionKind["PRERELEASE"] = 102] = "PRERELEASE";
+    /**
+     * @generated from protobuf enum value: CONTENT_ALTERNATIVES = 103;
+     */
+    ExtensionKind[ExtensionKind["CONTENT_ALTERNATIVES"] = 103] = "CONTENT_ALTERNATIVES";
+    /**
+     * @generated from protobuf enum value: SNAPSHOT_SHARING = 105;
+     */
+    ExtensionKind[ExtensionKind["SNAPSHOT_SHARING"] = 105] = "SNAPSHOT_SHARING";
+})(ExtensionKind || (ExtensionKind = {}));
+// @generated message type with reflection information, may provide speed optimized methods
+class BatchedEntityRequest$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.BatchedEntityRequest", [
+            { no: 1, name: "header", kind: "message", T: () => BatchedEntityRequestHeader },
+            { no: 2, name: "request", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => EntityRequest }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.request = [];
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* com.spotify.extendedmetadata.proto.BatchedEntityRequestHeader header */ 1:
+                    message.header = BatchedEntityRequestHeader.internalBinaryRead(reader, reader.uint32(), options, message.header);
+                    break;
+                case /* repeated com.spotify.extendedmetadata.proto.EntityRequest request */ 2:
+                    message.request.push(EntityRequest.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* com.spotify.extendedmetadata.proto.BatchedEntityRequestHeader header = 1; */
+        if (message.header)
+            BatchedEntityRequestHeader.internalBinaryWrite(message.header, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated com.spotify.extendedmetadata.proto.EntityRequest request = 2; */
+        for (let i = 0; i < message.request.length; i++)
+            EntityRequest.internalBinaryWrite(message.request[i], writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.BatchedEntityRequest
+ */
+new BatchedEntityRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class BatchedEntityRequestHeader$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.BatchedEntityRequestHeader", [
+            { no: 1, name: "country", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "catalogue", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "task_id", kind: "scalar", T: 12 /*ScalarType.BYTES*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.country = "";
+        message.catalogue = "";
+        message.taskId = new Uint8Array(0);
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string country */ 1:
+                    message.country = reader.string();
+                    break;
+                case /* string catalogue */ 2:
+                    message.catalogue = reader.string();
+                    break;
+                case /* bytes task_id */ 3:
+                    message.taskId = reader.bytes();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* string country = 1; */
+        if (message.country !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.country);
+        /* string catalogue = 2; */
+        if (message.catalogue !== "")
+            writer.tag(2, WireType.LengthDelimited).string(message.catalogue);
+        /* bytes task_id = 3; */
+        if (message.taskId.length)
+            writer.tag(3, WireType.LengthDelimited).bytes(message.taskId);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.BatchedEntityRequestHeader
+ */
+const BatchedEntityRequestHeader = new BatchedEntityRequestHeader$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class EntityRequest$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.EntityRequest", [
+            { no: 1, name: "uri", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "query", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => ExtensionQuery }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.uri = "";
+        message.query = [];
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string uri */ 1:
+                    message.uri = reader.string();
+                    break;
+                case /* repeated com.spotify.extendedmetadata.proto.ExtensionQuery query */ 2:
+                    message.query.push(ExtensionQuery.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* string uri = 1; */
+        if (message.uri !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.uri);
+        /* repeated com.spotify.extendedmetadata.proto.ExtensionQuery query = 2; */
+        for (let i = 0; i < message.query.length; i++)
+            ExtensionQuery.internalBinaryWrite(message.query[i], writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.EntityRequest
+ */
+const EntityRequest = new EntityRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ExtensionQuery$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.ExtensionQuery", [
+            { no: 1, name: "kind", kind: "enum", T: () => ["com.spotify.extendedmetadata.proto.ExtensionKind", ExtensionKind] },
+            { no: 2, name: "etag", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.kind = 0;
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* com.spotify.extendedmetadata.proto.ExtensionKind kind */ 1:
+                    message.kind = reader.int32();
+                    break;
+                case /* optional string etag */ 2:
+                    message.etag = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* com.spotify.extendedmetadata.proto.ExtensionKind kind = 1; */
+        if (message.kind !== 0)
+            writer.tag(1, WireType.Varint).int32(message.kind);
+        /* optional string etag = 2; */
+        if (message.etag !== undefined)
+            writer.tag(2, WireType.LengthDelimited).string(message.etag);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.ExtensionQuery
+ */
+const ExtensionQuery = new ExtensionQuery$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class BatchedExtensionResponse$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.BatchedExtensionResponse", [
+            { no: 1, name: "header", kind: "message", T: () => BatchedExtensionResponseHeader },
+            { no: 2, name: "extended_metadata", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => EntityExtensionDataArray }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.extendedMetadata = [];
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* com.spotify.extendedmetadata.proto.BatchedExtensionResponseHeader header */ 1:
+                    message.header = BatchedExtensionResponseHeader.internalBinaryRead(reader, reader.uint32(), options, message.header);
+                    break;
+                case /* repeated com.spotify.extendedmetadata.proto.EntityExtensionDataArray extended_metadata */ 2:
+                    message.extendedMetadata.push(EntityExtensionDataArray.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* com.spotify.extendedmetadata.proto.BatchedExtensionResponseHeader header = 1; */
+        if (message.header)
+            BatchedExtensionResponseHeader.internalBinaryWrite(message.header, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated com.spotify.extendedmetadata.proto.EntityExtensionDataArray extended_metadata = 2; */
+        for (let i = 0; i < message.extendedMetadata.length; i++)
+            EntityExtensionDataArray.internalBinaryWrite(message.extendedMetadata[i], writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.BatchedExtensionResponse
+ */
+const BatchedExtensionResponse = new BatchedExtensionResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class BatchedExtensionResponseHeader$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.BatchedExtensionResponseHeader", []);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        return target ?? this.create();
+    }
+    internalBinaryWrite(message, writer, options) {
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.BatchedExtensionResponseHeader
+ */
+const BatchedExtensionResponseHeader = new BatchedExtensionResponseHeader$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class EntityExtensionDataArray$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.EntityExtensionDataArray", [
+            { no: 1, name: "header", kind: "message", T: () => EntityExtensionDataArrayHeader },
+            { no: 2, name: "kind", kind: "enum", T: () => ["com.spotify.extendedmetadata.proto.ExtensionKind", ExtensionKind] },
+            { no: 3, name: "extension_data", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => EntityExtensionData }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.kind = 0;
+        message.extensionData = [];
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* com.spotify.extendedmetadata.proto.EntityExtensionDataArrayHeader header */ 1:
+                    message.header = EntityExtensionDataArrayHeader.internalBinaryRead(reader, reader.uint32(), options, message.header);
+                    break;
+                case /* com.spotify.extendedmetadata.proto.ExtensionKind kind */ 2:
+                    message.kind = reader.int32();
+                    break;
+                case /* repeated com.spotify.extendedmetadata.proto.EntityExtensionData extension_data */ 3:
+                    message.extensionData.push(EntityExtensionData.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* com.spotify.extendedmetadata.proto.EntityExtensionDataArrayHeader header = 1; */
+        if (message.header)
+            EntityExtensionDataArrayHeader.internalBinaryWrite(message.header, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* com.spotify.extendedmetadata.proto.ExtensionKind kind = 2; */
+        if (message.kind !== 0)
+            writer.tag(2, WireType.Varint).int32(message.kind);
+        /* repeated com.spotify.extendedmetadata.proto.EntityExtensionData extension_data = 3; */
+        for (let i = 0; i < message.extensionData.length; i++)
+            EntityExtensionData.internalBinaryWrite(message.extensionData[i], writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.EntityExtensionDataArray
+ */
+const EntityExtensionDataArray = new EntityExtensionDataArray$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class EntityExtensionDataArrayHeader$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.EntityExtensionDataArrayHeader", [
+            { no: 1, name: "provider_error_status", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "cache_ttl_in_seconds", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 3, name: "offline_ttl_in_seconds", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 4, name: "extension_type", kind: "enum", T: () => ["com.spotify.extendedmetadata.proto.ExtensionType", ExtensionType] }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.providerErrorStatus = 0;
+        message.cacheTtlInSeconds = 0;
+        message.offlineTtlInSeconds = 0;
+        message.extensionType = 0;
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 provider_error_status */ 1:
+                    message.providerErrorStatus = reader.int32();
+                    break;
+                case /* int64 cache_ttl_in_seconds */ 2:
+                    message.cacheTtlInSeconds = reader.int64().toNumber();
+                    break;
+                case /* int64 offline_ttl_in_seconds */ 3:
+                    message.offlineTtlInSeconds = reader.int64().toNumber();
+                    break;
+                case /* com.spotify.extendedmetadata.proto.ExtensionType extension_type */ 4:
+                    message.extensionType = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* int32 provider_error_status = 1; */
+        if (message.providerErrorStatus !== 0)
+            writer.tag(1, WireType.Varint).int32(message.providerErrorStatus);
+        /* int64 cache_ttl_in_seconds = 2; */
+        if (message.cacheTtlInSeconds !== 0)
+            writer.tag(2, WireType.Varint).int64(message.cacheTtlInSeconds);
+        /* int64 offline_ttl_in_seconds = 3; */
+        if (message.offlineTtlInSeconds !== 0)
+            writer.tag(3, WireType.Varint).int64(message.offlineTtlInSeconds);
+        /* com.spotify.extendedmetadata.proto.ExtensionType extension_type = 4; */
+        if (message.extensionType !== 0)
+            writer.tag(4, WireType.Varint).int32(message.extensionType);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.EntityExtensionDataArrayHeader
+ */
+const EntityExtensionDataArrayHeader = new EntityExtensionDataArrayHeader$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class EntityExtensionData$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.EntityExtensionData", [
+            { no: 1, name: "header", kind: "message", T: () => EntityExtensionDataHeader },
+            { no: 2, name: "entity_uri", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "extension_data", kind: "message", T: () => Any }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.entityUri = "";
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* com.spotify.extendedmetadata.proto.EntityExtensionDataHeader header */ 1:
+                    message.header = EntityExtensionDataHeader.internalBinaryRead(reader, reader.uint32(), options, message.header);
+                    break;
+                case /* string entity_uri */ 2:
+                    message.entityUri = reader.string();
+                    break;
+                case /* google.protobuf.Any extension_data */ 3:
+                    message.extensionData = Any.internalBinaryRead(reader, reader.uint32(), options, message.extensionData);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* com.spotify.extendedmetadata.proto.EntityExtensionDataHeader header = 1; */
+        if (message.header)
+            EntityExtensionDataHeader.internalBinaryWrite(message.header, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* string entity_uri = 2; */
+        if (message.entityUri !== "")
+            writer.tag(2, WireType.LengthDelimited).string(message.entityUri);
+        /* google.protobuf.Any extension_data = 3; */
+        if (message.extensionData)
+            Any.internalBinaryWrite(message.extensionData, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.EntityExtensionData
+ */
+const EntityExtensionData = new EntityExtensionData$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class EntityExtensionDataHeader$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.EntityExtensionDataHeader", [
+            { no: 1, name: "status_code", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "etag", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "locale", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "cache_ttl_in_seconds", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 5, name: "offline_ttl_in_seconds", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.statusCode = 0;
+        message.etag = "";
+        message.locale = "";
+        message.cacheTtlInSeconds = 0;
+        message.offlineTtlInSeconds = 0;
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 status_code */ 1:
+                    message.statusCode = reader.int32();
+                    break;
+                case /* string etag */ 2:
+                    message.etag = reader.string();
+                    break;
+                case /* string locale */ 3:
+                    message.locale = reader.string();
+                    break;
+                case /* int64 cache_ttl_in_seconds */ 4:
+                    message.cacheTtlInSeconds = reader.int64().toNumber();
+                    break;
+                case /* int64 offline_ttl_in_seconds */ 5:
+                    message.offlineTtlInSeconds = reader.int64().toNumber();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* int32 status_code = 1; */
+        if (message.statusCode !== 0)
+            writer.tag(1, WireType.Varint).int32(message.statusCode);
+        /* string etag = 2; */
+        if (message.etag !== "")
+            writer.tag(2, WireType.LengthDelimited).string(message.etag);
+        /* string locale = 3; */
+        if (message.locale !== "")
+            writer.tag(3, WireType.LengthDelimited).string(message.locale);
+        /* int64 cache_ttl_in_seconds = 4; */
+        if (message.cacheTtlInSeconds !== 0)
+            writer.tag(4, WireType.Varint).int64(message.cacheTtlInSeconds);
+        /* int64 offline_ttl_in_seconds = 5; */
+        if (message.offlineTtlInSeconds !== 0)
+            writer.tag(5, WireType.Varint).int64(message.offlineTtlInSeconds);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.EntityExtensionDataHeader
+ */
+const EntityExtensionDataHeader = new EntityExtensionDataHeader$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class PlainListAssoc$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.PlainListAssoc", [
+            { no: 1, name: "entity_uri", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.entityUri = [];
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated string entity_uri */ 1:
+                    message.entityUri.push(reader.string());
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* repeated string entity_uri = 1; */
+        for (let i = 0; i < message.entityUri.length; i++)
+            writer.tag(1, WireType.LengthDelimited).string(message.entityUri[i]);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.PlainListAssoc
+ */
+const PlainListAssoc = new PlainListAssoc$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class AssocHeader$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.AssocHeader", []);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        return target ?? this.create();
+    }
+    internalBinaryWrite(message, writer, options) {
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.AssocHeader
+ */
+const AssocHeader = new AssocHeader$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class Assoc$Type extends MessageType {
+    constructor() {
+        super("com.spotify.extendedmetadata.proto.Assoc", [
+            { no: 1, name: "header", kind: "message", T: () => AssocHeader },
+            { no: 2, name: "plain_list", kind: "message", T: () => PlainListAssoc }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* com.spotify.extendedmetadata.proto.AssocHeader header */ 1:
+                    message.header = AssocHeader.internalBinaryRead(reader, reader.uint32(), options, message.header);
+                    break;
+                case /* com.spotify.extendedmetadata.proto.PlainListAssoc plain_list */ 2:
+                    message.plainList = PlainListAssoc.internalBinaryRead(reader, reader.uint32(), options, message.plainList);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* com.spotify.extendedmetadata.proto.AssocHeader header = 1; */
+        if (message.header)
+            AssocHeader.internalBinaryWrite(message.header, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* com.spotify.extendedmetadata.proto.PlainListAssoc plain_list = 2; */
+        if (message.plainList)
+            PlainListAssoc.internalBinaryWrite(message.plainList, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.spotify.extendedmetadata.proto.Assoc
+ */
+new Assoc$Type();
+
+log("v1.8.1(1004)");
 /***************** Processing *****************/
 // 解构URL
 const url = new URL($request.url);
-$.log(`⚠ url: ${url.toJSON()}`, "");
+log(`⚠ url: ${url.toJSON()}`, "");
 // 获取连接参数
 const METHOD = $request.method, HOST = url.hostname, PATH = url.pathname;
-$.log(`⚠ METHOD: ${METHOD}, HOST: ${HOST}, PATH: ${PATH}` , "");
+log(`⚠ METHOD: ${METHOD}, HOST: ${HOST}, PATH: ${PATH}` , "");
 // 解析格式
 const FORMAT = ($response.headers?.["Content-Type"] ?? $response.headers?.["content-type"])?.split(";")?.[0];
-$.log(`⚠ FORMAT: ${FORMAT}`, "");
+log(`⚠ FORMAT: ${FORMAT}`, "");
 !(async () => {
 	// 读取设置
 	const { Settings, Caches, Configs } = setENV("DualSubs", "Spotify", Database$1);
-	$.log(`⚠ Settings.Switch: ${Settings?.Switch}`, "");
+	log(`⚠ Settings.Switch: ${Settings?.Switch}`, "");
 	switch (Settings.Switch) {
 		case true:
 		default:
 			// 获取字幕类型与语言
 			const Type = url.searchParams.get("subtype") ?? Settings.Type, Languages = [url.searchParams.get("lang")?.toUpperCase?.() ?? Settings.Languages[0], (url.searchParams.get("tlang") ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
-			$.log(`⚠ Type: ${Type}, Languages: ${Languages}`, "");
+			log(`⚠ Type: ${Type}, Languages: ${Languages}`, "");
 			// 创建空数据
 			let body = {};
 			// 格式判断
@@ -3949,7 +5179,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 				case "application/vnd.apple.mpegurl":
 				case "audio/mpegurl":
 					//body = M3U8.parse($response.body);
-					//$.log(`🚧 body: ${JSON.stringify(body)}`, "");
+					//log(`🚧 body: ${JSON.stringify(body)}`, "");
 					//$response.body = M3U8.stringify(body);
 					break;
 				case "text/xml":
@@ -3959,19 +5189,19 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 				case "application/plist":
 				case "application/x-plist":
 					//body = XML.parse($response.body);
-					//$.log(`🚧 body: ${JSON.stringify(body)}`, "");
+					//log(`🚧 body: ${JSON.stringify(body)}`, "");
 					//$response.body = XML.stringify(body);
 					break;
 				case "text/vtt":
 				case "application/vtt":
 					//body = VTT.parse($response.body);
-					//$.log(`🚧 body: ${JSON.stringify(body)}`, "");
+					//log(`🚧 body: ${JSON.stringify(body)}`, "");
 					//$response.body = VTT.stringify(body);
 					break;
 				case "text/json":
 				case "application/json":
 					body = JSON.parse($response.body ?? "{}");
-					$.log(`🚧 body: ${JSON.stringify(body)}`, "");
+					log(`🚧 body: ${JSON.stringify(body)}`, "");
 					switch (PATH) {
 						case "/melody/v1/product_state":
 							//body.product = "premium";
@@ -3987,7 +5217,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							break;
 						case "/v1/tracks":
 							body?.tracks?.forEach?.(track => {
-								$.log(`🚧 track: ${JSON.stringify(track)}`, "");
+								log(`🚧 track: ${JSON.stringify(track)}`, "");
 								const trackId = track?.id;
 								const trackInfo = {
 									"track": track?.name,
@@ -3998,10 +5228,10 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 								Caches.Metadatas.Tracks.set(trackId, trackInfo);
 							});
 							// 格式化缓存
-							$.log(`🚧 调试信息`, `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
+							log(`🚧 调试信息`, `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
 							Caches.Metadatas.Tracks = setCache(Caches.Metadatas.Tracks, Settings.CacheSize);
 							// 写入持久化储存
-							$Storage.setItem(`@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`, Caches.Metadatas.Tracks);
+							Storage.setItem(`@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`, Caches.Metadatas.Tracks);
 							break;
 					}					$response.body = JSON.stringify(body);
 					break;
@@ -4011,447 +5241,48 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 				case "application/grpc":
 				case "application/grpc+proto":
 				case "application/octet-stream":
-					//$.log(`🚧 $response: ${JSON.stringify($response, null, 2)}`, "");
-					let rawBody = $.isQuanX() ? new Uint8Array($response.bodyBytes ?? []) : $response.body ?? new Uint8Array();
-					//$.log(`🚧 isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
+					//log(`🚧 $response: ${JSON.stringify($response, null, 2)}`, "");
+					let rawBody = ($platform === "Quantumult X") ? new Uint8Array($response.bodyBytes ?? []) : $response.body ?? new Uint8Array();
+					//log(`🚧 isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 					switch (FORMAT) {
 						case "application/protobuf":
 						case "application/x-protobuf":
 						case "application/vnd.google.protobuf":
-							/******************  initialization start  *******************/
-							class Any$Type extends MessageType {
-								constructor() {
-									super("google.protobuf.Any", [
-										{ no: 1, name: "type_url", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-										{ no: 2, name: "value", kind: "scalar", T: 12 /*ScalarType.BYTES*/ }
-									]);
-								}
-								/**
-								 * Pack the message into a new `Any`.
-								 *
-								 * Uses 'type.googleapis.com/full.type.name' as the type URL.
-								 */
-								pack(message, type) {
-									return {
-										typeUrl: this.typeNameToUrl(type.typeName), value: type.toBinary(message),
-									};
-								}
-								/**
-								 * Unpack the message from the `Any`.
-								 */
-								unpack(any, type, options) {
-									if (!this.contains(any, type))
-										throw new Error("Cannot unpack google.protobuf.Any with typeUrl '" + any.typeUrl + "' as " + type.typeName + ".");
-									return type.fromBinary(any.value, options);
-								}
-								/**
-								 * Does the given `Any` contain a packed message of the given type?
-								 */
-								contains(any, type) {
-									if (!any.typeUrl.length)
-										return false;
-									let wants = typeof type == "string" ? type : type.typeName;
-									let has = this.typeUrlToName(any.typeUrl);
-									return wants === has;
-								}
-								/**
-								 * Convert the message to canonical JSON value.
-								 *
-								 * You have to provide the `typeRegistry` option so that the
-								 * packed message can be converted to JSON.
-								 *
-								 * The `typeRegistry` option is also required to read
-								 * `google.protobuf.Any` from JSON format.
-								 */
-								internalJsonWrite(any, options) {
-									if (any.typeUrl === "")
-										return {};
-									let typeName = this.typeUrlToName(any.typeUrl);
-									let opt = jsonWriteOptions(options);
-									let type = opt.typeRegistry?.find(t => t.typeName === typeName);
-									if (!type)
-										throw new globalThis.Error("Unable to convert google.protobuf.Any with typeUrl '" + any.typeUrl + "' to JSON. The specified type " + typeName + " is not available in the type registry.");
-									let value = type.fromBinary(any.value, { readUnknownField: false });
-									let json = type.internalJsonWrite(value, opt);
-									if (typeName.startsWith("google.protobuf.") || !isJsonObject(json))
-										json = { value: json };
-									json["@type"] = any.typeUrl;
-									return json;
-								}
-								internalJsonRead(json, options, target) {
-									if (!isJsonObject(json))
-										throw new globalThis.Error("Unable to parse google.protobuf.Any from JSON " + typeofJsonValue(json) + ".");
-									if (typeof json["@type"] != "string" || json["@type"] == "")
-										return this.create();
-									let typeName = this.typeUrlToName(json["@type"]);
-									let type = options?.typeRegistry?.find(t => t.typeName == typeName);
-									if (!type)
-										throw new globalThis.Error("Unable to parse google.protobuf.Any from JSON. The specified type " + typeName + " is not available in the type registry.");
-									let value;
-									if (typeName.startsWith("google.protobuf.") && json.hasOwnProperty("value"))
-										value = type.fromJson(json["value"], options);
-									else {
-										let copy = Object.assign({}, json);
-										delete copy["@type"];
-										value = type.fromJson(copy, options);
-									}
-									if (target === undefined)
-										target = this.create();
-									target.typeUrl = json["@type"];
-									target.value = type.toBinary(value);
-									return target;
-								}
-								typeNameToUrl(name) {
-									if (!name.length)
-										throw new Error("invalid type name: " + name);
-									return "type.googleapis.com/" + name;
-								}
-								typeUrlToName(url) {
-									if (!url.length)
-										throw new Error("invalid type url: " + url);
-									let slash = url.lastIndexOf("/");
-									let name = slash > 0 ? url.substring(slash + 1) : url;
-									if (!name.length)
-										throw new Error("invalid type url: " + url);
-									return name;
-								}
-								create(value) {
-									const message = { typeUrl: "", value: new Uint8Array(0) };
-									globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
-									if (value !== undefined)
-										reflectionMergePartial(this, message, value);
-									return message;
-								}
-								internalBinaryRead(reader, length, options, target) {
-									let message = target ?? this.create(), end = reader.pos + length;
-									while (reader.pos < end) {
-										let [fieldNo, wireType] = reader.tag();
-										switch (fieldNo) {
-											case /* string type_url */ 1:
-												message.typeUrl = reader.string();
-												break;
-											case /* bytes value */ 2:
-												message.value = reader.bytes();
-												break;
-											default:
-												let u = options.readUnknownField;
-												if (u === "throw")
-													throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-												let d = reader.skip(wireType);
-												if (u !== false)
-													(u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-										}
-									}
-									return message;
-								}
-								internalBinaryWrite(message, writer, options) {
-									/* string type_url = 1; */
-									if (message.typeUrl !== "")
-										writer.tag(1, WireType.LengthDelimited).string(message.typeUrl);
-									/* bytes value = 2; */
-									if (message.value.length)
-										writer.tag(2, WireType.LengthDelimited).bytes(message.value);
-									let u = options.writeUnknownFields;
-									if (u !== false)
-										(u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-									return writer;
-								}
-							}
-							const Any = new Any$Type();
-							/******************  initialization finish  *******************/
 							switch (PATH) {
 								case "/bootstrap/v1/bootstrap":
 								case "/user-customization-service/v1/customize":
-									/******************  initialization start  *******************/
-									class BootstrapResponse$Type extends MessageType {
-										constructor() {
-											super("BootstrapResponse", [
-												{ no: 2, name: "ucsResponseV0", kind: "message", T: () => UcsResponseWrapperV0 },
-												{ no: 3, name: "trialsFacadeResponseV1", kind: "message", T: () => TrialsFacadeResponseWrapperV1 }
-											]);
-										}
-									}
-									const BootstrapResponse = new BootstrapResponse$Type();
-									class UcsResponseWrapperV0$Type extends MessageType {
-										constructor() {
-											super("UcsResponseWrapperV0", [
-												{ no: 1, name: "success", kind: "message", T: () => UcsResponseWrapperSuccess },
-												{ no: 2, name: "error", kind: "message", T: () => Error }
-											]);
-										}
-									}
-									const UcsResponseWrapperV0 = new UcsResponseWrapperV0$Type();
-									class UcsResponseWrapperSuccess$Type extends MessageType {
-										constructor() {
-											super("UcsResponseWrapperSuccess", [
-												{ no: 1, name: "customization", kind: "message", T: () => UcsResponseWrapper }
-											]);
-										}
-									}
-									const UcsResponseWrapperSuccess = new UcsResponseWrapperSuccess$Type();
-									class UcsResponseWrapper$Type extends MessageType {
-										constructor() {
-											super("UcsResponseWrapper", [
-												{ no: 1, name: "success", kind: "message", T: () => UcsResponse },
-												{ no: 2, name: "error", kind: "message", T: () => Error }
-											]);
-										}
-									}
-									const UcsResponseWrapper = new UcsResponseWrapper$Type();
-									class TrialsFacadeResponseWrapperV1$Type extends MessageType {
-										constructor() {
-											super("TrialsFacadeResponseWrapperV1", [
-												{ no: 1, name: "success", kind: "message", T: () => TrialsFacadeResponseWrapperSuccess },
-												{ no: 2, name: "error", kind: "message", T: () => Error }
-											]);
-										}
-									}
-									const TrialsFacadeResponseWrapperV1 = new TrialsFacadeResponseWrapperV1$Type();
-									class TrialsFacadeResponseWrapperSuccess$Type extends MessageType {
-										constructor() {
-											super("TrialsFacadeResponseWrapperSuccess", [
-												{ no: 1, name: "filed1", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
-											]);
-										}
-									}
-									const TrialsFacadeResponseWrapperSuccess = new TrialsFacadeResponseWrapperSuccess$Type();
-									class UcsResponse$Type extends MessageType {
-										constructor() {
-											super("UcsResponse", [
-												{ no: 1, name: "resolveSuccess", kind: "message", T: () => ResolveSuccess },
-												{ no: 2, name: "resolveError", kind: "message", T: () => Error },
-												{ no: 3, name: "accountAttributesSuccess", kind: "message", T: () => AccountAttributesResponse },
-												{ no: 4, name: "accountAttributesError", kind: "message", T: () => Error },
-												{ no: 5, name: "fetchTimeMillis", kind: "scalar", T: 3 /*ScalarType.INT64*/ }
-											]);
-										}
-									}
-									const UcsResponse = new UcsResponse$Type();
-									class ResolveSuccess$Type extends MessageType {
-										constructor() {
-											super("ResolveSuccess", [
-												{ no: 1, name: "configuration", kind: "message", T: () => Configuration }
-											]);
-										}
-									}
-									const ResolveSuccess = new ResolveSuccess$Type();
-									class Configuration$Type extends MessageType {
-										constructor() {
-											super("Configuration", [
-												{ no: 1, name: "configurationAssignmentId", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-												{ no: 2, name: "fetchTimeMillis", kind: "scalar", T: 3 /*ScalarType.INT64*/ },
-												{ no: 3, name: "assignedValues", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => AssignedValue }
-											]);
-										}
-									}
-									const Configuration = new Configuration$Type();
-									class AssignedValue$Type extends MessageType {
-										constructor() {
-											super("AssignedValue", [
-												{ no: 1, name: "propertyId", kind: "message", T: () => PropertyId },
-												{ no: 2, name: "metadata", kind: "message", T: () => Metadata },
-												{ no: 3, name: "boolValue", kind: "message", T: () => BoolValue },
-												{ no: 4, name: "intValue", kind: "message", T: () => IntValue },
-												{ no: 5, name: "enumValue", kind: "message", T: () => EnumValue }
-											]);
-										}
-									}
-									const AssignedValue = new AssignedValue$Type();
-									class PropertyId$Type extends MessageType {
-										constructor() {
-											super("PropertyId", [
-												{ no: 1, name: "scope", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-												{ no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
-											]);
-										}
-									}
-									const PropertyId = new PropertyId$Type();
-									class Metadata$Type extends MessageType {
-										constructor() {
-											super("Metadata", [
-												{ no: 1, name: "policyId", kind: "scalar", T: 3 /*ScalarType.INT64*/ },
-												{ no: 2, name: "externalRealm", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-												{ no: 3, name: "externalRealmId", kind: "scalar", T: 3 /*ScalarType.INT64*/ }
-											]);
-										}
-									}
-									const Metadata = new Metadata$Type();
-									class BoolValue$Type extends MessageType {
-										constructor() {
-											super("BoolValue", [
-												{ no: 1, name: "value", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
-											]);
-										}
-									}
-									const BoolValue = new BoolValue$Type();
-									class EnumValue$Type extends MessageType {
-										constructor() {
-											super("EnumValue", [
-												{ no: 1, name: "value", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
-											]);
-										}
-									}
-									const EnumValue = new EnumValue$Type();
-									class IntValue$Type extends MessageType {
-										constructor() {
-											super("IntValue", [
-												{ no: 1, name: "value", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
-											]);
-										}
-									}
-									const IntValue = new IntValue$Type();
-									class AccountAttributesResponse$Type extends MessageType {
-										constructor() {
-											super("AccountAttributesResponse", [
-												{ no: 1, name: "accountAttributes", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "message", T: () => AccountAttribute } }
-											]);
-										}
-									}
-									const AccountAttributesResponse = new AccountAttributesResponse$Type();
-									class AccountAttribute$Type extends MessageType {
-										constructor() {
-											super("AccountAttribute", [
-												{ no: 2, name: "boolValue", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
-												{ no: 3, name: "longValue", kind: "scalar", opt: true, T: 3 /*ScalarType.INT64*/ },
-												{ no: 4, name: "stringValue", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
-											]);
-										}
-									}
-									const AccountAttribute = new AccountAttribute$Type();
-									class Error$Type extends MessageType {
-										constructor() {
-											super("Error", [
-												{ no: 1, name: "errorCode", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-												{ no: 2, name: "message", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-												{ no: 3, name: "logId", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
-											]);
-										}
-									}
-									const Error = new Error$Type();
-									/******************  initialization finish  *******************/
 									switch (PATH) {
 										case "/bootstrap/v1/bootstrap": {
 											body = BootstrapResponse.fromBinary(rawBody);
-											$.log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
-											let UF = UnknownFieldHandler.list(body);
-											//$.log(`🚧 调试信息`, `UF: ${JSON.stringify(UF)}`, "");
-											if (UF) {
-												UF = UF.map(uf => {
-													//uf.no; // 22
-													//uf.wireType; // WireType.Varint
-													// use the binary reader to decode the raw data:
-													let reader = new BinaryReader(uf.data);
-													let addedNumber = reader.int32(); // 7777
-													$.log(`🚧 no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
-												});
-											}											let assignedValues = body?.ucsResponseV0?.success?.customization?.success?.resolveSuccess?.configuration?.assignedValues;
+											log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
+											let assignedValues = body?.ucsResponseV0?.success?.customization?.success?.resolveSuccess?.configuration?.assignedValues;
 											if (assignedValues) {
 												assignedValues = modifiedAssignedValues(assignedValues);
 											}											let accountAttributes = body?.ucsResponseV0?.success?.customization?.success?.accountAttributesSuccess?.accountAttributes;
 											if (accountAttributes) {
 												accountAttributes["country_code"] = { "stringValue": Settings.Country };
 												accountAttributes = modifiedAccountAttributes(accountAttributes);
-											}											//$.log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
+											}											//log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
 											rawBody = BootstrapResponse.toBinary(body);
 											break;
 										}										case "/user-customization-service/v1/customize": {
 											body = UcsResponseWrapper.fromBinary(rawBody);
-											$.log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
-											let UF = UnknownFieldHandler.list(body);
-											//$.log(`🚧 调试信息`, `UF: ${JSON.stringify(UF)}`, "");
-											if (UF) {
-												UF = UF.map(uf => {
-													//uf.no; // 22
-													//uf.wireType; // WireType.Varint
-													// use the binary reader to decode the raw data:
-													let reader = new BinaryReader(uf.data);
-													let addedNumber = reader.int32(); // 7777
-													$.log(`🚧 no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
-												});
-											}											let assignedValues = body?.success?.resolveSuccess?.configuration?.assignedValues;
+											log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
+											let assignedValues = body?.success?.resolveSuccess?.configuration?.assignedValues;
 											if (assignedValues) {
 												assignedValues = modifiedAssignedValues(assignedValues);
 											}											let accountAttributes = body?.success?.accountAttributesSuccess?.accountAttributes;
 											if (accountAttributes) {
 												accountAttributes["country_code"] = { "stringValue": Settings.Country };
 												accountAttributes = modifiedAccountAttributes(accountAttributes);
-											}											$.log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
+											}											log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
 											rawBody = UcsResponseWrapper.toBinary(body);
 											break;
 										}									}									break;
 								case "/extended-metadata/v0/extended-metadata": {
-									/******************  initialization start  *******************/
-									class BatchedExtensionResponse$Type extends MessageType {
-										constructor() {
-											super("BatchedExtensionResponse", [
-												{ no: 1, name: "header", kind: "message", T: () => BatchedExtensionResponseHeader },
-												{ no: 2, name: "extended_metadata", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => EntityExtensionDataArray }
-											]);
-										}
-									}
-									const BatchedExtensionResponse = new BatchedExtensionResponse$Type();
-									class BatchedExtensionResponseHeader$Type extends MessageType {
-										constructor() {
-											super("BatchedExtensionResponseHeader", []);
-										}
-									}
-									const BatchedExtensionResponseHeader = new BatchedExtensionResponseHeader$Type();
-									class EntityExtensionDataArrayHeader$Type extends MessageType {
-										constructor() {
-											super("EntityExtensionDataArrayHeader", [
-												{ no: 1, name: "provider_error_status", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-												{ no: 2, name: "cache_ttl_in_seconds", kind: "scalar", T: 3 /*ScalarType.INT64*/ },
-												{ no: 3, name: "offline_ttl_in_seconds", kind: "scalar", T: 3 /*ScalarType.INT64*/ }
-											]);
-										}
-									}
-									const EntityExtensionDataArrayHeader = new EntityExtensionDataArrayHeader$Type();
-									class EntityExtensionDataArray$Type extends MessageType {
-										constructor() {
-											super("EntityExtensionDataArray", [
-												{ no: 1, name: "header", kind: "message", T: () => EntityExtensionDataArrayHeader },
-												{ no: 3, name: "extension_data", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => EntityExtensionData }
-											]);
-										}
-									}
-									const EntityExtensionDataArray = new EntityExtensionDataArray$Type();
-									class EntityExtensionData$Type extends MessageType {
-										constructor() {
-											super("EntityExtensionData", [
-												{ no: 1, name: "header", kind: "message", T: () => EntityExtensionDataHeader },
-												{ no: 2, name: "entity_uri", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-												{ no: 3, name: "extension_data", kind: "message", T: () => Any }
-											]);
-										}
-									}
-									const EntityExtensionData = new EntityExtensionData$Type();
-									class EntityExtensionDataHeader$Type extends MessageType {
-										constructor() {
-											super("EntityExtensionDataHeader", [
-												{ no: 1, name: "status_code", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-												{ no: 2, name: "etag", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-												{ no: 3, name: "locale", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-												{ no: 4, name: "cache_ttl_in_seconds", kind: "scalar", T: 3 /*ScalarType.INT64*/ },
-												{ no: 5, name: "offline_ttl_in_seconds", kind: "scalar", T: 3 /*ScalarType.INT64*/ }
-											]);
-										}
-									}
-									const EntityExtensionDataHeader = new EntityExtensionDataHeader$Type();
-									/******************  initialization start  *******************/
 									body = BatchedExtensionResponse.fromBinary(rawBody);
-									$.log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
-									let UF = UnknownFieldHandler.list(body);
-									//$.log(`🚧 调试信息`, `UF: ${JSON.stringify(UF)}`, "");
-									if (UF) {
-										UF = UF.map(uf => {
-											//uf.no; // 22
-											//uf.wireType; // WireType.Varint
-											// use the binary reader to decode the raw data:
-											let reader = new BinaryReader(uf.data);
-											let addedNumber = reader.int32(); // 7777
-											$.log(`🚧 no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
-										});
-									}									//$.log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
+									log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
+									//log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
 									rawBody = BatchedExtensionResponse.toBinary(body);
 									break;
 								}							}							break;
@@ -4462,5 +5293,5 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 		case false:
 			break;
 	}})()
-	.catch((e) => $.logErr(e))
-	.finally(() => $.done($response));
+	.catch((e) => logError(e))
+	.finally(() => done($response));

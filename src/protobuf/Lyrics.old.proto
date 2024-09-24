@@ -1,0 +1,30 @@
+syntax = "proto3";
+option swift_prefix="SP";
+option optimize_for = CODE_SIZE;
+package com.spotify.lyrics.endpointretrofit.proto;
+
+import "public/LyricsModel.proto";
+
+// https://spclient.wg.spotify.com/color-lyrics/v2/track/
+message ColorLyricsResponse {
+	LyricsResponse lyrics = 1;
+	ColorData colors = 2;
+	optional bool hasVocalRemoval = 3;
+	optional ColorData vocalRemovalColors = 4;
+}
+
+message LyricsResponse {
+	SyncType syncType = 1;
+	repeated Line lines = 2;
+	string provider = 3;
+	string providerLyricsId = 4;
+	string providerDisplayName = 5;
+	optional AndroidIntent syncLyricsAndroidIntent = 6;
+	string syncLyricsUri = 7;
+	optional bool isDenseTypeface = 8;
+	repeated Alternative alternatives = 9;
+	string language = 10;
+	optional bool isRtlLanguage = 11;
+	optional int32 fullscreenAction = 12;
+	optional bool showUpsell = 13;
+}

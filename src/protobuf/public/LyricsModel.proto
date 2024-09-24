@@ -1,0 +1,50 @@
+syntax = "proto3";
+option swift_prefix="SPLyrics";
+//option swift_package_typealias="Lyrics";
+
+package com.spotify.lyrics.endpointretrofit.proto;
+
+//Represents color parameters for lyrics content view
+message ColorData {
+    //View background color
+    int32 background = 1;
+    //Text general color
+    int32 text = 2;
+    //Currently playing lyrics text color
+    int32 highlight_text = 3;
+}
+
+//Lyrics content type
+enum SyncType {
+    UNSYNCED = 0;
+    LINE_SYNCED = 1;
+    SYLLABLE_SYNCED = 2;
+}
+
+//Represents alternative lyrics variant
+message Alternative {
+    //Lyrics language
+    string language = 1;
+    //Lyrics lines
+    repeated Line lines = 2;
+    //Language type is Right-To-Left
+    optional bool rtl_lang = 3;
+}
+
+//Represents a single lyrics line with timestamp, text info and syllables
+message Line {
+    //Line start timestamp in millis during playback
+    int64 start_time_ms = 1;
+    //Line text info
+    string text = 2;
+    //Line syllables
+    repeated Syllable syllables = 3;
+}
+
+//Represents syllable of the lyrics line
+message Syllable {
+    //Syllable start timestamp in millis during playback
+    int64 start_time_ms = 1;
+    //Syllable chars count
+    int64 num_chars = 2;
+}

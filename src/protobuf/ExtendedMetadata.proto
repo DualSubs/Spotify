@@ -1,0 +1,220 @@
+syntax = "proto3";
+option swift_prefix="SPMeta";
+
+package com.spotify.extendedmetadata.proto;
+
+import "google/protobuf/any.proto";
+
+message BatchedEntityRequest {
+    BatchedEntityRequestHeader header = 1;
+    repeated EntityRequest request = 2;
+}
+
+message BatchedEntityRequestHeader {
+    string country = 1;
+    string catalogue = 2;
+    bytes task_id = 3;
+}
+
+message EntityRequest {
+    string uri = 1;
+    repeated ExtensionQuery query = 2;
+}
+
+message ExtensionQuery {
+    ExtensionKind kind = 1;
+    optional string etag = 2;
+}
+
+message BatchedExtensionResponse {
+    BatchedExtensionResponseHeader header = 1;
+    repeated EntityExtensionDataArray extended_metadata = 2;
+}
+
+message BatchedExtensionResponseHeader {
+    
+}
+
+message EntityExtensionDataArray {
+    EntityExtensionDataArrayHeader header = 1;
+    ExtensionKind kind = 2;
+    repeated EntityExtensionData extension_data = 3;
+}
+
+message EntityExtensionDataArrayHeader {
+    int32 provider_error_status = 1;
+    int64 cache_ttl_in_seconds = 2;
+    int64 offline_ttl_in_seconds = 3;
+    ExtensionType extension_type = 4;
+}
+
+enum ExtensionType {
+    UNKNOWN = 0;
+    GENERIC = 1;
+    ASSOC = 2;
+}
+
+message EntityExtensionData {
+    EntityExtensionDataHeader header = 1;
+    string entity_uri = 2;
+    //Metadata object
+    .google.protobuf.Any extension_data = 3;
+}
+
+message EntityExtensionDataHeader {
+    int32 status_code = 1;
+    string etag = 2;
+    string locale = 3;
+    int64 cache_ttl_in_seconds = 4;
+    int64 offline_ttl_in_seconds = 5;
+}
+
+message PlainListAssoc {
+    repeated string entity_uri = 1;
+}
+
+message AssocHeader {
+    
+}
+
+message Assoc {
+    AssocHeader header = 1;
+    PlainListAssoc plain_list = 2;
+}
+
+/*message LocalExtensionQuery {
+    ExtensionKind kind = 1;
+    repeated a items = 2;
+}
+    
+message LocalBatchedExtensionResponse {
+    repeated Extension items = 1;
+}
+
+message Extension {
+    ExtensionKind kind = 1;
+    repeated EntityExtension entities = 2;
+}
+
+message EntityExtension {
+    String uri = 1;
+    .google.protobuf.Any entity_data = 2;
+    ExtensionHeader header = 3;
+}
+
+message ExtensionHeader {
+    bool cache_valid = 1;
+    bool offline_valid = 2;
+    int32 status_code = 3;
+    bool empty = 4;
+    int64 cache_expiry_ts = 5;
+    int64 offline_expiry_ts = 6;
+}*/
+
+enum ExtensionKind {
+    UNKNOWN_EXTENSION = 0;
+    CANVAZ = 1;
+    STORYLINES = 2;
+    PODCAST_TOPICS = 3;
+    PODCAST_SEGMENTS = 4;
+    AUDIO_FILES = 5;
+    TRACK_DESCRIPTOR = 6;
+    PODCAST_COUNTER = 7;
+    ARTIST_V4 = 8;
+    ALBUM_V4 = 9;
+    TRACK_V4 = 10;
+    SHOW_V4 = 11;
+    EPISODE_V4 = 12;
+    PODCAST_HTML_DESCRIPTION = 13;
+    PODCAST_QUOTES = 14;
+    USER_PROFILE = 15;
+    CANVAS_V1 = 16;
+    SHOW_V4_BASE = 17;
+    SHOW_V4_EPISODES_ASSOC = 18;
+    TRACK_DESCRIPTOR_SIGNATURES = 19;
+    PODCAST_AD_SEGMENTS = 20;
+    EPISODE_TRANSCRIPTS = 21;
+    PODCAST_SUBSCRIPTIONS = 22;
+    EXTRACTED_COLOR = 23;
+    PODCAST_VIRALITY = 24;
+    IMAGE_SPARKLES_HACK = 25;
+    PODCAST_POPULARITY_HACK = 26;
+    AUTOMIX_MODE = 27;
+    CUEPOINTS = 28;
+    PODCAST_POLL = 29;
+    EPISODE_ACCESS = 30;
+    SHOW_ACCESS = 31;
+    PODCAST_QNA = 32;
+    CLIPS = 33;
+    SHOW_V5 = 34;
+    EPISODE_V5 = 35;
+    PODCAST_CTA_CARDS = 36;
+    PODCAST_RATING = 37;
+    DISPLAY_SEGMENTS = 38;
+    GREENROOM = 39;
+    USER_CREATED = 40;
+    SHOW_DESCRIPTION = 41;
+    SHOW_HTML_DESCRIPTION = 42;
+    SHOW_PLAYABILITY = 43;
+    EPISODE_DESCRIPTION = 44;
+    EPISODE_HTML_DESCRIPTION = 45;
+    EPISODE_PLAYABILITY = 46;
+    SHOW_EPISODES_ASSOC = 47;
+    CLIENT_CONFIG = 48;
+    PLAYLISTABILITY = 49;
+    AUDIOBOOK_V5 = 50;
+    CHAPTER_V5 = 51;
+    AUDIOBOOK_SPECIFICS = 52;
+    EPISODE_RANKING = 53;
+    HTML_DESCRIPTION = 54;
+    CREATOR_CHANNEL = 55;
+    AUDIOBOOK_PROVIDERS = 56;
+    PLAY_TRAIT = 57;
+    CONTENT_WARNING = 58;
+    IMAGE_CUE = 59;
+    STREAM_COUNT = 60;
+    AUDIO_ATTRIBUTES = 61;
+    NAVIGABLE_TRAIT = 62;
+    NEXT_BEST_EPISODE = 63;
+    AUDIOBOOK_PRICE = 64;
+    EXPRESSIVE_PLAYLISTS = 65;
+    DYNAMIC_SHOW_EPISODE = 66;
+    LIVE = 67;
+    SKIP_PLAYED = 68;
+    AD_BREAK_FREE_PODCASTS = 69;
+    ASSOCIATIONS = 70;
+    PLAYLIST_EVALUATION = 71;
+    CACHE_INVALIDATIONS = 72;
+    LIVESTREAM_ENTITY = 73;
+    SINGLE_TAP_REACTIONS = 74;
+    USER_COMMENTS = 75;
+    CLIENT_RESTRICTIONS = 76;
+    PODCAST_GUEST = 77;
+    PLAYABILITY = 78;
+    COVER_IMAGE = 79;
+    SHARE_TRAIT = 80;
+    INSTANCE_SHARING = 81;
+    ARTIST_TOUR = 82;
+    AUDIOBOOK_GENRE = 83;
+    CONCEPT = 84;
+    ORIGINAL_VIDEO = 85;
+    SMART_SHUFFLE = 86;
+    LIVE_EVENTS = 87;
+    AUDIOBOOK_RELATIONS = 88;
+    HOME_POC_BASECARD = 89;
+    AUDIOBOOK_SUPPLEMENTS = 90;
+    PAID_PODCAST_BANNER = 91;
+    FEWER_ADS = 92;
+    WATCH_FEED_SHOW_EXPLORER = 93;
+    TRACK_EXTRA_DESCRIPTORS = 94;
+    TRACK_EXTRA_AUDIO_ATTRIBUTES = 95;
+    TRACK_EXTENDED_CREDITS = 96;
+    SIMPLE_TRAIT = 97;
+    AUDIO_ASSOCIATIONS = 98;
+    VIDEO_ASSOCIATIONS = 99;
+    PLAYLIST_TUNER = 100;
+    ARTIST_VIDEOS_ENTRYPOINT = 101;
+    PRERELEASE = 102;
+    CONTENT_ALTERNATIVES = 103;
+    SNAPSHOT_SHARING = 105;
+}
