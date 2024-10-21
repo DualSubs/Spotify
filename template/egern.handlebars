@@ -1,0 +1,59 @@
+name: "{{@package 'displayName'}}"
+description: |-
+  {{#each (split (@package 'description') "\n")}}
+  {{{this}}}
+  {{/each}}
+open_url: "{{@package 'openUrl'}}"
+author: |-
+  {{#each (@package 'contributors')}}
+  {{this}}
+  {{/each}}
+homepage: "{{@package 'homepage'}}"
+icon: "{{@package 'icon'}}"
+category: "{{@package 'organizationName'}}"
+date: "{{now "yyyy-MM-dd HH:mm:ss"}}"
+version: "{{@package 'version'}}"
+
+scriptings:
+- http_response:
+    name: 'DualSubs.Spotify.Tracks.response.json'
+    match: ^https?:\/\/api\.spotify\.com\/v1\/tracks\?
+    script_url: https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/response.bundle.js
+    body_required: true
+- http_request:
+    name: 'DualSubs.Spotify.Lyrics.request.json'
+    match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json
+    script_url: https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/request.bundle.js
+    body_required: true
+- http_request:
+    name: 'DualSubs.Spotify.Lyrics.request.proto'
+    match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)
+    script_url: https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/request.bundle.js
+    body_required: true
+    binary_body: true
+- http_response:
+    name: 'DualSubs.Spotify.Translate.Lyrics.response.json'
+    match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=Translate
+    script_url: https://github.com/DualSubs/Universal/releases/latest/download/Translate.response.bundle.js
+    body_required: true
+- http_response:
+    name: 'DualSubs.Spotify.Translate.Lyrics.response.proto'
+    match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=Translate
+    script_url: https://github.com/DualSubs/Universal/releases/latest/download/Translate.response.bundle.js
+    body_required: true
+    binary_body: true
+- http_response:
+    name: 'DualSubs.Spotify.External.Lyrics.response.json'
+    match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=External
+    script_url: https://github.com/DualSubs/Universal/releases/latest/download/External.Lyrics.response.bundle.js
+    body_required: true
+- http_response:
+    name: 'DualSubs.Spotify.External.Lyrics.response.proto'
+    match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=External
+    script_url: https://github.com/DualSubs/Universal/releases/latest/download/External.Lyrics.response.bundle.js
+    body_required: true
+    binary_body: true
+mitm:
+  hostnames:
+  - api.spotify.com
+  - spclient.wg.spotify.com

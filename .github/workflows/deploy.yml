@@ -1,0 +1,37 @@
+name: Deploy
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:
+      - dev
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  debug:
+    uses: ./.github/workflows/dev.yml
+    secrets: inherit
+  deploy:
+    needs: debug
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@master
+        with:
+          name: artifact
+      - name: Deploy Request
+        uses: exuanbo/actions-deploy-gist@main
+        with:
+          token: ${{ secrets.GIST_TOKEN }}
+          gist_id: e60d056221d3d42ef6fa30c4e3ea8a51
+          gist_description: "🍿️ DualSubs: 🎵 Spotify β"
+          file_path: dist/request.bundle.js
+      - name: Deploy Reponse
+        uses: exuanbo/actions-deploy-gist@main
+        with:
+          token: ${{ secrets.GIST_TOKEN }}
+          gist_id: e60d056221d3d42ef6fa30c4e3ea8a51
+          gist_description: "🍿️ DualSubs: 🎵 Spotify β"
+          file_path: dist/response.bundle.js

@@ -1,0 +1,25 @@
+#!name = {{@package 'displayName'}}
+#!desc = {{inline (@package 'description')}}
+#!openUrl = {{@package 'openUrl'}}
+#!author = {{@package 'contributors'}}
+#!homepage = {{@package 'homepage'}}
+#!icon = {{@package 'icon'}}
+#!category = {{@package 'organizationName'}}
+#!date = {{now "yyyy-MM-dd HH:mm:ss"}}
+#!version = {{@package 'version'}}
+
+#[rewrite_local]
+# DualSubs.Spotify.Tracks.response
+^https?:\/\/api\.spotify\.com\/v1\/tracks\? url script-response-body https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/response.bundle.js
+
+# DualSubs.Spotify.Lyrics.request
+^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*) url script-request-body https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/request.bundle.js
+
+# DualSubs.Spotify.Translate.Lyrics.response
+^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)subtype=Translate url script-response-body https://github.com/DualSubs/Universal/releases/latest/download/Translate.response.bundle.js
+
+# DualSubs.Spotify.External.Lyrics.response
+^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)subtype=External url script-response-body https://github.com/DualSubs/Universal/releases/latest/download/External.Lyrics.response.bundle.js
+
+#[mitm]
+hostname = api.spotify.com, spclient.wg.spotify.com
