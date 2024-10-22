@@ -1,5 +1,3 @@
-import { _, log } from "../utils/utils.mjs";
-
 export default function modifiedAccountAttributes(accountAttributes = {}) {
 	accountAttributes["audiobook-onboarding-completed"] = {
 		value: { oneofKind: "boolValue", boolValue: true },
