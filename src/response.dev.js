@@ -34,7 +34,10 @@ const FORMAT = (
 )?.split(";")?.[0];
 log(`⚠ FORMAT: ${FORMAT}`, "");
 !(async () => {
-	// 读取设置
+	/**
+	 * 设置
+	 * @type {{Settings: import('./types').Settings}}
+	 */
 	const { Settings, Caches, Configs } = setENV("DualSubs", "Spotify", database);
 	log(`⚠ Settings.Switch: ${Settings?.Switch}`, "");
 	switch (Settings.Switch) {
