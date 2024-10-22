@@ -1,6 +1,6 @@
 {
-	"name": "@dualsubs/youtube",
-	"version": "1.9.0",
+	"name": "@dualsubs/spotify",
+	"version": "1.9.1",
 	"organizationName": "🍿️ DualSubs",
 	"displayName": "🍿️ DualSubs: 🎵 Spotify",
 	"description": "Spotify 增强及双语歌词",
@@ -31,17 +31,13 @@
 		"build": "rspack build",
 		"build:dev": "rspack build -c rspack.dev.config.js --mode=development",
 		"build:args": "arguments-builder build",
-		"dts": "arguments-builder dts",
-		"test": "rollup --config --configDebug",
-		"Lyrics": "protoc --ts_out ./src/protobuf --ts_opt generate_dependencies --ts_opt long_type_number --ts_opt output_javascript --proto_path ./src/protobuf Lyrics.proto",
-		"Bootstrap": "protoc --ts_out ./src/protobuf --ts_opt generate_dependencies --ts_opt long_type_number --ts_opt output_javascript --proto_path ./src/protobuf bootstrap.new.proto",
-		"ExtendedMetadata": "protoc --ts_out ./src/protobuf --ts_opt generate_dependencies --ts_opt long_type_number --ts_opt output_javascript --proto_path ./src/protobuf ExtendedMetadata.proto"
+		"dts": "arguments-builder dts"
 	},
 	"browserslist": [
 		"iOS >= 15"
 	],
 	"devDependencies": {
-		"@iringo/arguments-builder": "^1.7.7",
+		"@iringo/arguments-builder": "^1.7.8",
 		"@iringo/sgmoudle-tools": "^1.2.2",
 		"@protobuf-ts/plugin": "^2.9.3",
 		"@protobuf-ts/runtime": "^2.9.3",
