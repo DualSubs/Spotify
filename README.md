@@ -1,1 +1,1 @@
-# Spotify
+# 🍿️ DualSubs: 🎵 Spotify
