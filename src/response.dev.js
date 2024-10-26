@@ -1,16 +1,4 @@
-import {
-	$platform,
-	_,
-	Storage,
-	fetch,
-	notification,
-	log,
-	logError,
-	wait,
-	done,
-	getScript,
-	runScript,
-} from "./utils/utils.mjs";
+import { $platform, Lodash as _, Storage, fetch, notification, log, logError, wait, done, getScript, runScript } from "@nsnanocat/util";
 import database from "./function/database.mjs";
 import setENV from "./function/setENV.mjs";
 import setCache from "./function/setCache.mjs";
@@ -29,9 +17,7 @@ const HOST = url.hostname;
 const PATH = url.pathname;
 log(`⚠ METHOD: ${METHOD}, HOST: ${HOST}, PATH: ${PATH}`, "");
 // 解析格式
-const FORMAT = (
-	$response.headers?.["Content-Type"] ?? $response.headers?.["content-type"]
-)?.split(";")?.[0];
+const FORMAT = ($response.headers?.["Content-Type"] ?? $response.headers?.["content-type"])?.split(";")?.[0];
 log(`⚠ FORMAT: ${FORMAT}`, "");
 !(async () => {
 	/**
@@ -46,12 +32,7 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 		default: {
 			// 获取字幕类型与语言
 			const Type = url.searchParams.get("subtype") ?? Settings.Type;
-			const Languages = [
-					url.searchParams.get("lang")?.toUpperCase?.() ??
-						Settings.Languages[0],
-					(url.searchParams.get("tlang") ?? Caches?.tlang)?.toUpperCase?.() ??
-						Settings.Languages[1],
-				];
+			const Languages = [url.searchParams.get("lang")?.toUpperCase?.() ?? Settings.Languages[0], (url.searchParams.get("tlang") ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
 			log(`⚠ Type: ${Type}, Languages: ${Languages}`, "");
 			// 创建空数据
 			let body = {};
@@ -106,7 +87,7 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 							break;
 						case "/v1/tracks":
 							// biome-ignore lint/complexity/noForEach: <explanation>
-							body?.tracks?.forEach?.((track) => {
+							body?.tracks?.forEach?.(track => {
 								log(`🚧 track: ${JSON.stringify(track)}`, "");
 								const trackId = track?.id;
 								const trackInfo = {
@@ -118,20 +99,10 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 								Caches.Metadatas.Tracks.set(trackId, trackInfo);
 							});
 							// 格式化缓存
-							log(
-								`🚧 调试信息`,
-								`Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`,
-								"",
-							);
-							Caches.Metadatas.Tracks = setCache(
-								Caches.Metadatas.Tracks,
-								Settings.CacheSize,
-							);
+							log("🚧 调试信息", `Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
+							Caches.Metadatas.Tracks = setCache(Caches.Metadatas.Tracks, Settings.CacheSize);
 							// 写入持久化储存
-							Storage.setItem(
-								`@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`,
-								Caches.Metadatas.Tracks,
-							);
+							Storage.setItem(`@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`, Caches.Metadatas.Tracks);
 							break;
 					}
 					$response.body = JSON.stringify(body);
@@ -143,10 +114,7 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 				case "application/grpc+proto":
 				case "application/octet-stream": {
 					//log(`🚧 $response: ${JSON.stringify($response, null, 2)}`, "");
-					let rawBody =
-						$platform === "Quantumult X"
-							? new Uint8Array($response.bodyBytes ?? [])
-							: ($response.body ?? new Uint8Array());
+					let rawBody = $platform === "Quantumult X" ? new Uint8Array($response.bodyBytes ?? []) : ($response.body ?? new Uint8Array());
 					//log(`🚧 isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 					switch (FORMAT) {
 						case "application/protobuf":
@@ -158,18 +126,12 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 									switch (PATH) {
 										case "/bootstrap/v1/bootstrap": {
 											body = BootstrapResponse.fromBinary(rawBody);
-											log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
-											let assignedValues =
-												body?.ucsResponseV0?.result?.success?.customization
-													?.result?.success?.resolveResult?.resolveSuccess
-													?.configuration?.assignedValues;
+											log("🚧 调试信息", `body: ${JSON.stringify(body)}`, "");
+											let assignedValues = body?.ucsResponseV0?.result?.success?.customization?.result?.success?.resolveResult?.resolveSuccess?.configuration?.assignedValues;
 											if (assignedValues) {
 												assignedValues = modifiedAssignedValues(assignedValues);
 											}
-											let accountAttributes =
-												body?.ucsResponseV0?.result?.success?.customization
-													?.result?.success?.accountAttributesResult
-													?.accountAttributesSuccess?.accountAttributes;
+											let accountAttributes = body?.ucsResponseV0?.result?.success?.customization?.result?.success?.accountAttributesResult?.accountAttributesSuccess?.accountAttributes;
 											if (accountAttributes) {
 												accountAttributes.country_code = {
 													value: {
@@ -177,8 +139,7 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 														stringValue: Settings.CountryCode,
 													},
 												};
-												accountAttributes =
-													modifiedAccountAttributes(accountAttributes);
+												accountAttributes = modifiedAccountAttributes(accountAttributes);
 											}
 											//log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
 											rawBody = BootstrapResponse.toBinary(body);
@@ -186,16 +147,12 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 										}
 										case "/user-customization-service/v1/customize": {
 											body = UcsResponseWrapper.fromBinary(rawBody);
-											log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
-											let assignedValues =
-												body?.result?.success?.resolveResult?.resolveSuccess
-													?.configuration?.assignedValues;
+											log("🚧 调试信息", `body: ${JSON.stringify(body)}`, "");
+											let assignedValues = body?.result?.success?.resolveResult?.resolveSuccess?.configuration?.assignedValues;
 											if (assignedValues) {
 												assignedValues = modifiedAssignedValues(assignedValues);
 											}
-											let accountAttributes =
-												body?.result?.success?.accountAttributesResult
-													?.accountAttributesSuccess?.accountAttributes;
+											let accountAttributes = body?.result?.success?.accountAttributesResult?.accountAttributesSuccess?.accountAttributes;
 											if (accountAttributes) {
 												accountAttributes.country_code = {
 													value: {
@@ -203,10 +160,9 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 														stringValue: Settings.CountryCode,
 													},
 												};
-												accountAttributes =
-													modifiedAccountAttributes(accountAttributes);
+												accountAttributes = modifiedAccountAttributes(accountAttributes);
 											}
-											log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
+											log("🚧 调试信息", `body: ${JSON.stringify(body)}`, "");
 											rawBody = UcsResponseWrapper.toBinary(body);
 											break;
 										}
@@ -214,8 +170,7 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 									break;
 								case "/extended-metadata/v0/extended-metadata": {
 									body = BatchedExtensionResponse.fromBinary(rawBody);
-									log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
-									//log(`🚧 调试信息`, `body: ${JSON.stringify(body)}`, "");
+									log("🚧 调试信息", `body: ${JSON.stringify(body)}`, "");
 									rawBody = BatchedExtensionResponse.toBinary(body);
 									break;
 								}
@@ -234,5 +189,5 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 		}
 	}
 })()
-	.catch((e) => logError(e))
+	.catch(e => logError(e))
 	.finally(() => done($response));

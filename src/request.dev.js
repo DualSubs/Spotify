@@ -1,16 +1,4 @@
-import {
-	$platform,
-	_,
-	Storage,
-	fetch,
-	notification,
-	log,
-	logError,
-	wait,
-	done,
-	getScript,
-	runScript,
-} from "./utils/utils.mjs";
+import { $platform, Lodash as _, Storage, fetch, notification, log, logError, wait, done, getScript, runScript } from "@nsnanocat/util";
 import database from "./function/database.mjs";
 import setENV from "./function/setENV.mjs";
 import setCache from "./function/setCache.mjs";
@@ -27,9 +15,7 @@ const PATH = url.pathname;
 const PATHs = url.pathname.split("/").filter(Boolean);
 log(`⚠ METHOD: ${METHOD}, HOST: ${HOST}, PATH: ${PATH}`, "");
 // 解析格式
-const FORMAT = (
-	$request.headers?.["Content-Type"] ?? $request.headers?.["content-type"]
-)?.split(";")?.[0];
+const FORMAT = ($request.headers?.["Content-Type"] ?? $request.headers?.["content-type"])?.split(";")?.[0];
 log(`⚠ FORMAT: ${FORMAT}`, "");
 !(async () => {
 	/**
@@ -44,11 +30,7 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 		default: {
 			// 获取字幕类型与语言
 			const Type = url.searchParams.get("subtype") ?? Settings.Type;
-			const Languages = [
-				url.searchParams.get("lang")?.toUpperCase?.() ?? Settings.Languages[0],
-				(url.searchParams.get("tlang") ?? Caches?.tlang)?.toUpperCase?.() ??
-					Settings.Languages[1],
-			];
+			const Languages = [url.searchParams.get("lang")?.toUpperCase?.() ?? Settings.Languages[0], (url.searchParams.get("tlang") ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
 			log(`⚠ Type: ${Type}, Languages: ${Languages}`, "");
 			// 创建空数据
 			let body = {};
@@ -101,12 +83,9 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 						case "application/vnd.google.protobuf":
 						case "application/grpc":
 						case "application/grpc+proto":
-						case "application/octet-stream":
+						case "application/octet-stream": {
 							//log(`🚧 调试信息`, `$request: ${JSON.stringify($request, null, 2)}`, "");
-							let rawBody =
-								$platform === "Quantumult X"
-									? new Uint8Array($request.bodyBytes ?? [])
-									: ($request.body ?? new Uint8Array());
+							let rawBody = $platform === "Quantumult X" ? new Uint8Array($request.bodyBytes ?? []) : ($request.body ?? new Uint8Array());
 							//log(`🚧 调试信息`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 							switch (FORMAT) {
 								case "application/protobuf":
@@ -129,98 +108,76 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 							// 写入二进制数据
 							$request.body = rawBody;
 							break;
+						}
 					}
 				//break; // 不中断，继续处理URL
 				case "GET":
 					if (PATH.startsWith("/color-lyrics/v2/track/")) {
-						let trackId = PATHs?.[3];
-						log(`🚧 调试信息`, `trackId: ${trackId}`, "");
-						let _request = JSON.parse(JSON.stringify($request));
+						const trackId = PATHs?.[3];
+						log("🚧 调试信息", `trackId: ${trackId}`, "");
+						const _request = JSON.parse(JSON.stringify($request));
 						_request.url = `https://api.spotify.com/v1/tracks?ids=${trackId}`;
-						if (_request?.headers?.Accept)
-							_request.headers.Accept = "application/json";
-						if (_request?.headers?.accept)
-							_request.headers.accept = "application/json";
+						if (_request?.headers?.Accept) _request.headers.Accept = "application/json";
+						if (_request?.headers?.accept) _request.headers.accept = "application/json";
 						//log(`🚧 调试信息`, `_request: ${JSON.stringify(_request)}`, "");
 						const detectStutus = fetch($request);
 						const detectTrack = fetch(_request);
-						await Promise.allSettled([detectStutus, detectTrack]).then(
-							(results) => {
-								/*
+						await Promise.allSettled([detectStutus, detectTrack]).then(results => {
+							/*
 							results.forEach((result, i) => {
 								log(`🚧 调试信息`, `result[${i}]: ${JSON.stringify(result)}`, "");
 							});
 							*/
-								switch (results[0].status) {
-									case "fulfilled":
-										let response = results[0].value;
-										switch (response?.statusCode ?? response?.status) {
-											case 200:
-												if (Settings.Types.includes("Translate"))
-													url.searchParams.set("subtype", "Translate");
-												else if (Settings.Types.includes("External"))
-													url.searchParams.set("subtype", "External");
-												break;
-											case 401:
-											default:
-												break;
-											case 404:
-												if (Settings.Types.includes("External"))
-													url.searchParams.set("subtype", "External");
-												break;
-										}
-										break;
-									case "rejected":
-										log(
-											`🚧 调试信息`,
-											`detectStutus.reason: ${JSON.stringify(results[0].reason)}`,
-											"",
-										);
-										if (Settings.Types.includes("External"))
-											url.searchParams.set("subtype", "External");
-										break;
+							switch (results[0].status) {
+								case "fulfilled": {
+									const response = results[0].value;
+									switch (response?.statusCode ?? response?.status) {
+										case 200:
+											if (Settings.Types.includes("Translate")) url.searchParams.set("subtype", "Translate");
+											else if (Settings.Types.includes("External")) url.searchParams.set("subtype", "External");
+											break;
+										case 401:
+										default:
+											break;
+										case 404:
+											if (Settings.Types.includes("External")) url.searchParams.set("subtype", "External");
+											break;
+									}
+									break;
 								}
-								switch (results[1].status) {
-									case "fulfilled":
-										let response = results[1].value;
-										body = JSON.parse(response.body);
-										body?.tracks?.forEach?.((track) => {
-											//log(`🚧 调试信息`, `track: ${JSON.stringify(track)}`, "");
-											const trackId = track?.id;
-											const trackInfo = {
-												id: track?.id,
-												track: track?.name,
-												album: track?.album?.name,
-												artist: track?.artists?.[0]?.name,
-											};
-											// 写入数据
-											Caches.Metadatas.Tracks.set(trackId, trackInfo);
-										});
-										// 格式化缓存
-										log(
-											`🚧 Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`,
-											"",
-										);
-										Caches.Metadatas.Tracks = setCache(
-											Caches.Metadatas.Tracks,
-											Settings.CacheSize,
-										);
-										// 写入持久化储存
-										Storage.setItem(
-											`@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`,
-											Caches.Metadatas.Tracks,
-										);
-										break;
-									case "rejected":
-										log(
-											`🚧 调试信息`,
-											`detectTrack.reason: ${JSON.stringify(results[1].reason)}`,
-											"",
-										);
-										break;
+								case "rejected":
+									log("🚧 调试信息", `detectStutus.reason: ${JSON.stringify(results[0].reason)}`, "");
+									if (Settings.Types.includes("External")) url.searchParams.set("subtype", "External");
+									break;
+							}
+							switch (results[1].status) {
+								case "fulfilled": {
+									const response = results[1].value;
+									body = JSON.parse(response.body);
+									body?.tracks?.forEach?.(track => {
+										//log(`🚧 调试信息`, `track: ${JSON.stringify(track)}`, "");
+										const trackId = track?.id;
+										const trackInfo = {
+											id: track?.id,
+											track: track?.name,
+											album: track?.album?.name,
+											artist: track?.artists?.[0]?.name,
+										};
+										// 写入数据
+										Caches.Metadatas.Tracks.set(trackId, trackInfo);
+									});
+									// 格式化缓存
+									log(`🚧 Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
+									Caches.Metadatas.Tracks = setCache(Caches.Metadatas.Tracks, Settings.CacheSize);
+									// 写入持久化储存
+									Storage.setItem(`@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`, Caches.Metadatas.Tracks);
+									break;
 								}
-							},
-						);
+								case "rejected":
+									log("🚧 调试信息", `detectTrack.reason: ${JSON.stringify(results[1].reason)}`, "");
+									break;
+							}
+						});
 					}
 				case "HEAD":
 				case "OPTIONS":
@@ -230,12 +187,12 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 					break;
 			}
 			$request.url = url.toString();
-			log(`🚧 调试信息`, `$request.url: ${$request.url}`, "");
+			log("🚧 调试信息", `$request.url: ${$request.url}`, "");
 			break;
 		}
 	}
 })()
-	.catch((e) => logError(e))
+	.catch(e => logError(e))
 	.finally(() => {
 		switch ($response) {
 			case undefined: // 无构造回复数据，发送修改的请求数据
@@ -244,10 +201,8 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 				break;
 			default: // 有构造回复数据，返回构造的回复数据
 				//log(`🚧 finally`, `echo $response: ${JSON.stringify($response, null, 2)}`, "");
-				if ($response.headers?.["Content-Encoding"])
-					$response.headers["Content-Encoding"] = "identity";
-				if ($response.headers?.["content-encoding"])
-					$response.headers["content-encoding"] = "identity";
+				if ($response.headers?.["Content-Encoding"]) $response.headers["Content-Encoding"] = "identity";
+				if ($response.headers?.["content-encoding"]) $response.headers["content-encoding"] = "identity";
 				switch ($platform) {
 					case "Quantumult X":
 						if (!$response.status) $response.status = "HTTP/1.1 200 OK";
