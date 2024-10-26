@@ -9,16 +9,16 @@
 #!version = {{@package 'version'}}
 
 #[rewrite_local]
-# DualSubs.Spotify.Tracks.response
+# 🍿️ DualSubs.Spotify.Tracks.response
 ^https?:\/\/api\.spotify\.com\/v1\/tracks\? url script-response-body https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/response.bundle.js
 
-# DualSubs.Spotify.Lyrics.request
+# 🍿️ DualSubs.Spotify.Lyrics.request
 ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*) url script-request-body https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/request.bundle.js
 
-# DualSubs.Spotify.Translate.Lyrics.response
+# 🍿️ DualSubs.Spotify.Translate.Lyrics.response
 ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)subtype=Translate url script-response-body https://github.com/DualSubs/Universal/releases/latest/download/Translate.response.bundle.js
 
-# DualSubs.Spotify.External.Lyrics.response
+# 🍿️ DualSubs.Spotify.External.Lyrics.response
 ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)subtype=External url script-response-body https://github.com/DualSubs/Universal/releases/latest/download/External.Lyrics.response.bundle.js
 
 #[mitm]

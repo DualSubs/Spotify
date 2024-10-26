@@ -20,50 +20,50 @@ http:
     - "spclient.wg.spotify.com"
   script:
     - match: ^https?:\/\/api\.spotify\.com\/v1\/tracks\?
-      name: DualSubs.Spotify.response
+      name: 🍿️ DualSubs.Spotify.response
       type: response
       require-body: true
 
     - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json
-      name: DualSubs.Spotify.request
+      name: 🍿️ DualSubs.Spotify.request
       type: request
       require-body: true
     - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)
-      name: DualSubs.Spotify.request
+      name: 🍿️ DualSubs.Spotify.request
       type: request
       require-body: true
       binary-mode: true
 
     - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=Translate
-      name: DualSubs.Translate.Lyrics.response
+      name: 🍿️ DualSubs.Translate.Lyrics.response
       type: response
       require-body: true
     - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=Translate
-      name: DualSubs.Translate.Lyrics.response
+      name: 🍿️ DualSubs.Translate.Lyrics.response
       type: response
       require-body: true
       binary-mode: true
 
     - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=External
-      name: DualSubs.External.Lyrics.response
+      name: 🍿️ DualSubs.External.Lyrics.response
       type: response
       require-body: true
     - match: ^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=External
-      name: DualSubs.External.Lyrics.response
+      name: 🍿️ DualSubs.External.Lyrics.response
       type: response
       require-body: true
       binary-mode: true
 
 script-providers:
-  DualSubs.Spotify.request:
+  🍿️ DualSubs.Spotify.request:
     url: https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/request.bundle.js
     interval: 86400
-  DualSubs.Spotify.response:
+  🍿️ DualSubs.Spotify.response:
     url: https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/response.bundle.js
     interval: 86400
-  DualSubs.Translate.Lyrics.response:
+  🍿️ DualSubs.Translate.Lyrics.response:
     url: https://github.com/DualSubs/Universal/releases/latest/download/Translate.response.bundle.js
     interval: 86400
-  DualSubs.External.Lyrics.response:
+  🍿️ DualSubs.External.Lyrics.response:
     url: https://github.com/DualSubs/Universal/releases/latest/download/External.Lyrics.response.bundle.js
     interval: 86400
