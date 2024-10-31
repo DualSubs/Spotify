@@ -60,7 +60,7 @@ export default defineConfig({
 		},
 		{
 			key: "Languages[0]",
-			name: "[翻译歌词] 主语言（源语言）",
+			name: "[翻译器] 主语言（源语言）",
 			defaultValue: "AUTO",
 			type: "string",
 			boxJsType: "selects",
@@ -123,7 +123,7 @@ export default defineConfig({
 		},
 		{
 			key: "Languages[1]",
-			name: "[翻译歌词] 副语言（目标语言）",
+			name: "[翻译器] 副语言（目标语言）",
 			defaultValue: "ZH",
 			type: "string",
 			boxJsType: "selects",
