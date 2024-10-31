@@ -3,22 +3,22 @@ import { defineConfig } from "@iringo/arguments-builder";
 export default defineConfig({
 	output: {
 		surge: {
-			path: "./dist/Spotify.sgmodule",
+			path: "./dist/DualSubs.Spotify.sgmodule",
 		},
 		loon: {
-			path: "./dist/Spotify.plugin",
+			path: "./dist/DualSubs.Spotify.plugin",
 		},
 		customItems: [
 			{
-				path: "./dist/Spotify.snippet",
+				path: "./dist/DualSubs.Spotify.snippet",
 				template: "./template/quantumultx.handlebars",
 			},
 			{
-				path: "./dist/Spotify.stoverride",
+				path: "./dist/DualSubs.Spotify.stoverride",
 				template: "./template/stash.handlebars",
 			},
 			{
-				path: "./dist/Spotify.yaml",
+				path: "./dist/DualSubs.Spotify.yaml",
 				template: "./template/egern.handlebars",
 			},
 		],
