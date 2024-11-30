@@ -8,13 +8,13 @@ Console.debug = () => {};
 /***************** Processing *****************/
 // 解构URL
 const url = new URL($request.url);
-Console.info(`url: ${url.toJSON()}`, "");
+Console.info(`url: ${url.toJSON()}`);
 // 获取连接参数
 const PATHs = url.pathname.split("/").filter(Boolean);
-Console.info(`PATHs: ${PATHs}`, "");
+Console.info(`PATHs: ${PATHs}`);
 // 解析格式
 const FORMAT = ($request.headers?.["Content-Type"] ?? $request.headers?.["content-type"])?.split(";")?.[0];
-Console.info(`FORMAT: ${FORMAT}`, "");
+Console.info(`FORMAT: ${FORMAT}`);
 !(async () => {
 	/**
 	 * 设置
@@ -95,12 +95,12 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 		case "GET":
 			if (url.pathname.startsWith("/color-lyrics/v2/track/")) {
 				const trackId = PATHs?.[3];
-				Console.debug(`trackId: ${trackId}`, "");
+				Console.debug(`trackId: ${trackId}`);
 				const _request = JSON.parse(JSON.stringify($request));
 				_request.url = `https://api.spotify.com/v1/tracks?ids=${trackId}`;
 				if (_request?.headers?.Accept) _request.headers.Accept = "application/json";
 				if (_request?.headers?.accept) _request.headers.accept = "application/json";
-				//Console.debug(`_request: ${JSON.stringify(_request)}`, "");
+				//Console.debug(`_request: ${JSON.stringify(_request)}`);
 				const detectStutus = fetch($request);
 				const detectTrack = fetch(_request);
 				await Promise.allSettled([detectStutus, detectTrack]).then(results => {
@@ -147,7 +147,7 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 							break;
 						}
 						case "rejected":
-							Console.debug(`detectTrack.reason: ${JSON.stringify(results[1].reason)}`, "");
+							Console.debug(`detectTrack.reason: ${JSON.stringify(results[1].reason)}`);
 							break;
 					}
 				});
@@ -160,7 +160,7 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 			break;
 	}
 	$request.url = url.toString();
-	Console.debug(`$request.url: ${$request.url}`, "");
+	Console.debug(`$request.url: ${$request.url}`);
 })()
 	.catch(e => Console.error(e))
 	.finally(() => {

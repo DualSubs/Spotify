@@ -11,13 +11,13 @@ Console.debug = () => {};
 /***************** Processing *****************/
 // 解构URL
 const url = new URL($request.url);
-Console.info(`url: ${url.toJSON()}`, "");
+Console.info(`url: ${url.toJSON()}`);
 // 获取连接参数
 const PATH = url.pathname;
-Console.info(`PATH: ${PATH}`, "");
+Console.info(`PATH: ${PATH}`);
 // 解析格式
 const FORMAT = ($response.headers?.["Content-Type"] ?? $response.headers?.["content-type"])?.split(";")?.[0];
-Console.info(`FORMAT: ${FORMAT}`, "");
+Console.info(`FORMAT: ${FORMAT}`);
 !(async () => {
 	/**
 	 * 设置
@@ -56,7 +56,7 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 		case "text/json":
 		case "application/json":
 			body = JSON.parse($response.body ?? "{}");
-			Console.debug(`body: ${JSON.stringify(body)}`, "");
+			Console.debug(`body: ${JSON.stringify(body)}`);
 			switch (PATH) {
 				case "/melody/v1/product_state":
 					body.country = Settings.Country;
@@ -64,7 +64,7 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 					break;
 				case "/v1/tracks":
 					body?.tracks?.forEach?.(track => {
-						Console.debug(`track: ${JSON.stringify(track)}`, "");
+						Console.debug(`track: ${JSON.stringify(track)}`);
 						const trackId = track?.id;
 						const trackInfo = {
 							track: track?.name,

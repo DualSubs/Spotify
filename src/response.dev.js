@@ -10,13 +10,13 @@ import { BatchedExtensionResponse } from "./protobuf/spotify/ExtendedMetadata.js
 /***************** Processing *****************/
 // 解构URL
 const url = new URL($request.url);
-Console.info(`url: ${url.toJSON()}`, "");
+Console.info(`url: ${url.toJSON()}`);
 // 获取连接参数
 const PATH = url.pathname;
-Console.info(`PATH: ${PATH}`, "");
+Console.info(`PATH: ${PATH}`);
 // 解析格式
 const FORMAT = ($response.headers?.["Content-Type"] ?? $response.headers?.["content-type"])?.split(";")?.[0];
-Console.info(`FORMAT: ${FORMAT}`, "");
+Console.info(`FORMAT: ${FORMAT}`);
 !(async () => {
 	/**
 	 * 设置
@@ -42,7 +42,7 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 		case "application/vnd.apple.mpegurl":
 		case "audio/mpegurl":
 			//body = M3U8.parse($response.body);
-			//Console.debug(`body: ${JSON.stringify(body)}`, "");
+			//Console.debug(`body: ${JSON.stringify(body)}`);
 			//$response.body = M3U8.stringify(body);
 			break;
 		case "text/xml":
@@ -52,19 +52,19 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 		case "application/plist":
 		case "application/x-plist":
 			//body = XML.parse($response.body);
-			//Console.debug(`body: ${JSON.stringify(body)}`, "");
+			//Console.debug(`body: ${JSON.stringify(body)}`);
 			//$response.body = XML.stringify(body);
 			break;
 		case "text/vtt":
 		case "application/vtt":
 			//body = VTT.parse($response.body);
-			//Console.debug(`body: ${JSON.stringify(body)}`, "");
+			//Console.debug(`body: ${JSON.stringify(body)}`);
 			//$response.body = VTT.stringify(body);
 			break;
 		case "text/json":
 		case "application/json":
 			body = JSON.parse($response.body ?? "{}");
-			Console.debug(`body: ${JSON.stringify(body)}`, "");
+			Console.debug(`body: ${JSON.stringify(body)}`);
 			switch (PATH) {
 				case "/melody/v1/product_state":
 					//body.product = "premium";
@@ -80,7 +80,7 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 					break;
 				case "/v1/tracks":
 					body?.tracks?.forEach?.(track => {
-						Console.debug(`track: ${JSON.stringify(track)}`, "");
+						Console.debug(`track: ${JSON.stringify(track)}`);
 						const trackId = track?.id;
 						const trackInfo = {
 							track: track?.name,
@@ -91,7 +91,7 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 						Caches.Metadatas.Tracks.set(trackId, trackInfo);
 					});
 					// 格式化缓存
-					Console.debug(`Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`, "");
+					Console.debug(`Caches.Metadatas.Tracks: ${JSON.stringify([...Caches.Metadatas.Tracks.entries()])}`);
 					Caches.Metadatas.Tracks = setCache(Caches.Metadatas.Tracks, Settings.CacheSize);
 					// 写入持久化储存
 					Storage.setItem(`@DualSubs.${"Spotify"}.Caches.Metadatas.Tracks`, Caches.Metadatas.Tracks);
@@ -105,9 +105,9 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 		case "application/grpc":
 		case "application/grpc+proto":
 		case "application/octet-stream": {
-			//Console.debug(`$response: ${JSON.stringify($response, null, 2)}`, "");
+			//Console.debug(`$response: ${JSON.stringify($response, null, 2)}`);
 			let rawBody = $app === "Quantumult X" ? new Uint8Array($response.bodyBytes ?? []) : ($response.body ?? new Uint8Array());
-			//Console.debug(`isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
+			//Console.debug(`isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`);
 			switch (FORMAT) {
 				case "application/protobuf":
 				case "application/x-protobuf":
@@ -118,7 +118,7 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 							switch (PATH) {
 								case "/bootstrap/v1/bootstrap": {
 									body = BootstrapResponse.fromBinary(rawBody);
-									Console.debug(`body: ${JSON.stringify(body)}`, "");
+									Console.debug(`body: ${JSON.stringify(body)}`);
 									let assignedValues = body?.ucsResponseV0?.result?.success?.customization?.result?.success?.resolveResult?.resolveSuccess?.configuration?.assignedValues;
 									if (assignedValues) {
 										assignedValues = modifiedAssignedValues(assignedValues);
@@ -133,13 +133,13 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 										};
 										accountAttributes = modifiedAccountAttributes(accountAttributes);
 									}
-									//Console.debug(`body: ${JSON.stringify(body)}`, "");
+									//Console.debug(`body: ${JSON.stringify(body)}`);
 									rawBody = BootstrapResponse.toBinary(body);
 									break;
 								}
 								case "/user-customization-service/v1/customize": {
 									body = UcsResponseWrapper.fromBinary(rawBody);
-									Console.debug(`body: ${JSON.stringify(body)}`, "");
+									Console.debug(`body: ${JSON.stringify(body)}`);
 									let assignedValues = body?.result?.success?.resolveResult?.resolveSuccess?.configuration?.assignedValues;
 									if (assignedValues) {
 										assignedValues = modifiedAssignedValues(assignedValues);
@@ -154,7 +154,7 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 										};
 										accountAttributes = modifiedAccountAttributes(accountAttributes);
 									}
-									Console.debug(`body: ${JSON.stringify(body)}`, "");
+									Console.debug(`body: ${JSON.stringify(body)}`);
 									rawBody = UcsResponseWrapper.toBinary(body);
 									break;
 								}
@@ -162,7 +162,7 @@ Console.info(`FORMAT: ${FORMAT}`, "");
 							break;
 						case "/extended-metadata/v0/extended-metadata": {
 							body = BatchedExtensionResponse.fromBinary(rawBody);
-							Console.debug(`body: ${JSON.stringify(body)}`, "");
+							Console.debug(`body: ${JSON.stringify(body)}`);
 							rawBody = BatchedExtensionResponse.toBinary(body);
 							break;
 						}
