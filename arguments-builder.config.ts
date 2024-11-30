@@ -4,6 +4,10 @@ export default defineConfig({
 	output: {
 		surge: {
 			path: "./dist/DualSubs.Spotify.sgmodule",
+			transformEgern: {
+				enable: true,
+				path: "./dist/DualSubs.Spotify.yaml",
+			},
 		},
 		loon: {
 			path: "./dist/DualSubs.Spotify.plugin",
@@ -17,10 +21,6 @@ export default defineConfig({
 				path: "./dist/DualSubs.Spotify.stoverride",
 				template: "./template/stash.handlebars",
 			},
-			{
-				path: "./dist/DualSubs.Spotify.yaml",
-				template: "./template/egern.handlebars",
-			},
 		],
 		dts: {
 			isExported: true,
@@ -32,14 +32,6 @@ export default defineConfig({
 		},
 	},
 	args: [
-		{
-			key: "Switch",
-			name: "总功能开关",
-			defaultValue: true,
-			type: "boolean",
-			description: "是否启用此APP修改",
-			exclude: ["surge", "loon"],
-		},
 		{
 			key: "Types",
 			name: "[歌词] 启用类型（多选）",
