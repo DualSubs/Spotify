@@ -1,7 +1,6 @@
 export default {
 	Default: {
 		Settings: {
-			Switch: true,
 			Type: "Translate",
 			Types: ["Official", "Translate"],
 			Languages: ["EN", "ZH"],
@@ -20,7 +19,6 @@ export default {
 	},
 	Spotify: {
 		Settings: {
-			Switch: true,
 			CountryCode: "US",
 			Types: ["Translate", "External"],
 			Languages: ["AUTO", "ZH"],
