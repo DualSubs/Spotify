@@ -1,4 +1,4 @@
-import { $app, Console, done, fetch, Lodash as _, notification, Storage, wait } from "@nsnanocat/util";
+import { $app, Console, done, Lodash as _, Storage } from "@nsnanocat/util";
 import database from "./function/database.mjs";
 import setENV from "./function/setENV.mjs";
 import setCache from "./function/setCache.mjs";
@@ -7,6 +7,7 @@ import modifiedAccountAttributes from "./function/modifiedAccountAttributes.mjs"
 import { BootstrapResponse } from "./protobuf/spotify/remoteConfig/Bootstrap.js";
 import { UcsResponseWrapper } from "./protobuf/spotify/remoteConfig/Ucs.js";
 import { BatchedExtensionResponse } from "./protobuf/spotify/ExtendedMetadata.js";
+Console.logLevel = "DEBUG";
 /***************** Processing *****************/
 // 解构URL
 const url = new URL($request.url);
