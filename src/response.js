@@ -17,12 +17,13 @@ Console.info(`PATH: ${PATH}`);
 // 解析格式
 const FORMAT = ($response.headers?.["Content-Type"] ?? $response.headers?.["content-type"])?.split(";")?.[0];
 Console.info(`FORMAT: ${FORMAT}`);
-!(async () => {
+(async () => {
 	/**
 	 * 设置
 	 * @type {{Settings: import('./types').Settings}}
 	 */
 	const { Settings, Caches, Configs } = setENV("DualSubs", "Spotify", database);
+	Console.logLevel = Settings.LogLevel;
 	// 获取字幕类型与语言
 	const Type = url.searchParams.get("subtype") ?? Settings.Type;
 	const Languages = [url.searchParams.get("lang")?.toUpperCase?.() ?? Settings.Languages[0], (url.searchParams.get("tlang") ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];

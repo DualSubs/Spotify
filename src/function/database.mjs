@@ -1,10 +1,18 @@
 export default {
+	Spotify: {
+		Settings: {
+			CountryCode: "US",
+			Types: ["Translate", "External"],
+			Languages: ["AUTO", "ZH"],
+		},
+	},
 	Default: {
 		Settings: {
 			Type: "Translate",
 			Types: ["Official", "Translate"],
 			Languages: ["EN", "ZH"],
 			CacheSize: 50,
+			LogLevel: "WARN",
 		},
 		Configs: {
 			breakLine: {
@@ -15,13 +23,6 @@ export default {
 				"text/json": "\n",
 				"application/json": "\n",
 			},
-		},
-	},
-	Spotify: {
-		Settings: {
-			CountryCode: "US",
-			Types: ["Translate", "External"],
-			Languages: ["AUTO", "ZH"],
 		},
 	},
 };

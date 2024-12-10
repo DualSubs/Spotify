@@ -47,8 +47,7 @@ export default defineConfig({
 					label: "外部歌词（外部源）",
 				},
 			],
-			description:
-				"请选择要添加的歌词选项，如果为多选，则会自动决定提供的歌词类型。",
+			description: "请选择要添加的歌词选项，如果为多选，则会自动决定提供的歌词类型。",
 		},
 		{
 			key: "Languages[0]",
@@ -56,61 +55,60 @@ export default defineConfig({
 			defaultValue: "AUTO",
 			type: "string",
 			boxJsType: "selects",
-			description:
-				"仅当源语言识别不准确时更改此选项。",
+			description: "仅当源语言识别不准确时更改此选项。",
 			options: [
 				{
-					"key": "AUTO",
-					"label": "自动 - Automatic"
+					key: "AUTO",
+					label: "自动 - Automatic",
 				},
 				{
-					"key": "ZH",
-					"label": "中文（自动）"
+					key: "ZH",
+					label: "中文（自动）",
 				},
 				{
-					"key": "ZH-HANS",
-					"label": "中文（简体）"
+					key: "ZH-HANS",
+					label: "中文（简体）",
 				},
 				{
-					"key": "ZH-HK",
-					"label": "中文（香港）"
+					key: "ZH-HK",
+					label: "中文（香港）",
 				},
 				{
-					"key": "ZH-HANT",
-					"label": "中文（繁体）"
+					key: "ZH-HANT",
+					label: "中文（繁体）",
 				},
 				{
-					"key": "EN",
-					"label": "English - 英语（自动）"
+					key: "EN",
+					label: "English - 英语（自动）",
 				},
 				{
-					"key": "ES",
-					"label": "Español - 西班牙语（自动）"
+					key: "ES",
+					label: "Español - 西班牙语（自动）",
 				},
 				{
-					"key": "JA",
-					"label": "日本語 - 日语"
+					key: "JA",
+					label: "日本語 - 日语",
 				},
 				{
-					"key": "KO",
-					"label": "한국어 - 韩语"
+					key: "KO",
+					label: "한국어 - 韩语",
 				},
 				{
-					"key": "DE",
-					"label": "Deutsch - 德语"
+					key: "DE",
+					label: "Deutsch - 德语",
 				},
 				{
-					"key": "FR",
-					"label": "Français - 法语"
+					key: "FR",
+					label: "Français - 法语",
 				},
 				{
-					"key": "TR",
-					"label": "Türkçe - 土耳其语"
+					key: "TR",
+					label: "Türkçe - 土耳其语",
 				},
 				{
-					"key": "KM",
-					"label": "ភាសាខ្មែរ - 高棉语"
-				}
+					key: "KM",
+					label: "ភាសាខ្មែរ - 高棉语",
+				},
 			],
 		},
 		{
@@ -119,69 +117,56 @@ export default defineConfig({
 			defaultValue: "ZH",
 			type: "string",
 			boxJsType: "selects",
-			description:
-				"请指定翻译歌词的目标语言。",
+			description: "请指定翻译歌词的目标语言。",
 			options: [
 				{
-					"key": "ZH",
-					"label": "中文（自动）"
+					key: "ZH",
+					label: "中文（自动）",
 				},
 				{
-					"key": "ZH-HANS",
-					"label": "中文（简体）"
+					key: "ZH-HANS",
+					label: "中文（简体）",
 				},
 				{
-					"key": "ZH-HK",
-					"label": "中文（香港）"
+					key: "ZH-HK",
+					label: "中文（香港）",
 				},
 				{
-					"key": "ZH-HANT",
-					"label": "中文（繁体）"
+					key: "ZH-HANT",
+					label: "中文（繁体）",
 				},
 				{
-					"key": "EN",
-					"label": "English - 英语（自动）"
+					key: "EN",
+					label: "English - 英语（自动）",
 				},
 				{
-					"key": "EN-US",
-					"label": "英语（美国）"
+					key: "ES",
+					label: "Español - 西班牙语（自动）",
 				},
 				{
-					"key": "ES",
-					"label": "Español - 西班牙语（自动）"
+					key: "JA",
+					label: "日本語 - 日语",
 				},
 				{
-					"key": "ES-ES",
-					"label": "Español - 西班牙语"
+					key: "KO",
+					label: "한국어 - 韩语",
 				},
 				{
-					"key": "ES-419",
-					"label": "西班牙语（拉丁美洲）"
+					key: "DE",
+					label: "Deutsch - 德语",
 				},
 				{
-					"key": "JA",
-					"label": "日本語 - 日语"
+					key: "FR",
+					label: "Français - 法语",
 				},
 				{
-					"key": "KO",
-					"label": "한국어 - 韩语"
+					key: "TR",
+					label: "Türkçe - 土耳其语",
 				},
 				{
-					"key": "DE",
-					"label": "Deutsch - 德语"
+					key: "KM",
+					label: "ភាសាខ្មែរ - 高棉语",
 				},
-				{
-					"key": "FR",
-					"label": "Français - 法语"
-				},
-				{
-					"key": "TR",
-					"label": "Türkçe - 土耳其语"
-				},
-				{
-					"key": "KM",
-					"label": "ភាសាខ្មែរ - 高棉语"
-				}
 			],
 		},
 		{
@@ -191,12 +176,12 @@ export default defineConfig({
 			type: "string",
 			options: [
 				{
-					"key": "Google",
-					"label": "Google Translate"
+					key: "Google",
+					label: "Google Translate",
 				},
 				{
-					"key": "Microsoft",
-					"label": "Microsoft Translator（需填写API）"
+					key: "Microsoft",
+					label: "Microsoft Translator（需填写API）",
 				},
 			],
 			description: "请选择翻译器所使用的服务商API，更多翻译选项请使用BoxJs。",
@@ -208,19 +193,34 @@ export default defineConfig({
 			type: "string",
 			options: [
 				{
-					"key": "NeteaseMusic",
-					"label": "网易云音乐（官方）"
+					key: "NeteaseMusic",
+					label: "网易云音乐（官方）",
 				},
 				{
-					"key": "QQMusic",
-					"label": "QQ音乐（官方）"
+					key: "QQMusic",
+					label: "QQ音乐（官方）",
 				},
 				{
-					"key": "NeteaseMusicNodeJS",
-					"label": "网易云音乐 NodeJS API"
+					key: "NeteaseMusicNodeJS",
+					label: "网易云音乐 NodeJS API",
 				},
 			],
 			description: "请选择外部源所使用的服务商API。",
+		},
+		{
+			key: "LogLevel",
+			name: "[调试] 日志等级",
+			type: "string",
+			defaultValue: "WARN",
+			description: "选择脚本日志的输出等级，低于所选等级的日志将全部输出。",
+			options: [
+				{ key: "OFF", label: "关闭" },
+				{ key: "ERROR", label: "❌ 错误" },
+				{ key: "WARN", label: "⚠️ 警告" },
+				{ key: "INFO", label: "ℹ️ 信息" },
+				{ key: "DEBUG", label: "🅱️ 调试" },
+				{ key: "ALL", label: "全部" },
+			],
 		},
 	],
 });

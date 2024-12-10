@@ -5,7 +5,6 @@ import setCache from "./function/setCache.mjs";
 // 构造回复数据
 // biome-ignore lint/style/useConst: <explanation>
 let $response = undefined;
-Console.logLevel = "DEBUG";
 /***************** Processing *****************/
 // 解构URL
 const url = new URL($request.url);
@@ -16,12 +15,13 @@ Console.info(`PATHs: ${PATHs}`);
 // 解析格式
 const FORMAT = ($request.headers?.["Content-Type"] ?? $request.headers?.["content-type"])?.split(";")?.[0];
 Console.info(`FORMAT: ${FORMAT}`);
-!(async () => {
+(async () => {
 	/**
 	 * 设置
 	 * @type {{Settings: import('./types').Settings}}
 	 */
 	const { Settings, Caches, Configs } = setENV("DualSubs", "Spotify", database);
+	Console.logLevel = Settings.LogLevel;
 	// 获取字幕类型与语言
 	const Type = url.searchParams.get("subtype") ?? Settings.Type;
 	const Languages = [url.searchParams.get("lang")?.toUpperCase?.() ?? Settings.Languages[0], (url.searchParams.get("tlang") ?? Caches?.tlang)?.toUpperCase?.() ?? Settings.Languages[1]];
@@ -105,7 +105,7 @@ Console.info(`FORMAT: ${FORMAT}`);
 					break;
 				}
 			}
-		//break; // 不中断，继续处理URL
+		// break; // 不中断，继续处理URL
 		// biome-ignore lint/suspicious/noFallthroughSwitchClause: <explanation>
 		case "GET":
 			if (url.pathname.startsWith("/color-lyrics/v2/track/")) {
