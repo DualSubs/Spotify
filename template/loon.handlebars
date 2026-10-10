@@ -13,6 +13,9 @@
 [Argument]
 {{{arguments}}}
 
+[Rewrite]
+response if ${url} ~= /^https:\/\/dualsubs\.github\.io\/api\/Spotify(?:\?.*)?$/i then response.body.mock_file("json", "https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/DualSubs.Spotify.PreferencePanes.json", 200) | response.header.add(["X-PreferencePanes-Version", "Cache-Control"], ["{{@package 'version'}}", "no-store"])
+
 [Script]
 http-response ^https?:\/\/api\.spotify\.com\/v1\/tracks\? requires-body=1, script-path=https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/response.bundle.js, tag=🍿️ DualSubs.Spotify.Tracks.response.json, argument={{{scriptParams}}}
 
@@ -26,4 +29,4 @@ http-response ^https?:\/\/(.+-spclient|spclient\.wg)\.spotify\.com(:443)?\/color
 http-response ^https?:\/\/(.+-spclient|spclient\.wg)\.spotify\.com(:443)?\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=External requires-body=1, binary-body-mode=1, script-path=https://github.com/DualSubs/Universal/releases/latest/download/External.Lyrics.response.bundle.js, tag=🍿️ DualSubs.Spotify.External.Lyrics.response.proto, argument={{{scriptParams}}}
 
 [MITM]
-hostname = api.spotify.com, spclient.wg.spotify.com, *-spclient.spotify.com
+hostname = dualsubs.github.io, api.spotify.com, spclient.wg.spotify.com, *-spclient.spotify.com

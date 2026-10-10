@@ -35,3 +35,14 @@ jobs:
           gist_id: e60d056221d3d42ef6fa30c4e3ea8a51
           gist_description: "🍿️ DualSubs: 🎵 Spotify β"
           file_path: dist/response.bundle.js
+      - name: Deploy module settings and development templates
+        env:
+          GH_TOKEN: ${{ secrets.GIST_TOKEN }}
+        run: |
+          node --input-type=module <<'JS'
+          import { readFile, writeFile } from "node:fs/promises";
+          const names = ["DualSubs.Spotify.dev.sgmodule", "DualSubs.Spotify.dev.plugin", "DualSubs.Spotify.dev.snippet", "DualSubs.Spotify.dev.stoverride", "DualSubs.Spotify.dev.yaml", "DualSubs.Spotify.dev.PreferencePanes.json", "config.dev.bundle.js"];
+          const files = Object.fromEntries(await Promise.all(names.map(async name => [name, { content: await readFile(`dist/${name}`, "utf8") }])));
+          await writeFile("gist-update.json", JSON.stringify({ files }));
+          JS
+          gh api --method PATCH gists/e60d056221d3d42ef6fa30c4e3ea8a51 --input gist-update.json --silent

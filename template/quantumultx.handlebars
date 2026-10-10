@@ -9,6 +9,7 @@
 #!version = {{@package 'version'}}
 
 #[rewrite_local]
+^https:\/\/dualsubs\.github\.io\/api\/Spotify(?:\?.*)?$ url echo-response application/json\r\nX-PreferencePanes-Version: {{@package 'version'}} echo-response https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/DualSubs.Spotify.PreferencePanes.json
 # 🍿️ DualSubs.Spotify.Tracks.response
 ^https?:\/\/api\.spotify\.com\/v1\/tracks\? url script-response-body https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/response.bundle.js
 
@@ -22,4 +23,4 @@
 ^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/(.+)\?(.*)subtype=External url script-response-body https://github.com/DualSubs/Universal/releases/latest/download/External.Lyrics.response.bundle.js
 
 #[mitm]
-hostname = api.spotify.com, spclient.wg.spotify.com, *-spclient.spotify.com
+hostname = dualsubs.github.io, api.spotify.com, spclient.wg.spotify.com, *-spclient.spotify.com

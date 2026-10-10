@@ -10,6 +10,9 @@
 #!arguments = {{{arguments}}}
 #!arguments-desc = {{{argumentsDesc}}}
 
+[Map Local]
+^https:\/\/dualsubs\.github\.io\/api\/Spotify(?:\?.*)?$ data-type=file data="https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/DualSubs.Spotify.PreferencePanes.json" status-code=200 header="Content-Type:application/json; charset=utf-8|Cache-Control:no-store|X-PreferencePanes-Version:{{@package 'version'}}"
+
 [Script]
 🍿️ DualSubs.Spotify.Tracks.response.json = type=http-response, pattern=^https?:\/\/api\.spotify\.com\/v1\/tracks\?, requires-body=1, engine=webview, script-path=https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/response.bundle.js, argument={{{scriptParams}}}
 
@@ -22,4 +25,4 @@
 🍿️ DualSubs.Spotify.External.Lyrics.response.proto = type=http-response, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=External, requires-body=1, binary-body-mode=1, script-path=https://github.com/DualSubs/Universal/releases/latest/download/External.Lyrics.response.bundle.js, argument={{{scriptParams}}}
 
 [MITM]
-hostname = %APPEND% api.spotify.com, spclient.wg.spotify.com, *-spclient.spotify.com
+hostname = %APPEND% dualsubs.github.io, api.spotify.com, spclient.wg.spotify.com, *-spclient.spotify.com
