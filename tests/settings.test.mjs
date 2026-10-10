@@ -3,9 +3,11 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import vm from "node:vm";
 
+const suffix = process.env.SETTINGS_CHANNEL === "dev" ? ".dev" : "";
+
 test("module settings retain both proxy response protocols and bodyless HEAD detection", async () => {
-	const expected = JSON.parse(await readFile("dist/DualSubs.Spotify.dev.PreferencePanes.json", "utf8"));
-	const source = await readFile("dist/config.dev.bundle.js", "utf8");
+	const expected = JSON.parse(await readFile(`dist/DualSubs.Spotify${suffix}.PreferencePanes.json`, "utf8"));
+	const source = await readFile(`dist/config${suffix}.bundle.js`, "utf8");
 	for (const method of ["GET", "HEAD"])
 		for (const quantumult of [false, true]) {
 			let result;
@@ -33,5 +35,27 @@ test("module templates intercept only their own configuration and leave backing 
 				assert.equal(regex.test(`https://dualsubs.github.io/api/${panel}`), false, `${platform}${suffix}: ${panel}`);
 			for (const [url] of template.matchAll(/https:\/\/[^\s"',)]+/g))
 				assert.equal(regex.test(url), false, `${platform}${suffix}: download intercepted: ${url}`);
+		}
+});
+
+test("bundled responses use complete language arrays and preserve argument precedence without Node globals", { timeout: 10000 }, async () => {
+	const source = await readFile(`dist/response${suffix}.bundle.js`, "utf8");
+	for (const objectArgument of [false, true])
+		for (const storage of ["PersistentStore", "Argument"]) {
+			const argument = { Storage: storage, Languages: ["EN", "FR"], LogLevel: "OFF" };
+			const errors = [];
+			const result = await new Promise(resolve => vm.runInNewContext(source, {
+				URL,
+				console: { log() {}, info() {}, debug() {}, warn() {}, error: (...args) => errors.push(args) },
+				$environment: { "surge-version": "test" },
+				$script: { startTime: Date.now() / 1000 },
+				$argument: objectArgument ? argument : new URLSearchParams({ ...argument, Languages: "EN,FR" }).toString(),
+				$persistentStore: { read: key => key === "DualSubs" ? JSON.stringify({ Spotify: { Settings: { Languages: ["EN", "JA"] } } }) : null },
+				$request: { url: "https://spclient.wg.spotify.com/melody/v1/product_state", headers: {} },
+				$response: { status: 200, headers: { "Content-Type": "application/json" }, body: '{"selected-language":"en"}' },
+				$done: resolve,
+			}));
+			assert.deepEqual(errors, []);
+			assert.equal(JSON.parse(result.body)["selected-language"], storage === "Argument" ? "fr" : "ja");
 		}
 });
