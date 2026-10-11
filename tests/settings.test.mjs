@@ -41,8 +41,9 @@ test("module templates intercept only their own configuration and leave backing 
 test("bundled responses use complete language arrays and preserve argument precedence without Node globals", { timeout: 10000 }, async () => {
 	const source = await readFile(`dist/response${suffix}.bundle.js`, "utf8");
 	for (const objectArgument of [false, true])
-		for (const storage of ["PersistentStore", "Argument"]) {
-			const argument = { Storage: storage, Languages: ["EN", "FR"], LogLevel: "OFF" };
+		for (const storage of [undefined, "PersistentStore", "Argument"]) {
+			const argument = { Languages: ["EN", "FR"], LogLevel: "OFF" };
+			if (storage !== undefined) argument.Storage = storage;
 			const errors = [];
 			const result = await new Promise(resolve => vm.runInNewContext(source, {
 				URL,
