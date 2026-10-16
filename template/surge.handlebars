@@ -14,6 +14,7 @@
 ^https:\/\/dualsubs\.github\.io\/api\/Spotify(?:\?.*)?$ data-type=file data="https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/DualSubs.Spotify.PreferencePanes.json" status-code=200 header="Content-Type:application/json; charset=utf-8|Cache-Control:no-store|X-PreferencePanes-Version:{{@package 'version'}}"
 
 [Script]
+PreferencePanes.API = type=http-request, pattern=^https:\/\/dualsubs\.github\.io\/api\/(?:get|set|delete)(?:\?.*)?$, requires-body=1, max-size=65536, script-path=https://github.com/NSNanoCat/PreferencePanes/releases/download/v1.3.1/api.js
 🍿️ DualSubs.Spotify.Tracks.response.json = type=http-response, pattern=^https?:\/\/api\.spotify\.com\/v1\/tracks\?, requires-body=1, engine=webview, script-path=https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/response.bundle.js, argument={{{scriptParams}}}
 
 🍿️ DualSubs.Spotify.Lyrics.request.json = type=http-request, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json, requires-body=1, script-path=https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/request.bundle.js, argument={{{scriptParams}}}

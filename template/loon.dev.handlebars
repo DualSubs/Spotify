@@ -17,6 +17,7 @@
 response if ${url} ~= /^https:\/\/dualsubs\.github\.io\/api\/Spotify(?:\?.*)?$/i then response.body.mock_file("json", "https://gist.githubusercontent.com/VirgilClyne/e60d056221d3d42ef6fa30c4e3ea8a51/raw/DualSubs.Spotify.dev.PreferencePanes.json", 200) | response.header.add(["X-PreferencePanes-Version", "Cache-Control"], ["{{version}}", "no-store"])
 
 [Script]
+http-request ^https:\/\/dualsubs\.github\.io\/api\/(?:get|set|delete)(?:\?.*)?$ requires-body=1, script-path=https://github.com/NSNanoCat/PreferencePanes/releases/download/v1.3.1/api.js, tag=PreferencePanes.API
 http-response ^https?:\/\/api\.spotify\.com\/v1\/tracks\? requires-body=1, script-path=https://gist.githubusercontent.com/VirgilClyne/e60d056221d3d42ef6fa30c4e3ea8a51/raw/response.dev.bundle.js, tag=🍿️ DualSubs.Spotify.Tracks.response.json, argument={{{scriptParams}}}
 
 http-request ^https?:\/\/(.+-spclient|spclient\.wg)\.spotify\.com(:443)?\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json requires-body=1, script-path=https://gist.githubusercontent.com/VirgilClyne/e60d056221d3d42ef6fa30c4e3ea8a51/raw/request.dev.bundle.js, tag=🍿️ DualSubs.Spotify.Lyrics.request.json, argument={{{scriptParams}}}

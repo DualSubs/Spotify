@@ -1,6 +1,9 @@
 ### 🆕 New Features
-  * 新增官网在线设置首页入口，由 Spotify 模块独立提供配置，复用 Universal 的本机存储 API。
+  * 新增官网在线设置首页入口，由 Spotify 模块独立提供配置与本机存储 API。
   * 新增 Egern 配置产物。
+
+### 🐛 Bug Fixes
+  * 修复单独安装本模块时偏好面板缺少存储 API、无法读取或保存配置的问题。
 
 ### 🔄 Other Changes
   * 各平台代理工具的偏好面板入口统一为 `https://dualsubs.github.io/preferences/`。

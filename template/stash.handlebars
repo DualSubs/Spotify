@@ -21,6 +21,11 @@ http:
     - "spclient.wg.spotify.com"
     - "*-spclient.spotify.com"
   script:
+    - match: ^https:\/\/dualsubs\.github\.io\/api\/(?:get|set|delete)(?:\?.*)?$
+      name: PreferencePanes.API
+      type: request
+      require-body: true
+      max-size: 65536
     - match: ^https:\/\/dualsubs\.github\.io\/api\/Spotify(?:\?.*)?$
       name: 📺 DualSubs.Spotify.Config
       type: request
@@ -61,6 +66,9 @@ http:
       binary-mode: true
 
 script-providers:
+  PreferencePanes.API:
+    url: https://github.com/NSNanoCat/PreferencePanes/releases/download/v1.3.1/api.js
+    interval: 86400
   📺 DualSubs.Spotify.Config:
     url: https://github.com/DualSubs/Spotify/releases/download/v{{@package 'version'}}/config.bundle.js
     interval: 86400

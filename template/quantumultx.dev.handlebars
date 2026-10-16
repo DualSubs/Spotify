@@ -9,6 +9,7 @@
 #!version = {{version}}
 
 #[rewrite_local]
+^https:\/\/dualsubs\.github\.io\/api\/(?:get|set|delete)(?:\?.*)?$ url script-echo-response https://github.com/NSNanoCat/PreferencePanes/releases/download/v1.3.1/api.js
 ^https:\/\/dualsubs\.github\.io\/api\/Spotify(?:\?.*)?$ url echo-response application/json\r\nX-PreferencePanes-Version: {{version}} echo-response https://gist.githubusercontent.com/VirgilClyne/e60d056221d3d42ef6fa30c4e3ea8a51/raw/DualSubs.Spotify.dev.PreferencePanes.json
 # 🍿️ DualSubs.Spotify.Tracks.response
 ^https?:\/\/api\.spotify\.com\/v1\/tracks\? url script-response-body https://gist.githubusercontent.com/VirgilClyne/e60d056221d3d42ef6fa30c4e3ea8a51/raw/response.dev.bundle.js
